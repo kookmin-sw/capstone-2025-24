@@ -1,0 +1,42 @@
+enable:
+  issues: true
+  prs: true
+
+labels:
+  ':bug: BUG':
+    include: ['\bFix\b', '\bfix\b', '\bFIX\b', '\bBug\b', '\bbug\b', '\bBUG\b']
+
+  ':sparkles: FEAT':
+    include: ['\bFeat\b', '\bFEAT\b', '\bfeat\b']
+
+  ':pencil2: DOCS':
+    include:
+      ['\bDocs\b', '\bDOCS\b', '\bdocs\b']
+
+  ':tada: INIT':
+    include:
+      ['\bInit\b', '\bINIT\b', '\binit\b']
+  
+  ':lipstick: DESIGN':
+    include:
+      ['\bDesign\b', '\bDESIGN\b', '\bdesign\b']
+
+  ':broom: CHORE':
+    include:
+      ['\bCHORE\b', '\bChore\b', '\bchore\b']
+
+  ':hammer: REFACTOR':
+    include:
+      ['\bRefactor\b', '\bREFACTOR\b', '\brefactor\b']
+
+  ':nail_care: FRONTEND':
+    include:
+      ['\bFrontend\b', '\bfrontend\b', '\bFRONTEND\b']
+
+  ':page_facing_up: AI':
+    include:
+      ['\bAI\b', '\bai\b', '\bAi\b']
+
+  ':rocket: BACKEND':
+    include:
+      ['\bbackend\b', '\bBackend\b', '\bBACKEND\b']
