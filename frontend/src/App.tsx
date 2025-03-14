@@ -1,7 +1,5 @@
-import './App.css';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import Router from './routes/Router';
-
 
 const App: React.FC = () => {
   return (
