@@ -29,29 +29,24 @@ jobs:
               ? context.payload.pull_request.user.login 
               : context.payload.issue.user.login;
 
-            const frontendUsers = ["hummingbbird", "HeeNamgoong", "seo0o519"];
-            const backendUsers = ["hyni03", "mjk25"];
-            const aiUsers = ["justpers"];
+            const userLabels = {
+              "hummingbbird": ":nail_care: FRONTEND",
+              "HeeNamgoong": ":nail_care: FRONTEND",
+              "seo0o519": ":nail_care: FRONTEND",
+              "hyni03": ":rocket: BACKEND",
+              "mjk25": ":rocket: BACKEND",
+              "justpers": ":page_facing_up: AI"
+            };
 
-            let labelsToAdd = [];
+            const labelToAdd = userLabels[author];
 
-            if (frontendUsers.includes(author)) {
-              labelsToAdd.push(":nail_care: FRONTEND");
-            } 
-            if (backendUsers.includes(author)) {
-              labelsToAdd.push(":rocket: BACKEND");
-            } 
-            if (aiUsers.includes(author)) {
-              labelsToAdd.push(":page_facing_up: AI");
-            }
-
-            if (labelsToAdd.length > 0) {
+            if (labelToAdd) {
               github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.payload.pull_request 
                   ? context.payload.pull_request.number 
                   : context.payload.issue.number,
-                labels: labelsToAdd
+                labels: [labelToAdd]
               });
             }
