@@ -24,13 +24,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
+          cache-dependency-path: frontend/yarn.lock
 
       - name: Install dependencies
-        run: |
-          cd frontend
-          yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
+        working-directory: frontend
 
       - name: Build project
-        run: |
-          cd frontend
-          yarn build
+        run: yarn build
+        working-directory: frontend
