@@ -19,19 +19,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Check file structure
+        run: ls -R
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "yarn"
-          cache-dependency-path: "frontend/yarn.lock"
+          cache-dependency-path: "./frontend/yarn.lock"
 
       - name: Install dependencies
-        run: |
-          cd frontend
-          yarn install --frozen-lockfile
+        working-directory: frontend
+        run: yarn install --frozen-lockfile
 
       - name: Build project
-        run: |
-          cd frontend
-          yarn build
+        working-directory: frontend
+        run: yarn build
