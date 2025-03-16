@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
 // AlertItem.tsx
+
+interface ColorDivProps {
+  category: string;
+}
+
+interface StateCircleProps {
+  state: string;
+}
+
 export const Layout = styled.div`
   display: flex;
   width: 274px;
@@ -21,8 +30,9 @@ export const CardDiv = styled.div`
   }
 `;
 
-export const ColorDiv = styled.div`
-  background-color: var(--yellow);
+export const ColorDiv = styled.div<ColorDivProps>`
+  background-color: ${({ category }) =>
+    category === '폭행' || category === '군중 밀집' ? 'var(--yellow)' : 'var(--red)'};
   width: 11px;
   height: 159px;
   border-top-left-radius: 10px;
@@ -32,6 +42,20 @@ export const ColorDiv = styled.div`
 export const DateDiv = styled.div`
   color: var(--gray500);
   font-size: 11px;
+`;
+
+export const DateWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StateCircle = styled.div<StateCircleProps>`
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: ${({ state }) => (state === '미확인' ? '#45B404' : 'var(--gray400)')};
 `;
 
 export const CategoryDiv = styled.div`
@@ -61,7 +85,7 @@ export const ShowButtoon = styled.button`
 export const AlertListLayout = styled.div`
   width: 275px;
   height: 100vh;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   overflow: hidden; /* 넘치는 부분 숨김 */
 `;
 
@@ -70,7 +94,7 @@ export const TitleDiv = styled.div`
   font-weight: 700;
   position: fixed;
   top: 0;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   width: 275px;
   height: 53px;
   z-index: 100;
@@ -79,7 +103,7 @@ export const TitleDiv = styled.div`
 
 export const AlertContainer = styled.div`
   padding-top: 53px;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   height: calc(100vh - 53px); /* 제목을 제외한 높이 */
   overflow-y: auto; /* 내부 스크롤 */
 `;
