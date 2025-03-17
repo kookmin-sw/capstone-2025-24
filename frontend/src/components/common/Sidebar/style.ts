@@ -1,6 +1,19 @@
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 
+// Layout ---------------------------//
+export const Layout = styled.div`
+  display: flex;
+  height: 100vh;
+`;
+
+export const MainContent = styled.div`
+  border: 1px solid red;
+  flex: 1; 
+  overflow-y: auto;
+  height: 100vh;
+`;
+
 // Sidebar --------------------------//
 export const SidebarDiv = styled.div`
   width: 204px;
@@ -86,8 +99,4 @@ export const SidebarBtnLayout = styled(Button)`
     background-color: var(--primary900);
     color: white;
   }
-`;
-
-// Layout
-export const MainContent = styled.div`
 `;
