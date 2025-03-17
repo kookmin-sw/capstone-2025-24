@@ -18,7 +18,10 @@ const AlertItem: React.FC<AlertItemProps> = ({ category, date, address, state })
             <S.DateDiv>{date}</S.DateDiv>
             <S.StateCircle state={state} />
           </S.DateWrapper>
-          <S.CategoryDiv>{category} 감지</S.CategoryDiv>
+          <S.CategoryDiv>
+            <S.AlertIcon category={category} />
+            {category} 감지
+          </S.CategoryDiv>
           <S.AddressDiv>{address} </S.AddressDiv>
           <S.ShowButtoon>자세히 보기</S.ShowButtoon>
         </S.CardDiv>
