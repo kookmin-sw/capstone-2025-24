@@ -2,6 +2,7 @@ import * as S from './style';
 import Profile from './Profile';
 import SidebarBtn from './SidebarBtn';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
+import { Outlet } from 'react-router-dom';
 
 export const Sidebar = () => {
   const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
@@ -25,6 +26,9 @@ export const Sidebar = () => {
           })}
         </S.BtnDiv>
       </S.SidebarDiv>
+      <S.MainContent>
+        <Outlet />
+      </S.MainContent>
     </S.SidebarLayout>
   );
 };

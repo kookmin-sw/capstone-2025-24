@@ -1,6 +1,6 @@
 const ChartPage = () => {
     return (
-      <div style={{backgroundColor: "blue", width:"100vh"}}>
+      <div style={{backgroundColor: "blue"}}>
         <h1>Chart Page</h1>
       </div>
     );
