@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TbAlertTriangleFilled } from 'react-icons/tb';
 
 // AlertItem.tsx
 
@@ -8,6 +9,10 @@ interface ColorDivProps {
 
 interface StateCircleProps {
   state: string;
+}
+
+interface IconProps {
+  category: string;
 }
 
 export const Layout = styled.div`
@@ -61,6 +66,16 @@ export const StateCircle = styled.div<StateCircleProps>`
 export const CategoryDiv = styled.div`
   font-size: 20px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+`;
+
+export const AlertIcon = styled(TbAlertTriangleFilled)<IconProps>`
+  color: ${({ category }) => (category === '폭행' || category === '군중 밀집' ? 'var(--yellow)' : 'var(--red)')};
+  margin-right: 5px;
+  font-size: 25px;
+  margin-right: 10px;
+  
 `;
 
 export const AddressDiv = styled.div`
