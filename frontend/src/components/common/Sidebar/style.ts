@@ -1,13 +1,16 @@
-import { Avatar,Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 
 // Sidebar --------------------------//
+export const SidebarDiv = styled.div`
+  width: 204px;
+  height: 100vh;
+  background-color: var(--primary400);
+`;
 export const SidebarLayout = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 204px;
-  height: 100%;
-  background-color: var(--primary400);
+  flex-direction: row;
+  justify-content: start;
 `;
 
 export const LogoDiv = styled.div`
@@ -66,7 +69,7 @@ export const SidebarBtnLayout = styled(Button)`
   justify-content: start;
   align-items: center;
   width: 95%;
-  font-size: 18px;
+  font-size: 17px;
   border-radius: 10px;
   padding: 8px 6px;
   padding-left: 15px;
@@ -83,4 +86,8 @@ export const SidebarBtnLayout = styled(Button)`
     background-color: var(--primary900);
     color: white;
   }
+`;
+
+// Layout
+export const MainContent = styled.div`
 `;
