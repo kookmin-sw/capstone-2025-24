@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
-import { IoAlertCircleOutline } from "react-icons/io5";
-
+import { IoAlertCircleOutline } from 'react-icons/io5';
 
 // AlertItem.tsx
 
@@ -23,6 +22,7 @@ export const Layout = styled.div`
   height: 159px;
   border-radius: 10px;
   margin: 10px 0px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const CardDiv = styled.div`
@@ -77,7 +77,6 @@ export const AlertIcon = styled(TbAlertTriangleFilled)<IconProps>`
   margin-right: 5px;
   font-size: 25px;
   margin-right: 10px;
-
 `;
 
 export const AddressDiv = styled.div`
@@ -96,6 +95,13 @@ export const ShowButtoon = styled.button`
   border: 1px solid var(--primary900);
   background-color: white;
   border-radius: 5px;
+  &:hover {
+    background-color: #F5F7FE;
+  }
+  
+  &:active{
+    background-color: #E2E6FC;  
+  }
 `;
 
 //AlertList.tsx
@@ -127,7 +133,6 @@ export const AlertContainer = styled.div`
   overflow-y: auto; /* 내부 스크롤 */
 `;
 
-
 // ToolTip.tsx
 export const InfoIcon = styled(IoAlertCircleOutline)`
   font-size: 18px;
@@ -144,4 +149,4 @@ export const TooltipDiv = styled.div`
   font-size: 10px;
   color: var(--gray800)
   
-`
+`;
