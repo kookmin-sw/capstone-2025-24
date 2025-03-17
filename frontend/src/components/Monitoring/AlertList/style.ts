@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
 import { IoAlertCircleOutline } from 'react-icons/io5';
 
@@ -16,14 +16,34 @@ interface IconProps {
   category: string;
 }
 
-export const Layout = styled.div`
+interface LayoutProps {
+  clicked: boolean;
+}
+
+const blinkShadow = keyframes`
+  0%, 100% {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 1px 1px 10px 5px var(--yellow);
+  }
+`;
+
+export const Layout = styled.div<LayoutProps>`
   display: flex;
   width: 274px;
   height: 159px;
   border-radius: 10px;
   margin: 10px 0px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+
+  ${({ clicked }) =>
+    clicked &&
+    css`
+      animation: ${blinkShadow} 1s ease-in-out 3;
+    `}
 `;
+
 
 export const CardDiv = styled.div`
     background-color: white;
@@ -96,11 +116,11 @@ export const ShowButtoon = styled.button`
   background-color: white;
   border-radius: 5px;
   &:hover {
-    background-color: #F5F7FE;
+    background-color: #f5f7fe;
   }
-  
-  &:active{
-    background-color: #E2E6FC;  
+
+  &:active {
+    background-color: #e2e6fc;
   }
 `;
 

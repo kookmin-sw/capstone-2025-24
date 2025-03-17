@@ -6,12 +6,13 @@ interface AlertItemProps {
   date: string;
   address: string;
   state: string;
+  clicked: boolean;
 }
 
-const AlertItem: React.FC<AlertItemProps> = ({ category, date, address, state }) => {
+const AlertItem: React.FC<AlertItemProps> = ({ category, date, address, state, clicked}) => {
   return (
     <div>
-      <S.Layout>
+      <S.Layout clicked={clicked}>
         <S.ColorDiv category={category} />
         <S.CardDiv>
           <S.DateWrapper>
