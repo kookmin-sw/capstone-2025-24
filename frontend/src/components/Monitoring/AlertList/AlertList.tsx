@@ -3,6 +3,7 @@ import * as S from './style.ts';
 import AlertItem from './AlertItem.tsx';
 import ToopTip from './ToolTip.tsx';
 
+// 알림리스트 mock data
 const mockdata = [
   {
     id: 1,
@@ -34,6 +35,10 @@ const mockdata = [
   },
 ];
 
+// 클릭된 1단계 푸시 알림의 사건 번호
+const clicked_alert_id = 3;
+
+
 const AlertList: React.FC = () => {
   return (
     <S.AlertListLayout>
@@ -48,6 +53,7 @@ const AlertList: React.FC = () => {
             date={alert.date}
             address={alert.address}
             state={alert.state}
+            clicked={clicked_alert_id===alert.id ? true : false}
           />
         ))}
       </S.AlertContainer>
