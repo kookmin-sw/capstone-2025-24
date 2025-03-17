@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
+import { IoAlertCircleOutline } from "react-icons/io5";
+
 
 // AlertItem.tsx
 
@@ -75,7 +77,7 @@ export const AlertIcon = styled(TbAlertTriangleFilled)<IconProps>`
   margin-right: 5px;
   font-size: 25px;
   margin-right: 10px;
-  
+
 `;
 
 export const AddressDiv = styled.div`
@@ -114,6 +116,8 @@ export const TitleDiv = styled.div`
   height: 53px;
   z-index: 100;
   line-height: 53px;
+  display: flex;
+  align-items: center;
 `;
 
 export const AlertContainer = styled.div`
@@ -122,3 +126,22 @@ export const AlertContainer = styled.div`
   height: calc(100vh - 53px); /* 제목을 제외한 높이 */
   overflow-y: auto; /* 내부 스크롤 */
 `;
+
+
+// ToolTip.tsx
+export const InfoIcon = styled(IoAlertCircleOutline)`
+  font-size: 18px;
+  color: var(--gray600);
+  margin: 0px 8px;
+  cursor: pointer;
+`;
+
+export const TooltipDiv = styled.div`
+  display: flex;
+  padding: 0px 10px;
+  justify-content: center;
+  align-items-center;
+  font-size: 10px;
+  color: var(--gray800)
+  
+`
