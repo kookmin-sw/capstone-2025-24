@@ -1,17 +1,25 @@
-import { BiSolidCctv } from "react-icons/bi";
+import  CCTV  from "../assets/svgs/cctv.svg";
+import  CCTV_SOLID  from "../assets/svgs/cctv_solid.svg";
+import  CHART  from "../assets/svgs/chart.svg";
+import  CHART_SOLID  from "../assets/svgs/chart_solid.svg";
+import  DOCU  from "../assets/svgs/docu.svg";
+import  DOCU_SOLID  from "../assets/svgs/docu_solid.svg";
 
 export const SIDEBAR_LIST = [
   {
     text: '실시간 모니터링',
-    icon: 'tmp',
+    icon: CCTV,
+    icon_focused: CCTV_SOLID,
   },
   {
     text: '사건 기록 조회',
-    icon: 'tmp',
+    icon: DOCU,
+    icon_focused: DOCU_SOLID,
   },
   {
     text: '통계 차트',
-    icon: 'tmp',
+    icon: CHART,
+    icon_focused: CHART_SOLID,
   },
 ];
 
