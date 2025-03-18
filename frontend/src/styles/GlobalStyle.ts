@@ -17,6 +17,16 @@ export const GlobalStyle = createGlobalStyle`
     --red: #FF6161;
     --yellow: #FFDF86;
   }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export default GlobalStyle;
