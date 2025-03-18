@@ -1,13 +1,14 @@
-import React from 'react';
+import { useState } from 'react';
 import KakaoMap from './KakaoMap';
 import InfoBox from './InfoBox';
 import * as S from './style';
 
-const InfoSection: React.FC = () => {
+const InfoSection = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   return (
     <S.InfoLayout>
-      <KakaoMap />
-      <InfoBox />
+      <KakaoMap setSelectedIndex={setSelectedIndex} />
+      <InfoBox selectedIndex={selectedIndex} />
     </S.InfoLayout>
   );
 };

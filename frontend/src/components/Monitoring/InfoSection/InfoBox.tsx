@@ -1,8 +1,18 @@
-import React from 'react';
 import * as S from './style';
 import cctvIcon from '@/assets/cctvIcon.svg';
 
-const InfoBox: React.FC = () => {
+interface InfoBoxProps {
+  selectedIndex: number | null;
+}
+
+const InfoBox = ({ selectedIndex }: InfoBoxProps) => {
+  const locations = [
+    '서울특별시청',
+    '남산타워',
+    '경복궁',
+    '잠실 롯데타워',
+    '여의도공원',
+  ];
   return (
     <S.InfoBoxLayout>
       <S.UpperDiv>
@@ -14,26 +24,15 @@ const InfoBox: React.FC = () => {
       </S.UpperDiv>
       <S.Line />
       <S.LocationDiv>
-        <S.Location>
-          <img src={cctvIcon} alt="cctv-icon" />
-          성북구 보국문로 읍천리 35 21-54
-        </S.Location>
-        <S.Location>
-          <img src={cctvIcon} alt="cctv-icon" />
-          성북구 보국문로 읍천리 35 21-54
-        </S.Location>
-        <S.Location>
-          <img src={cctvIcon} alt="cctv-icon" />
-          성북구 보국문로 읍천리 35 21-54
-        </S.Location>
-        <S.Location>
-          <img src={cctvIcon} alt="cctv-icon" />
-          성북구 보국문로 읍천리 35 21-54
-        </S.Location>
-        <S.Location>
-          <img src={cctvIcon} alt="cctv-icon" />
-          성북구 보국문로 읍천리 35 21-54
-        </S.Location>
+        {locations.map((location, index) => (
+          <S.Location
+            key={index}
+            selected={selectedIndex === index}
+          >
+            <img src={cctvIcon} alt="cctv-icon" />
+            {location}
+          </S.Location>
+        ))}
       </S.LocationDiv>
     </S.InfoBoxLayout>
   );

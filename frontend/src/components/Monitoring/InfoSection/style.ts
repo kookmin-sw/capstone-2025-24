@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Map } from 'react-kakao-maps-sdk';
 import { MdMyLocation } from 'react-icons/md';
 
+interface LocationProps {
+  selected: boolean;
+}
+
 //------------------
 // InfoSection.tsx
 //------------------
@@ -85,7 +89,8 @@ export const LocationDiv = styled.div`
   }
 `;
 
-export const Location = styled.p`
+export const Location = styled.p<LocationProps>`
   display: flex;
   align-items: center;
+  background-color: ${({ selected }) => (selected ? 'var(--primary400)' : 'transparent')};
 `;
