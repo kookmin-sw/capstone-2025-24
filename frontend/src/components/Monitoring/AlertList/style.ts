@@ -34,7 +34,7 @@ export const Layout = styled.div<LayoutProps>`
   width: 274px;
   height: 159px;
   border-radius: 10px;
-  margin: 10px 0px;
+  margin: 7px 0px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 
   ${({ clicked }) =>
@@ -43,7 +43,6 @@ export const Layout = styled.div<LayoutProps>`
       animation: ${blinkShadow} 1s ease-in-out 3;
     `}
 `;
-
 
 export const CardDiv = styled.div`
     background-color: white;
@@ -125,20 +124,23 @@ export const ShowButtoon = styled.button`
 `;
 
 //AlertList.tsx
+
 export const AlertListLayout = styled.div`
-  width: 275px;
+  width: 300px;
   height: 100vh;
   background-color: #fafafa;
-  overflow: hidden; /* 넘치는 부분 숨김 */
+  overflow-y: hidden; /* 넘치는 부분 숨김 */
+
 `;
 
 export const TitleDiv = styled.div`
   font-size: 25px;
   font-weight: 700;
   position: fixed;
+  padding: 0px 10px;
   top: 0;
   background-color: #fafafa;
-  width: 275px;
+  width: 300px;
   height: 53px;
   z-index: 100;
   line-height: 53px;
@@ -147,10 +149,14 @@ export const TitleDiv = styled.div`
 `;
 
 export const AlertContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-top: 53px;
   background-color: #fafafa;
-  height: calc(100vh - 53px); /* 제목을 제외한 높이 */
+  height: 100vh;
   overflow-y: auto; /* 내부 스크롤 */
+
 `;
 
 // ToolTip.tsx
@@ -168,5 +174,21 @@ export const TooltipDiv = styled.div`
   align-items-center;
   font-size: 10px;
   color: var(--gray800)
-  
+`;
+
+// EmptyView.tsx
+
+export const EmptyViewLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const TextDiv = styled.div`
+  color: var(--gray500);
+  margin: 30px;
+
+  font-size: 23px;
 `;
