@@ -8,7 +8,7 @@ export const Layout = styled.div`
 `;
 
 export const MainContent = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   flex: 1; 
   overflow-y: auto;
   height: 100vh;
