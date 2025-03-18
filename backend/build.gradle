@@ -22,6 +22,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'  // Spring JDBC 의존성 추가
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	implementation 'org.postgresql:postgresql:42.7.3'  // PostgreSQL JDBC 드라이버 의존성 추가
+	runtimeOnly 'org.postgresql:postgresql:42.7.3'     // 실행 시에만 필요한 의존성 추가
 }
 
 tasks.named('test') {
