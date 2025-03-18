@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './style';
-// import { MdMyLocation } from 'react-icons/md';
+import cctvIcon from '@/assets/cctvIcon.svg';
 
 const InfoBox: React.FC = () => {
   return (
@@ -13,6 +13,28 @@ const InfoBox: React.FC = () => {
         </S.SeoulP>
       </S.UpperDiv>
       <S.Line />
+      <S.LocationDiv>
+        <S.Location>
+          <img src={cctvIcon} alt="cctv-icon" />
+          성북구 보국문로 읍천리 35 21-54
+        </S.Location>
+        <S.Location>
+          <img src={cctvIcon} alt="cctv-icon" />
+          성북구 보국문로 읍천리 35 21-54
+        </S.Location>
+        <S.Location>
+          <img src={cctvIcon} alt="cctv-icon" />
+          성북구 보국문로 읍천리 35 21-54
+        </S.Location>
+        <S.Location>
+          <img src={cctvIcon} alt="cctv-icon" />
+          성북구 보국문로 읍천리 35 21-54
+        </S.Location>
+        <S.Location>
+          <img src={cctvIcon} alt="cctv-icon" />
+          성북구 보국문로 읍천리 35 21-54
+        </S.Location>
+      </S.LocationDiv>
     </S.InfoBoxLayout>
   );
 };
