@@ -2,10 +2,24 @@ import * as S from './style';
 import Profile from './Profile';
 import SidebarBtn from './SidebarBtn';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
+  const navigate = useNavigate();
   const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
+  const handleNavigate = (target: string) => {
+    switch (target) {
+      case '사건 기록 조회':
+        navigate('/history');
+        return;
+      case '실시간 모니터링':
+        navigate('/monitor');
+        return;
+      case '통계 차트':
+        navigate('/chart');
+        return;
+    }
+  };
   return (
     <S.SidebarLayout>
       <S.SidebarDiv>
@@ -20,7 +34,7 @@ export const Sidebar = () => {
                 icon={it.icon}
                 icon_focused={it.icon_focused}
                 size={'20px'}
-                onClick={() => console.log(it.text)}
+                onClick={()=>handleNavigate(it.text)}
               />
             );
           })}
