@@ -9,7 +9,7 @@ export const Layout = styled.div`
 
 export const MainContent = styled.div`
   /* border: 1px solid red; */
-  flex: 1; 
+  flex: 1;
   overflow-y: auto;
   height: 100vh;
 `;
@@ -26,6 +26,15 @@ export const SidebarLayout = styled.div`
   justify-content: start;
 `;
 
+export const BtnDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 34px;
+`;
+
 export const LogoDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -36,7 +45,6 @@ export const LogoDiv = styled.div`
 `;
 
 // Profile ----------------------------------//
-
 export const ProfileLayout = styled.div`
   /* border: 1px solid red; */
   display: flex;
@@ -66,16 +74,7 @@ export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
 `;
 
 // SidebarBtn --------------------------------------//
-export const BtnDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-top: 34px;
-`;
-
-export const SidebarBtnLayout = styled(Button)`
+export const SidebarBtn = styled(Button)`
   border: none;
   display: flex;
   flex-direction: row;
@@ -95,7 +94,7 @@ export const SidebarBtnLayout = styled(Button)`
     background-color: var(--primary500);
   }
 
-  &:focus {
+  &.active {
     background-color: var(--primary900);
     color: white;
   }
