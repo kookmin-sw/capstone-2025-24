@@ -1,18 +1,13 @@
 import * as S from './style';
+import { locations } from '../../../mocks/LocationData';
 import cctvIcon from '@/assets/cctvIcon.svg';
+import cctvIconBlue from '@/assets/cctvBlueIcon.svg';
 
 interface InfoBoxProps {
   selectedIndex: number | null;
 }
 
 const InfoBox = ({ selectedIndex }: InfoBoxProps) => {
-  const locations = [
-    '서울특별시청',
-    '남산타워',
-    '경복궁',
-    '잠실 롯데타워',
-    '여의도공원',
-  ];
   return (
     <S.InfoBoxLayout>
       <S.UpperDiv>
@@ -25,11 +20,11 @@ const InfoBox = ({ selectedIndex }: InfoBoxProps) => {
       <S.Line />
       <S.LocationDiv>
         {locations.map((location, index) => (
-          <S.Location
-            key={index}
-            selected={selectedIndex === index}
-          >
-            <img src={cctvIcon} alt="cctv-icon" />
+          <S.Location key={index} selected={selectedIndex === index}>
+            <img
+              src={selectedIndex === index ? cctvIconBlue : cctvIcon}
+              alt="cctv-icon"
+            />
             {location}
           </S.Location>
         ))}

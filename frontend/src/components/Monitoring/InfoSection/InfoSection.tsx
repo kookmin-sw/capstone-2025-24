@@ -4,15 +4,13 @@ import InfoBox from './InfoBox';
 import * as S from './style';
 
 const InfoSection = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   return (
     <S.InfoLayout>
-      <KakaoMap setSelectedIndex={setSelectedIndex} />
+      <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
       <InfoBox selectedIndex={selectedIndex} />
     </S.InfoLayout>
   );
 };
 
 export default InfoSection;
-
-

@@ -23,6 +23,7 @@ export const Maps = styled(Map)`
   width: 413px;
   height: 246px;
   border-radius: 8px;
+  border: solid 1px var(--gray400);
 `;
 
 //--------------
@@ -33,16 +34,16 @@ export const InfoBoxLayout = styled.div`
   border: solid 0.5px var(--gray400);
   width: 413px;
   height: 246px;
-  padding: 22px 17px;
+  padding: 22px 10px;
   background: #fff;
-  border-radius: 8px;   
+  border-radius: 8px;
 `;
 
 export const UpperDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 7px;
+  padding: 0 14px;
 `;
 
 export const Title = styled.p`
@@ -77,7 +78,7 @@ export const LocationDiv = styled.div`
   color: var(--gray600);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 5px;
   padding: 0 7px;
   max-height: 157px;
   overflow-y: auto;
@@ -89,8 +90,11 @@ export const LocationDiv = styled.div`
   }
 `;
 
-export const Location = styled.p<LocationProps>`
+export const Location = styled.div<LocationProps>`
   display: flex;
   align-items: center;
+  border-radius: 7px;
+  padding: 4px 10px;
   background-color: ${({ selected }) => (selected ? 'var(--primary400)' : 'transparent')};
+  color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray600)')};
 `;

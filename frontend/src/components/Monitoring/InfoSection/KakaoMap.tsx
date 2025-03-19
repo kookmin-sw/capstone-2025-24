@@ -1,19 +1,15 @@
 import * as S from './style';
+import { markerPositions } from '../../../mocks/LocationData';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import cctvIcon from '@/assets/cctvIcon.svg';
+import cctvIconBlue from '@/assets/cctvBlueIcon.svg';
 
 interface KakaoMapProps {
+  selectedIndex: number | null;
   setSelectedIndex: (index: number | null) => void;
 }
 
-const KakaoMap = ({ setSelectedIndex }: KakaoMapProps) => {
-  const markerPositions = [
-    { lat: 37.5665, lng: 126.978 }, // 서울특별시청
-    { lat: 37.5512, lng: 126.9882 }, // 남산타워
-    { lat: 37.5796, lng: 126.977 }, // 경복궁
-    { lat: 37.5112, lng: 127.098 }, // 잠실 롯데타워
-    { lat: 37.4824, lng: 126.9013 }, // 여의도공원
-  ];
+const KakaoMap = ({ selectedIndex, setSelectedIndex }: KakaoMapProps) => {
   return (
     <S.Maps id="map" center={{ lat: 37.5665, lng: 126.978 }} level={9}>
       {markerPositions.map((position, index) => (
@@ -21,7 +17,7 @@ const KakaoMap = ({ setSelectedIndex }: KakaoMapProps) => {
           key={index}
           position={position}
           image={{
-            src: cctvIcon,
+            src: selectedIndex === index ? cctvIconBlue : cctvIcon,
             size: {
               width: 22,
               height: 22,
