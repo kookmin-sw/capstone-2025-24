@@ -6,6 +6,7 @@ interface VideoProps {
   h: number;
   radius: number;
 }
+
 export const VideoComponentLayout = styled.div<VideoProps>`
   display: flex;
   width: ${({ w }) => w}px;
