@@ -16,6 +16,29 @@ export const GlobalStyle = createGlobalStyle`
     --gray400: #D9D9D9;
     --red: #FF6161;
     --yellow: #FFDF86;
+    
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    width: 100%;
+    height: 100%;
   }
   * {
     margin: 0;

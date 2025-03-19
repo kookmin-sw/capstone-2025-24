@@ -1,7 +1,6 @@
-import React from 'react';
 import Monitoring from '../components/Monitoring/InfoSection/InfoSection';
 
-const MonitoringPage: React.FC = () => {
+const MonitoringPage = () => {
   return (
     <div>
       <Monitoring />
