@@ -11,6 +11,9 @@ interface LocationProps {
 export const InfoLayout = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  margin: auto;
+  justify-content: center;
 `;
 
 export const InfoContent = styled.div`

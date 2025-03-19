@@ -150,7 +150,7 @@ export const AlertContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 53px;
+  padding-top: 59px;
   background-color: #fafafa;
   height: 100vh;
   overflow-y: auto; /* 내부 스크롤 */
