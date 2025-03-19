@@ -20,8 +20,20 @@ public class DashboardController {
 
     // (전체) 출동 중인 사건 조회 (완)
     @GetMapping("/case/move")
-    public ResponseEntity<List<CaseResponse>> getActiveCases() {
-        return ResponseEntity.ok(dashboardService.getActiveCases());
+    public ResponseEntity<?> getActiveCases() {
+        try {
+            List<CaseResponse> cases = dashboardService.getActiveCases();
+
+            if (cases.isEmpty()) {
+                return ResponseEntity.status(404)
+                        .body(Collections.singletonMap("message", "출동 중인 사건이 없습니다."));
+            }
+
+            return ResponseEntity.ok(cases);
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
     }
 
     // 출동 중인 사건 영상 확인
