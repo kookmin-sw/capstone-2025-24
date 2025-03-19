@@ -6,7 +6,6 @@ export const InfoIcon = styled(IoAlertCircleOutline)`
   font-size: 18px;
   color: var(--gray600);
   margin: 0px 8px;
-  cursor: pointer;
 `;
 
 export const TooltipP = styled.p`
@@ -14,7 +13,7 @@ export const TooltipP = styled.p`
   padding: 0px 10px;
   text-align: center;
   justify-content: center;
-  align-items-center;
+  align-items: center;
   font-size: 10px;
   color: var(--gray800)
 `;

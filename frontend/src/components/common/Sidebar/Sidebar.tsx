@@ -1,4 +1,4 @@
-import * as S from './style';
+import * as S from './Sidebar.style';
 import Profile from './Profile';
 import SidebarButton from './SidebarButton';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
@@ -12,14 +12,13 @@ export const Sidebar = () => {
   const { setPage } = useSidebarStore();
   const navigate = useNavigate();
   const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
-  
 
   useEffect(() => {
     switch (location.pathname) {
-      case "/history":
+      case '/history':
         setPage(() => 2);
         break;
-      case "/chart":
+      case '/chart':
         setPage(() => 3);
         break;
       default:
