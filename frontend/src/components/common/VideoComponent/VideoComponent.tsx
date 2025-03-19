@@ -1,5 +1,4 @@
 import * as S from './style';
-import ReactPlayer from 'react-player';
 
 interface VideoComponentProps {
   w: number;
