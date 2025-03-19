@@ -4,13 +4,14 @@ import com.example.backend.dashboard.domain.CaseEntity;
 import com.example.backend.dashboard.domain.CaseEntity.CaseState;
 import com.example.backend.dashboard.dto.CaseResponse;
 import com.example.backend.dashboard.repository.CaseRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,12 +25,24 @@ public class DashboardService {
     public List<CaseResponse> getActiveCases() {
         List<CaseEntity> cases = caseRepository.findAllByStateOrderById(CaseState.출동);
 
-        if (cases == null || cases.isEmpty()) {
-            return Collections.emptyList();
+        return cases.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+
+    // 출동 중인 사건 영상 확인
+    public Map<String, String> getCaseVideo(int id) {
+        CaseEntity caseEntity = caseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
+
+        if (caseEntity.getState() != CaseState.출동) {
+            throw new IllegalStateException("해당 사건은 출동 상태가 아닙니다.");
         }
 
-        //  return cases.stream().map(this::convertToDto).collect(Collectors.toList());
-        return cases.stream().map(this::convertToDto).collect(Collectors.toList());
+        String videoUrl = caseEntity.getVideo();
+        if (videoUrl == null || videoUrl.trim().isEmpty()) {
+            throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
+        }
+
+        return Collections.singletonMap("video", videoUrl);
     }
 
     // Entity → DTO 변환 메서드
