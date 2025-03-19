@@ -3,14 +3,32 @@ import Profile from './Profile';
 import SidebarButton from './SidebarButton';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
 import { Outlet, useNavigate } from 'react-router-dom';
-import sidebarStore from '../../../stores/sidebarStore';
+import useSidebarStore from '../../../stores/sidebarStore';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const Sidebar = () => {
-  const { setPage } = sidebarStore();
+  const location = useLocation();
+  const { setPage } = useSidebarStore();
   const navigate = useNavigate();
   const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/history":
+        setPage(() => 2);
+        break;
+      case "/chart":
+        setPage(() => 3);
+        break;
+      default:
+        setPage(() => 1);
+        break;
+    }
+  }, [location.pathname, setPage]);
+  
   const handleNavigate = (target: number) => {
-    setPage(() => target);
+    setPage(() => target); // 동기적으로 처리
     switch (target) {
       case 1:
         navigate('/monitoring');
