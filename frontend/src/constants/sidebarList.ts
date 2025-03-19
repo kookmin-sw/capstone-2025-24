@@ -5,7 +5,14 @@ import CHART_SOLID from '@/assets/icons/chart_solid.svg';
 import DOCU from '@/assets/icons/docu.svg';
 import DOCU_SOLID from '@/assets/icons/docu_solid.svg';
 
-export const SIDEBAR_LIST = [
+interface SidebarItem {
+  id: number;
+  text: string;
+  icon: string;
+  icon_focused: string;
+}
+
+export const SIDEBAR_LIST:SidebarItem[] = [
   {
     id: 1,
     text: '실시간 모니터링',

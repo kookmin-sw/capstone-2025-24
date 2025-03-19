@@ -4,7 +4,7 @@ import SidebarButton from './SidebarButton';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
 import { Outlet, useNavigate } from 'react-router-dom';
 import useSidebarStore from '../../../stores/sidebarStore';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const Sidebar = () => {
@@ -12,6 +12,7 @@ export const Sidebar = () => {
   const { setPage } = useSidebarStore();
   const navigate = useNavigate();
   const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
+  
 
   useEffect(() => {
     switch (location.pathname) {
@@ -26,7 +27,7 @@ export const Sidebar = () => {
         break;
     }
   }, [location.pathname, setPage]);
-  
+
   const handleNavigate = (target: number) => {
     setPage(() => target); // 동기적으로 처리
     switch (target) {
@@ -48,7 +49,7 @@ export const Sidebar = () => {
         <S.LogoDiv>로고</S.LogoDiv>
         <Profile name={tmpData.name} imgUrl={tmpData.imgUrl} level={tmpData.level} territory={tmpData.territory} />
         <S.BtnDiv>
-          {SIDEBAR_LIST.map((it: { id: number; text: string; icon: string; icon_focused: string }) => {
+          {SIDEBAR_LIST.map((it) => {
             return (
               <SidebarButton
                 key={it.text}
