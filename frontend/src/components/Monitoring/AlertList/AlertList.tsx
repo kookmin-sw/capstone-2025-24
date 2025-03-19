@@ -1,92 +1,34 @@
-import React from 'react';
 import * as S from './style.ts';
 import AlertItem from './AlertItem.tsx';
-import ToopTip from './ToolTip.tsx';
+import ToolTip from '../../common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
+import AlertListData from '../../../mocks/AlertListData.tsx';
 
-interface Alert {
-  id: number;
-  category: string;
-  date: string;
-  address: string;
-  state: string;
-}
-
-// 알림리스트 mock data
-const mockdata : Alert[] = [
-  {
-    id: 1,
-    category: '폭행',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '미확인',
-  },
-  {
-    id: 2,
-    category: '화재',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31 서울특별시 성북구 보국문로 31',
-    state: '미확인',
-  },
-  {
-    id: 3,
-    category: '군중 밀집',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '미확인',
-  },
-  {
-    id: 4,
-    category: '쓰러짐',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '확인',
-  },
-  {
-    id: 3,
-    category: '군중 밀집',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '미확인',
-  },
-  {
-    id: 4,
-    category: '쓰러짐',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '확인',
-  },
-  {
-    id: 3,
-    category: '군중 밀집',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '미확인',
-  },
-  {
-    id: 4,
-    category: '쓰러짐',
-    date: '2024.10.10. 10:10:30',
-    address: '서울특별시 성북구 보국문로 31',
-    state: '확인',
-  },
-];
-
+// 알림 리스트 데이터
+const alertdata = AlertListData;
 
 // 클릭된 1단계 푸시 알림의 사건 번호
 const clicked_alert_id = 3;
 
-const AlertList: React.FC = () => {
+const ToopTipContent = () => {
+  return (
+    <div>
+      각 알림은 24시간이 지나면 <br />알림 리스트에서 자동 삭제됩니다.
+    </div>
+  );
+};
+
+const AlertList = () => {
   return (
     <S.AlertListLayout>
-      <S.TitleDiv>
-        알림 리스트 <ToopTip />
-      </S.TitleDiv>
+      <S.TitleP>
+        알림 리스트 <ToolTip><ToopTipContent/></ToolTip>
+      </S.TitleP>
       <S.AlertContainer>
-        {mockdata.length === 0 ? (
+        {alertdata.length === 0 ? (
           <EmptyView />
         ) : (
-          mockdata.map((alert) => (
+          alertdata.map((alert) => (
             <AlertItem
               key={alert.id}
               category={alert.category}

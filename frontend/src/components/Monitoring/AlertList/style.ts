@@ -1,6 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
-import { IoAlertCircleOutline } from 'react-icons/io5';
 
 // AlertItem.tsx
 
@@ -65,7 +64,7 @@ export const ColorDiv = styled.div<ColorDivProps>`
   border-bottom-left-radius: 10px;
 `;
 
-export const DateDiv = styled.div`
+export const DateP = styled.p`
   color: var(--gray500);
   font-size: 11px;
 `;
@@ -98,7 +97,7 @@ export const AlertIcon = styled(TbAlertTriangleFilled)<IconProps>`
   margin-right: 10px;
 `;
 
-export const AddressDiv = styled.div`
+export const AddressP = styled.p`
   color: var(--gray700);
   font-size: 14px;
 `;
@@ -133,11 +132,11 @@ export const AlertListLayout = styled.div`
 
 `;
 
-export const TitleDiv = styled.div`
+export const TitleP = styled.p`
   font-size: 25px;
   font-weight: 700;
   position: fixed;
-  padding: 0px 10px;
+  padding: 0px 17px;
   top: 0;
   background-color: #fafafa;
   width: 300px;
@@ -159,23 +158,6 @@ export const AlertContainer = styled.div`
 
 `;
 
-// ToolTip.tsx
-export const InfoIcon = styled(IoAlertCircleOutline)`
-  font-size: 18px;
-  color: var(--gray600);
-  margin: 0px 8px;
-  cursor: pointer;
-`;
-
-export const TooltipDiv = styled.div`
-  display: flex;
-  padding: 0px 10px;
-  justify-content: center;
-  align-items-center;
-  font-size: 10px;
-  color: var(--gray800)
-`;
-
 // EmptyView.tsx
 
 export const EmptyViewLayout = styled.div`
@@ -186,9 +168,8 @@ export const EmptyViewLayout = styled.div`
   height: 100%;
 `;
 
-export const TextDiv = styled.div`
+export const TextP = styled.p`
   color: var(--gray500);
   margin: 30px;
-
   font-size: 23px;
 `;
