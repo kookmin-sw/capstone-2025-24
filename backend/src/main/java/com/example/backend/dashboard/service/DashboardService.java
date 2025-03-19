@@ -2,7 +2,10 @@ package com.example.backend.dashboard.service;
 
 import com.example.backend.dashboard.domain.CaseEntity;
 import com.example.backend.dashboard.domain.CaseEntity.CaseState;
+import com.example.backend.dashboard.domain.CaseEntity.CaseCategory;
 import com.example.backend.dashboard.dto.CaseResponse;
+import com.example.backend.dashboard.dto.SurveyRequest;
+import com.example.backend.dashboard.dto.SurveyResponse;
 import com.example.backend.dashboard.repository.CaseRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +61,33 @@ public class DashboardService {
         caseRepository.save(caseEntity);
 
         return Collections.singletonMap(id, "해당 사건이 해결 처리되었습니다.");
+    }
+
+    // AI 설문조사 결과 저장
+    public SurveyResponse saveSurveyResult(int id, SurveyRequest surveyRequest) {
+        CaseEntity caseEntity = caseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
+
+        // AI 정확성 반영 (이미 false이면 설문조사가 완료된 상태)
+        if (!caseEntity.isAccuracy()) {
+            throw new IllegalStateException("이미 설문조사가 완료된 사건입니다.");
+        }
+
+        caseEntity.setAccuracy(false);
+
+        // category 업데이트 (예외 처리 포함)
+        if (surveyRequest.getCategory() != null) {
+            try {
+                caseEntity.setCategory(CaseCategory.valueOf(surveyRequest.getCategory()));
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("유효하지 않은 카테고리 값입니다: " + surveyRequest.getCategory());
+            }
+        }
+
+        caseRepository.save(caseEntity);
+
+        // 응답 생성
+        return new SurveyResponse(id, caseEntity.getCategory().name(), "설문조사가 정상적으로 저장되었습니다.");
     }
 
     // Entity → DTO 변환 메서드

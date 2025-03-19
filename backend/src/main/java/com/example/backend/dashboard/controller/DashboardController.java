@@ -1,6 +1,8 @@
 package com.example.backend.dashboard.controller;
 
 import com.example.backend.dashboard.dto.CaseResponse;
+import com.example.backend.dashboard.dto.SurveyRequest;
+import com.example.backend.dashboard.dto.SurveyResponse;
 import com.example.backend.dashboard.service.DashboardService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +66,25 @@ public class DashboardController {
             return ResponseEntity.status(404)
                     .body(Collections.singletonMap("message", e.getMessage()));
         } catch (IllegalStateException e) {
+            return ResponseEntity.status(400)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
+
+    // AI 설문조사 결과 저장
+    @PutMapping("/survey/{id}")
+    public ResponseEntity<?> saveSurveyResult(@PathVariable("id") int id,
+                                              @RequestBody SurveyRequest surveyRequest) {
+        try {
+            SurveyResponse surveyResult = dashboardService.saveSurveyResult(id, surveyRequest);
+            return ResponseEntity.ok(surveyResult);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        } catch (IllegalArgumentException | IllegalStateException e ) {
             return ResponseEntity.status(400)
                     .body(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
