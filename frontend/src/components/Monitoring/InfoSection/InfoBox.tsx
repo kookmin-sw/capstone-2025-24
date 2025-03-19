@@ -21,10 +21,7 @@ const InfoBox = ({ selectedIndex }: InfoBoxProps) => {
       <S.LocationDiv>
         {locations.map((location, index) => (
           <S.Location key={index} selected={selectedIndex === index}>
-            <img
-              src={selectedIndex === index ? cctvIconBlue : cctvIcon}
-              alt="cctv-icon"
-            />
+            <img src={selectedIndex === index ? cctvIconBlue : cctvIcon} alt="cctv-icon" />
             {location}
           </S.Location>
         ))}

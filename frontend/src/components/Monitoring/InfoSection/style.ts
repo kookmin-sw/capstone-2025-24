@@ -12,6 +12,11 @@ interface LocationProps {
 
 export const InfoLayout = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+export const InfoContent = styled.div`
+  display: flex;
   gap: 5px;
 `;
 
@@ -97,4 +102,14 @@ export const Location = styled.div<LocationProps>`
   padding: 4px 10px;
   background-color: ${({ selected }) => (selected ? 'var(--primary400)' : 'transparent')};
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray600)')};
+`;
+
+export const VideoLayout = styled.div``;
+
+export const VideoPlayer = styled.iframe`
+  margin-top: 15px;
+  width: 831px;
+  height: 467px;
+  border: none;
+  border-radius: 8px;
 `;
