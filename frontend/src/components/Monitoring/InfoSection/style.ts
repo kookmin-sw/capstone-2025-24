@@ -6,9 +6,7 @@ interface LocationProps {
   selected: boolean;
 }
 
-//------------------
-// InfoSection.tsx
-//------------------
+// InfoSection.tsx ------------------------------------------------//
 
 export const InfoLayout = styled.div`
   display: flex;
@@ -20,9 +18,7 @@ export const InfoContent = styled.div`
   gap: 5px;
 `;
 
-//--------------
-// KakaoMap.tsx
-//--------------
+// KakaoMap.tsx ------------------------------------------------//
 
 export const Maps = styled(Map)`
   width: 413px;
@@ -31,9 +27,7 @@ export const Maps = styled(Map)`
   border: solid 1px var(--gray400);
 `;
 
-//--------------
-// InfoBox.tsx
-//-------------
+// InfoBox.tsx ------------------------------------------------//
 
 export const InfoBoxLayout = styled.div`
   border: solid 0.5px var(--gray400);

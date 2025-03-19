@@ -1,14 +1,16 @@
-import { markerPositions } from '../../../mocks/LocationData';
 import * as S from './style';
 
 interface VideoProps {
   selectedIndex: number | null;
+  Locations: {
+    cctvUrl: string;
+  }[];
 }
 
-const VideoBox = ({ selectedIndex }: VideoProps) => {
+const VideoBox = ({ selectedIndex, Locations }: VideoProps) => {
   return (
     <S.VideoLayout>
-      {selectedIndex !== null && <S.VideoPlayer src={markerPositions[selectedIndex].cctvUrl} title="CCTV Video" />}
+      {selectedIndex !== null && <S.VideoPlayer src={Locations[selectedIndex].cctvUrl} title="CCTV Video" />}
     </S.VideoLayout>
   );
 };

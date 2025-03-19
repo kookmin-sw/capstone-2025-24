@@ -2,6 +2,7 @@ import { useState } from 'react';
 import KakaoMap from './KakaoMap';
 import InfoBox from './InfoBox';
 import VideoBox from './VideoBox';
+import { Locations } from '../../../mocks/LocationData';
 import * as S from './style';
 
 const InfoSection = () => {
@@ -9,10 +10,10 @@ const InfoSection = () => {
   return (
     <S.InfoLayout>
       <S.InfoContent>
-        <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
-        <InfoBox selectedIndex={selectedIndex} />
+        <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={Locations} />
+        <InfoBox selectedIndex={selectedIndex} Locations={Locations} />
       </S.InfoContent>
-      <VideoBox selectedIndex={selectedIndex} />
+      <VideoBox selectedIndex={selectedIndex} Locations={Locations} />
     </S.InfoLayout>
   );
 };
