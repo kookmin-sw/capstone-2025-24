@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
 import MonitoringPage from '../pages/MonitoringPage';
 import ChartPage from '../pages/ChartPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage';
