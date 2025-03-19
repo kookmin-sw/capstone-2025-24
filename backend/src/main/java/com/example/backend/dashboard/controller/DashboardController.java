@@ -54,4 +54,22 @@ public class DashboardController {
         }
     }
 
+    // 출동 중인 사건 해결 처리
+    @PutMapping("/case/complete/{id}")
+    public ResponseEntity<?> completeCase(@PathVariable("id") int id) {
+        try {
+            Map<Integer, String> completedCase = dashboardService.completeCase(id);
+            return ResponseEntity.ok(completedCase);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(400)
+                    .body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
+
 }

@@ -45,6 +45,21 @@ public class DashboardService {
         return Collections.singletonMap("video", videoUrl);
     }
 
+    // 출동 중인 사건 해결 처리
+    public Map<Integer, String> completeCase(int id) {
+        CaseEntity caseEntity = caseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
+
+        if (caseEntity.getState() != CaseState.출동) {
+            throw new IllegalStateException("해당 사건은 출동 상태가 아닙니다.");
+        }
+
+        caseEntity.setState(CaseState.완료);
+        caseRepository.save(caseEntity);
+
+        return Collections.singletonMap(id, "해당 사건이 해결 처리되었습니다.");
+    }
+
     // Entity → DTO 변환 메서드
     private CaseResponse convertToDto(CaseEntity entity) {
         CaseResponse dto = new CaseResponse();
