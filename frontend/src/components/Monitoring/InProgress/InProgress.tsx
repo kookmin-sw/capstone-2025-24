@@ -1,8 +1,22 @@
+import { useState } from 'react';
+import VideoModal from './VideoModal';
 import { InProgresstData } from '../../../mocks/InProgressData.tsx';
 import { IoMdCamera } from 'react-icons/io';
+import video from './test.mov';
 import * as S from './InProgress.style.ts';
 
 const InProgress = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedVideoUrl, setSelectedVideoUrl] = useState("");
+  const openModal = () => {
+    // setSelectedVideoUrl(videoUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    // setSelectedVideoUrl("");
+  };
   return (
     <S.InProgressLayout>
       <S.Title>출동중인 사건 (총 {InProgresstData.length}건)</S.Title>
@@ -11,7 +25,8 @@ const InProgress = () => {
           <S.Card key={incident.id}>
             <S.CardHeader>
               <S.CardTitle>{incident.title} 감지</S.CardTitle>
-              <S.VideoButton>
+              <S.VideoButton onClick={() => openModal()}>
+                {/* <S.VideoButton onClick={() => handleOpenModal(incident.videoUrl)}> */}
                 <IoMdCamera className="icon" />
                 영상 확인
               </S.VideoButton>
@@ -29,6 +44,7 @@ const InProgress = () => {
           </S.Card>
         ))}
       </S.CardGrid>
+      <VideoModal isOpen={isModalOpen} onClose={closeModal} videoUrl={video} />
     </S.InProgressLayout>
   );
 };

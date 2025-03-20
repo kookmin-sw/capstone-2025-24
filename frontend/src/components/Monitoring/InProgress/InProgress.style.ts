@@ -15,6 +15,7 @@ export const CardGrid = styled.div`
 `;
 
 export const Card = styled.div`
+  width: 367px;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
@@ -76,7 +77,7 @@ export const ResolveButton = styled.button`
   margin-top: 37px;
   margin-bottom: 15px;
   padding: 8px 0;
-  border: solid 1.5px var(--primary600);;
+  border: solid 1.5px var(--primary600);
   background-color: var(--primary300);
   color: var(--primary900);
   border-radius: 5px;

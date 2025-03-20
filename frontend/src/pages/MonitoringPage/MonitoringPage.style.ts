@@ -12,6 +12,6 @@ export const TopSection = styled.div`
 `;
 
 export const BottomSection = styled.div`
-  padding: 20px;
-  /* margin: auto; */
+  /* padding: 20px; */
+  margin: auto;
 `;
