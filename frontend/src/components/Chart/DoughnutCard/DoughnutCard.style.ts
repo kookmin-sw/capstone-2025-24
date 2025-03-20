@@ -1,16 +1,80 @@
+import { color } from 'chart.js/helpers';
 import styled from 'styled-components';
+import { Doughnut } from 'react-chartjs-2';
 
 export const DoughnutCardLayout = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 466px;
   height: 340px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgba(181, 181, 181, 0.25);
   padding: 16px;
+  margin-top: 33px;
 `;
 
 export const TitleP = styled.p`
-    font-weight: 700;
-    font-size: 17px;
+  font-weight: 700;
+  font-size: 17px;
+`;
 
+export const DoughnutChartLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 30px;
+`;
+
+export const GraphDiv = styled.div`
+  height: 100%;
+  width: 219px;
+  height: 219px;
+  padding: 20px;
+`;
+
+export const DoughnutChart = styled(Doughnut)`
+`;
+
+// LabelDiv.tsx --------------------//
+export const LabelLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  height: 112px;
+  justify-content: space-between;
+`;
+
+// Label.tsx ----------------------//
+export const LabelItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const ColorChip = styled.div<{ color?: string }>`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: ${({ color }) => color};
+`;
+
+export const LabelP = styled.p`
+  &.category {
+    color: var(--gray800);
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 5px;
+  }
+
+  &.count {
+    color: var(--gray500);
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: auto;
+  }
 `;

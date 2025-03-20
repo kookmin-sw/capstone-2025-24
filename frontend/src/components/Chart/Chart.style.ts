@@ -40,7 +40,6 @@ export const CountP = styled.p`
 `;
 
 export const ToolTipDiv = styled.div`
-  /* border: 1px solid red; */
   padding-left: 30px;
   padding-top: 50px;
 `;
