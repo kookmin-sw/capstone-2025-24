@@ -6,7 +6,7 @@ export interface Incident {
   police: string;
 }
 
-export const InProgresstData: Incident[] = [
+export const InProgressData: Incident[] = [
   {
     id: 1,
     title: '흉기난동',

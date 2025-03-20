@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// InProgress.tsx ------------------------------------
+
 export const InProgressLayout = styled.div``;
 
 export const Title = styled.h2`
@@ -14,13 +16,39 @@ export const CardGrid = styled.div`
   margin-top: 20px;
 `;
 
-export const Card = styled.div`
+// IncidentCard.tsx ------------------------------------
+
+export const FlipCard = styled.div`
   width: 367px;
-  padding: 20px;
-  border-radius: 8px;
+  height: 268px;
+  perspective: 1000px;
+`;
+
+export const CardInner = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+
+  &.is-resolved {
+    transform: rotateY(-180deg);
+  }
+`;
+
+export const CardFront = styled.div`
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: white;
+  border-radius: 10px;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;
 
 export const CardHeader = styled.div`
@@ -92,4 +120,87 @@ export const CardFooter = styled.div`
   font-size: 14px;
   color: var(--gray700);
   padding: 0 2px;
+`;
+
+export const CardBack = styled(CardFront)`
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+// IncidentCard.tsx ------------------------------------
+
+export const FeedbackTitle = styled.h3`
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+
+export const FeedbackDescription = styled.p`
+  font-size: 15px;
+  color: var(--gray500);
+  margin-bottom: 36px;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`;
+
+export const Button = styled.button`
+  background-color: transparent;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+
+  &.yes {
+    color: var(--primary800);
+    border: solid 1.5px var(--primary800);
+  }
+  &.no {
+    color: var(--red);
+    border: solid 1.5px var(--red);
+  }
+
+  &:hover {
+    background-color: rgba(25, 118, 210, 0.06);
+  }
+  &.no:hover {
+    background-color: rgba(211, 47, 47, 0.06);
+  }
+
+  &:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 118, 210, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ripple 0.3s ease-out;
+  }
+  &.no:active::after {
+    background-color: rgba(211, 47, 47, 0.2);
+  }
+
+  @keyframes ripple {
+    from {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 1;
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
 `;
