@@ -13,7 +13,7 @@ public class CctvEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "office_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     private OfficeEntity office;
 
     @Column(name = "latitude", nullable = false)
@@ -22,6 +22,6 @@ public class CctvEntity {
     @Column(name = "longitude", nullable = false)
     private Double longitude;
 
-    @Column(name = "address", length = 255)
+    @Column(name = "address")
     private String address;
 }
