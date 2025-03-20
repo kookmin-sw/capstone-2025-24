@@ -1,9 +1,10 @@
+import Filtering from '../components/IncidentHistory/Filtering/Filtering.tsx';
 const IncidentHistoryPage = () => {
-    return (
-      <div>
-        <h1>IncidentHistory Page</h1>
-      </div>
-    );
-  };
-  
-  export default IncidentHistoryPage;
+  return (
+    <div>
+      <Filtering />
+    </div>
+  );
+};
+
+export default IncidentHistoryPage;
