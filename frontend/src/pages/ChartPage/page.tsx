@@ -11,7 +11,7 @@ const ChartPage = () => {
       <S.OverviewP>Overview</S.OverviewP>
       <S.OverviewDiv>
         {OVERVIEW_LIST.map((it,idx) => {
-          return <OverviewCard key={it.title} title={it.title} tooltipText={it.tooltipText} count={OVERVIEWCOUNT[idx]} />;
+          return <OverviewCard key={it.title} title={it.title} tooltipText={it.tooltipText} count={OVERVIEWCOUNT[idx]} barColor={it.barColor} />;
         })}
         <OverviewLargeCard />
       </S.OverviewDiv>
