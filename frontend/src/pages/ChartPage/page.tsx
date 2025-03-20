@@ -3,6 +3,7 @@ import OverviewCard from '../../components/Chart/OverviewCard';
 import OverviewLargeCard from '../../components/Chart/OverviewLargeCard';
 import { OVERVIEW_LIST } from '../../constants/overviewList';
 import {OVERVIEWCOUNT} from "../../mocks/OverviewCount";
+import DoughnutCard from '../../components/Chart/DoughnutCard/DoughnutCard';
 
 const ChartPage = () => {
   return (
@@ -14,6 +15,7 @@ const ChartPage = () => {
         })}
         <OverviewLargeCard />
       </S.OverviewDiv>
+      <DoughnutCard title='유형별 사건 수'/>
     </S.ChartPageLayout>
   );
 };
