@@ -2,6 +2,7 @@ package com.example.backend.analysis.service;
 
 import com.example.backend.analysis.domain.CaseStatsOverviewEntity;
 import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
+import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
 import com.example.backend.analysis.repository.CaseStatsCategoryRepository;
 import com.example.backend.analysis.repository.CaseStatsOverviewRepository;
 import com.example.backend.user.dto.UserResponseDto;
@@ -10,12 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class CaseStatsService {
 
     private final CaseStatsOverviewRepository statsOverviewRepository;
+    private final CaseStatsCategoryRepository statsCategoryRepository;
 
     // Overview 조회 (세션을 활용한 office_id 필터링)
     public CaseStatsOverviewResponse getOverview(HttpSession session) {
@@ -36,5 +39,28 @@ public class CaseStatsService {
         );
     }
 
+    // 시간대 별 사건 수 조회 (category로 필터링 가능)
+    public List<HourlyCaseStatsResponse> getHourlyCaseStats(String date, String category, HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("사용자가 로그인하지 않았습니다.");
+        }
+
+        int officeId = user.getOfficeId();
+        String categoryParam = (category != null) ? category.toLowerCase() : "all";
+
+        List<Object[]> result = statsCategoryRepository.findHourlyCaseStats(date, officeId, categoryParam);
+
+        return result.stream()
+                .map(row -> new HourlyCaseStatsResponse(
+                        ((Number) row[0]).intValue(),  // hour
+                        ((Number) row[1]).intValue(),  // fire
+                        ((Number) row[2]).intValue(),  // assault
+                        ((Number) row[3]).intValue(),  // crowdCongestion
+                        ((Number) row[4]).intValue(),  // weapon
+                        ((Number) row[5]).intValue()   // swoon
+                ))
+                .collect(Collectors.toList());
+    }
 
 }
