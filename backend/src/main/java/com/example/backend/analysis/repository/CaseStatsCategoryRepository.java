@@ -61,5 +61,57 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
         """, nativeQuery = true)
     List<Object[]> findDailyCaseStats(@Param("year") int year, @Param("month") int month, @Param("officeId") int officeId, @Param("category") String category);
 
+    @Query(value = """
+        SELECT category, SUM(count) AS total
+        FROM (
+            SELECT 'fire' AS category, SUM(c.fire_count) AS count FROM case_stats_category c
+            WHERE c.office_id = :officeId 
+            AND c.date >= NOW() - 
+                (CASE 
+                    WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                    WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                    ELSE INTERVAL '1 year'
+                END)
+            UNION ALL
+            SELECT 'assault', SUM(c.assult_count) FROM case_stats_category c
+            WHERE c.office_id = :officeId 
+            AND c.date >= NOW() - 
+                (CASE 
+                    WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                    WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                    ELSE INTERVAL '1 year'
+                END)
+            UNION ALL
+            SELECT 'swoon', SUM(c.swoon_count) FROM case_stats_category c
+            WHERE c.office_id = :officeId 
+            AND c.date >= NOW() - 
+                (CASE 
+                    WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                    WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                    ELSE INTERVAL '1 year'
+                END)
+            UNION ALL
+            SELECT 'weapon', SUM(c.weapon_count) FROM case_stats_category c
+            WHERE c.office_id = :officeId 
+            AND c.date >= NOW() - 
+                (CASE 
+                    WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                    WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                    ELSE INTERVAL '1 year'
+                END)
+            UNION ALL
+            SELECT 'crowd_congestion', SUM(c.crowd_congestion_count) FROM case_stats_category c
+            WHERE c.office_id = :officeId 
+            AND c.date >= NOW() - 
+                (CASE 
+                    WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                    WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                    ELSE INTERVAL '1 year'
+                END)
+        ) AS stats
+        GROUP BY category
+        """, nativeQuery = true)
+    List<Object[]> findCategoryCaseStats(@Param("period") String period, @Param("officeId") int officeId);
+
 }
 

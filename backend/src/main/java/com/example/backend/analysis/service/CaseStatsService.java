@@ -121,4 +121,33 @@ public class CaseStatsService {
                 .collect(Collectors.toList());
     }
 
+    // 유형별 사건 수 조회
+    public Map<String, Integer> getCategoryCaseStats(String period, HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("사용자가 로그인하지 않았습니다.");
+        }
+
+        int officeId = user.getOfficeId();
+
+        String periodParam = (period != null) ? period.toLowerCase() : "weekly";
+        if (!List.of("weekly", "monthly", "yearly").contains(periodParam)) {
+            throw new IllegalArgumentException("잘못된 period 값입니다. 'weekly', 'monthly', 'yearly' 중 하나여야 합니다.");
+        }
+
+        List<Object[]> results = statsCategoryRepository.findCategoryCaseStats(periodParam, officeId);
+
+        if (results.isEmpty()) {
+            throw new NoSuchElementException("해당 기간에 대한 사건 데이터가 없습니다.");
+        }
+        
+        return results.stream()
+                .collect(Collectors.toMap(
+                        row -> (String) row[0], // category
+                        row -> ((Number) row[1]).intValue(), // count
+                        (existing, replacement) -> existing, // 중복 키 처리
+                        LinkedHashMap::new // 순서 유지
+                ));
+    }
+
 }

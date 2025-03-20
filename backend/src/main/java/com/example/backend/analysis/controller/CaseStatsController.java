@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -79,6 +80,21 @@ public class CaseStatsController {
             return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(404).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
+
+    // 유형별 사건 수 조회
+    @GetMapping("/category")
+    public ResponseEntity<?> getCategoryCaseStats(@RequestParam("period") String period, HttpSession session) {
+        try {
+            Map<String, Integer> stats = caseStatsService.getCategoryCaseStats(period, session);
+            return ResponseEntity.ok(stats);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
         }
