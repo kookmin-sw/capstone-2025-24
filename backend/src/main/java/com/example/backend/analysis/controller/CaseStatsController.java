@@ -1,7 +1,9 @@
 package com.example.backend.analysis.controller;
 
 import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
+import com.example.backend.analysis.dto.DailyCaseStatsResponse;
 import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
+import com.example.backend.analysis.dto.MonthlyCaseStatsResponse;
 import com.example.backend.analysis.service.CaseStatsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +55,32 @@ public class CaseStatsController {
         } catch (Exception e) {
             return ResponseEntity.status(500)
                     .body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
+
+    // 월별 & 일별 사건 수 조회
+    @GetMapping("/date")
+    public ResponseEntity<?> getCaseStats(@RequestParam("year") int year,
+                                          @RequestParam(value = "month", required = false) Integer month,
+                                          @RequestParam(value = "category", required = false) String category,
+                                          HttpSession session) {
+        try {
+            // month가 없으면 월별 사건 수 조회
+            if (month == null) {
+                List<MonthlyCaseStatsResponse> monthlyStats = caseStatsService.getMonthlyCaseStats(year, category, session);
+                return ResponseEntity.ok(monthlyStats);
+            }
+
+            // month가 있으면 일별 사건 수 조회
+            List<DailyCaseStatsResponse> dailyStats = caseStatsService.getDailyCaseStats(year, month, category, session);
+            return ResponseEntity.ok(dailyStats);
+
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
         }
     }
 
