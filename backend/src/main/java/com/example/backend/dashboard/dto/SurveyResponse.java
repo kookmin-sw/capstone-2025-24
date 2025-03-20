@@ -1,4 +1,5 @@
 package com.example.backend.dashboard.dto;
+import com.example.backend.dashboard.domain.CaseEntity.CaseCategory;
 
 import lombok.*;
 
@@ -6,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 public class SurveyResponse {
     private int id;
-    private String category;
+    private CaseCategory category;
     private String resultMessage;
 
 }

@@ -13,7 +13,7 @@ public class PoliceEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "office_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     private OfficeEntity office ;
 
     @Column(name = "name", nullable = false, length = 40)
@@ -25,7 +25,7 @@ public class PoliceEntity {
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;
 
-    @Column(name = "profile_url", nullable = false, length = 255)
+    @Column(name = "profile_url", nullable = false)
     private String profileUrl;
 
 }
