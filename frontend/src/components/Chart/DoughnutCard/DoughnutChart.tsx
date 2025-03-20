@@ -14,7 +14,7 @@ import {
   ChartData,
   ChartOptions,
 } from 'chart.js';
-import LabelDiv from './LabelDiv';
+import LabelDiv from './LabelBox';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 const getTotal = (chart: any) => {
@@ -26,8 +26,6 @@ const textCenterPlugin = {
   beforeDraw: (chart: any) => {
     const { width, height } = chart;
     const ctx = chart.ctx;
-
-    // ctx.restore();
 
     // 작은 텍스트
     ctx.font = `700 12px sans-serif`;
@@ -56,7 +54,7 @@ const DoughnutData: ChartData<'doughnut'> = {
   datasets: [
     {
       label: '유형별 사건 수',
-      data: [21, 9, 7, 4, 1], // props로 받아와서 처리해줄 거예염염
+      data: [21, 9, 7, 4, 1], // props로 받아와서 처리해줄 거예염
       backgroundColor: ['#F08676', '#A7C972', '#79A4E8', '#7ED1C1', '#EBC266'],
       hoverOffset: 5,
     },
@@ -67,6 +65,10 @@ const DoughnutOptions: ChartOptions<'doughnut'> = {
   responsive: true,
   maintainAspectRatio: false, // 기본 비율 유지 X
   cutout: '47%',
+  interaction: {
+    // mode: 'index',
+    intersect: false,
+  },
   animation: {
     duration: 1500, // 애니메이션 지속 시간
     easing: 'easeInOutQuad', // 애니메이션 효과

@@ -1,4 +1,3 @@
-import { color } from 'chart.js/helpers';
 import styled from 'styled-components';
 import { Doughnut } from 'react-chartjs-2';
 
@@ -9,7 +8,7 @@ export const DoughnutCardLayout = styled.div`
   height: 340px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px rgba(181, 181, 181, 0.25);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
   padding: 16px;
   margin-top: 33px;
 `;
@@ -38,8 +37,8 @@ export const GraphDiv = styled.div`
 export const DoughnutChart = styled(Doughnut)`
 `;
 
-// LabelDiv.tsx --------------------//
-export const LabelLayout = styled.div`
+// LabelBox.tsx --------------------//
+export const LabelBoxLayout = styled.div`
   display: flex;
   flex-direction: column;
   width: 110px;

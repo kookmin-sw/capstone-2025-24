@@ -2,18 +2,18 @@ import * as S from './DoughnutCard.style';
 import Label from './Label';
 import { LABELBYCATEGORY } from '../../../constants/labelList';
 
-interface LabelDivProps {
+interface LabelBoxProps {
     data:number[];
 }
-const LabelDiv = ({data}:LabelDivProps) => {
+const LabelBox = ({data}:LabelBoxProps) => {
 
   return (
-    <S.LabelLayout>
+    <S.LabelBoxLayout>
       {LABELBYCATEGORY.map((it, i) => {
         return <Label color={it.color} text={it.text} count={data[i]} key={it.text} />;
       })}
-    </S.LabelLayout>
+    </S.LabelBoxLayout>
   );
 };
 
-export default LabelDiv;
+export default LabelBox;
