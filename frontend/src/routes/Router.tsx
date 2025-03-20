@@ -11,7 +11,7 @@ const Router: React.FC = () => {
         <Route element={<Sidebar />}>
           <Route path="/monitoring" element={<MonitoringPage />} />
           <Route path="/history" element={<IncidentHistoryPage />} />
-          <Route path="/chart" element={<ChartPage />} />=
+          <Route path="/chart" element={<ChartPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
