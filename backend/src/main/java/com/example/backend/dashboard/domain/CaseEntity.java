@@ -2,6 +2,7 @@ package com.example.backend.dashboard.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "case_info")
@@ -10,28 +11,41 @@ public class CaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private int office_id;
+    @ManyToOne
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
+    private OfficeEntity office;
 
-    private int police_id;
+    @ManyToOne
+    @JoinColumn(name = "police_id", referencedColumnName = "id")
+    private PoliceEntity police;
 
-    private int cctv_id;
+    @ManyToOne
+    @JoinColumn(name = "cctv_id", referencedColumnName = "id")
+    private CctvEntity cctv;
 
-    private String date;
+    @Column(name = "date", nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private LocalDateTime date;
 
-    private int level;
+    @Column(name = "level", nullable = false)
+    private Integer level;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "category", nullable = false)
     private CaseCategory category;
 
+    @Column(name = "video", nullable = false)
     private String video;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
     private CaseState state;
 
-    private boolean accuracy;
+    @Column(name = "accuracy", nullable = false)
+    private Boolean accuracy;
 
+    @Column(name = "memo", nullable = false, columnDefinition = "TEXT")
     private String memo;
 
     public enum CaseCategory {
