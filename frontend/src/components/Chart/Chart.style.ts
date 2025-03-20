@@ -48,7 +48,7 @@ export const ToolTipDiv = styled.div`
 // OverviewLargeCard.tsx -----------------------------------//
 const blinkShadow = keyframes`
   0%, 100% {
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px rgba(53, 73, 255, 0.54);
   }
   50% {
     box-shadow: 1px 1px 10px 3px var(--primary600);
@@ -66,7 +66,7 @@ export const OverviewLargeCardLayout = styled.div`
   background-color: white;
   border-radius: 10px;
   /* box-shadow: 2px 2px 4px rgba(181, 181, 181, 0.25); */
-  animation: ${blinkShadow} 1s ease-in-out infinite;
+  animation: ${blinkShadow} 1.5s ease-in-out infinite;
 `;
 
 export const PoliceImg = styled.img`
