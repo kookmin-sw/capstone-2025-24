@@ -18,4 +18,5 @@ export const OverviewDiv = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
+  margin-top: 10px;
 `;
