@@ -67,7 +67,7 @@ const DoughnutOptions: ChartOptions<'doughnut'> = {
   cutout: '47%',
   interaction: {
     // mode: 'index',
-    intersect: false,
+    intersect: true,
   },
   animation: {
     duration: 1500, // 애니메이션 지속 시간
@@ -78,6 +78,9 @@ const DoughnutOptions: ChartOptions<'doughnut'> = {
       display: false, // 차트 라벨 표시
     },
     textCenter: {},
+    tooltip: {
+      enabled: false,
+    },
   },
 } as unknown as ChartOptions<'doughnut'>;
 

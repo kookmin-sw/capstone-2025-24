@@ -12,29 +12,36 @@ export const DoughnutCardLayout = styled.div`
   padding: 16px;
   margin-top: 33px;
 `;
-
+export const TitleDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
 export const TitleP = styled.p`
   font-weight: 700;
   font-size: 17px;
 `;
 
+// DoughnutChart.tsx --------------------------------//
 export const DoughnutChartLayout = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  gap: 30px;
+  gap: 10px;
 `;
 
 export const GraphDiv = styled.div`
   height: 100%;
   width: 219px;
   height: 219px;
-  padding: 20px;
 `;
 
 export const DoughnutChart = styled(Doughnut)`
+  margin: 3px;
+  padding: 10px;
 `;
 
 // LabelBox.tsx --------------------//

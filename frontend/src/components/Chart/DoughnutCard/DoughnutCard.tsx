@@ -1,4 +1,3 @@
-// import { Doughnut } from "react-chartjs-2";
 import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
@@ -9,9 +8,11 @@ interface DoughnutCardProps {
 const DoughnutCard = ({ title }: DoughnutCardProps) => {
   return (
     <S.DoughnutCardLayout>
-      <S.TitleP>{title}</S.TitleP>
+      <S.TitleDiv>
+        <S.TitleP>{title}</S.TitleP>
+        <ChartFilter />
+      </S.TitleDiv>
       <DoughnutChart />
-      <ChartFilter />
     </S.DoughnutCardLayout>
   );
 };

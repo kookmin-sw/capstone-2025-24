@@ -14,3 +14,5 @@ const FilterItem = ({ text = '미지정', onClick, isSelected }: FilterItemProps
 };
 
 export default FilterItem;
+
+
