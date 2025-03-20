@@ -9,7 +9,7 @@ const Filtering = () => {
       <CategoryDropDown />
       <DateFiltering />
       <SearchBar />
-      <S.SearchButton>조회</S.SearchButton>
+      <S.SearchBtn>조회</S.SearchBtn>
     </S.FilteringLayout>
   );
 };

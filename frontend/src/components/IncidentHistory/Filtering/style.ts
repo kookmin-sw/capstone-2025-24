@@ -13,19 +13,20 @@ export const FilteringLayout = styled.div`
   gap: 10px;
 `;
 
-export const SearchButton = styled.button`
-width: 74px;
-height: 39px;
-border-radius: 10px;
-border: 2px solid var(--primary800);
-background-color: var(--primary400);
-color: var(--primary800);
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 18px;
-font-weight: 700
-`
+export const SearchBtn = styled.button`
+  width: 74px;
+  height: 39px;
+  border-radius: 10px;
+  border: 2px solid var(--primary800);
+  background-color: var(--primary400);
+  color: var(--primary800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700
+  cursor: pointer;
+`;
 
 // DataFiltering.tsx ----------------------------------------//
 export const DateFilteringContainer = styled.div`
