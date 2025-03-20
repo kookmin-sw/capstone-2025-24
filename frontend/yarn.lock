@@ -133,7 +133,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.9"
 
-"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.26.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.22.15", "@babel/runtime@^7.26.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
   version "7.26.10"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.10.tgz#a07b4d8fa27af131a633d7b3524db803eb4764c2"
   integrity sha512-2WJMeRQPHKSPemqk/awGrAiuFfzBmOIPXKizAsVhWH9YJqLZ0H+HS4c8loHGgW6utJ3E/ejXQUsiGaQy2NZ9Fw==
@@ -2285,6 +2285,11 @@ json5@^2.2.3:
     object.assign "^4.1.4"
     object.values "^1.1.6"
 
+kakao.maps.d.ts@^0.1.39:
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/kakao.maps.d.ts/-/kakao.maps.d.ts-0.1.40.tgz#60a922e6fa1ab90c57e062e84978eb2d0e506412"
+  integrity sha512-nX69MB1ok04epe3OqS+/tEeWBbU31GSQbvDPJmQRRltzzqn6t4jBsO5v1nzalUjCKzwcH2CptOc767NZ7Hbu3g==
+
 keyv@^4.5.4:
   version "4.5.4"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-4.5.4.tgz#a879a99e29452f942439f2a405e3af8b31d4de93"
@@ -2656,6 +2661,14 @@ react-player@^2.16.0:
     memoize-one "^5.1.1"
     prop-types "^15.7.2"
     react-fast-compare "^3.0.1"
+
+react-kakao-maps-sdk@^1.1.27:
+  version "1.1.27"
+  resolved "https://registry.yarnpkg.com/react-kakao-maps-sdk/-/react-kakao-maps-sdk-1.1.27.tgz#577c5b53b76459a85fd3cc486ae0e799ec073b85"
+  integrity sha512-1EwYkYsjTDRFqysKStDasFMrFTXcLx2AyRlqMoWD7ONWhRqpjx9M874hkhEEHrnypP2eSIhhDLe0EiSKp3bd2Q==
+  dependencies:
+    "@babel/runtime" "^7.22.15"
+    kakao.maps.d.ts "^0.1.39"
 
 react-refresh@^0.14.2:
   version "0.14.2"

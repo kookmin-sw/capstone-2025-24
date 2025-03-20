@@ -1,7 +1,9 @@
+import Monitoring from '../components/Monitoring/InfoSection/InfoSection';
+
 const MonitoringPage = () => {
   return (
     <div>
-      <h1>Monitoring Page</h1>
+      <Monitoring />
     </div>
   );
 };
