@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // IncidentList.tsx -----------------------------//
 export const Layout = styled.div`
   width: 1153px;
-  height: 630px;
+  height: 700px;
 `;
 
 export const IncidentNum = styled.p`
