@@ -3,10 +3,11 @@ package com.example.backend.search.service;
 import com.example.backend.search.domain.CaseEntity;
 import com.example.backend.search.domain.SearchSpecification;
 import com.example.backend.search.dto.SearchResponse;
+import com.example.backend.search.dto.SearchResult;
 import com.example.backend.search.repository.CctvRepository;
 import com.example.backend.search.repository.SearchRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +22,9 @@ import java.util.stream.Collectors;
 public class SearchService {
     private final SearchRepository searchRepository;
     private final CctvRepository cctvRepository;
+    private static final int PAGE_SIZE = 8; // 한 페이지당 8개씩
 
-    public List<SearchResponse> getCheckLog(String category, LocalDateTime startDate, LocalDateTime endDate, String location, String police, String order, Integer page) {
+    public SearchResult getCheckLog(String category, LocalDateTime startDate, LocalDateTime endDate, String location, String police, String order, Integer page) {
         // location이 있을 경우, cctv_info에서 해당 주소를 가진 cctv_id 리스트 조회
         List<Integer> cctvIds = null;
         if (location != null) {
@@ -40,11 +42,25 @@ public class SearchService {
             sort = Sort.by(Sort.Direction.ASC, "date");
         }
 
-        // 필터 적용 후 데이터 조회
-        List<CaseEntity> cases = searchRepository.findAll(spec, sort);
+        // 페이지 기본값 설정 (1부터 시작)
+        int pageNumber = (page == null || page < 1) ? 0 : page - 1; // JPA는 0부터 시작
 
-        // DTO 변환 후 반환
-        return cases.stream().map(SearchResponse::fromEntity).collect(Collectors.toList());
+        // Pageable 적용
+        Pageable pageable = PageRequest.of(pageNumber, PAGE_SIZE, sort);
+        Page<CaseEntity> casePage = searchRepository.findAll(spec, pageable);
+
+        // DTO 변환
+        List<SearchResponse> results = casePage.getContent().stream()
+                .map(SearchResponse::fromEntity)
+                .collect(Collectors.toList());
+
+        // 전체 페이지 수 가져오기
+        int totalPages = casePage.getTotalPages();
+
+        // 결과 반환
+        return SearchResult.builder()
+                .results(results)
+                .totalPages(totalPages)
+                .build();
     }
-
 }
