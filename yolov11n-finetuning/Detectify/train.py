@@ -1,7 +1,4 @@
-import os
-import requests
-import yaml
-import wandb
+import os, requests, yaml
 from pathlib import Path
 from ultralytics import YOLO
 from .util import ask, get_device
@@ -10,7 +7,21 @@ from .logger import Logger
 
 class Train:
     def __init__(self, model: str = "yolo11n.pt"):
-        """Detectify에서 YOLOv11 기반의 모델 파인튜닝 인스턴스를 생성합니다."""
+        """
+        Detectify에서 YOLOv11 기반의 모델 파인튜닝 인스턴스를 생성합니다.
+
+        Args:
+            model (str, optional):
+                파인튜닝 할 모델의 경로를 설정합니다.
+                *기본 값은 `yolo11n.pt` 입니다.*
+
+                - `yolo11n.pt`: YOLOv11 nano *(39.5 mAP)*
+                - `yolo11s.pt`: YOLOv11 small *(47.0 mAP)*
+                - `yolo11m.pt`: YOLOv11 medium *(51.5 mAP)*
+                - `yolo11l.pt`: YOLOv11 large *(53.4 mAP)*
+                - `yolo11x.pt`: YOLOv11 extra large *(54.7 mAP)*
+
+        """
         self.log = Logger()
 
         try:
@@ -37,9 +48,7 @@ class Train:
         except Exception as ex:
             self.log.error(f"'{model}'를 불러오던 중 문제가 발생했습니다.", ex)
 
-    def start(self, dataset: str, output: str = "output", epochs: int = 50, batch_size: int = 16, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
-        """Detectify에서 YOLOv11 기반의 모델을 파인튜닝합니다."""
-
+    def start(self, dataset: str, output: str = "output2", epochs: int = 100, batch_size: int = 16, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
         try:
             self.log.alert(f"데이터셋 유효성 검사를 시작합니다.")
             
@@ -68,39 +77,8 @@ class Train:
 
         device = get_device()
 
-        # 1) wandb 초기화
-        wandb.init(
-            project="yolov11-finetuning",  # wandb 프로젝트명
-            name="exp_yolo11n",           # 실험 이름
-            config={
-                "epochs": epochs,
-                "batch_size": batch_size,
-                "save_period": save_per_epochs,
-                "cache": cache,
-                "resume": resume,
-                "device": device
-            }
-        )
-
         try:
             self.log.alert(f"파인튜닝을 시작합니다.")
-
-            # 2) Ultralytics 콜백 함수 정의 (Epoch 끝날 때마다 실행)
-            def on_epoch_end(trainer):
-                # wandb에 로그
-                wandb.log({
-                    "epoch": trainer.epoch,
-                    "train/box_loss": trainer.model.metrics.box_loss,
-                    "train/cls_loss": trainer.model.metrics.cls_loss,
-                    "train/dfl_loss": trainer.model.metrics.dfl_loss,
-                    "val/mAP50": trainer.model.metrics.map50,
-                    "val/mAP50-95": trainer.model.metrics.map,
-                })
-
-            # 3) 콜백 등록
-            self.model.add_callback("on_train_epoch_end", on_epoch_end)
-
-            # 4) train 호출
             self.model.train(
                 data=dataset,
                 epochs=epochs,
@@ -113,12 +91,6 @@ class Train:
                 workers=0,
                 patience=0
             )
-
             self.log.alert(f"파인튜닝이 완료되었습니다!")
-
         except Exception as ex:
             self.log.error("파인튜닝을 진행하던 중, 문제가 발생했습니다.", ex)
-
-        finally:
-            # 5) wandb 마무리
-            wandb.finish()
