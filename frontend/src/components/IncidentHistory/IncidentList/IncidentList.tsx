@@ -3,6 +3,7 @@ import IncidentListData from '../../../mocks/IncidentListData.ts';
 import { useState } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
+import SortingDropDown from './SortingDropDown.tsx';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
@@ -25,7 +26,10 @@ const IncidentList = () => {
 
   return (
     <S.Layout>
-      <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
+      <S.Container>
+        <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
+        <SortingDropDown/>
+      </S.Container>
 
       {/* 리스트 */}
       <S.IncidentListDiv>
@@ -38,9 +42,7 @@ const IncidentList = () => {
             <S.TableHeader w={12}>담당 경찰</S.TableHeader>
           </S.TableHeaderRow>
           {currentData.map((incident, index) => (
-            <S.TableBodyRow
-              key={index}
-            >
+            <S.TableBodyRow key={index}>
               <S.TableData index={index + 1}>
                 <S.InfoP>{index + 1}</S.InfoP>
               </S.TableData>

@@ -1,4 +1,4 @@
-import * as S from './style.ts';
+import * as S from './Filtering.style.ts';
 import { useState } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 
@@ -17,7 +17,6 @@ const SearchBar = () => {
     setIsOpen(false);
   };
 
-  
   return (
     <S.SearchBarContainer>
       <S.DropdownWrapper>
