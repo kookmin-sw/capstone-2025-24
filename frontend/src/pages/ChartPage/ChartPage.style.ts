@@ -16,11 +16,11 @@ export const OverviewP = styled.p`
 
 export const OverviewDiv = styled.div`
   display: flex;
-  flex-direction: row;
   gap: 20px;
   margin-top: 10px;
 `;
 
 export const ChartSecondDiv = styled.div`
-
+  display: flex;
+  gap: 22px;
 `;

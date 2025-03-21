@@ -25,6 +25,7 @@ const DoughnutCard = ({ title }: DoughnutCardProps) => {
         return;
     }
   }, [selectedIndex]);
+  
   const [data, setData] = useState<number[]>([21, 9, 7, 4, 1]);
   return (
     <S.DoughnutCardLayout>
