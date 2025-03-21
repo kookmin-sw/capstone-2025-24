@@ -31,6 +31,7 @@ export const TitleP = styled.p`
   font-size: 13px;
   color: var(--gray600);
   font-weight: 700;
+  min-width: 110px;
 `;
 
 export const CountP = styled.p<{barColor:string}>`
@@ -40,8 +41,8 @@ export const CountP = styled.p<{barColor:string}>`
 `;
 
 export const ToolTipDiv = styled.div`
-  padding-left: 30px;
-  padding-top: 50px;
+  padding-left: 25px;
+  padding-top: 55px;
 `;
 
 // OverviewLargeCard.tsx -----------------------------------//
