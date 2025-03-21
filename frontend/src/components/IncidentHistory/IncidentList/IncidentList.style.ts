@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// IncidentList.tsx -----------------------------//
 export const Layout = styled.div`
   width: 1153px;
   height: 630px;
@@ -54,4 +55,49 @@ export const TableData = styled.td<{ index: number }>`
 export const InfoP = styled.p`
   font-size: 18px;
   font-weight: 400;
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+`;
+
+export const PageButton = styled.button<{ active?: boolean }>`
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: ${({ active }) => (active ? 'var(--primary800)' : 'white')};
+  color: ${({ active }) => (active ? 'white' : 'black')};
+  border: 1px solid var(--gray300);
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.2s;
+  font-size: 18px;
+
+  &:hover {
+    background: var(--primary400);
+    color: black;
+  }
+`;
+
+export const MoveBtn = styled.button`
+  width: 35px;
+  height: 35px;
+  border: none;
+  background-color: white;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:disabled {
+    color: var(--gray500);
+    cursor: default;
+  }
 `;
