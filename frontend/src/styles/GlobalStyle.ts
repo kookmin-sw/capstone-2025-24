@@ -40,6 +40,14 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
   }
+
+  .date-picker-wrapper input {
+    background-color: white;
+}
+
+  .date-picker-wrapper.open input {
+    background-color: var(--primary500);
+  }
 `;
 
 export default GlobalStyle;

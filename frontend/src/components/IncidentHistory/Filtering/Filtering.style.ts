@@ -34,7 +34,7 @@ export const DateFilteringContainer = styled.div`
   gap: 10px;
 `;
 
-export const DatePickerWrapper = styled.div`
+export const DatePickerWrapper = styled.div<{isOpen:boolean}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,14 +42,14 @@ export const DatePickerWrapper = styled.div`
   height: 52px;
   border: 1px solid var(--gray400);
   border-radius: 8px;
+  background-color: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
 `;
 
-export const StyledDatePicker = styled(DatePicker)`
+export const StyledDatePicker = styled(DatePicker)<{ isOpen: boolean }>`
   font-size: 18px;
   cursor: pointer;
-  background: white;
+  // background-color: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')} !important;
   width: 120px;
-  transition: all 0.3s ease;
   color: var(--gray800);
   text-align: center;
   border: none;
@@ -58,6 +58,7 @@ export const StyledDatePicker = styled(DatePicker)`
   &:hover {
     border-color: var(--primary500);
   }
+
 `;
 
 export const CalendarIcon = styled(HiMiniCalendar)`
@@ -65,10 +66,12 @@ export const CalendarIcon = styled(HiMiniCalendar)`
   color: var(--gray800);
 `;
 
-export const DownIcon = styled(IoChevronDown)`
+export const DownIcon = styled(IoChevronDown)<{ isOpen: boolean }>`
   font-size: 18px;
   color: var(--gray800);
   cursor: pointer;
+  transition: transform 0.3s ease;
+  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
 `;
 
 // SearchBar.tsx ----------------------------------------//
