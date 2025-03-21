@@ -4,6 +4,7 @@ import com.example.backend.user.dto.UserRequestDto;
 import com.example.backend.user.dto.UserResponseDto;
 import com.example.backend.user.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,10 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/v1")
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/auth")
     public ResponseEntity<?> authenticate(@RequestBody UserRequestDto requestDto, HttpSession session) {
