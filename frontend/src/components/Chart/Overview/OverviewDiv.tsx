@@ -14,7 +14,7 @@ const OverviewDiv = () => {
             title={it.title}
             tooltipText={it.tooltipText}
             count={OVERVIEWCOUNT[idx]}
-            barColor={it.barColor}
+            $barColor={it.$barColor}
           />
         );
       })}

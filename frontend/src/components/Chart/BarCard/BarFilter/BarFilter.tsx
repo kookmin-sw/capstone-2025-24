@@ -1,6 +1,6 @@
 import * as S from './BarFilter.style';
 import Dropdown from './Dropdown/Dropdown';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   CATEGORY_OPTIONS,
   YEAR_OPTIONS,
@@ -20,9 +20,7 @@ const BarFilter = () => {
     setFilter((prev) => ({ ...prev, [target]: newValue }));
   };
 
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
+
   return (
     <S.BarFilterLayout>
       <Dropdown

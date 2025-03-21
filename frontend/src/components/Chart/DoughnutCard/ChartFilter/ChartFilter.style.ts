@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button } from '@mui/material';
 
 interface FilterItemProps {
-  isSelected: boolean;
+  $isSelected: boolean;
 }
 export const ChartFilterLayout = styled.div`
   display: flex;
@@ -21,18 +21,18 @@ export const FilterItem = styled.button<FilterItemProps>`
   width: 33%; /* ✅ 부모 크기에 맞춤 */
   font-weight: 600;
   border-radius: 0%;
-  color: ${({ isSelected }) => (isSelected ? `var(--primary900)` : `var(--gray500)`)};
+  color: ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray500)`)};
   background-color: white;
   height: 24px;
   justify-content: center;
   align-items: center;
   border: none;
-  border-bottom: 3px solid ${({ isSelected }) => (isSelected ? `var(--primary900)` : `var(--gray500)`)};
+  border-bottom: 3px solid ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray500)`)};
   cursor: pointer;
 
   &:hover {
-    border-bottom: 3px solid ${({ isSelected }) => (isSelected ? `var(--primary900)` : `var(--gray700)`)};
-    color: ${({ isSelected }) => (isSelected ? `var(--primary900)` : `var(--gray700)`)};
+    border-bottom: 3px solid ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray700)`)};
+    color: ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray700)`)};
     transition: all 0.2s; /* hover 상태에서만 transition 적용 */
   }
 

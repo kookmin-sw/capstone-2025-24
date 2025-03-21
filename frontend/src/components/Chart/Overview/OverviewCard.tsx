@@ -6,15 +6,15 @@ interface OverviewCardType {
   title: string;
   count: string;
   tooltipText: string;
-  barColor: string;
+  $barColor: string;
 }
-const OverviewCard = ({ title, count, tooltipText, barColor }: OverviewCardType) => {
+const OverviewCard = ({ title, count, tooltipText, $barColor }: OverviewCardType) => {
   return (
     <S.OverviewCardLayout>
-      <S.VerticalLine barColor={barColor} />
+      <S.VerticalLine $barColor={$barColor} />
       <S.InfoDiv>
         <S.TitleP>{title}</S.TitleP>
-        <S.CountP barColor={barColor}>{isNaN(parseInt(count)) ? count : useCountUp(parseInt(count))}</S.CountP>
+        <S.CountP $barColor={$barColor}>{isNaN(parseInt(count)) ? count : useCountUp(parseInt(count))}</S.CountP>
       </S.InfoDiv>
       <S.ToolTipDiv>
         <ToolTip>

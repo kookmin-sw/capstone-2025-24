@@ -7,7 +7,7 @@ interface FilterItemProps {
 }
 const FilterItem = ({ text = '미지정', onClick, isSelected }: FilterItemProps) => {
   return (
-    <S.FilterItem isSelected={isSelected} onClick={onClick}>
+    <S.FilterItem $isSelected={isSelected} onClick={onClick}>
       {text}
     </S.FilterItem>
   );

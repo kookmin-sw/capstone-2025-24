@@ -22,8 +22,8 @@ export const OverviewCardLayout = styled.div`
   box-shadow: 2px 2px 4px rgba(181, 181, 181, 0.25);
 `;
 
-export const VerticalLine = styled.div<{ barColor: string }>`
-  background-color: ${({barColor})=>barColor};
+export const VerticalLine = styled.div<{ $barColor: string }>`
+  background-color: ${({$barColor})=>$barColor};
   border-radius: 10px;
   width: 3px;
   height: 58px;
@@ -43,8 +43,8 @@ export const TitleP = styled.p`
   min-width: 110px;
 `;
 
-export const CountP = styled.p<{barColor:string}>`
-  font-size: ${({barColor})=>barColor==="#A8B3E3"? `25px`:`30px`};
+export const CountP = styled.p<{$barColor:string}>`
+  font-size: ${({$barColor})=>$barColor==="#A8B3E3"? `25px`:`30px`};
   color: black;
   font-weight: 700;
 `;

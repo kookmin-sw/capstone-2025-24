@@ -7,11 +7,11 @@ export const DropdownWrapper = styled.div<{ width: number }>`
   width: ${({ width }) => `${width}px`};
 `;
 
-export const DropdownHeader = styled.button<{ isOpen: boolean }>`
+export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 33px;
   padding: 0px 12px;
-  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
   border: 1px solid var(--gray400);
   border-radius: 5px;
   cursor: pointer;
@@ -24,11 +24,11 @@ export const DropdownHeader = styled.button<{ isOpen: boolean }>`
 
   svg {
     transition: transform 0.3s ease;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
   }
 `;
 
-export const DropdownList = styled.ul<{ isOpen: boolean }>`
+export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   width: 100%;
   max-height: 120px;
@@ -44,8 +44,8 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
   transition: all 0.3s ease-in-out;
   text-align: center;
 
-  ${({ isOpen }: { isOpen: boolean }) =>
-    isOpen &&
+  ${({ $isOpen }: { $isOpen: boolean }) =>
+    $isOpen &&
     `
       opacity: 1;
       visibility: visible;
