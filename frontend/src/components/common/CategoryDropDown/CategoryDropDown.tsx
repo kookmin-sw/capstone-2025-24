@@ -7,7 +7,7 @@ const options: string[] = ['전체', '화재', '싸움', '쓰러짐', '흉기 �
 
 const CategoryDropDown = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>('사건 분류');
+  const [selected, setSelected] = useState<string>('전체');
 
   // 드롭다운 열기/닫기 토글
   const toggleDropdown = () => setIsOpen((prev) => !prev);

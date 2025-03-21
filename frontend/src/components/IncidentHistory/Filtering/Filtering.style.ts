@@ -13,6 +13,19 @@ export const FilteringLayout = styled.div`
   gap: 10px;
 `;
 
+export const DropDownInfoLayout = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const InfoP = styled.p<{w:number}>`
+  width: ${({ w }) => w}px;
+  font-size: 13px;
+  color: var(--gray800);
+  padding: 2px;
+`;
+
+
 export const SearchBtn = styled.button`
   width: 74px;
   height: 39px;
@@ -34,7 +47,7 @@ export const DateFilteringContainer = styled.div`
   gap: 10px;
 `;
 
-export const DatePickerWrapper = styled.div<{isOpen:boolean}>`
+export const DatePickerWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,7 +71,6 @@ export const StyledDatePicker = styled(DatePicker)<{ isOpen: boolean }>`
   &:hover {
     border-color: var(--primary500);
   }
-
 `;
 
 export const CalendarIcon = styled(HiMiniCalendar)`

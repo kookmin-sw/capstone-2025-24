@@ -28,38 +28,42 @@ const IncidentList = () => {
     <S.Layout>
       <S.Container>
         <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
-        <SortingDropDown/>
+        <SortingDropDown />
       </S.Container>
 
       {/* 리스트 */}
       <S.IncidentListDiv>
         <S.Table>
-          <S.TableHeaderRow>
-            <S.TableHeader w={15}>사건 번호</S.TableHeader>
-            <S.TableHeader w={20}>사건 분류</S.TableHeader>
-            <S.TableHeader w={23}>날짜</S.TableHeader>
-            <S.TableHeader w={30}>위치</S.TableHeader>
-            <S.TableHeader w={12}>담당 경찰</S.TableHeader>
-          </S.TableHeaderRow>
-          {currentData.map((incident, index) => (
-            <S.TableBodyRow key={index}>
-              <S.TableData index={index + 1}>
-                <S.InfoP>{index + 1}</S.InfoP>
-              </S.TableData>
-              <S.TableData index={index + 1}>
-                <S.InfoP>{incident.category}</S.InfoP>
-              </S.TableData>
-              <S.TableData index={index + 1}>
-                <S.InfoP>{incident.date}</S.InfoP>
-              </S.TableData>
-              <S.TableData index={index + 1}>
-                <S.InfoP>{incident.address}</S.InfoP>
-              </S.TableData>
-              <S.TableData index={index + 1}>
-                <S.InfoP>{incident.police}</S.InfoP>
-              </S.TableData>
-            </S.TableBodyRow>
-          ))}
+          <thead>
+            <S.TableHeaderRow>
+              <S.TableHeader w={15}>사건 번호</S.TableHeader>
+              <S.TableHeader w={20}>사건 분류</S.TableHeader>
+              <S.TableHeader w={23}>날짜</S.TableHeader>
+              <S.TableHeader w={30}>위치</S.TableHeader>
+              <S.TableHeader w={12}>담당 경찰</S.TableHeader>
+            </S.TableHeaderRow>
+          </thead>
+          <tbody>
+            {currentData.map((incident, index) => (
+              <S.TableBodyRow key={index}>
+                <S.TableData index={index + 1}>
+                  <S.InfoP>{index + 1}</S.InfoP>
+                </S.TableData>
+                <S.TableData index={index + 1}>
+                  <S.InfoP>{incident.category}</S.InfoP>
+                </S.TableData>
+                <S.TableData index={index + 1}>
+                  <S.InfoP>{incident.date}</S.InfoP>
+                </S.TableData>
+                <S.TableData index={index + 1}>
+                  <S.InfoP>{incident.address}</S.InfoP>
+                </S.TableData>
+                <S.TableData index={index + 1}>
+                  <S.InfoP>{incident.police}</S.InfoP>
+                </S.TableData>
+              </S.TableBodyRow>
+            ))}
+          </tbody>
         </S.Table>
       </S.IncidentListDiv>
 
