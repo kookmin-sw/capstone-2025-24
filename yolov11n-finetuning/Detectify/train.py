@@ -37,7 +37,7 @@ class Train:
         except Exception as ex:
             self.log.error(f"'{model}'를 불러오던 중 문제가 발생했습니다.", ex)
 
-    def start(self, dataset: str, output: str = "output", epochs: int = 100, batch_size: int = 16, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
+    def start(self, dataset: str, output: str = "output", epochs: int = 50, batch_size: int = 16, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
         """Detectify에서 YOLOv11 기반의 모델을 파인튜닝합니다."""
 
         try:
