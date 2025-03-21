@@ -20,7 +20,7 @@ export const CardGrid = styled.div`
 
 export const FlipCard = styled.div`
   width: 367px;
-  height: 268px;
+  height: 270px;
   perspective: 1000px;
 `;
 
@@ -82,7 +82,7 @@ export const VideoButton = styled.button`
 export const Line = styled.div`
   height: 1px;
   background: var(--gray400);
-  margin: 16px 0;
+  margin: 15px 0;
 `;
 
 export const CardBody = styled.div`
@@ -159,7 +159,7 @@ export const Button = styled.button`
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 
   &.yes {
     color: var(--primary800);
@@ -177,30 +177,58 @@ export const Button = styled.button`
     background-color: rgba(211, 47, 47, 0.06);
   }
 
-  &:active::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
+  &.yes:active {
     background-color: rgba(25, 118, 210, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: ripple 0.3s ease-out;
   }
-  &.no:active::after {
+  &.no:active {
     background-color: rgba(211, 47, 47, 0.2);
   }
+`;
 
-  @keyframes ripple {
-    from {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 1;
-    }
-    to {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 0;
-    }
+// IncidentCard.tsx ------------------------------------
+
+export const CategoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+`;
+
+export const CategoryRow = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+`;
+
+export const Chip = styled.button`
+  padding: 8px 20px;
+  border-radius: 75px;
+  border: 1.5px solid var(--gray400);
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--gray700);
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--primary300);
+    border: 1.5px solid var(--primary900);
+
   }
+
+  &:active {
+    background-color: rgba(25, 118, 210, 0.2);
+  }
+`;
+
+export const SelectButton = styled.button`
+  padding: 8px 0;
+  border: solid 1.5px var(--primary600);
+  background-color: var(--primary300);
+  color: var(--primary900);
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
 `;
