@@ -14,7 +14,7 @@ export const ChartFilterLayout = styled.div`
   width: 175px;
 `;
 
-export const FilterItem = styled(Button)<FilterItemProps>`
+export const FilterItem = styled.button<FilterItemProps>`
   flex: 1;
   font-size: 12px;
   min-width: 0; /* ✅ MUI 기본 min-width(64px) 무력화 */
@@ -26,6 +26,7 @@ export const FilterItem = styled(Button)<FilterItemProps>`
   height: 24px;
   justify-content: center;
   align-items: center;
+  border: none;
   border-bottom: 3px solid ${({ isSelected }) => (isSelected ? `var(--primary900)` : `var(--gray500)`)};
   cursor: pointer;
 
