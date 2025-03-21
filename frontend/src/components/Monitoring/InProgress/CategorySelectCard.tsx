@@ -41,9 +41,8 @@ const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
           </S.CategoryRow>
         ))}
       </S.CategoryContainer>
-      <S.ButtonGroup>
         <S.SelectButton onClick={() => setIsResolved(true)}>선택 완료</S.SelectButton>
-      </S.ButtonGroup>
+      <S.BackButton onClick={onClose}>이전으로 돌아가기</S.BackButton>
     </>
   );
 };

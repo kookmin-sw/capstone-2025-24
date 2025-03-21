@@ -135,6 +135,7 @@ export const CardBack = styled(CardFront)`
 export const FeedbackTitle = styled.h3`
   font-size: 22px;
   font-weight: bold;
+  margin-top: 15px;
   margin-bottom: 8px;
 `;
 
@@ -186,6 +187,15 @@ export const Button = styled.button`
   }
 `;
 
+export const BackButton = styled.button`
+  font-size: 12px;
+  color: var(--gray700);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+`;
+
 // CategorySelectCard.tsx ------------------------------------
 
 export const CategoryContainer = styled.div`
@@ -226,6 +236,7 @@ export const Chip = styled.button<{ selected: boolean }>`
 
 export const SelectButton = styled.button`
   padding: 8px 0;
+  width: 95%;
   border: solid 1.5px var(--primary600);
   background-color: var(--primary300);
   color: var(--primary900);

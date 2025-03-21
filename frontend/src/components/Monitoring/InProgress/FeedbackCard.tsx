@@ -29,6 +29,7 @@ const FeedbackCard = ({ onClose }: FeedbackCardProps) => {
           아니요, 잘못됐어요
         </S.Button>
       </S.ButtonGroup>
+      <S.BackButton onClick={onClose}>이전으로 돌아가기</S.BackButton>
     </>
   );
 };
