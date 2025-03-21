@@ -9,11 +9,18 @@ interface CategorySelectCardProps {
 
 const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const groupedCategories = [];
   for (let i = 0; i < CATEGORY.length; i += 3) {
     groupedCategories.push(CATEGORY.slice(i, i + 3));
   }
   groupedCategories[groupedCategories.length - 1].push('기타');
+
+  const handleSelectCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
+
   return isResolved ? (
     <ResolvedCard onClose={onClose} />
   ) : (
@@ -23,7 +30,13 @@ const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
         {groupedCategories.map((row, index) => (
           <S.CategoryRow key={index}>
             {row.map((category) => (
-              <S.Chip key={category}>{category}</S.Chip>
+              <S.Chip
+                key={category}
+                selected={selectedCategory === category}
+                onClick={() => handleSelectCategory(category)}
+              >
+                {category}
+              </S.Chip>
             ))}
           </S.CategoryRow>
         ))}

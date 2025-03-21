@@ -7,7 +7,9 @@ interface ResolvedCardProps {
 
 const ResolvedCard = ({ onClose }: ResolvedCardProps) => {
   const handelResolvedIncident = () => {
-    onClose();
+    setTimeout(() => {
+      onClose();
+    }, 2000);
   };
 
   return (

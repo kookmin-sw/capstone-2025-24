@@ -186,7 +186,7 @@ export const Button = styled.button`
   }
 `;
 
-// IncidentCard.tsx ------------------------------------
+// CategorySelectCard.tsx ------------------------------------
 
 export const CategoryContainer = styled.div`
   display: flex;
@@ -201,23 +201,24 @@ export const CategoryRow = styled.div`
   justify-content: center;
 `;
 
-export const Chip = styled.button`
+export const Chip = styled.button<{ selected: boolean }>`
   padding: 8px 20px;
   border-radius: 75px;
-  border: 1.5px solid var(--gray400);
-  background-color: transparent;
+  border: 1.5px solid ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray400)')};
+  background-color: ${({ selected }) => (selected ? 'var(--primary300)' : 'transparent')};
   font-size: 15px;
   font-weight: bold;
-  color: var(--gray700);
+  color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray700)')};
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border 0.2s,
+    color 0.2s;
 
   &:hover {
     background-color: var(--primary300);
     border: 1.5px solid var(--primary900);
-
   }
-
   &:active {
     background-color: rgba(25, 118, 210, 0.2);
   }
