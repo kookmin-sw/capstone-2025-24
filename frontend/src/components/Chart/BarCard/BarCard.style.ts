@@ -24,6 +24,9 @@ export const TitleP = styled.p`
   font-size: 17px;
 `;
 
+export const FilterDiv = styled.div`
+
+`;
 // BarChart.tsx --------------------------------//
 export const BarChartLayout = styled.div`
   display: flex;
