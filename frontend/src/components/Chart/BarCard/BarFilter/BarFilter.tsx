@@ -1,24 +1,25 @@
 import * as S from './BarFilter.style';
 import Dropdown from './Dropdown/Dropdown';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   CATEGORY_OPTIONS,
   YEAR_OPTIONS,
   MONTH_OPTIONS,
   MONTH_PLACEHOLDER,
 } from '../../../../constants/dropdownOptions';
+import { useFilterStore } from '../../../../stores/filterStore';
 
-interface filterType {
-  category: string;
-  year: string;
-  month: string;
-}
+
 const BarFilter = () => {
-  const [filter, setFilter] = useState<filterType>({ category: '전체', year: '2025', month: '월' });
+  const {filter, setFilter} = useFilterStore();
 
   const handleChange = (target: 'category' | 'year' | 'month', newValue: string) => {
-    setFilter((prev) => ({ ...prev, [target]: newValue }));
+    setFilter(target, newValue);
   };
+
+  useEffect(()=> {
+    // filter 값 바뀔 때마다 data 다시 get
+  },[filter]);
 
 
   return (
@@ -41,7 +42,7 @@ const BarFilter = () => {
       />
       <Dropdown
         items={MONTH_OPTIONS}
-        width={70}
+        width={80}
         placeholder={MONTH_PLACEHOLDER}
         type="month"
         onChange={handleChange}
