@@ -1,14 +1,11 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import * as S from './ChartFilter.style';
 import FilterItem from './FilterItem';
-
-interface rangeType {
-  type: string;
-}
+import useSelectedIndexStore from '../../../../stores/useSelectedIndexStore';
 
 const ChartFilter = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const range: rangeType[] = [{ type: '일주일' }, { type: '이번 달' }, { type: '올해' }];
+  const { selectedIndex, setSelectedIndex } = useSelectedIndexStore();
+  const range: { type: string }[] = [{ type: '일주일' }, { type: '이번 달' }, { type: '올해' }];
 
   return (
     <S.ChartFilterLayout>

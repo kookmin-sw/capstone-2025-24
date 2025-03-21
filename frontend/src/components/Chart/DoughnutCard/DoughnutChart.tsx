@@ -1,5 +1,6 @@
 import * as S from './DoughnutCard.style';
 import { CATEGORY } from '../../../constants/EventCategory';
+import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -14,13 +15,15 @@ import {
   ChartData,
   ChartOptions,
 } from 'chart.js';
-import LabelDiv from './LabelBox';
+import LabelBox from './LabelBox';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
+// data 합합
 const getTotal = (chart: any) => {
   return chart.data.datasets[0].data.reduce((acc: number, value: number) => acc + value, 0);
 };
 
+// 가운데 총계 text 추가를 위한 plugin
 const textCenterPlugin = {
   id: 'textCenter',
   beforeDraw: (chart: any) => {
@@ -49,18 +52,7 @@ const textCenterPlugin = {
   },
 };
 
-const DoughnutData: ChartData<'doughnut'> = {
-  labels: CATEGORY,
-  datasets: [
-    {
-      label: '유형별 사건 수',
-      data: [21, 9, 7, 4, 1], // props로 받아와서 처리해줄 거예염
-      backgroundColor: ['#F08676', '#A7C972', '#79A4E8', '#7ED1C1', '#EBC266'],
-      hoverOffset: 5,
-    },
-  ],
-};
-
+// 차트 옵션
 const DoughnutOptions: ChartOptions<'doughnut'> = {
   responsive: true,
   maintainAspectRatio: false, // 기본 비율 유지 X
@@ -84,13 +76,31 @@ const DoughnutOptions: ChartOptions<'doughnut'> = {
   },
 } as unknown as ChartOptions<'doughnut'>;
 
-const DoughnutChart = () => {
+interface DoughnutChartProps {
+  data: number[];
+}
+
+const DoughnutChart = ({ data }: DoughnutChartProps) => {
+  // const [chartData, setChartData] = useState<number[]>(data);
+  // 차트 data
+  const DoughnutData: ChartData<'doughnut'> = {
+    labels: CATEGORY,
+    datasets: [
+      {
+        label: '유형별 사건 수',
+        data: data,
+        backgroundColor: ['#F08676', '#A7C972', '#79A4E8', '#7ED1C1', '#EBC266'],
+        hoverOffset: 5,
+      },
+    ],
+  };
+
   return (
     <S.DoughnutChartLayout>
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelDiv data={[21, 9, 7, 4, 1]} />
+      <LabelBox data={data} />
     </S.DoughnutChartLayout>
   );
 };

@@ -3,10 +3,9 @@ import Label from './Label';
 import { LABELBYCATEGORY } from '../../../constants/labelList';
 
 interface LabelBoxProps {
-    data:number[];
+  data: number[];
 }
-const LabelBox = ({data}:LabelBoxProps) => {
-
+const LabelBox = ({ data }: LabelBoxProps) => {
   return (
     <S.LabelBoxLayout>
       {LABELBYCATEGORY.map((it, i) => {
