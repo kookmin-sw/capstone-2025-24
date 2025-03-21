@@ -6,15 +6,20 @@ interface dropdownProps {
   items: string[];
   placeholder: string;
   width: number;
+  value: string;
+  type: 'category' | 'year' | 'month';
+  onChange: (type: 'category' | 'year' | 'month', newValue: string) => void;
 }
-const Dropdown = ({ items, width, placeholder }: dropdownProps) => {
+const Dropdown = ({ items, width, value, type, onChange }: dropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(placeholder);
+  // const [selected, setSelected] = useState<string>(placeholder);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
+
   const handleSelect = (option: string) => {
-    setSelected(option);
+    // setSelected(option);
+    onChange(type, option);
     setIsOpen(false);
   };
 
@@ -32,7 +37,7 @@ const Dropdown = ({ items, width, placeholder }: dropdownProps) => {
   return (
     <S.DropdownWrapper width={width} ref={dropdownRef}>
       <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
-        {selected} <IoChevronDown />
+        {value} <IoChevronDown />
       </S.DropdownHeader>
       {isOpen && (
         <S.DropdownList isOpen={isOpen}>
