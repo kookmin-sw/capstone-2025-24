@@ -1,4 +1,13 @@
 import styled, { keyframes } from 'styled-components';
+
+// OverviewDiv.tsx ------------------------------------//
+export const OverviewDiv = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+`;
+
+
 // OverviewCard.tsx -----------------------------------//
 export const OverviewCardLayout = styled.div`
   display: flex;

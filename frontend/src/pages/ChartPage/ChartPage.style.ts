@@ -14,11 +14,6 @@ export const OverviewP = styled.p`
   font-weight: 600;
 `;
 
-export const OverviewDiv = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-top: 10px;
-`;
 
 export const ChartSecondDiv = styled.div`
   display: flex;
