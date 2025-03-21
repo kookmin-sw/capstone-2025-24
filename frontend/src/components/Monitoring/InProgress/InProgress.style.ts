@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Lottie from 'lottie-react';
 
 // InProgress.tsx ------------------------------------
 
@@ -231,4 +232,30 @@ export const SelectButton = styled.button`
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+`;
+
+// ResolvedCard.tsx ------------------------------------
+
+export const Check = styled(Lottie)`
+  width: 120px;
+  height: 120px;
+`;
+
+export const ResolveLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 30px;
+`;
+
+export const ResolveTitle = styled.h3`
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 8px;
+`;
+
+export const ResolveDescription = styled.p`
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray500);
 `;
