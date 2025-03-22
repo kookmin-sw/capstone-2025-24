@@ -17,6 +17,23 @@ export const CardGrid = styled.div`
   margin-top: 20px;
 `;
 
+export const EmptyView = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: var(--gray500);
+  width: 1141px;
+  height: 500px;
+
+  img {
+    width: 210px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+`;
+
 // IncidentCard.tsx ------------------------------------
 
 export const FlipCard = styled.div`
