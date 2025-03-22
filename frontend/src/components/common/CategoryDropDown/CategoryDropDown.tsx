@@ -5,9 +5,13 @@ import { IoChevronDown } from 'react-icons/io5';
 // 드롭다운 옵션 리스트
 const options: string[] = ['전체', '화재', '싸움', '쓰러짐', '흉기 난동', '군중 밀집'];
 
-const CategoryDropDown = () => {
+interface CategoryDropDownProps {
+  selected: string;
+  setSelected: (value: string) => void;
+}
+
+const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>('전체');
 
   // 드롭다운 열기/닫기 토글
   const toggleDropdown = () => setIsOpen((prev) => !prev);

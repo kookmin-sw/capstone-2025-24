@@ -2,9 +2,14 @@ import * as S from './Filtering.style.ts';
 import { useState } from 'react';
 import { ko } from 'date-fns/locale';
 
-const DateFiltering = () => {
-  const [startDate, setStartDate] = useState<Date>(new Date('2024/01/01'));
-  const [endDate, setEndDate] = useState<Date>(new Date());
+interface DateFilteringProps {
+  startDate: Date;
+  endDate: Date;
+  setStartDate: (date: Date) => void;
+  setEndDate: (date: Date) => void;
+}
+
+const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFilteringProps) => {
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [isEndOpen, setIsEndOpen] = useState(false);
 

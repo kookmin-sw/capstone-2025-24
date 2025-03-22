@@ -4,16 +4,22 @@ import { IoChevronDown } from 'react-icons/io5';
 
 const options: string[] = ['담당 경찰', '위치'];
 
-const SearchBar = () => {
+interface SearchBarProps {
+  searchType: string;
+  setSearchType: (type: string) => void;
+  searchWord: string | null;
+  setSearchWord: (word: string) => void;
+}
+
+const SearchBar = ({ searchType, setSearchType, searchWord, setSearchWord }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>('담당 경찰');
 
   // 드롭다운 열기/닫기 토글
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   // 옵션 선택 시 실행
   const handleSelect = (option: string) => {
-    setSelected(option);
+    setSearchType(option);
     setIsOpen(false);
   };
 
@@ -21,13 +27,13 @@ const SearchBar = () => {
     <S.SearchBarContainer>
       <S.DropdownWrapper>
         <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
-          {selected}
+          {searchType}
           <IoChevronDown />
         </S.DropdownHeader>
         {isOpen && (
           <S.DropdownList isOpen={isOpen}>
             {options.map((option, index) => (
-              <S.DropdownItem key={index} isSelected={selected === option} onClick={() => handleSelect(option)}>
+              <S.DropdownItem key={index} isSelected={searchType === option} onClick={() => handleSelect(option)}>
                 {option}
               </S.DropdownItem>
             ))}
@@ -37,7 +43,11 @@ const SearchBar = () => {
 
       <S.SearchContainer>
         <S.SearchIcon />
-        <S.SearchInput placeholder={'검색어를 입력하세요'} />
+        <S.SearchInput
+          placeholder={'검색어를 입력하세요'}
+          value={searchWord || ''}
+          onChange={(e) => setSearchWord(e.target.value)}
+        />
       </S.SearchContainer>
     </S.SearchBarContainer>
   );
