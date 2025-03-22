@@ -5,7 +5,11 @@ import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 import SortingDropDown from './SortingDropDown.tsx';
 
-const IncidentList = () => {
+interface IncidentListProps {
+  onOpen: (id: number) => void;
+}
+
+const IncidentList = ({ onOpen }: IncidentListProps) => {
   // 사건 리스트 데이터
   const incidentdata = IncidentListData;
 
@@ -45,7 +49,7 @@ const IncidentList = () => {
           </thead>
           <tbody>
             {currentData.map((incident, index) => (
-              <S.TableBodyRow key={index}>
+              <S.TableBodyRow key={index} onClick={() => onOpen(incident.id)}>
                 <S.TableData index={index + 1}>
                   <S.InfoP>{index + 1}</S.InfoP>
                 </S.TableData>

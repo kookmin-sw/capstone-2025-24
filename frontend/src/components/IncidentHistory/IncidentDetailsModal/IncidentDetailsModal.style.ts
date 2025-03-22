@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoMdClose } from 'react-icons/io';
 
 // IncidentDetailsModal.tsx------------------------//
 export const Layout = styled.div`
@@ -6,6 +7,7 @@ export const Layout = styled.div`
   height: 639px;
   border-radius: 20px;
   padding: 19px 44px;
+  background-color: white;
 `;
 
 export const TitleP = styled.p`
@@ -28,6 +30,29 @@ export const VideoMemoWrapper = styled.div`
 export const WrapperContainer = styled.div`
   display: flex;
   gap: 22px;
+`;
+
+export const Overlay = styled.div`
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const XBtn = styled(IoMdClose)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;
+
+export const TitleBtnContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 // Information.tsx---------------------------------//
