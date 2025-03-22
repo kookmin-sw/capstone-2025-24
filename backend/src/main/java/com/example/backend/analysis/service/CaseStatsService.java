@@ -5,6 +5,7 @@ import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
 import com.example.backend.analysis.dto.DailyCaseStatsResponse;
 import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
 import com.example.backend.analysis.dto.MonthlyCaseStatsResponse;
+import com.example.backend.analysis.dto.CctvCaseStatsResponse;
 import com.example.backend.analysis.repository.CaseStatsCategoryRepository;
 import com.example.backend.analysis.repository.CaseStatsOverviewRepository;
 import com.example.backend.user.dto.UserResponseDto;
@@ -148,6 +149,30 @@ public class CaseStatsService {
                         (existing, replacement) -> existing, // 중복 키 처리
                         LinkedHashMap::new // 순서 유지
                 ));
+    }
+
+    public List<CctvCaseStatsResponse> getLocationCaseStats(String period, HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("사용자가 로그인하지 않았습니다.");
+        }
+
+        int officeId = user.getOfficeId();
+
+        String periodParam = (period != null) ? period.toLowerCase() : "weekly";
+        if(!List.of("weekly", "monthly", "yearly").contains(periodParam)) {
+            throw new IllegalArgumentException("잘못된 period 값입니다. 'weekly', 'monthly', 'yearly' 중 하나여야 합니다.");
+        }
+
+        List<Object[]> results = statsCategoryRepository.findLocationCaseStats(periodParam, officeId);
+
+        if (results.isEmpty()) {
+            throw new NoSuchElementException("해당 기간에 대한 장소별 사건 데이터가 없습니다.");
+        }
+
+        return results.stream()
+                .map(row -> new CctvCaseStatsResponse((String) row[0], ((Number) row[1]).intValue()))
+                .collect(Collectors.toList());
     }
 
 }

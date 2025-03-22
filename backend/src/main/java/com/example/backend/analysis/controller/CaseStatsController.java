@@ -4,6 +4,7 @@ import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
 import com.example.backend.analysis.dto.DailyCaseStatsResponse;
 import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
 import com.example.backend.analysis.dto.MonthlyCaseStatsResponse;
+import com.example.backend.analysis.dto.CctvCaseStatsResponse;
 import com.example.backend.analysis.service.CaseStatsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -99,5 +100,23 @@ public class CaseStatsController {
             return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
         }
     }
+
+    // 장소별 사건 수 조회
+    @GetMapping("/location")
+    public ResponseEntity<?> getLocationCaseStats(@RequestParam("period") String period, HttpSession session) {
+        try {
+            List<CctvCaseStatsResponse> stats = caseStatsService.getLocationCaseStats(period, session);
+            return ResponseEntity.ok(stats);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
+
 
 }
