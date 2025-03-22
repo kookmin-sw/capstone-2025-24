@@ -15,15 +15,15 @@ public class CaseEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "office_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     private OfficeEntity office;
 
     @ManyToOne
-    @JoinColumn(name = "police_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "police_id", referencedColumnName = "id")
     private PoliceEntity police;
 
     @ManyToOne
-    @JoinColumn(name = "cctv_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "cctv_id", referencedColumnName = "id")
     private CctvEntity cctv;
 
     @Column(name = "date", nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

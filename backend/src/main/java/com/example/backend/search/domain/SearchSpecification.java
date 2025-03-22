@@ -7,6 +7,12 @@ import java.util.List;
 
 public class SearchSpecification {
 
+    // 관할 경찰서 필터
+    public static Specification<CaseEntity> hasOffice(Integer officeId) {
+        return (root, query, criteriaBuilder) ->
+                officeId == null ? criteriaBuilder.conjunction() : criteriaBuilder.equal(root.get("office").get("id"), officeId);
+    }
+
     // 카테고리 필터
     public static Specification<CaseEntity> hasCategory(String category) {
         return (root, query, criteriaBuilder) ->
@@ -58,9 +64,10 @@ public class SearchSpecification {
     }
 
     // 여러 조건을 조합하는 메서드
-    public static Specification<CaseEntity> filterCases(String category, LocalDateTime startDate, LocalDateTime endDate, String police, List<Integer> cctvIds) {
+    public static Specification<CaseEntity> filterCases(String category, LocalDateTime startDate, LocalDateTime endDate, String police, List<Integer> cctvIds, Integer officeId) {
         return Specification
-                .where(hasState("완료"))
+                .where(hasOffice(officeId))
+                .and(hasState("완료"))
                 .and(hasDateRange(startDate, endDate))  // 날짜 범위 조건을 추가
                 .and(hasCctvIds(cctvIds))
                 .and(hasPolice(police)) // police 필터 추가
