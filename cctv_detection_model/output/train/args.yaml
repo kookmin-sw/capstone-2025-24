@@ -2,10 +2,10 @@ task: detect
 mode: train
 model: yolo11n.pt
 data: /content/drive/MyDrive/YOLO/yolov11n-finetuning/data.yaml
-epochs: 50
+epochs: 80
 time: null
 patience: 0
-batch: 16
+batch: 32
 imgsz: 640
 save: true
 save_period: 10
@@ -13,7 +13,7 @@ cache: false
 device:
 - 0
 workers: 0
-project: output
+project: output3
 name: train
 exist_ok: false
 pretrained: true
@@ -104,4 +104,4 @@ erasing: 0.4
 crop_fraction: 1.0
 cfg: null
 tracker: botsort.yaml
-save_dir: output/train
+save_dir: output3/train
