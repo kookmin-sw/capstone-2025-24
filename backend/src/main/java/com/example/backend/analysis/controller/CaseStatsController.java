@@ -118,5 +118,21 @@ public class CaseStatsController {
         }
     }
 
+    // 장소별 사건 수 조회 - 지도
+    @GetMapping("/map")
+    public ResponseEntity<?> getMapCaseStats(@RequestParam("period") String period, HttpSession session) {
+        try {
+            List<CctvCaseStatsResponse> stats = caseStatsService.getMapCaseStats(period, session);
+            return ResponseEntity.ok(stats);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(400).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(404).body(Collections.singletonMap("message", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+        }
+    }
 
 }

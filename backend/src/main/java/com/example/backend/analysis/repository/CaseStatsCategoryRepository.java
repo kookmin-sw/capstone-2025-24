@@ -114,7 +114,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
     List<Object[]> findCategoryCaseStats(@Param("period") String period, @Param("officeId") int officeId);
 
     @Query(value = """
-        SELECT cv.address, SUM(total) AS total
+        SELECT cv.address, cv.latitude, cv.longitude, SUM(total) AS total
         FROM (
             SELECT c.cctv_id, SUM(c.fire_count + c.assult_count + c.swoon_count + c.weapon_count + c.crowd_congestion_count) AS total
             FROM case_stats_category c
@@ -128,10 +128,31 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
             GROUP BY c.cctv_id
         ) AS sub
         JOIN cctv_info cv ON sub.cctv_id = cv.id
-        GROUP BY cv.address
+        GROUP BY cv.address, cv.latitude, cv.longitude
         ORDER BY total DESC
         """, nativeQuery = true)
     List<Object[]> findLocationCaseStats(@Param("period") String period, @Param("officeId") int officeId);
+
+    @Query(value = """
+        SELECT cv.address, cv.latitude, cv.longitude, SUM(sub.total) AS total
+        FROM (
+            SELECT c.cctv_id, SUM(c.fire_count + c.assult_count + c.swoon_count + c.weapon_count + c.crowd_congestion_count) AS total
+            FROM case_stats_category c
+            WHERE c.date >= NOW() -
+                  (CASE
+                      WHEN :period = 'weekly' THEN INTERVAL '7 days'
+                      WHEN :period = 'monthly' THEN INTERVAL '1 month'
+                      ELSE INTERVAL '1 year'
+                  END)
+            GROUP BY c.cctv_id
+        ) AS sub
+        JOIN cctv_info cv ON sub.cctv_id = cv.id
+        GROUP BY cv.address, cv.latitude, cv.longitude
+        ORDER BY total DESC
+        """, nativeQuery = true)
+    List<Object[]> findMapCaseStats(@Param("period") String period, @Param("officeId") int officeId);
+
+
 
 }
 

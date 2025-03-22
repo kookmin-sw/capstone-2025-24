@@ -171,7 +171,31 @@ public class CaseStatsService {
         }
 
         return results.stream()
-                .map(row -> new CctvCaseStatsResponse((String) row[0], ((Number) row[1]).intValue()))
+                .map(row -> new CctvCaseStatsResponse((String) row[0], (Double) row[1], (Double) row[2], ((Number) row[3]).intValue()))
+                .collect(Collectors.toList());
+    }
+
+    public List<CctvCaseStatsResponse> getMapCaseStats(String period, HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("사용자가 로그인하지 않았습니다.");
+        }
+
+        int officeId = user.getOfficeId();
+
+        String periodParam = (period != null) ? period.toLowerCase() : "weekly";
+        if(!List.of("weekly", "monthly", "yearly").contains(periodParam)) {
+            throw new IllegalArgumentException("잘못된 period 값입니다. 'weekly', 'monthly', 'yearly' 중 하나여야 합니다.");
+        }
+
+        List<Object[]> results = statsCategoryRepository.findMapCaseStats(periodParam, officeId);
+
+        if (results.isEmpty()) {
+            throw new NoSuchElementException("해당 기간에 대한 장소별 사건 데이터가 없습니다.");
+        }
+
+        return results.stream()
+                .map(row -> new CctvCaseStatsResponse((String) row[0], (Double) row[1], (Double) row[2], ((Number) row[3]).intValue()))
                 .collect(Collectors.toList());
     }
 

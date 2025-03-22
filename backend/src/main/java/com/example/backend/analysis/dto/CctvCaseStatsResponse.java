@@ -6,5 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 public class CctvCaseStatsResponse {
     String Location;
+    double latitude;
+    double longitude;
     int count;
 }
