@@ -4,10 +4,16 @@ import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect } from 'react';
 import useSelectedIndexStore from '../../../stores/useSelectedIndexStore';
 
+interface LegendItem {
+  text: string;
+  color: string;
+}
+
 interface DoughnutCardProps {
   title?: string;
+  legendItems: LegendItem[];
 }
-const DoughnutCard = ({ title }: DoughnutCardProps) => {
+const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
   const { selectedIndex, setSelectedIndex } = useSelectedIndexStore();
 
   // 여기서 api get을 해줄 겁니다.
@@ -33,7 +39,7 @@ const DoughnutCard = ({ title }: DoughnutCardProps) => {
         <S.TitleP>{title}</S.TitleP>
         <ChartFilter />
       </S.TitleDiv>
-      <DoughnutChart data={data} />
+      <DoughnutChart data={data} legendItems={legendItems}/>
     </S.DoughnutCardLayout>
   );
 };

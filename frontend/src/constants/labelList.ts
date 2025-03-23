@@ -11,3 +11,11 @@ export const LABELBYCATEGORY: labelItem[] = [
   { text: '군중밀집', color: '#EBC266' },
 ];
 
+export const LABELBYREGION: labelItem[] = [
+  { text: '정릉 1동', color: '#5877FF' },
+  { text: '정릉 2동', color: '#A8B3E3' },
+  { text: '정릉 3동', color: '#3257FE' },
+  { text: '정릉 4동', color: '#849DFF' },
+  { text: '정릉 5동', color: '#D4D8FF' },
+];
+

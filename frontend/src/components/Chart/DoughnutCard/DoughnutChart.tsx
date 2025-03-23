@@ -1,6 +1,4 @@
 import * as S from './DoughnutCard.style';
-import { CATEGORY } from '../../../constants/EventCategory';
-import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -76,20 +74,26 @@ const DoughnutOptions: ChartOptions<'doughnut'> = {
   },
 } as unknown as ChartOptions<'doughnut'>;
 
-interface DoughnutChartProps {
-  data: number[];
+interface LegendItem {
+  text: string;
+  color: string;
 }
 
-const DoughnutChart = ({ data }: DoughnutChartProps) => {
+interface DoughnutChartProps {
+  data: number[];
+  legendItems: LegendItem[];
+}
+
+const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
   // const [chartData, setChartData] = useState<number[]>(data);
   // 차트 data
   const DoughnutData: ChartData<'doughnut'> = {
-    labels: CATEGORY,
+    labels: legendItems.map(it => it.text),
     datasets: [
       {
-        label: '유형별 사건 수',
+        label: '사건 수',
         data: data,
-        backgroundColor: ['#F08676', '#A7C972', '#79A4E8', '#7ED1C1', '#EBC266'],
+        backgroundColor: legendItems.map(it => it.color),
         hoverOffset: 5,
       },
     ],
@@ -100,7 +104,7 @@ const DoughnutChart = ({ data }: DoughnutChartProps) => {
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={data} />
+      <LabelBox data={data} legendItems={legendItems}/>
     </S.DoughnutChartLayout>
   );
 };

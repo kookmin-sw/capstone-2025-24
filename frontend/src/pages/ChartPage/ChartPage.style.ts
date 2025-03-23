@@ -19,3 +19,8 @@ export const ChartSecondDiv = styled.div`
   display: flex;
   gap: 22px;
 `;
+
+export const ChartThirdDiv = styled.div`
+  display: flex;
+  gap: 22px;
+`;
