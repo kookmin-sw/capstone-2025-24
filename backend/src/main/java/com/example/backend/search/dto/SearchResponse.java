@@ -23,12 +23,11 @@ public class SearchResponse {
     private LocalDateTime date;
 
     private String category;
-    private String video;
     private String memo;
 
     @Builder
     public SearchResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String location, LocalDateTime date,
-                          String category, String video, String memo) {
+                          String category, String memo) {
         this.id = id;
         this.policeId = policeId;
         this.policeName = policeName;
@@ -36,7 +35,6 @@ public class SearchResponse {
         this.location = location;
         this.date = date;
         this.category = category;
-        this.video = video;
         this.memo = memo;
     }
 
@@ -49,7 +47,6 @@ public class SearchResponse {
                 .location(entity.getCctv().getAddress())
                 .date(entity.getDate())
                 .category(entity.getCategory().name())
-                .video(entity.getVideo())
                 .memo(entity.getMemo())
                 .build();
     }
