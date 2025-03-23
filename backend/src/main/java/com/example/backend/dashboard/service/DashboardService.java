@@ -106,15 +106,14 @@ public class DashboardService {
     private CaseResponse convertToDto(CaseEntity entity) {
         CaseResponse dto = new CaseResponse();
         dto.setId(entity.getId());
-        dto.setOfficeId(entity.getOffice().getId());
-        dto.setPoliceId(entity.getPolice().getId());
-        dto.setCctvId(entity.getCctv().getId());
+        dto.setPolice_name(entity.getPolice().getName());
+        dto.setPolice_rank(String.valueOf(entity.getPolice().getRank()));
+        dto.setCctv_address(entity.getCctv().getAddress());
         dto.setDate(entity.getDate());
         dto.setLevel(entity.getLevel());
         dto.setCategory(entity.getCategory());
         dto.setVideo(entity.getVideo());
         dto.setState(entity.getState());
-        dto.setAccuracy(entity.getAccuracy());
         dto.setMemo(entity.getMemo());
         return dto;
     }
