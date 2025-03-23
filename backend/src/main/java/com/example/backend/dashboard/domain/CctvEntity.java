@@ -22,6 +22,7 @@ public class CctvEntity {
     @Column(name = "longitude", nullable = false)
     private Double longitude;
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false, columnDefinition = "TEXT")
     private String address;
+
 }
