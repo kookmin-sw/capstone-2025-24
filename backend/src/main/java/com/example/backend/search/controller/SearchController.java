@@ -1,5 +1,7 @@
 package com.example.backend.search.controller;
 
+import com.example.backend.search.dto.DetailRequest;
+import com.example.backend.search.dto.DetailResponse;
 import com.example.backend.search.dto.SearchRequest;
 import com.example.backend.search.dto.SearchResult;
 import com.example.backend.search.service.SearchService;
@@ -39,6 +41,28 @@ public class SearchController {
                     officeId
             );
             return ResponseEntity.ok(searchResult);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    // 특정 로그 조회
+    @GetMapping("/log/{id}")
+    public ResponseEntity<?> getLogById(@PathVariable Integer id) {
+        try {
+            DetailResponse log = searchService.getLogById(id);
+            return ResponseEntity.ok(log);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
+
+    // 특정 로그 수정
+    @PutMapping("/log/{id}")
+    public ResponseEntity<?> updateLog(@PathVariable Integer id, @RequestBody DetailRequest newMemo) {
+        try {
+            searchService.updateLog(id, newMemo);
+            return ResponseEntity.ok("로그가 수정되었습니다.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body(e.getMessage());
         }

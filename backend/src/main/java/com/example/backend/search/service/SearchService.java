@@ -2,8 +2,7 @@ package com.example.backend.search.service;
 
 import com.example.backend.search.domain.CaseEntity;
 import com.example.backend.search.domain.SearchSpecification;
-import com.example.backend.search.dto.SearchResponse;
-import com.example.backend.search.dto.SearchResult;
+import com.example.backend.search.dto.*;
 import com.example.backend.search.repository.CctvRepository;
 import com.example.backend.search.repository.SearchRepository;
 import lombok.RequiredArgsConstructor;
@@ -63,4 +62,22 @@ public class SearchService {
                 .totalPages(totalPages)
                 .build();
     }
+
+    public DetailResponse getLogById(Integer id) {
+        CaseEntity caseEntity = searchRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 로그를 찾을 수 없습니다."));
+
+        return DetailResponse.fromEntity(caseEntity);
+    }
+
+
+    public void updateLog(Integer id, DetailRequest request) {
+        CaseEntity caseEntity = searchRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 로그를 찾을 수 없습니다."));
+
+        caseEntity.setMemo(request.getMemo());
+
+        searchRepository.save(caseEntity);
+    }
 }
+
