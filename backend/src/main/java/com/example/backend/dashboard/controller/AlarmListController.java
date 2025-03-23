@@ -42,6 +42,16 @@ public class AlarmListController {
         return ResponseEntity.ok(alarm);
     }
 
-
+    // 출동 | 미출동 클릭 시 => 1. 이미 출동인 상태 or 2. state를 업데이트
+    @PutMapping("/ready/{id}")
+    public ResponseEntity<?> updateCaseState(@PathVariable Integer id, HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            return ResponseEntity.status(403).body("로그인이 필요합니다.");
+        }
+        Integer officeId = user.getOfficeId();
+        String message = alarmListService.updateCaseState(id, officeId);
+        return ResponseEntity.ok(message);
+    }
 
 }
