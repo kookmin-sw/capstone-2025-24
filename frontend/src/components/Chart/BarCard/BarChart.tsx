@@ -1,4 +1,5 @@
 import * as S from './BarCard.style';
+import { useRef, useEffect, useState } from 'react';
 import { useFilterStore } from '../../../stores/filterStore';
 import { Bar } from 'react-chartjs-2';
 import {
@@ -53,10 +54,8 @@ const BarData1: ChartData<'bar'> = {
   ],
 };
 
-const labels = Array.from({ length: 31 }, (_, i) => `${i + 1}일`);
-
 const BarData2: ChartData<'bar'> = {
-  labels: labels,
+  labels: Array.from({ length: 31 }, (_, i) => `${i + 1}일`),
   datasets: [
     {
       label: '화재',
@@ -136,10 +135,54 @@ const BarOptions: ChartOptions<'bar'> = {
 };
 
 const BarChart = ({ data }: BarChartProps) => {
-  const { filter, setFilter } = useFilterStore();
+  const { filter } = useFilterStore();
+  const chartRef = useRef<any>(null);
+  const [legendItems, setLegendItems] = useState<any[]>([]);
+
+  const isMonthly = filter.month === '전체' || filter.month === '월';
+  const chartData = isMonthly ? BarData1 : BarData2;
+  const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
+
+  const options = {
+    ...BarOptions,
+    plugins: {
+      ...BarOptions.plugins,
+      legend: {
+        display: false, // 기본 legend 숨기기
+      },
+    },
+  };
+
+  useEffect(() => {
+    if (chartRef.current) {
+      const chart = chartRef.current;
+      const items = chart.legend?.legendItems || [];
+      setLegendItems(items);
+    }
+  }, [filter]);
+
+  const handleLegendClick = (index: number) => {
+    const chart = chartRef.current;
+    const meta = chart.getDatasetMeta(index);
+    meta.hidden = !meta.hidden;
+    chart.update();
+  };
+
   return (
     <S.BarChartLayout>
-      <Bar options={BarOptions} data={filter['month'] === '전체' || filter['month'] === '월' ? BarData1 : BarData2} />
+      <S.ChartScrollWrapper>
+        <S.ChartCanvasWrapper customWidth={isMonthly ? '100%' : containerWidth}>
+          <Bar ref={chartRef} options={options} data={chartData} />
+        </S.ChartCanvasWrapper>
+      </S.ChartScrollWrapper>
+      <S.CustomLegend>
+        {legendItems.map((item, index) => (
+          <S.LegendItem key={index} onClick={() => handleLegendClick(index)}>
+            <S.ColorBox style={{ backgroundColor: item.fillStyle }} />
+            {item.text}
+          </S.LegendItem>
+        ))}
+      </S.CustomLegend>
     </S.BarChartLayout>
   );
 };

@@ -24,15 +24,55 @@ export const TitleP = styled.p`
   font-size: 17px;
 `;
 
-export const FilterDiv = styled.div`
+export const FilterDiv = styled.div``;
 
-`;
 // BarChart.tsx --------------------------------//
 export const BarChartLayout = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  height: 270px;
+`;
+
+export const ChartScrollWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+interface ChartCanvasWrapperProps {
+  customWidth: string;
+}
+
+export const ChartCanvasWrapper = styled.div<ChartCanvasWrapperProps>`
+  width: ${(props) => props.customWidth};
+  min-width: 100%;
+  height: 100%;
+`;
+
+export const CustomLegend = styled.div`
+  display: flex;
   justify-content: center;
-  height: 280px;
-  padding: 0px 40px;
+  gap: 12px;
+  flex-wrap: wrap;
+`;
+
+export const LegendItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+`;
+
+export const ColorBox = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 `;
