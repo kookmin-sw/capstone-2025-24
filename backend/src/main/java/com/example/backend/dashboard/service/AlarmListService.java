@@ -28,4 +28,10 @@ public class AlarmListService {
                 .collect(Collectors.toList());
     }
 
+    public AlarmResponse getCaseById(Integer id, Integer officeId) {
+        CaseEntity caseEntity = alarmListRepository.findByIdAndOffice_Id(id, officeId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사건이 존재하지 않거나, 접근 권한이 없습니다."));
+        return AlarmResponse.fromEntityWithVideo(caseEntity);
+    }
+
 }
