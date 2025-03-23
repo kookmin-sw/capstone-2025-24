@@ -18,13 +18,12 @@ export const DropDownInfoLayout = styled.div`
   gap: 10px;
 `;
 
-export const InfoP = styled.p<{w:number}>`
+export const InfoP = styled.p<{ w: number }>`
   width: ${({ w }) => w}px;
   font-size: 13px;
   color: var(--gray800);
   padding: 2px;
 `;
-
 
 export const SearchBtn = styled.button`
   width: 74px;
@@ -37,8 +36,14 @@ export const SearchBtn = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  font-weight: 700
+  font-weight: 700;
   cursor: pointer;
+
+  &:active {
+    border: 2px solid var(--primary800);
+    background-color: var(--primary800);
+    color: white;
+  }
 `;
 
 // DataFiltering.tsx ----------------------------------------//

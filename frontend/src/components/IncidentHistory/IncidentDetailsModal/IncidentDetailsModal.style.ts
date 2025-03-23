@@ -47,7 +47,7 @@ export const Overlay = styled.div`
 export const XBtn = styled(IoMdClose)`
   width: 30px;
   height: 30px;
-  cursor: pointer;
+  pointer-events: auto;
 `;
 
 export const TitleBtnContainer = styled.div`
