@@ -2,7 +2,8 @@ import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect } from 'react';
-import useSelectedIndexStore from '../../../stores/useSelectedIndexStore';
+import useCategoryIndexStore from '../../../stores/useCategoryIndexStore';
+import useRegionIndexStore from '../../../stores/useRegionIndexStore';
 
 interface LegendItem {
   text: string;
@@ -10,11 +11,12 @@ interface LegendItem {
 }
 
 interface DoughnutCardProps {
-  title?: string;
+  title: string;
   legendItems: LegendItem[];
 }
 const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
-  const { selectedIndex, setSelectedIndex } = useSelectedIndexStore();
+  const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
+  const { selectedIndex } = store;
 
   // 여기서 api get을 해줄 겁니다.
   useEffect(() => {
@@ -31,15 +33,15 @@ const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
         return;
     }
   }, [selectedIndex]);
-  
+
   const [data, setData] = useState<number[]>([21, 9, 7, 4, 1]);
   return (
     <S.DoughnutCardLayout>
       <S.TitleDiv>
         <S.TitleP>{title}</S.TitleP>
-        <ChartFilter />
+        <ChartFilter title={title}/>
       </S.TitleDiv>
-      <DoughnutChart data={data} legendItems={legendItems}/>
+      <DoughnutChart data={data} legendItems={legendItems} />
     </S.DoughnutCardLayout>
   );
 };

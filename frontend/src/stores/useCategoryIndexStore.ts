@@ -5,9 +5,9 @@ interface useSelectedIndexState {
     setSelectedIndex: (state:number)=>void;
 
 }
-const useSelectedIndexStore = create<useSelectedIndexState>((set)=> ({
+const useCategoryIndexStore = create<useSelectedIndexState>((set)=> ({
     selectedIndex: 0,
     setSelectedIndex: (state) => set({selectedIndex:state}),
 }));
 
-export default useSelectedIndexStore;
+export default useCategoryIndexStore;
