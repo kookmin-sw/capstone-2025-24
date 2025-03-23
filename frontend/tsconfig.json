@@ -10,5 +10,6 @@
 		"paths": {
       "@/*": ["src/*"],
     },
+    "types": ["kakao.maps.d.ts"],
   },
 }

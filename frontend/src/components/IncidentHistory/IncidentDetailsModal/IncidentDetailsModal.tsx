@@ -19,7 +19,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incidentId }: IncidentDetailsMo
 
   return (
     <S.Overlay onClick={onClose}>
-      <S.Layout>
+      <S.Layout onClick={(e) => e.stopPropagation()}>
         <S.TitleBtnContainer>
           <S.TitleP>사건 세부 정보</S.TitleP>
           <S.XBtn onClick={onClose} />

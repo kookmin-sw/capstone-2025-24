@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
+import { Map } from 'react-kakao-maps-sdk';
 
 // IncidentDetailsModal.tsx------------------------//
 export const Layout = styled.div`
@@ -106,10 +107,9 @@ export const MemoInput = styled.textarea`
 `;
 
 // Map.tsx---------------------------------//
-export const MapDiv = styled.div`
+export const MapDiv = styled(Map)`
   width: 332px;
   height: 328px;
-  background-color: var(--gray500);
   border-radius: 8px;
 `;
 
