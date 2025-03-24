@@ -6,21 +6,19 @@ import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
   onClose: () => void;
-  onNoDispatchClick: () => void; // 미출동 클릭 시 실행할 함수
+  onFeedbackClick: () => void;
+  alertItem: AlertItemProps;
+}
+
+interface AlertItemProps {
   category: string;
   date: string;
   address: string;
-  videoUrl: string;
 }
 
-const IncidentModal = ({
-  onClose,
-  onNoDispatchClick,
-  category,
-  date,
-  address,
-  videoUrl
-}: IncidentModalProps) => {
+const IncidentModal = ({ onClose, onFeedbackClick, alertItem }: IncidentModalProps) => {
+  const { category, date, address } = alertItem;
+  const videoUrl = ''; // 추후 api 연동
   return (
     <>
       <S.CloseButton onClick={onClose}>
@@ -39,12 +37,10 @@ const IncidentModal = ({
       </S.InfoContainer>
       <VideoComponent w="100%" h="100%" radius={10} videoUrl={videoUrl} />
       <S.ButtonContainer>
-        <S.Button className="no" onClick={onNoDispatchClick}>
+        <S.Button className="no" onClick={onFeedbackClick}>
           미출동
         </S.Button>
-        <S.Button className="yes">
-          출동하기
-        </S.Button>
+        <S.Button className="yes">출동하기</S.Button>
       </S.ButtonContainer>
     </>
   );

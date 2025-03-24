@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Lottie from 'lottie-react';
 
 // AlertModal.tsx ------------------------------------
 
@@ -156,4 +157,43 @@ export const BackButton = styled.button`
   color: var(--gray700);
   text-decoration: underline;
   cursor: pointer;
+`;
+
+// SubmitModal.tsx ------------------------------------
+
+export const SubmitLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+`;
+
+export const Check = styled(Lottie)`
+  width: 170px;
+  height: 170px;
+`;
+
+export const SubmitTitle = styled.h3`
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+`;
+
+export const SubmitDescription = styled.p`
+  text-align: center;
+  font-size: 15px;
+  color: var(--gray500);
+`;
+
+export const CloseSubmitButton = styled.button`
+  text-align: center;
+  font-size: 23px;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--primary900);
+  border: none;
+  width: 572px;
+  height: 60px;
+  margin-top: 40px;
 `;

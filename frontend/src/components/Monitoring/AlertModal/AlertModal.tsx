@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import NoDispatchModal from './FeedbackModal';
+import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
+import SubmitModal from './SubmitModal';
 import * as S from './AlertModal.style';
 
 interface ModalProps {
@@ -16,12 +17,10 @@ interface AlertItemProps {
 type ModalStep = 'incident' | 'feedback' | 'submit';
 
 const AlertModal = ({ onClose, alertItem }: ModalProps) => {
-  const [Step, setStep] = useState<ModalStep>('incident');
-  const { category, date, address } = alertItem;
-  const videoUrl = ''; // 추후 api 연동
+  const [step, setStep] = useState<ModalStep>('incident');
 
   const handleOutsideClick = () => {
-    if (Step === 'incident') {
+    if (step === 'incident') {
       onClose();
     }
   };
@@ -29,20 +28,13 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
-        {Step === 'incident' && (
-          <IncidentModal
-            onClose={onClose}
-            onNoDispatchClick={() => setStep('feedback')}
-            category={category}
-            date={date}
-            address={address}
-            videoUrl={videoUrl}
-          />
+        {step === 'incident' && (
+          <IncidentModal onClose={onClose} onFeedbackClick={() => setStep('feedback')} alertItem={alertItem} />
         )}
-
-        {Step === 'feedback' && (
-          <NoDispatchModal onBack={() => setStep('incident')} />
+        {step === 'feedback' && (
+          <FeedbackModal onBack={() => setStep('incident')} onSubmitClick={() => setStep('submit')} />
         )}
+        {step === 'submit' && <SubmitModal onClose={onClose} />}
       </S.ModalContainer>
     </S.Overlay>
   );
