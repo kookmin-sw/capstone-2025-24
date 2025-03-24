@@ -57,13 +57,6 @@ export const ChartCanvasWrapper = styled.div<ChartCanvasWrapperProps>`
   height: 100%;
 `;
 
-// export const CustomLegend = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   gap: 12px;
-//   flex-wrap: wrap;
-// `;
-
 export const CustomLegend = styled.div`
   margin-top: 12px;
   display: flex;
@@ -90,43 +83,12 @@ export const ColorBox = styled.div`
 `;
 
 
-// export const BarChartLayout = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   position: relative;
-// `;
-
-// export const ChartScrollWrapper = styled.div`
-//   width: 100%;
-//   overflow-x: auto; /* 가로 스크롤 가능 */
-//   padding-bottom: 10px;
-// `;
-
-// export const ChartCanvasWrapper = styled.div<{ customWidth: string }>`
-//   width: ${({ customWidth }) => customWidth};
-//   min-width: 100%;
-// `;
-
 export const FixedLegendContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: center;
-  /* position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%); */
   background: white;
 `;
-
-// export const LegendItem = styled.div`
-//   display: flex;
-//   align-items: center;
-//   gap: 5px;
-//   cursor: pointer;
-//   font-size: 12px;
-//   color: black;
-// `;
 
 interface ColorBoxProps {
   bgcolor: string;
