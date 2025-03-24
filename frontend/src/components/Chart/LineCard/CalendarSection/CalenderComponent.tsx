@@ -22,6 +22,7 @@ const CalenderComponent = () => {
         next2Label={null}
         showNeighboringMonth={false}
         formatDay={(locale, date) => date.toLocaleString('en', { day: 'numeric' })}
+        formatShortWeekday={(locale, date) => date.toLocaleDateString('en-US', { weekday: 'short' })}
       />
     </S.CalenderComponentLayout>
   );

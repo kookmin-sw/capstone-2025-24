@@ -11,7 +11,7 @@ export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 33px;
   padding: 0px 12px;
-  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary300)' : 'white')};
   border: 1px solid var(--gray400);
   border-radius: 5px;
   cursor: pointer;

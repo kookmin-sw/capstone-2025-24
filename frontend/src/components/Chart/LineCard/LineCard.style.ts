@@ -25,6 +25,9 @@ export const TitleP = styled.p`
 `;
 
 export const ContentDiv = styled.div`
-    display: flex;
-    gap: 15px;
+  display: flex;
+  width: 100%;
+  height: 87%;
+  gap: 15px;
+  align-items: center;
 `;

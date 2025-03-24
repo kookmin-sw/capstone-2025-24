@@ -1,11 +1,19 @@
 import * as S from './CalendarSection.style';
+import { useState } from 'react';
 import CalenderComponent from './CalenderComponent';
+import DateDisplay from './DateDisplay';
+
+type DatePiece = Date | null;
+type SelectedDate = DatePiece | [DatePiece, DatePiece];
 
 const CalendarSection = () => {
-  // 요기에 상단컴포넌트, 캘린더가 들어올 거예요요
-  return <S.CalendarSectionLayout>
-    <CalenderComponent/>
-  </S.CalendarSectionLayout>;
+  const [selectedDate, setSelectedDate] = useState<SelectedDate>(new Date());
+  return (
+    <S.CalendarSectionLayout>
+      <DateDisplay />
+      <CalenderComponent />
+    </S.CalendarSectionLayout>
+  );
 };
 
 export default CalendarSection;
