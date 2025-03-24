@@ -1,6 +1,8 @@
 import * as S from './Filtering.style.ts';
 import { useState } from 'react';
 import { ko } from 'date-fns/locale';
+import { Locale } from 'date-fns';
+import DatePicker from 'react-datepicker';
 
 interface DateFilteringProps {
   startDate: Date;
@@ -17,13 +19,14 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
     <S.DateFilteringContainer>
       <S.DatePickerWrapper className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`} isOpen={isStartOpen}>
         <S.CalendarIcon onClick={() => setIsStartOpen(!isStartOpen)} />
-        <S.StyledDatePicker
-          locale={ko}
+        <DatePicker
+          className="custom-datepicker"
+          locale={ko as Locale}
           dateFormat="yyyy.MM.dd"
           selected={startDate}
           onInputClick={() => setIsStartOpen(!isStartOpen)}
           onChange={(date: Date | null) => {
-            if (date) {
+            if (date instanceof Date) {
               setStartDate(date);
               setIsStartOpen(false);
             }
@@ -32,22 +35,23 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
           startDate={startDate}
           endDate={endDate}
           placeholderText="시작 날짜"
-          open={isStartOpen} // 상태로 열림/닫힘 관리
+          open={isStartOpen}
         />
         <S.DownIcon onClick={() => setIsStartOpen(!isStartOpen)} isOpen={isStartOpen} />
       </S.DatePickerWrapper>
 
       <S.DatePickerWrapper className={`date-picker-wrapper ${isEndOpen ? 'open' : ''}`} isOpen={isEndOpen}>
         <S.CalendarIcon onClick={() => setIsEndOpen(!isEndOpen)} />
-        <S.StyledDatePicker
-          locale={ko}
+        <DatePicker
+          className="custom-datepicker"
+          locale={ko as Locale}
           dateFormat="yyyy.MM.dd"
           selected={endDate}
           onInputClick={() => setIsEndOpen(!isEndOpen)}
           onChange={(date: Date | null) => {
-            if (date) {
+            if (date instanceof Date) {
               setEndDate(date);
-              setIsEndOpen(false); // 날짜 선택 시 닫힘
+              setIsEndOpen(false);
             }
           }}
           selectsEnd

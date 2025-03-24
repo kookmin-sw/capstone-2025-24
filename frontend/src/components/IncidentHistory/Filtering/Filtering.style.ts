@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
 import { HiMiniCalendar } from 'react-icons/hi2';
 import { IoChevronDown } from 'react-icons/io5';
 import { CgSearch } from 'react-icons/cg';
@@ -61,21 +60,6 @@ export const DatePickerWrapper = styled.div<{ isOpen: boolean }>`
   border: 1px solid var(--gray400);
   border-radius: 8px;
   background-color: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
-`;
-
-export const StyledDatePicker = styled(DatePicker)<{ isOpen: boolean }>`
-  font-size: 18px;
-  cursor: pointer;
-  // background-color: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')} !important;
-  width: 120px;
-  color: var(--gray800);
-  text-align: center;
-  border: none;
-  outline: none;
-
-  &:hover {
-    border-color: var(--primary500);
-  }
 `;
 
 export const CalendarIcon = styled(HiMiniCalendar)`

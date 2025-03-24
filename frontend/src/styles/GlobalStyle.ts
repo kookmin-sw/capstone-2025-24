@@ -48,6 +48,14 @@ export const GlobalStyle = createGlobalStyle`
   .date-picker-wrapper.open input {
     background-color: var(--primary500);
   }
+
+  .custom-datepicker {
+    font-size: 18px;
+    width: 120px;
+    text-align: center;
+    border: none;
+    outline: none;
+}
 `;
 
 export default GlobalStyle;
