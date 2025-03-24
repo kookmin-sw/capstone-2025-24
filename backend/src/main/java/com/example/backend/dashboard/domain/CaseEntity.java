@@ -55,4 +55,5 @@ public class CaseEntity {
     public enum CaseState {
         미확인, 확인, 미출동, 출동, 완료
     }
+
 }

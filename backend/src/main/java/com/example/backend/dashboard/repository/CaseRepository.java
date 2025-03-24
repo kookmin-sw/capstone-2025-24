@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CaseRepository extends JpaRepository<CaseEntity, Integer> {
-    List<CaseEntity> findAllByStateOrderById(CaseState state);
+    List<CaseEntity> findAllByOfficeIdAndStateOrderById(int officeId, CaseState state);
 }

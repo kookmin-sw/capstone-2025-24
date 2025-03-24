@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Data
 public class CaseResponse {
     private Integer id;
-    private Integer officeId;
-    private Integer policeId;
-    private Integer cctvId;
+    private String police_name;
+    private String police_rank;
+    private String cctv_address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
@@ -20,7 +20,6 @@ public class CaseResponse {
     private CaseCategory category;
     private String video;
     private CaseState state;
-    private Boolean accuracy;
     private String memo;
 
 }
