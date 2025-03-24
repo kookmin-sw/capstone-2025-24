@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useSelectCategory } from '../../../hooks/useSelectCategory';
 import * as S from './InProgress.style';
 import ResolvedCard from './ResolvedCard';
-import { CATEGORY } from '../../../constants/EventCategory';
 
 interface CategorySelectCardProps {
   onClose: () => void;
@@ -9,17 +9,7 @@ interface CategorySelectCardProps {
 
 const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const groupedCategories = [];
-  for (let i = 0; i < CATEGORY.length; i += 3) {
-    groupedCategories.push(CATEGORY.slice(i, i + 3));
-  }
-  groupedCategories[groupedCategories.length - 1].push('기타');
-
-  const handleSelectCategory = (category: string) => {
-    setSelectedCategory(category);
-  };
+  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ noDangerOption: false });
 
   return isResolved ? (
     <ResolvedCard onClose={onClose} />
@@ -41,7 +31,7 @@ const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
           </S.CategoryRow>
         ))}
       </S.CategoryContainer>
-        <S.SelectButton onClick={() => setIsResolved(true)}>선택 완료</S.SelectButton>
+      <S.SelectButton onClick={() => setIsResolved(true)}>선택 완료</S.SelectButton>
       <S.BackButton onClick={onClose}>이전으로 돌아가기</S.BackButton>
     </>
   );

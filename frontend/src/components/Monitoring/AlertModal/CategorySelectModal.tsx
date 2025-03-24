@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { CATEGORY } from '../../../constants/EventCategory';
+import { useSelectCategory } from '../../../hooks/useSelectCategory';
 import * as S from './AlertModal.style';
 
 interface CategorySelectModalProps {
@@ -8,17 +7,8 @@ interface CategorySelectModalProps {
 }
 
 const CategorySelectModal = ({ onBack, onSubmit }: CategorySelectModalProps) => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ noDangerOption: true });
 
-  const groupedCategories = [];
-  for (let i = 0; i < CATEGORY.length; i += 3) {
-    groupedCategories.push(CATEGORY.slice(i, i + 3));
-  }
-  groupedCategories.push(['기타', '위험 상황이 아니에요']);
-
-  const handleSelectCategory = (category: string) => {
-    setSelectedCategory(category);
-  };
   return (
     <S.SubmitLayout>
       <S.ReasonTitle>
