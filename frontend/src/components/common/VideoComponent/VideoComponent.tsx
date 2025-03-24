@@ -1,15 +1,15 @@
 import * as S from './style';
 
 interface VideoComponentProps {
-  w: number;
-  h: number;
+  w: string | number;
+  h: string | number;
   radius: number;
   videoUrl: string;
 }
-const VideoComponent:React.FC<VideoComponentProps> = ({w, h, radius, videoUrl}) => {
+const VideoComponent = ({w, h, radius, videoUrl}: VideoComponentProps) => {
   return (
     <S.VideoComponentLayout w={w} h={h} radius={radius}>
-      <S.Player url={videoUrl} width="" height=""/>
+      <S.Player src={videoUrl} controls autoPlay/>
     </S.VideoComponentLayout>
   );
 };
