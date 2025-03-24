@@ -14,6 +14,9 @@ export const OverviewP = styled.p`
   font-weight: 600;
 `;
 
+export const ChartFirstDiv = styled.div`
+
+`
 
 export const ChartSecondDiv = styled.div`
   display: flex;

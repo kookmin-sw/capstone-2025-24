@@ -26,7 +26,7 @@ interface BarChartProps {
 const BarChart = ({ data }: BarChartProps) => {
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
-  const [$isHidden, set$IsHidden] = useState<boolean[]>([]);
+  const [isHidden, setIsHidden] = useState<boolean[]>([]);
   const { filter } = useFilterStore();
   const isMonthly = filter.month === '전체' || filter.month === '월';
   const chartData = isMonthly ? BarData1 : BarData2;
@@ -36,7 +36,7 @@ const BarChart = ({ data }: BarChartProps) => {
       const newHiddenStatus = chartRef.current.data.datasets.map(
         (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
       );
-      set$IsHidden(newHiddenStatus);
+      setIsHidden(newHiddenStatus);
     }
   }, [filter, chartData]);
 
@@ -91,21 +91,21 @@ const BarChart = ({ data }: BarChartProps) => {
     });
 
     chart.update();
-    set$IsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
+    setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
   return (
     <S.BarChartLayout>
       <S.ChartScrollWrapper>
-        <S.ChartCanvasWrapper customWidth={isMonthly ? '100%' : containerWidth}>
+        <S.ChartCanvasWrapper $customWidth={isMonthly ? '100%' : containerWidth}>
           <Bar ref={chartRef} options={BarOptions} data={chartData} />
         </S.ChartCanvasWrapper>
       </S.ChartScrollWrapper>
       <S.FixedLegendContainer>
         {legendItems.map((item, index) => {
           return (
-            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} isHidden={$isHidden[index]}>
-              <S.LegendColorBox bgcolor={item.fillStyle} isHidden={$isHidden[index]} />
+            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
+              <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
               <span>{item.text}</span>
             </S.LegendItem>
           );

@@ -48,11 +48,11 @@ export const ChartScrollWrapper = styled.div`
 `;
 
 interface ChartCanvasWrapperProps {
-  customWidth: string;
+  $customWidth: string;
 }
 
 export const ChartCanvasWrapper = styled.div<ChartCanvasWrapperProps>`
-  width: ${(props) => props.customWidth};
+  width: ${(props) => props.$customWidth};
   min-width: 100%;
   height: 100%;
 `;
@@ -67,13 +67,13 @@ export const CustomLegend = styled.div`
   position: relative;
 `;
 
-export const LegendItem = styled.div<{isHidden:boolean}>`
+export const LegendItem = styled.div<{$isHidden:boolean}>`
   display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
   font-size: 13px;
-  opacity: ${({isHidden})=>isHidden?"0.5":"1"};
+  opacity: ${({$isHidden})=>$isHidden?"0.5":"1"};
 `;
 
 export const ColorBox = styled.div`
@@ -91,13 +91,13 @@ export const FixedLegendContainer = styled.div`
 `;
 
 interface ColorBoxProps {
-  bgcolor: string;
-  isHidden: boolean;
+  $bgcolor: string;
+  $isHidden: boolean;
 }
 
 export const LegendColorBox = styled.div<ColorBoxProps>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({isHidden, bgcolor})=>isHidden?`var(--gray600)`:bgcolor};
+  background-color: ${({$isHidden, $bgcolor})=>$isHidden?`var(--gray600)`:$bgcolor};
 `;
