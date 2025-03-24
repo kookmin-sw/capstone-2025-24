@@ -57,7 +57,7 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
 
 export const DropdownItem = styled.li<{ isSelected: boolean }>`
   padding: 7px 0px;
-  margin: 7px 10px;
+  margin: 6px 10px;
   font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
