@@ -86,9 +86,9 @@ export const Button = styled.button`
   }
 `;
 
-// NoDispatchModal.tsx ------------------------------------
+// FeedbackModal.tsx ------------------------------------
 
-export const ReasonLayout = styled.div`
+export const FeedbackLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
