@@ -2,6 +2,8 @@ import { useState } from 'react';
 import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
+import CategorySelectModal from './CategorySelectModal';
+
 import * as S from './AlertModal.style';
 
 interface ModalProps {
@@ -14,7 +16,7 @@ interface AlertItemProps {
   address: string;
 }
 
-type ModalStep = 'incident' | 'feedback' | 'submit';
+type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem }: ModalProps) => {
   const [step, setStep] = useState<ModalStep>('incident');
@@ -32,7 +34,14 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
           <IncidentModal onClose={onClose} onFeedbackClick={() => setStep('feedback')} alertItem={alertItem} />
         )}
         {step === 'feedback' && (
-          <FeedbackModal onBack={() => setStep('incident')} onSubmitClick={() => setStep('submit')} />
+          <FeedbackModal
+            onBack={() => setStep('incident')}
+            onSelectCategory={() => setStep('category')}
+            onSubmitClick={() => setStep('submit')}
+          />
+        )}
+        {step === 'category' && (
+          <CategorySelectModal onBack={() => setStep('feedback')} onSubmit={() => setStep('submit')} />
         )}
         {step === 'submit' && <SubmitModal onClose={onClose} />}
       </S.ModalContainer>

@@ -6,5 +6,5 @@ export const EVENT_CATEGORY = {
   ASSAULT: '폭행',
 } as const;
 
-export const CATEGORY: string[] = ['화재', '쓰러짐', '군중밀집', '흉기난동', '폭행'];
+export const CATEGORY: string[] = ['화재', '쓰러짐', '폭행', '흉기난동', '군중밀집'];
 export type EventCategory = (typeof EVENT_CATEGORY)[keyof typeof EVENT_CATEGORY];

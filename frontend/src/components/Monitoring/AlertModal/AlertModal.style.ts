@@ -101,6 +101,7 @@ export const ReasonTitle = styled.h3`
   font-weight: 600;
   margin-top: 15px;
   text-align: center;
+  line-height: 130%;
 `;
 
 export const ButtonGroup = styled.div`
@@ -156,6 +157,56 @@ export const BackButton = styled.button`
   font-size: 15px;
   color: var(--gray700);
   text-decoration: underline;
+  cursor: pointer;
+`;
+
+// CategorySelectModal.tsx ------------------------------------
+
+export const CategoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+`;
+
+export const CategoryRow = styled.div`
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+`;
+
+export const Chip = styled.button<{ selected: boolean }>`
+  padding: 8px 26px;
+  border-radius: 75px;
+  border: 1.5px solid ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray400)')};
+  background-color: ${({ selected }) => (selected ? 'var(--primary300)' : 'transparent')};
+  font-size: 22px;
+  font-weight: bold;
+  color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray700)')};
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border 0.2s,
+    color 0.2s;
+
+  &:hover {
+    background-color: var(--primary300);
+    border: 1.5px solid var(--primary900);
+  }
+  &:active {
+    background-color: rgba(25, 118, 210, 0.2);
+  }
+`;
+
+export const SelectButton = styled.button`
+  padding: 8px 0;
+  width: 95%;
+  border: solid 1.5px var(--primary600);
+  background-color: var(--primary300);
+  color: var(--primary900);
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
 `;
 
