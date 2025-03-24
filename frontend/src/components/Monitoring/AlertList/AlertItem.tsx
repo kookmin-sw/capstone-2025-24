@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import * as S from './style.ts';
+import AlertModal from '../AlertModal/AlertModal.tsx';
 
 interface AlertItemProps {
   category: string;
@@ -9,6 +11,14 @@ interface AlertItemProps {
 }
 
 const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <div>
       <S.Layout clicked={clicked}>
@@ -23,7 +33,17 @@ const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) 
             {category} 감지
           </S.CategoryDiv>
           <S.AddressP>{address}</S.AddressP>
-          <S.ShowButtoon>자세히 보기</S.ShowButtoon>
+          <S.ShowButtoon onClick={openModal}>자세히 보기</S.ShowButtoon>
+          {isModalOpen && (
+            <AlertModal
+              onClose={closeModal}
+              alertItem={{
+                category,
+                date,
+                address,
+              }}
+            />
+          )}
         </S.CardDiv>
       </S.Layout>
     </div>
