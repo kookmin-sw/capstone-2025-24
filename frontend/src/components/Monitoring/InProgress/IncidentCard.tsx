@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useIsModalOpen from '../../../hooks/useIsModalOpen';
 import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
@@ -15,15 +16,7 @@ interface IncidentCardProps {
 
 const IncidentCard = ({ title, location, dateTime, police, videoUrl }: IncidentCardProps) => {
   const [clickResolve, setClickResolve] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
   return (
     <>

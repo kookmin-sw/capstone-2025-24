@@ -1,6 +1,6 @@
 import * as S from './VideoModal.style';
 import { IoMdClose } from 'react-icons/io';
-// import VideoComponent from '../../common/VideoComponent/VideoComponent.tsx';
+import VideoComponent from '../../../common/VideoComponent/VideoComponent';
 
 interface VideoModalProps {
   isOpen: boolean;
@@ -17,8 +17,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl }: VideoModalProps) => {
         <S.CloseButton onClick={onClose}>
           <IoMdClose />
         </S.CloseButton>
-        <S.Video src={videoUrl} controls autoPlay />
-        {/* <VideoComponent w={700} h={800} radius={10} videoUrl={video} /> */}
+        <VideoComponent w={'100%'} h={'100%'} radius={0} videoUrl={videoUrl} />
       </S.ModalContainer>
     </S.Overlay>
   );
