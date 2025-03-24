@@ -3,8 +3,6 @@ import Lottie from 'lottie-react';
 
 // InProgress.tsx ------------------------------------
 
-export const InProgressLayout = styled.div``;
-
 export const Title = styled.h2`
   font-size: 25px;
   font-weight: bold;

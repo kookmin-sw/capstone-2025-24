@@ -5,7 +5,7 @@ import policerEmpty from '../../../assets/images/policerEmpty.png';
 
 const InProgress = () => {
   return (
-    <S.InProgressLayout>
+    <div>
       <S.Title>출동중인 사건 (총 {InProgressData.length}건)</S.Title>
       {InProgressData.length > 0 ? (
         <S.CardGrid>
@@ -19,7 +19,7 @@ const InProgress = () => {
           출동중인 사건이 없어요
         </S.EmptyView>
       )}
-    </S.InProgressLayout>
+    </div>
   );
 };
 
