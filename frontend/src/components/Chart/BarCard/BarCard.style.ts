@@ -26,6 +26,7 @@ export const TitleP = styled.p`
 
 export const FilterDiv = styled.div``;
 
+
 // BarChart.tsx --------------------------------//
 export const BarChartLayout = styled.div`
   display: flex;
@@ -56,23 +57,85 @@ export const ChartCanvasWrapper = styled.div<ChartCanvasWrapperProps>`
   height: 100%;
 `;
 
+// export const CustomLegend = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   gap: 12px;
+//   flex-wrap: wrap;
+// `;
+
 export const CustomLegend = styled.div`
+  margin-top: 12px;
   display: flex;
   justify-content: center;
-  gap: 12px;
   flex-wrap: wrap;
+  z-index: 10;
+  background-color: white; // optional
+  position: relative;
 `;
 
-export const LegendItem = styled.div`
+export const LegendItem = styled.div<{isHidden:boolean}>`
   display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
   font-size: 13px;
+  opacity: ${({isHidden})=>isHidden?"0.5":"1"};
 `;
 
 export const ColorBox = styled.div`
   width: 12px;
   height: 12px;
   border-radius: 50%;
+`;
+
+
+// export const BarChartLayout = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   position: relative;
+// `;
+
+// export const ChartScrollWrapper = styled.div`
+//   width: 100%;
+//   overflow-x: auto; /* 가로 스크롤 가능 */
+//   padding-bottom: 10px;
+// `;
+
+// export const ChartCanvasWrapper = styled.div<{ customWidth: string }>`
+//   width: ${({ customWidth }) => customWidth};
+//   min-width: 100%;
+// `;
+
+export const FixedLegendContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  /* position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%); */
+  background: white;
+`;
+
+// export const LegendItem = styled.div`
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+//   cursor: pointer;
+//   font-size: 12px;
+//   color: black;
+// `;
+
+interface ColorBoxProps {
+  bgcolor: string;
+  isHidden: boolean;
+}
+
+export const LegendColorBox = styled.div<ColorBoxProps>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${({isHidden, bgcolor})=>isHidden?`var(--gray600)`:bgcolor};
 `;

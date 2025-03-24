@@ -1,7 +1,8 @@
 import * as S from './BarCard.style';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { useFilterStore } from '../../../stores/filterStore';
 import { Bar } from 'react-chartjs-2';
+import { BarData1, BarData2 } from '../../../mocks/BarData';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -13,7 +14,6 @@ import {
   CategoryScale,
   BarElement,
   Title,
-  ChartData,
   ChartOptions,
 } from 'chart.js';
 
@@ -23,166 +23,94 @@ interface BarChartProps {
   data: number[];
 }
 
-const BarData1: ChartData<'bar'> = {
-  labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-  datasets: [
-    {
-      label: '화재',
-      data: [120, 200, 150, 80, 250, 120, 200, 150, 80, 250, 10, 400],
-      backgroundColor: ['#F08676'],
-    },
-    {
-      label: '폭행',
-      data: [120, 200, 150, 80, 250, 120, 200, 150, 80, 250, 10, 400],
-      backgroundColor: ['#A7C972'],
-    },
-    {
-      label: '쓰러짐',
-      data: [120, 200, 150, 80, 250, 120, 200, 150, 80, 250, 10, 400],
-      backgroundColor: ['#79A4E8'],
-    },
-    {
-      label: '흉기난동',
-      data: [120, 200, 150, 80, 250, 120, 200, 150, 80, 250, 10, 400],
-      backgroundColor: ['#7ED1C1'],
-    },
-    {
-      label: '군중밀집',
-      data: [120, 200, 150, 80, 250, 120, 200, 150, 80, 250, 10, 400],
-      backgroundColor: ['#EBC266'],
-    },
-  ],
-};
-
-const BarData2: ChartData<'bar'> = {
-  labels: Array.from({ length: 31 }, (_, i) => `${i + 1}일`),
-  datasets: [
-    {
-      label: '화재',
-      data: [1, 2, 3, 0, 2, 1, 3, 4, 2, 1, 0, 1, 2, 3, 1, 2, 2, 1, 3, 4, 2, 1, 0, 1, 2, 3, 4, 2, 1, 1, 0],
-      backgroundColor: ['#F08676'],
-    },
-    {
-      label: '폭행',
-      data: [0, 1, 0, 2, 3, 2, 1, 2, 0, 1, 2, 3, 4, 1, 0, 1, 2, 3, 4, 3, 2, 1, 0, 1, 2, 2, 1, 0, 1, 3, 2],
-      backgroundColor: ['#A7C972'],
-    },
-    {
-      label: '쓰러짐',
-      data: [2, 1, 1, 1, 1, 0, 0, 2, 1, 3, 4, 2, 1, 0, 0, 2, 3, 4, 1, 2, 3, 2, 1, 0, 1, 2, 3, 1, 1, 0, 2],
-      backgroundColor: ['#79A4E8'],
-    },
-    {
-      label: '흉기난동',
-      data: [0, 0, 1, 1, 0, 2, 1, 1, 0, 0, 2, 3, 1, 2, 1, 1, 0, 0, 2, 1, 0, 0, 1, 2, 1, 1, 0, 1, 2, 1, 1],
-      backgroundColor: ['#7ED1C1'],
-    },
-    {
-      label: '군중밀집',
-      data: [3, 4, 5, 3, 4, 3, 2, 3, 4, 5, 3, 4, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4],
-      backgroundColor: ['#EBC266'],
-    },
-  ],
-};
-
-const BarOptions: ChartOptions<'bar'> = {
-  responsive: true,
-  maintainAspectRatio: false, // 기본 비율 유지 X
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
-  scales: {
-    x: {
-      grid: {
-        display: false, // 세로선
-      },
-      stacked: true,
-    },
-    y: {
-      grid: {
-        display: true, //가로선
-      },
-      stacked: true,
-    },
-  },
-  animation: {
-    duration: 1500, // 애니메이션 지속 시간
-    easing: 'easeInOutQuad', // 애니메이션 이징 함수
-  },
-  plugins: {
-    tooltip: {
-      enabled: false,
-    },
-    legend: {
-      display: true,
-      position: 'bottom',
-      labels: {
-        color: 'black',
-        borderRadius: 50,
-        boxHeight: 5,
-        boxWidth: 5,
-        pointStyle: 'circle',
-        usePointStyle: true,
-        font: {
-          size: 12,
-          lineHeight: 2,
-          weight: 'normal',
-        },
-      },
-    },
-  },
-};
-
 const BarChart = ({ data }: BarChartProps) => {
-  const { filter } = useFilterStore();
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
-
+  const [$isHidden, set$IsHidden] = useState<boolean[]>([]);
+  const { filter } = useFilterStore();
   const isMonthly = filter.month === '전체' || filter.month === '월';
   const chartData = isMonthly ? BarData1 : BarData2;
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
+  useEffect(() => {
+    if (chartRef.current) {
+      const newHiddenStatus = chartRef.current.data.datasets.map(
+        (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
+      );
+      set$IsHidden(newHiddenStatus);
+    }
+  }, [filter, chartData]);
 
-  const options = {
-    ...BarOptions,
-    plugins: {
-      ...BarOptions.plugins,
-      legend: {
-        display: false, // 기본 legend 숨기기
+  // 차트 옵션 (legend는 별도로 분리하므로 display: false)
+  const BarOptions = useMemo<ChartOptions<'bar'>>(
+    () => ({
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index' as const,
+        intersect: false,
       },
-    },
-  };
+      scales: {
+        x: { grid: { display: false }, stacked: true },
+        y: { grid: { display: true }, stacked: true },
+      },
+      animation: { duration: 1500, easing: 'easeInOutQuad' },
+      plugins: {
+        tooltip: { enabled: false },
+        legend: { display: false }, // 기존 legend 숨기기
+      },
+    }),[]);
 
+  // filter 값 바뀌면 리렌더링 되도록록
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;
-      const items = chart.legend?.legendItems || [];
-      setLegendItems(items);
+      setLegendItems(chart.legend?.legendItems || []);
     }
-  }, [filter]);
+  }, [filter, chartData]);
 
+  // legend 클릭 이벤트 핸들러
   const handleLegendClick = (index: number) => {
+    if (!chartRef.current) return;
+
     const chart = chartRef.current;
-    const meta = chart.getDatasetMeta(index);
-    meta.hidden = !meta.hidden;
+
+    // 현재 선택된 데이터셋이 모두 숨겨졌는지 확인
+    const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
+      const meta = chart.getDatasetMeta(i);
+      return i === index ? !meta.hidden : meta.hidden;
+    });
+
+    // 클릭한 항목만 활성화 / 다른 항목은 비활성화
+    chart.data.datasets.forEach((_: number, i: number) => {
+      const meta = chart.getDatasetMeta(i);
+      if (isOnlyOneVisible) {
+        meta.hidden = false;
+      } else {
+        meta.hidden = i !== index;
+      }
+    });
+
     chart.update();
+    set$IsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
   return (
     <S.BarChartLayout>
       <S.ChartScrollWrapper>
         <S.ChartCanvasWrapper customWidth={isMonthly ? '100%' : containerWidth}>
-          <Bar ref={chartRef} options={options} data={chartData} />
+          <Bar ref={chartRef} options={BarOptions} data={chartData} />
         </S.ChartCanvasWrapper>
       </S.ChartScrollWrapper>
-      <S.CustomLegend>
-        {legendItems.map((item, index) => (
-          <S.LegendItem key={index} onClick={() => handleLegendClick(index)}>
-            <S.ColorBox style={{ backgroundColor: item.fillStyle }} />
-            {item.text}
-          </S.LegendItem>
-        ))}
-      </S.CustomLegend>
+      <S.FixedLegendContainer>
+        {legendItems.map((item, index) => {
+          return (
+            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} isHidden={$isHidden[index]}>
+              <S.LegendColorBox bgcolor={item.fillStyle} isHidden={$isHidden[index]} />
+              <span>{item.text}</span>
+            </S.LegendItem>
+          );
+        })}
+      </S.FixedLegendContainer>
     </S.BarChartLayout>
   );
 };
