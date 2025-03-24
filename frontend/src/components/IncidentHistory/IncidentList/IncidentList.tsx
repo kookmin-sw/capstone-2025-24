@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 import SortingDropDown from './SortingDropDown.tsx';
+import EmptyView from './EmptyView.tsx';
 
 interface IncidentListProps {
   onOpen: (id: number) => void;
@@ -37,54 +38,59 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
 
       {/* 리스트 */}
       <S.IncidentListDiv>
-        <S.Table>
-          <thead>
-            <S.TableHeaderRow>
-              <S.TableHeader w={15}>사건 번호</S.TableHeader>
-              <S.TableHeader w={20}>사건 분류</S.TableHeader>
-              <S.TableHeader w={23}>날짜</S.TableHeader>
-              <S.TableHeader w={30}>위치</S.TableHeader>
-              <S.TableHeader w={12}>담당 경찰</S.TableHeader>
-            </S.TableHeaderRow>
-          </thead>
-          <tbody>
-            {currentData.map((incident, index) => (
-              <S.TableBodyRow key={index} onClick={() => onOpen(incident.id)}>
-                <S.TableData index={index + 1}>
-                  <S.InfoP>{index + 1}</S.InfoP>
-                </S.TableData>
-                <S.TableData index={index + 1}>
-                  <S.InfoP>{incident.category}</S.InfoP>
-                </S.TableData>
-                <S.TableData index={index + 1}>
-                  <S.InfoP>{incident.date}</S.InfoP>
-                </S.TableData>
-                <S.TableData index={index + 1}>
-                  <S.InfoP>{incident.address}</S.InfoP>
-                </S.TableData>
-                <S.TableData index={index + 1}>
-                  <S.InfoP>{incident.police}</S.InfoP>
-                </S.TableData>
-              </S.TableBodyRow>
-            ))}
-          </tbody>
-        </S.Table>
+        {incidentdata.length === 0 ? (
+          <EmptyView />
+        ) : (
+          <S.Table>
+            <thead>
+              <S.TableHeaderRow>
+                <S.TableHeader w={15}>사건 번호</S.TableHeader>
+                <S.TableHeader w={20}>사건 분류</S.TableHeader>
+                <S.TableHeader w={23}>날짜</S.TableHeader>
+                <S.TableHeader w={30}>위치</S.TableHeader>
+                <S.TableHeader w={12}>담당 경찰</S.TableHeader>
+              </S.TableHeaderRow>
+            </thead>
+            <tbody>
+              {currentData.map((incident, index) => (
+                <S.TableBodyRow key={index} onClick={() => onOpen(incident.id)}>
+                  <S.TableData index={index + 1}>
+                    <S.InfoP>{index + 1}</S.InfoP>
+                  </S.TableData>
+                  <S.TableData index={index + 1}>
+                    <S.InfoP>{incident.category}</S.InfoP>
+                  </S.TableData>
+                  <S.TableData index={index + 1}>
+                    <S.InfoP>{incident.date}</S.InfoP>
+                  </S.TableData>
+                  <S.TableData index={index + 1}>
+                    <S.InfoP>{incident.address}</S.InfoP>
+                  </S.TableData>
+                  <S.TableData index={index + 1}>
+                    <S.InfoP>{incident.police}</S.InfoP>
+                  </S.TableData>
+                </S.TableBodyRow>
+              ))}
+            </tbody>
+          </S.Table>
+        )}
       </S.IncidentListDiv>
 
-      {/* 페이지네이션 버튼 */}
-      <S.Pagination>
-        <S.MoveBtn disabled={startPage <= 1} onClick={() => setCurrentPage(startPage - 1)}>
-          <GrFormPrevious />
-        </S.MoveBtn>
-        {pageNumbers.map((num) => (
-          <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
-            {num}
-          </S.PageButton>
-        ))}
-        <S.MoveBtn disabled={endPage >= totalPages} onClick={() => setCurrentPage(endPage + 1)}>
-          <GrFormNext />
-        </S.MoveBtn>
-      </S.Pagination>
+      {incident_num > 0 && (
+        <S.Pagination>
+          <S.MoveBtn disabled={startPage <= 1} onClick={() => setCurrentPage(startPage - 1)}>
+            <GrFormPrevious />
+          </S.MoveBtn>
+          {pageNumbers.map((num) => (
+            <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
+              {num}
+            </S.PageButton>
+          ))}
+          <S.MoveBtn disabled={endPage >= totalPages} onClick={() => setCurrentPage(endPage + 1)}>
+            <GrFormNext />
+          </S.MoveBtn>
+        </S.Pagination>
+      )}
     </S.Layout>
   );
 };

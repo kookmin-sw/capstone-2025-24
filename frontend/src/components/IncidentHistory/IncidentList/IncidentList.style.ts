@@ -105,7 +105,6 @@ export const MoveBtn = styled.button`
     color: var(--gray500);
     cursor: default;
   }
-
 `;
 
 // SortingDropDown.tsx -----------------------//
@@ -177,4 +176,25 @@ export const DropdownItem = styled.li<{ isSelected: boolean }>`
   &:hover {
     background: var(--primary500);
   }
+`;
+
+// EmptyView.tsx ---------------------------------//
+export const EmtyViewLayout = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmtyViewP = styled.p`
+  font-size: 30px;
+  color: var(--gray500);
+  margin: 30px;
+`;
+
+export const EmptyImg = styled.img`
+  width: 213px;
+  height: 213px;
 `;
