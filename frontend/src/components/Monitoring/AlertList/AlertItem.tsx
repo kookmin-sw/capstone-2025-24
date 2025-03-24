@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import useIsModalOpen from '../../../hooks/useIsModalOpen';
 import * as S from './style.ts';
 import AlertModal from '../AlertModal/AlertModal.tsx';
 
@@ -11,14 +11,8 @@ interface AlertItemProps {
 }
 
 const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   return (
     <div>
       <S.Layout clicked={clicked}>
