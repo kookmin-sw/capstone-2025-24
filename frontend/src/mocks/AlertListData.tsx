@@ -35,6 +35,13 @@ const AlertListData: AlertDataType[] = [
     address: '서울특별시 성북구 보국문로 31',
     state: '확인',
   },
+  {
+    id: 5,
+    category: '쓰러짐',
+    date: '2024.10.10. 10:10:30',
+    address: '서울특별시 성북구 보국문로 31',
+    state: '확인',
+  },
 ];
 
 export default AlertListData;

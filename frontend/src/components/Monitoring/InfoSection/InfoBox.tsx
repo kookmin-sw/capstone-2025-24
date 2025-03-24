@@ -1,6 +1,6 @@
 import * as S from './style';
-import cctvIcon from '@/assets/cctvIcon.svg';
-import cctvIconBlue from '@/assets/cctvBlueIcon.svg';
+import cctvIcon from '@/assets/icons/cctvIcon.svg';
+import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
 
 interface InfoBoxProps {
   selectedIndex: number | null;

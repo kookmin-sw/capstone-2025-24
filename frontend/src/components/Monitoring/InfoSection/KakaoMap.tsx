@@ -1,7 +1,7 @@
 import * as S from './style';
 import { MapMarker } from 'react-kakao-maps-sdk';
-import cctvIcon from '@/assets/cctvIcon.svg';
-import cctvIconBlue from '@/assets/cctvBlueIcon.svg';
+import cctvIcon from '@/assets/icons/cctvIcon.svg';
+import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
 
 interface KakaoMapProps {
   selectedIndex: number | null;

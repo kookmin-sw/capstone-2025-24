@@ -11,6 +11,9 @@ interface LocationProps {
 export const InfoLayout = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  margin: auto;
+  justify-content: center;
 `;
 
 export const InfoContent = styled.div`
@@ -97,8 +100,6 @@ export const Location = styled.div<LocationProps>`
   background-color: ${({ selected }) => (selected ? 'var(--primary400)' : 'transparent')};
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray600)')};
 `;
-
-export const VideoLayout = styled.div``;
 
 export const VideoPlayer = styled.iframe`
   margin-top: 15px;

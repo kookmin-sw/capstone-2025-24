@@ -9,9 +9,9 @@ interface VideoProps {
 
 const VideoBox = ({ selectedIndex, Locations }: VideoProps) => {
   return (
-    <S.VideoLayout>
+    <div>
       {selectedIndex !== null && <S.VideoPlayer src={Locations[selectedIndex].cctvUrl} title="CCTV Video" />}
-    </S.VideoLayout>
+    </div>
   );
 };
 
