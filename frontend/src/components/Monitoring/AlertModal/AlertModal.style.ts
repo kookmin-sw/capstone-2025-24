@@ -247,4 +247,8 @@ export const CloseSubmitButton = styled.button`
   width: 572px;
   height: 60px;
   margin-top: 40px;
+
+  &:active {
+    background-color: #3d52af;
+  }
 `;
