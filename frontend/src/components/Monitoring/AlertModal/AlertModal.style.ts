@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+// AlertModal.tsx ------------------------------------
+
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -82,4 +84,76 @@ export const Button = styled.button`
     border: none;
     color: white;
   }
+`;
+
+// NoDispatchModal.tsx ------------------------------------
+
+export const ReasonLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+`;
+
+export const ReasonTitle = styled.h3`
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 15px;
+  text-align: center;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 20px;
+`;
+
+export const WrongButton = styled.button`
+  width: 100%;
+  background-color: transparent;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+  padding: 12px 50px;
+
+  &.yes {
+    color: var(--primary800);
+    border: solid 1.5px var(--primary800);
+  }
+  &.no {
+    color: var(--red);
+    border: solid 1.5px var(--red);
+  }
+
+  &:hover {
+    background-color: rgba(25, 118, 210, 0.06);
+  }
+  &.no:hover {
+    background-color: rgba(211, 47, 47, 0.06);
+  }
+
+  &.yes:active {
+    background-color: rgba(25, 118, 210, 0.2);
+  }
+  &.no:active {
+    background-color: rgba(211, 47, 47, 0.2);
+  }
+`;
+
+export const BackButton = styled.button`
+  width: 100%;
+  margin-top: 13px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  color: var(--gray700);
+  text-decoration: underline;
+  cursor: pointer;
 `;
