@@ -2,11 +2,11 @@ import { useState, useMemo, useCallback } from 'react';
 import { CATEGORY } from '../constants/EventCategory';
 
 interface UseSelectCategory {
-  noDangerOption?: boolean;
+  isDanger?: boolean;
 }
 
 export const useSelectCategory = (options?: UseSelectCategory) => {
-  const { noDangerOption = false } = options || {};
+  const { isDanger = false } = options || {};
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const groupedCategories = useMemo(() => {
@@ -15,14 +15,14 @@ export const useSelectCategory = (options?: UseSelectCategory) => {
       result.push(CATEGORY.slice(i, i + 3));
     }
 
-    if (noDangerOption) {
+    if (!isDanger) {
       result.push(['기타', '위험 상황이 아니에요']);
     } else {
       result[result.length - 1].push('기타');
     }
 
     return result;
-  }, [noDangerOption]);
+  }, [isDanger]);
 
   const handleSelectCategory = useCallback((category: string) => {
     setSelectedCategory(category);

@@ -7,7 +7,7 @@ interface CategorySelectModalProps {
 }
 
 const CategorySelectModal = ({ onBack, onSubmit }: CategorySelectModalProps) => {
-  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ noDangerOption: true });
+  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ isDanger: false });
 
   return (
     <S.SubmitLayout>

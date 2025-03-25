@@ -10,7 +10,7 @@ interface CategorySelectCardProps {
 
 const CategorySelectCard = ({ onClose, id }: CategorySelectCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
-  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ noDangerOption: false });
+  const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ isDanger: true });
 
   return isResolved ? (
     <ResolvedCard onClose={onClose} id={id} />
