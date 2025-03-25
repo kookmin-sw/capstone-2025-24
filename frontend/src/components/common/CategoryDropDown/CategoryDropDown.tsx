@@ -1,5 +1,5 @@
 import * as S from './style.ts';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 
 // 드롭다운 옵션 리스트
@@ -12,6 +12,7 @@ interface CategoryDropDownProps {
 
 const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null); // 드롭다운 전체 영역
 
   // 드롭다운 열기/닫기 토글
   const toggleDropdown = () => setIsOpen((prev) => !prev);
@@ -22,8 +23,24 @@ const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <S.DropdownWrapper>
+    <S.DropdownWrapper ref={dropdownRef}>
       <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
         {selected} <IoChevronDown />
       </S.DropdownHeader>

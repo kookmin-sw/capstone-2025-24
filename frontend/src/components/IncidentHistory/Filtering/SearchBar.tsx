@@ -1,5 +1,5 @@
 import * as S from './Filtering.style.ts';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 
 const options: string[] = ['담당 경찰', '위치'];
@@ -13,6 +13,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ searchType, setSearchType, searchWord, setSearchWord }: SearchBarProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null); // 드롭다운 전체 영역
 
   // 드롭다운 열기/닫기 토글
   const toggleDropdown = () => setIsOpen((prev) => !prev);
@@ -23,9 +24,25 @@ const SearchBar = ({ searchType, setSearchType, searchWord, setSearchWord }: Sea
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <S.SearchBarContainer>
-      <S.DropdownWrapper>
+      <S.DropdownWrapper ref={dropdownRef}>
         <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
           {searchType}
           <IoChevronDown />
