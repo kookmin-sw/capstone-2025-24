@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
-import MonitoringPage from '../pages/MonitoringPage';
+import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import ChartPage from '../pages/ChartPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import { Sidebar } from '../components/common/Sidebar/Sidebar';
-const Router: React.FC = () => {
+
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>

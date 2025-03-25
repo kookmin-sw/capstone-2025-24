@@ -24,7 +24,7 @@ const blinkShadow = keyframes`
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   }
   50% {
-    box-shadow: 1px 1px 10px 5px var(--yellow);
+    box-shadow: 1px 1px 10px 5px rgb(255, 179, 0);
   }
 `;
 
@@ -39,7 +39,7 @@ export const Layout = styled.div<LayoutProps>`
   ${({ clicked }) =>
     clicked &&
     css`
-      animation: ${blinkShadow} 1s ease-in-out 3;
+      animation: ${blinkShadow} 1s ease-in-out 4;
     `}
 `;
 
@@ -150,7 +150,7 @@ export const AlertContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 53px;
+  padding-top: 59px;
   background-color: #fafafa;
   height: 100vh;
   overflow-y: auto; /* 내부 스크롤 */
