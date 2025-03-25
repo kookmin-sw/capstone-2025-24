@@ -6,15 +6,16 @@ import VideoModal from './VideoModal/VideoModal';
 import * as S from './InProgress.style';
 
 interface IncidentCardProps {
-  // id: number;
+  id: number;
   category: string;
   address: string;
   date: string;
-  police: string;
-  videoUrl: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
+  police?: string;
+  videoUrl?: string;
 }
 
-const IncidentCard = ({ category, address, date, police, videoUrl }: IncidentCardProps) => {
+const IncidentCard = ({ id, category, address, date, police, videoUrl }: IncidentCardProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
@@ -43,7 +44,7 @@ const IncidentCard = ({ category, address, date, police, videoUrl }: IncidentCar
           </S.CardFront>
 
           <S.CardBack>
-            <FeedbackCard onClose={() => setClickResolve(false)} />
+            <FeedbackCard onClose={() => setClickResolve(false)} id={id} />
           </S.CardBack>
         </S.CardInner>
       </S.FlipCard>

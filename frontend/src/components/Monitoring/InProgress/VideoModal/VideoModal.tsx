@@ -5,7 +5,7 @@ import VideoComponent from '../../../common/VideoComponent/VideoComponent';
 interface VideoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  videoUrl: string;
+  videoUrl?: string;
 }
 
 const VideoModal = ({ isOpen, onClose, videoUrl }: VideoModalProps) => {

@@ -5,14 +5,15 @@ import CategorySelectCard from './CategorySelectCard';
 
 interface FeedbackCardProps {
   onClose: () => void;
+  id: number;
 }
 
-const FeedbackCard = ({ onClose }: FeedbackCardProps) => {
+const FeedbackCard = ({ onClose, id }: FeedbackCardProps) => {
   const [isCategorySelection, setIsCategorySelection] = useState(false);
   const [isResolved, setIsResolved] = useState(false);
 
   if (isResolved) {
-    return <ResolvedCard onClose={onClose} />;
+    return <ResolvedCard onClose={onClose} id={id} />;
   }
 
   return isCategorySelection ? (

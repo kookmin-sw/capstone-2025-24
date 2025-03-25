@@ -4,7 +4,7 @@ interface VideoComponentProps {
   w: string | number;
   h: string | number;
   radius: number;
-  videoUrl: string;
+  videoUrl?: string;
 }
 const VideoComponent = ({w, h, radius, videoUrl}: VideoComponentProps) => {
   return (

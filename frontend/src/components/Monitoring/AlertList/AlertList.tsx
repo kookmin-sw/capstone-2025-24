@@ -3,7 +3,7 @@ import AlertItem from './AlertItem.tsx';
 import ToolTip from '../../common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
 import { useItemStore } from '../../../stores/itemStore.ts';
-import AlertListData from '../../../mocks/AlertListData.tsx';
+import { InProgressData } from '../../../mocks/InProgressData';
 import * as S from './style.ts';
 
 const ToopTipContent = () => {
@@ -20,7 +20,7 @@ const AlertList = () => {
   const { items, setItems } = useItemStore();
 
   useEffect(() => {
-    setItems(AlertListData);
+    setItems(InProgressData);
   }, [setItems]);
 
   const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');

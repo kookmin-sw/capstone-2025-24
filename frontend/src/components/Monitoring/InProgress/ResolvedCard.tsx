@@ -1,13 +1,17 @@
-import * as S from './InProgress.style';
+import { useItemStore } from '../../../stores/itemStore';
 import checkAnimation from '../../../assets/lottie/checkAnimation.json';
+import * as S from './InProgress.style';
 
 interface ResolvedCardProps {
   onClose: () => void;
+  id: number;
 }
 
-const ResolvedCard = ({ onClose }: ResolvedCardProps) => {
+const ResolvedCard = ({ onClose, id }: ResolvedCardProps) => {
+  const { removeItem } = useItemStore();
   const handelResolvedIncident = () => {
     setTimeout(() => {
+      removeItem(id);
       onClose();
     }, 2000);
   };
