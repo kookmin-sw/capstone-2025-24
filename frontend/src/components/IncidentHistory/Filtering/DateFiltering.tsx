@@ -17,41 +17,42 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
 
   return (
     <S.DateFilteringContainer>
+      {/* 시작 날짜 */}
       <S.DatePickerWrapper className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`} isOpen={isStartOpen}>
-        <S.CalendarIcon onClick={() => setIsStartOpen(!isStartOpen)} />
+        <S.CalendarIcon />
         <DatePicker
           className="custom-datepicker"
           locale={ko as Locale}
           dateFormat="yyyy.MM.dd"
           selected={startDate}
-          onInputClick={() => setIsStartOpen(!isStartOpen)}
+          onCalendarOpen={() => setIsStartOpen(true)}
+          onCalendarClose={() => setIsStartOpen(false)}
           onChange={(date: Date | null) => {
             if (date instanceof Date) {
               setStartDate(date);
-              setIsStartOpen(false);
             }
           }}
           selectsStart
           startDate={startDate}
           endDate={endDate}
           placeholderText="시작 날짜"
-          open={isStartOpen}
         />
-        <S.DownIcon onClick={() => setIsStartOpen(!isStartOpen)} isOpen={isStartOpen} />
+        <S.DownIcon isOpen={isStartOpen} />
       </S.DatePickerWrapper>
 
+      {/* 종료 날짜 */}
       <S.DatePickerWrapper className={`date-picker-wrapper ${isEndOpen ? 'open' : ''}`} isOpen={isEndOpen}>
-        <S.CalendarIcon onClick={() => setIsEndOpen(!isEndOpen)} />
+        <S.CalendarIcon />
         <DatePicker
           className="custom-datepicker"
           locale={ko as Locale}
           dateFormat="yyyy.MM.dd"
           selected={endDate}
-          onInputClick={() => setIsEndOpen(!isEndOpen)}
+          onCalendarOpen={() => setIsEndOpen(true)}
+          onCalendarClose={() => setIsEndOpen(false)}
           onChange={(date: Date | null) => {
             if (date instanceof Date) {
               setEndDate(date);
-              setIsEndOpen(false);
             }
           }}
           selectsEnd
@@ -60,9 +61,8 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
           minDate={startDate}
           maxDate={new Date()}
           placeholderText="종료 날짜"
-          open={isEndOpen} // 상태로 열림/닫힘 관리
         />
-        <S.DownIcon onClick={() => setIsEndOpen(!isEndOpen)} isOpen={isEndOpen} />
+        <S.DownIcon isOpen={isEndOpen} />
       </S.DatePickerWrapper>
     </S.DateFilteringContainer>
   );
