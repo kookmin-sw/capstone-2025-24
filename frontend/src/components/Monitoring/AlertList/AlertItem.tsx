@@ -1,14 +1,9 @@
 import useIsModalOpen from '../../../hooks/useIsModalOpen';
-import * as S from './style.ts';
 import AlertModal from '../AlertModal/AlertModal.tsx';
+import { AlertProps } from '../../../types/alert';
+import * as S from './style.ts';
 
-interface AlertItemProps {
-  id: number;
-  level: number;
-  category: string;
-  date: string;
-  address: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
+interface AlertItemProps extends AlertProps {
   clicked: boolean;
 }
 
@@ -35,6 +30,7 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
               onClose={closeModal}
               alertItem={{
                 id,
+                level,
                 category,
                 date,
                 address,

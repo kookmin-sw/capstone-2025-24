@@ -4,20 +4,12 @@ import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
 import CategorySelectModal from './CategorySelectModal';
-
+import { AlertProps } from '../../../types/alert';
 import * as S from './AlertModal.style';
 
 interface ModalProps {
   onClose: () => void;
-  alertItem: AlertItemProps;
-}
-
-interface AlertItemProps {
-  id: number;
-  category: string;
-  address: string;
-  date: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
+  alertItem: AlertProps;
 }
 
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';

@@ -2,21 +2,14 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
+import { AlertProps } from '../../../types/alert';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
   onClose: () => void;
   onFeedbackClick: () => void;
-  alertItem: AlertItemProps;
+  alertItem: AlertProps;
   onDispatch: () => void;
-}
-
-interface AlertItemProps {
-  id: number;
-  category: string;
-  address: string;
-  date: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
 }
 
 const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: IncidentModalProps) => {

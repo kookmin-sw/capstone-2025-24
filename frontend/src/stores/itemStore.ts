@@ -1,23 +1,11 @@
 import { create } from 'zustand';
-
-export interface CommonItem {
-  id: number;
-  level: number;
-  category: string;
-  address: string;
-  date: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
-  police?: string;
-  videoUrl?: string;
-}
+import { IncidentItemProps } from '../types/alert';
 
 interface ItemStore {
-  items: CommonItem[];
-
-  setItems: (items: CommonItem[]) => void;
-  addItem: (item: CommonItem) => void;
+  items: IncidentItemProps[];
+  setItems: (items: IncidentItemProps[]) => void;
+  addItem: (item: IncidentItemProps) => void;
   removeItem: (id: number) => void;
-
   updateItemState: (id: number, newState: '미확인' | '확인' | '미출동' | '출동' | '완료') => void;
 }
 

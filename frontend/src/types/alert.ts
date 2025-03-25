@@ -1,0 +1,13 @@
+export interface AlertProps {
+  id: number;
+  level: number;
+  category: string;
+  address: string;
+  date: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
+}
+
+export interface IncidentItemProps extends AlertProps {
+  police?: string;
+  videoUrl?: string;
+}

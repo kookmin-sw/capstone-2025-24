@@ -3,19 +3,10 @@ import useIsModalOpen from '../../../hooks/useIsModalOpen';
 import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
+import { IncidentItemProps } from '../../../types/alert';
 import * as S from './InProgress.style';
 
-interface IncidentCardProps {
-  id: number;
-  category: string;
-  address: string;
-  date: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
-  police?: string;
-  videoUrl?: string;
-}
-
-const IncidentCard = ({ id, category, address, date, police, videoUrl }: IncidentCardProps) => {
+const IncidentCard = ({ id, category, address, date, police, videoUrl }: IncidentItemProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 

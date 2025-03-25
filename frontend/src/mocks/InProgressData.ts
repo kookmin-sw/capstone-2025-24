@@ -1,15 +1,6 @@
-export interface Incident {
-  id: number;
-  level: number;
-  category: string;
-  address: string;
-  date: string;
-  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
-  police: string;
-  videoUrl: string;
-}
+import { IncidentItemProps } from '../types/alert';
 
-export const InProgressData: Incident[] = [
+export const InProgressData: IncidentItemProps[] = [
   {
     id: 1,
     level: 2,
