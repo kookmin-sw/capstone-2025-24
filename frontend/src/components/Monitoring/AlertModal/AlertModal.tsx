@@ -41,6 +41,11 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
   const handleDispatch = () => {
     updateItemState(alertItem.id, '출동');
     onClose();
+
+    const target = document.getElementById('in-progress-section');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

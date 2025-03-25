@@ -15,7 +15,7 @@ const InProgress = () => {
   const incidents = items.filter((item) => item.state === '출동');
 
   return (
-    <S.InProgressLayout>
+    <S.InProgressLayout id="in-progress-section">
       <S.Title>출동중인 사건 (총 {incidents.length}건)</S.Title>
       {incidents.length > 0 ? (
         <S.CardGrid>
