@@ -1,5 +1,5 @@
 import * as S from './IncidentList.style.ts';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 import useOutsideClick from '../../../hooks/useOutsideClick.ts';
 
