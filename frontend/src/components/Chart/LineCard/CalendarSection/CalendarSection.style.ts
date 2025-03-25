@@ -24,6 +24,7 @@ export const CalenderComponentLayout = styled.div`
     overflow: hidden;
     border: 1px solid var(--gray400);
     padding-top: 10px;
+    padding: 10px 7px 0px 7px;
   }
 
   // 네비게이션 배치 설정
@@ -85,6 +86,7 @@ export const CalenderComponentLayout = styled.div`
     border-radius: 50%;
     color: white;
   }
+
   // 날짜 버튼 hover
   .react-calendar__tile--hover {
     background-color: var(--gray400);
@@ -98,13 +100,19 @@ export const CalenderComponentLayout = styled.div`
 
   // 선택 되어있는 now & hover
   .react-calendar__tile--active:hover {
-    background-color: var(--primary900);
+    background-color: var(--primary800);
     color: white;
   }
 
   // 오늘 tile hover
   .react-calendar__tile--now:hover {
     background-color: var(--gray400);
+  }
+
+  // 오늘 tile hover
+  .react-calendar__tile--now.react-calendar__tile--active:hover {
+    background-color: var(--primary800);
+    color: white;
   }
 `;
 
@@ -113,6 +121,8 @@ export const DateDisplayLayout = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
+  width: 252px;
+  height: 40px;
   padding: 2px 13px;
   gap: 10px;
   border: 1px solid var(--gray400);
@@ -135,4 +145,10 @@ export const CalendarIcon = styled(FaRegCalendar)`
   color: var(--gray800);
   width: 15px;
   height: 15px;
+`;
+
+export const DisplaySpan = styled.span`
+  color: var(--gray800);
+  font-size: 16px;
+  font-weight: 500;
 `;

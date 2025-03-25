@@ -1,17 +1,18 @@
 import * as S from './CalendarSection.style';
-import { useState } from 'react';
 import CalenderComponent from './CalenderComponent';
 import DateDisplay from './DateDisplay';
 
-type DatePiece = Date | null;
-type SelectedDate = DatePiece | [DatePiece, DatePiece];
+interface CalendarSectionProps {
+  selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+}
 
-const CalendarSection = () => {
-  const [selectedDate, setSelectedDate] = useState<SelectedDate>(new Date());
+
+const CalendarSection = ({ selectedDate, setSelectedDate }: CalendarSectionProps) => {
   return (
     <S.CalendarSectionLayout>
-      <DateDisplay />
-      <CalenderComponent />
+      <DateDisplay content={selectedDate}/>
+      <CalenderComponent selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
     </S.CalendarSectionLayout>
   );
 };

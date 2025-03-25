@@ -1,13 +1,13 @@
 // import { useState } from 'react';
 import * as S from './ChartFilter.style';
 import FilterItem from './FilterItem';
-import useCategoryIndexStore from '../../../../stores/useCategoryIndexStore';
-import useRegionIndexStore from '../../../../stores/useRegionIndexStore';
+import useCategoryIndexStore from '../../../../stores/categoryIndexStore';
+import useRegionIndexStore from '../../../../stores/regionIndexStore';
 
 interface ChartFilterProps {
   title: string;
 }
-const ChartFilter = ({title}:ChartFilterProps) => {
+const ChartFilter = ({ title }: ChartFilterProps) => {
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex, setSelectedIndex } = store;
   const range: { type: string }[] = [{ type: '일주일' }, { type: '이번 달' }, { type: '올해' }];

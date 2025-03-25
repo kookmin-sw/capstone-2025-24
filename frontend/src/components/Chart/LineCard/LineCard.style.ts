@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Line } from 'react-chartjs-2';
 
 export const LineCardLayout = styled.div`
   display: flex;
@@ -30,4 +31,20 @@ export const ContentDiv = styled.div`
   height: 87%;
   gap: 15px;
   align-items: center;
+`;
+
+// LineChart.tsx ------------------------------------- //
+export const LineChartLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+`;
+
+export const LineChart = styled(Line)`
+  width: 100%;
+  height: 100%;
 `;

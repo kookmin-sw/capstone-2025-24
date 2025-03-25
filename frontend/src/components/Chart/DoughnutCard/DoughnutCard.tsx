@@ -2,8 +2,8 @@ import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect } from 'react';
-import useCategoryIndexStore from '../../../stores/useCategoryIndexStore';
-import useRegionIndexStore from '../../../stores/useRegionIndexStore';
+import useCategoryIndexStore from '../../../stores/categoryIndexStore';
+import useRegionIndexStore from '../../../stores/regionIndexStore';
 
 interface LegendItem {
   text: string;
@@ -39,7 +39,7 @@ const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
     <S.DoughnutCardLayout>
       <S.TitleDiv>
         <S.TitleP>{title}</S.TitleP>
-        <ChartFilter title={title}/>
+        <ChartFilter title={title} />
       </S.TitleDiv>
       <DoughnutChart data={data} legendItems={legendItems} />
     </S.DoughnutCardLayout>

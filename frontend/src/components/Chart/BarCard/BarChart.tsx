@@ -60,7 +60,7 @@ const BarChart = ({ data }: BarChartProps) => {
       },
     }),[]);
 
-  // filter 값 바뀌면 리렌더링 되도록록
+  // filter 값 바뀌면 리렌더링 되도록
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;

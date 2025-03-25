@@ -1,21 +1,21 @@
 import * as S from './CalendarSection.style';
-import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 
-type DatePiece = Date | null;
-type SelectedDate = DatePiece | [DatePiece, DatePiece];
-
-const CalenderComponent = () => {
-  const [selectedDate, setSelectedDate] = useState<SelectedDate>(new Date());
-
-  useEffect(() => {
-    console.log(selectedDate);
-  }, [selectedDate]);
+interface CalendarComponentProps {
+  selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+}
+const CalenderComponent = ({ selectedDate, setSelectedDate }: CalendarComponentProps) => {
   return (
     <S.CalenderComponentLayout>
       <Calendar
-        onChange={setSelectedDate}
+        onChange={(value) => {
+          if (value instanceof Date) {
+            setSelectedDate(value);
+          }
+        }}
         value={selectedDate}
+        selectRange={false}
         calendarType="gregory"
         view="month"
         prev2Label={null}
