@@ -14,6 +14,10 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
   // 사건 리스트 데이터
   const incidentdata = IncidentListData;
 
+  const truncate = (text: string, maxLength: number) => {
+    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+  };
+
   // 페이지네이션
   const incident_num = incidentdata.length; // 사건 총 개수 (나중에 백한테 전달받아서 사용)
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,8 +30,6 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
   const startPage = (currentGroup - 1) * pageGroupSize + 1; // 페이지네이션 버튼의 시작 숫자
   const endPage = Math.min(startPage + pageGroupSize - 1, totalPages); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-
-  // 페이지네이션 버튼
 
   return (
     <S.Layout>
@@ -44,7 +46,7 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
           <S.Table>
             <thead>
               <S.TableHeaderRow>
-                <S.TableHeader w={15}>사건 번호</S.TableHeader>
+                <S.TableHeader w={15}>번호</S.TableHeader>
                 <S.TableHeader w={20}>사건 분류</S.TableHeader>
                 <S.TableHeader w={23}>날짜</S.TableHeader>
                 <S.TableHeader w={30}>위치</S.TableHeader>
@@ -53,9 +55,9 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
             </thead>
             <tbody>
               {currentData.map((incident, index) => (
-                <S.TableBodyRow key={index} onClick={() => onOpen(incident.id)}>
+                <S.TableBodyRow key={incident.id} onClick={() => onOpen(incident.id)}>
                   <S.TableData index={index + 1}>
-                    <S.InfoP>{index + 1}</S.InfoP>
+                    <S.InfoP>{startIndex + index + 1}</S.InfoP>
                   </S.TableData>
                   <S.TableData index={index + 1}>
                     <S.InfoP>{incident.category}</S.InfoP>
@@ -64,7 +66,7 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
                     <S.InfoP>{incident.date}</S.InfoP>
                   </S.TableData>
                   <S.TableData index={index + 1}>
-                    <S.InfoP>{incident.address}</S.InfoP>
+                    <S.InfoP>{truncate(incident.address, 19)}</S.InfoP>
                   </S.TableData>
                   <S.TableData index={index + 1}>
                     <S.InfoP>{incident.police}</S.InfoP>
