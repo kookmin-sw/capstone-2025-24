@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import { FaRegCalendar } from 'react-icons/fa6';
+
 // CalendarSection.tsx -------------------------------//
 export const CalendarSectionLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 4px;
   width: 255px;
   height: 100%;

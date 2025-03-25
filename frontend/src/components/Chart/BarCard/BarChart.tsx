@@ -31,6 +31,7 @@ const BarChart = ({ data }: BarChartProps) => {
   const isMonthly = filter.month === '전체' || filter.month === '월';
   const chartData = isMonthly ? BarData1 : BarData2;
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
+  
   useEffect(() => {
     if (chartRef.current) {
       const newHiddenStatus = chartRef.current.data.datasets.map(

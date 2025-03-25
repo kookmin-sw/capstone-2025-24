@@ -28,23 +28,51 @@ export const TitleP = styled.p`
 export const ContentDiv = styled.div`
   display: flex;
   width: 100%;
-  height: 87%;
+  height: 337px;
   gap: 15px;
   align-items: center;
+  justify-content: center;
 `;
 
 // LineChart.tsx ------------------------------------- //
 export const LineChartLayout = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 1px solid red;
 `;
 
 export const LineChart = styled(Line)`
   width: 100%;
-  height: 100%;
+  min-height: 200px;
+`;
+
+export const FixedLegendContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  background: white;
+  width: 100%;
+`;
+
+export const LegendItem = styled.div<{$isHidden:boolean}>`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: ${({$isHidden})=>$isHidden?"0.5":"1"};
+`;
+
+interface ColorBoxProps {
+  $bgcolor: string;
+  $isHidden: boolean;
+}
+
+export const LegendColorBox = styled.div<ColorBoxProps>`
+  width: 10px;
+  height: 3px;
+  background-color: ${({$isHidden, $bgcolor})=>$isHidden?`var(--gray600)`:$bgcolor};
 `;
