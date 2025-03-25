@@ -1,4 +1,4 @@
-import * as S from './style.ts';
+import * as S from './CategoryDropDown.style..ts';
 import { useState, useRef, useEffect } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
 
