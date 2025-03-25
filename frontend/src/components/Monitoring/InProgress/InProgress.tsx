@@ -16,7 +16,7 @@ const InProgress = () => {
 
   return (
     <S.InProgressLayout>
-      <S.Title>출동중인 사건 (총 {InProgressData.length}건)</S.Title>
+      <S.Title>출동중인 사건 (총 {incidents.length}건)</S.Title>
       {incidents.length > 0 ? (
         <S.CardGrid>
           {incidents.map((incident) => (
