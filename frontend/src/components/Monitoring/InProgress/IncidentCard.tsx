@@ -7,14 +7,14 @@ import * as S from './InProgress.style';
 
 interface IncidentCardProps {
   // id: number;
-  title: string;
-  location: string;
-  dateTime: string;
+  category: string;
+  address: string;
+  date: string;
   police: string;
   videoUrl: string;
 }
 
-const IncidentCard = ({ title, location, dateTime, police, videoUrl }: IncidentCardProps) => {
+const IncidentCard = ({ category, address, date, police, videoUrl }: IncidentCardProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
@@ -24,7 +24,7 @@ const IncidentCard = ({ title, location, dateTime, police, videoUrl }: IncidentC
         <S.CardInner className={clickResolve ? 'is-resolved' : ''}>
           <S.CardFront>
             <S.CardHeader>
-              <S.CardTitle>{title} 감지</S.CardTitle>
+              <S.CardTitle>{category} 감지</S.CardTitle>
               <S.VideoButton onClick={openModal}>
                 <IoMdCamera className="icon" />
                 영상 확인
@@ -33,11 +33,11 @@ const IncidentCard = ({ title, location, dateTime, police, videoUrl }: IncidentC
             <S.Line />
             <S.CardBody>
               <S.LocationTitle>발생 위치</S.LocationTitle>
-              <S.LocationAddress>{location}</S.LocationAddress>
+              <S.LocationAddress>{address}</S.LocationAddress>
               <S.ResolveButton onClick={() => setClickResolve(true)}>사건 해결</S.ResolveButton>
             </S.CardBody>
             <S.CardFooter>
-              <span>{dateTime}</span>
+              <span>{date}</span>
               <span>{police}</span>
             </S.CardFooter>
           </S.CardFront>
