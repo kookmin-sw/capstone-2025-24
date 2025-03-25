@@ -3,7 +3,7 @@ export interface AlertDataType {
   category: string;
   date: string;
   address: string;
-  state: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
 }
 
 const AlertListData: AlertDataType[] = [

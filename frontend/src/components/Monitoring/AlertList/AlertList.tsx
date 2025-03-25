@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import AlertItem from './AlertItem.tsx';
 import ToolTip from '../../common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
-import { useAlertStore } from '../../../stores/alertStore.ts';
+import { useItemStore } from '../../../stores/itemStore.ts';
 import AlertListData from '../../../mocks/AlertListData.tsx';
 import * as S from './style.ts';
 
@@ -17,11 +17,13 @@ const ToopTipContent = () => {
 
 const AlertList = () => {
   const clicked_alert_id = 1;
-  const { alerts, setAlerts } = useAlertStore();
+  const { items, setItems } = useItemStore();
 
   useEffect(() => {
-    setAlerts(AlertListData);
-  }, [setAlerts]);
+    setItems(AlertListData);
+  }, [setItems]);
+
+  const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
 
   return (
     <S.AlertListLayout>

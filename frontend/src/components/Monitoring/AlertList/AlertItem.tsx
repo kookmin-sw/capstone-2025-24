@@ -7,7 +7,7 @@ interface AlertItemProps {
   category: string;
   date: string;
   address: string;
-  state: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
   clicked: boolean;
 }
 
@@ -37,6 +37,7 @@ const AlertItem = ({ id, category, date, address, state, clicked }: AlertItemPro
                 category,
                 date,
                 address,
+                state,
               }}
             />
           )}

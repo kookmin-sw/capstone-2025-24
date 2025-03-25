@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useItemStore } from '../../../stores/itemStore';
 import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
@@ -14,13 +15,15 @@ interface ModalProps {
 interface AlertItemProps {
   id: number;
   category: string;
-  date: string;
   address: string;
+  date: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
 }
 
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem }: ModalProps) => {
+  const { updateItemState } = useItemStore();
   const [step, setStep] = useState<ModalStep>('incident');
 
   const handleOutsideClick = () => {
@@ -29,11 +32,27 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }
   };
 
+  useEffect(() => {
+    if (alertItem.state === '미확인') {
+      updateItemState(alertItem.id, '확인');
+    }
+  }, [alertItem, updateItemState]);
+
+  const handleDispatch = () => {
+    updateItemState(alertItem.id, '출동');
+    onClose();
+  };
+
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
-          <IncidentModal onClose={onClose} onFeedbackClick={() => setStep('feedback')} alertItem={alertItem} />
+          <IncidentModal
+            onClose={onClose}
+            onFeedbackClick={() => setStep('feedback')}
+            alertItem={alertItem}
+            onDispatch={handleDispatch}
+          />
         )}
         {step === 'feedback' && (
           <FeedbackModal

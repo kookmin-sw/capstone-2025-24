@@ -1,4 +1,4 @@
-import { useAlertStore } from '../../../stores/alertStore.ts';
+import { useItemStore } from '../../../stores/itemStore';
 import * as S from './AlertModal.style';
 import checkAnimation from '../../../assets/lottie/checkAnimation.json';
 
@@ -8,10 +8,10 @@ interface SubmitModalProps {
 }
 
 const SubmitModal = ({ onClose, id }: SubmitModalProps) => {
-  const { removeAlert } = useAlertStore();
+  const { removeItem } = useItemStore();
 
   const handleClose = () => {
-    removeAlert(id);
+    removeItem(id);
     onClose();
   };
   return (

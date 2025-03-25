@@ -8,15 +8,18 @@ interface IncidentModalProps {
   onClose: () => void;
   onFeedbackClick: () => void;
   alertItem: AlertItemProps;
+  onDispatch: () => void;
 }
 
 interface AlertItemProps {
+  id: number;
   category: string;
-  date: string;
   address: string;
+  date: string;
+  state: '미확인' | '확인' | '미출동' | '출동' | '완료';
 }
 
-const IncidentModal = ({ onClose, onFeedbackClick, alertItem }: IncidentModalProps) => {
+const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: IncidentModalProps) => {
   const { category, date, address } = alertItem;
   const videoUrl = ''; // 추후 api 연동
   return (
@@ -40,7 +43,9 @@ const IncidentModal = ({ onClose, onFeedbackClick, alertItem }: IncidentModalPro
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동
         </S.Button>
-        <S.Button className="yes">출동하기</S.Button>
+        <S.Button className="yes" onClick={onDispatch}>
+          출동하기
+        </S.Button>
       </S.ButtonContainer>
     </>
   );
