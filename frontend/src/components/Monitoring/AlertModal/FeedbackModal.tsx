@@ -1,5 +1,5 @@
 import * as S from './AlertModal.style';
-import questionmark from '@/assets/icons/questionMark.svg';
+import questionmark from '@/assets/icons/questionmark.svg';
 
 interface FeedbackModalProps {
   onBack: () => void;
