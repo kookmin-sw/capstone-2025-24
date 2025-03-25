@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IoMdClose } from 'react-icons/io';
+import { IoCloseOutline } from "react-icons/io5";
 import { Map } from 'react-kakao-maps-sdk';
 
 // IncidentDetailsModal.tsx------------------------//
@@ -44,10 +44,11 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const XBtn = styled(IoMdClose)`
+export const XBtn = styled(IoCloseOutline)`
   width: 30px;
   height: 30px;
   pointer-events: auto;
+  cursor: pointer;
 `;
 
 export const TitleBtnContainer = styled.div`
