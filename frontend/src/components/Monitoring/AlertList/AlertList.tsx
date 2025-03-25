@@ -41,6 +41,7 @@ const AlertList = () => {
             <AlertItem
               key={alert.id}
               id={alert.id}
+              level={alert.level}
               category={alert.category}
               date={alert.date}
               address={alert.address}

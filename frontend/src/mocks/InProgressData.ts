@@ -1,5 +1,6 @@
 export interface Incident {
   id: number;
+  level: number;
   category: string;
   address: string;
   date: string;
@@ -11,6 +12,7 @@ export interface Incident {
 export const InProgressData: Incident[] = [
   {
     id: 1,
+    level: 2,
     category: '흉기난동',
     address: '서울특별시 성북구 보국문로 35길 21-54',
     date: '2025.02.28 15:43:36',
@@ -20,6 +22,7 @@ export const InProgressData: Incident[] = [
   },
   {
     id: 2,
+    level: 1,
     category: '폭행',
     address: '서울특별시 강남구 테헤란로 87길 12',
     date: '2025.02.28 14:20:10',
@@ -30,6 +33,7 @@ export const InProgressData: Incident[] = [
   {
     id: 3,
     category: '화재',
+    level: 2,
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '확인',
@@ -39,6 +43,7 @@ export const InProgressData: Incident[] = [
   {
     id: 4,
     category: '화재',
+    level: 2,
     address: '서울특별시 성북구 보국문로 35길 21-54',
     date: '2025.02.28 15:43:36',
     state: '확인',
@@ -48,6 +53,7 @@ export const InProgressData: Incident[] = [
   {
     id: 5,
     category: '군중밀집',
+    level: 1,
     address: '서울특별시 강남구 테헤란로 87길 12',
     date: '2025.02.28 14:20:10',
     state: '미확인',
@@ -57,6 +63,7 @@ export const InProgressData: Incident[] = [
   {
     id: 6,
     category: '폭행',
+    level: 1,
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '미확인',
@@ -66,6 +73,7 @@ export const InProgressData: Incident[] = [
   {
     id: 7,
     category: '폭행',
+    level: 1,
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '출동',

@@ -2,6 +2,7 @@ import { create } from 'zustand';
 
 export interface CommonItem {
   id: number;
+  level: number;
   category: string;
   address: string;
   date: string;

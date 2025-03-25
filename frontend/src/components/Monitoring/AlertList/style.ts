@@ -3,16 +3,12 @@ import { TbAlertTriangleFilled } from 'react-icons/tb';
 
 // AlertItem.tsx
 
-interface ColorDivProps {
-  category: string;
-}
-
 interface StateCircleProps {
   state: string;
 }
 
-interface IconProps {
-  category: string;
+interface LevelProps {
+  level: number;
 }
 
 interface LayoutProps {
@@ -44,19 +40,18 @@ export const Layout = styled.div<LayoutProps>`
 `;
 
 export const CardDiv = styled.div`
-    background-color: white;
-    width: 263px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: white;
+  width: 263px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-export const ColorDiv = styled.div<ColorDivProps>`
-  background-color: ${({ category }) =>
-    category === '폭행' || category === '군중 밀집' ? 'var(--yellow)' : 'var(--red)'};
+export const ColorDiv = styled.div<LevelProps>`
+  background-color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   width: 11px;
   height: 159px;
   border-top-left-radius: 10px;
@@ -89,8 +84,8 @@ export const CategoryDiv = styled.div`
   align-items: center;
 `;
 
-export const AlertIcon = styled(TbAlertTriangleFilled)<IconProps>`
-  color: ${({ category }) => (category === '폭행' || category === '군중 밀집' ? 'var(--yellow)' : 'var(--red)')};
+export const AlertIcon = styled(TbAlertTriangleFilled)<LevelProps>`
+  color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   margin-right: 5px;
   font-size: 25px;
   margin-right: 10px;
@@ -128,7 +123,6 @@ export const AlertListLayout = styled.div`
   height: 100vh;
   background-color: #fafafa;
   overflow-y: hidden; /* 넘치는 부분 숨김 */
-
 `;
 
 export const TitleP = styled.p`
@@ -154,7 +148,6 @@ export const AlertContainer = styled.div`
   background-color: #fafafa;
   height: 100vh;
   overflow-y: auto; /* 내부 스크롤 */
-
 `;
 
 // EmptyView.tsx
