@@ -11,3 +11,8 @@ export interface IncidentItemProps extends AlertProps {
   police?: string;
   videoUrl?: string;
 }
+
+export interface IncidentCardProps {
+  onClose: () => void;
+  id: number;
+}

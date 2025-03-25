@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import * as S from './InProgress.style';
+import { IncidentCardProps } from '../../../types/alert';
 import ResolvedCard from './ResolvedCard';
 import CategorySelectCard from './CategorySelectCard';
+import * as S from './InProgress.style';
 
-interface FeedbackCardProps {
-  onClose: () => void;
-  id: number;
-}
-
-const FeedbackCard = ({ onClose, id }: FeedbackCardProps) => {
+const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
   const [isCategorySelection, setIsCategorySelection] = useState(false);
   const [isResolved, setIsResolved] = useState(false);
 

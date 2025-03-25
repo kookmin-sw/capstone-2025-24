@@ -1,13 +1,9 @@
 import { useItemStore } from '../../../stores/itemStore';
+import { IncidentCardProps } from '../../../types/alert';
 import * as S from './AlertModal.style';
 import checkAnimation from '../../../assets/lottie/checkAnimation.json';
 
-interface SubmitModalProps {
-  onClose: () => void;
-  id: number;
-}
-
-const SubmitModal = ({ onClose, id }: SubmitModalProps) => {
+const SubmitModal = ({ onClose, id }: IncidentCardProps) => {
   const { removeItem } = useItemStore();
 
   const handleClose = () => {

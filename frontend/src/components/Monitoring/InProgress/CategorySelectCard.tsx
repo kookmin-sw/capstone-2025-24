@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import { useSelectCategory } from '../../../hooks/useSelectCategory';
+import { IncidentCardProps } from '../../../types/alert';
 import * as S from './InProgress.style';
 import ResolvedCard from './ResolvedCard';
 
-interface CategorySelectCardProps {
-  onClose: () => void;
-  id: number;
-}
-
-const CategorySelectCard = ({ onClose, id }: CategorySelectCardProps) => {
+const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
   const { selectedCategory, handleSelectCategory } = useSelectCategory();
-  const groupedCategories: string[][] = [['화재', '쓰러짐', '군중밀집'], ['흉기난동', '폭행', '기타']];
+  const groupedCategories: string[][] = [
+    ['화재', '쓰러짐', '군중밀집'],
+    ['흉기난동', '폭행', '기타'],
+  ];
 
   return isResolved ? (
     <ResolvedCard onClose={onClose} id={id} />
