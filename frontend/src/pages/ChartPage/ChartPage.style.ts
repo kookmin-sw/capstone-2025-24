@@ -6,7 +6,11 @@ export const ChartPageLayout = styled.div`
   width: 100%;
   align-items: start;
   height: 100vh;
-  margin: 15px 50px;
+  padding: 15px 50px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const OverviewP = styled.p`
@@ -14,9 +18,7 @@ export const OverviewP = styled.p`
   font-weight: 600;
 `;
 
-export const ChartFirstDiv = styled.div`
-
-`
+export const ChartFirstDiv = styled.div``;
 
 export const ChartSecondDiv = styled.div`
   display: flex;
