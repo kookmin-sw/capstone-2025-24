@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Lottie from 'lottie-react';
 
-// AlertModal.tsx ------------------------------------
+// AlertModal.tsx ------------------------------------//
 
 export const Overlay = styled.div`
   position: fixed;
@@ -160,7 +160,7 @@ export const BackButton = styled.button`
   cursor: pointer;
 `;
 
-// CategorySelectModal.tsx ------------------------------------
+// CategorySelectModal.tsx ------------------------------------//
 
 export const CategoryContainer = styled.div`
   display: flex;
@@ -210,7 +210,7 @@ export const SelectButton = styled.button`
   cursor: pointer;
 `;
 
-// SubmitModal.tsx ------------------------------------
+// SubmitModal.tsx ------------------------------------//
 
 export const SubmitLayout = styled.div`
   display: flex;

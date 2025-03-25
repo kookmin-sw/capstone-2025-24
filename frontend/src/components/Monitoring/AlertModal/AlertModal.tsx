@@ -42,10 +42,12 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     updateItemState(alertItem.id, '출동');
     onClose();
 
-    const target = document.getElementById('in-progress-section');
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      const target = document.getElementById('in-progress-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 0);
   };
 
   return (

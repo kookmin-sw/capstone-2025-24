@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Lottie from 'lottie-react';
 
-// InProgress.tsx ------------------------------------
+// InProgress.tsx ------------------------------------//
 
 export const InProgressLayout = styled.div`
   margin-bottom: 30px;
@@ -36,7 +36,7 @@ export const EmptyView = styled.div`
   }
 `;
 
-// IncidentCard.tsx ------------------------------------
+// IncidentCard.tsx ------------------------------------//
 
 export const FlipCard = styled.div`
   width: 367px;
@@ -149,7 +149,7 @@ export const CardBack = styled(CardFront)`
   align-items: center;
 `;
 
-// IncidentCard.tsx ------------------------------------
+// IncidentCard.tsx ------------------------------------//
 
 export const FeedbackTitle = styled.h3`
   font-size: 22px;
@@ -215,7 +215,7 @@ export const BackButton = styled.button`
   margin-top: 10px;
 `;
 
-// CategorySelectCard.tsx ------------------------------------
+// CategorySelectCard.tsx ------------------------------------//
 
 export const CategoryContainer = styled.div`
   display: flex;
@@ -265,7 +265,7 @@ export const SelectButton = styled.button`
   cursor: pointer;
 `;
 
-// ResolvedCard.tsx ------------------------------------
+// ResolvedCard.tsx ------------------------------------//
 
 export const Check = styled(Lottie)`
   width: 120px;
