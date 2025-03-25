@@ -1,28 +1,7 @@
-import { useState, useMemo, useCallback } from 'react';
-import { CATEGORY } from '../constants/EventCategory';
+import { useState, useCallback } from 'react';
 
-interface UseSelectCategory {
-  isDanger?: boolean;
-}
-
-export const useSelectCategory = (options?: UseSelectCategory) => {
-  const { isDanger = false } = options || {};
+export const useSelectCategory = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const groupedCategories = useMemo(() => {
-    const result = [];
-    for (let i = 0; i < CATEGORY.length; i += 3) {
-      result.push(CATEGORY.slice(i, i + 3));
-    }
-
-    if (!isDanger) {
-      result.push(['기타', '위험 상황이 아니에요']);
-    } else {
-      result[result.length - 1].push('기타');
-    }
-
-    return result;
-  }, [isDanger]);
 
   const handleSelectCategory = useCallback((category: string) => {
     setSelectedCategory(category);
@@ -31,7 +10,6 @@ export const useSelectCategory = (options?: UseSelectCategory) => {
   return {
     selectedCategory,
     setSelectedCategory,
-    groupedCategories,
     handleSelectCategory,
   };
 };
