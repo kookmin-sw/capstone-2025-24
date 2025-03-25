@@ -25,8 +25,7 @@ export const CalenderComponentLayout = styled.div`
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--gray400);
-    padding-top: 10px;
-    padding: 10px 7px 0px 7px;
+    padding: 10px;
   }
 
   // 네비게이션 배치 설정
@@ -35,20 +34,18 @@ export const CalenderComponentLayout = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 0;
-  }
 
-  /* 네비게이션 폰트 설정 */
-  .react-calendar__navigation button {
-    min-height: 20px;
-    font-weight: 700;
-    font-size: 11.5px;
-  }
+    button {
+      min-height: 20px;
+      font-weight: 700;
+      font-size: 11.5px;
+    }
 
-  /* 네비게이션 버튼 컬러 */
-  .react-calendar__navigation button:hover {
-    background: none;
-    box-shadow: none;
-    cursor: pointer;
+    button:hover {
+      background: none;
+      box-shadow: none;
+      cursor: pointer;
+    }
   }
 
   /* 요일 밑줄 제거 */
@@ -73,11 +70,15 @@ export const CalenderComponentLayout = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 31px;
+    min-width: unset;
+    min-height: unset;
+    padding: 0;
+    margin: 0;
     border-radius: 50%;
     background-color: white;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--gray800);
   }

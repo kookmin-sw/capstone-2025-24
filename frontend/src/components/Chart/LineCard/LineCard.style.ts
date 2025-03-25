@@ -55,7 +55,7 @@ export const FixedLegendContainer = styled.div`
   justify-content: center;
   background: white;
   width: 100%;
-  margin-bottom: 12px;
+  margin: 12px;
 `;
 
 export const LegendItem = styled.div<{$isHidden:boolean}>`

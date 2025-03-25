@@ -43,21 +43,21 @@ const LineOptions: ChartOptions<'line'> = {
 };
 
 interface LineChartProps {
-    category: string;
+  category: string;
 }
-const LineChart = ({category}:LineChartProps) => {
+const LineChart = ({ category }: LineChartProps) => {
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
   const [isHidden, setIsHidden] = useState<boolean[]>([]);
 
-    useEffect(() => {
-      if (chartRef.current) {
-        const newHiddenStatus = chartRef.current.data.datasets.map(
-          (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
-        );
-        setIsHidden(newHiddenStatus);
-      }
-    }, [category]);
+  useEffect(() => {
+    if (chartRef.current) {
+      const newHiddenStatus = chartRef.current.data.datasets.map(
+        (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
+      );
+      setIsHidden(newHiddenStatus);
+    }
+  }, [category]);
 
   // 차트 옵션 (legend는 별도로 분리하므로 display: false)
   const LineOptions = useMemo<ChartOptions<'line'>>(
@@ -65,12 +65,12 @@ const LineChart = ({category}:LineChartProps) => {
       responsive: true,
       maintainAspectRatio: false,
       interaction: {
-        mode: 'index' as const,
-        intersect: false,
+        mode: 'nearest',
+        intersect: true,
       },
       scales: {
-        x: { grid: { display: false }, stacked: true },
-        y: { grid: { display: true }, stacked: true },
+        x: { grid: { display: false } },
+        y: { grid: { display: true }, stacked: false },
       },
       animation: {
         duration: 1500,
@@ -81,14 +81,28 @@ const LineChart = ({category}:LineChartProps) => {
           display: false,
         },
         tooltip: {
-          enabled: false,
+          enabled: true,
+          backgroundColor: '#fff',
+          bodyColor: 'black',
+          titleColor: 'black',
+          titleFont: {
+            size: 13,
+          },
+
+          bodyFont: {
+            size: 12,
+          },
+          borderColor: '#adadad',
+          borderWidth: 1,
+          shadowOffsetX: 2, // 그림자 관련 속성은 기본 툴팁에는 적용되지 않음
+          shadowOffsetY: 2,
         },
       },
     }),
     [],
   );
 
-//   filter 값 바뀌면 리렌더링 되도록
+  //   filter 값 바뀌면 리렌더링 되도록
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;
