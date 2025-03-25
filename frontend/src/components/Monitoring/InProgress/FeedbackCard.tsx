@@ -17,7 +17,7 @@ const FeedbackCard = ({ onClose, id }: FeedbackCardProps) => {
   }
 
   return isCategorySelection ? (
-    <CategorySelectCard onClose={() => setIsCategorySelection(false)} />
+    <CategorySelectCard onClose={() => setIsCategorySelection(false)} id={id} />
   ) : (
     <>
       <S.FeedbackTitle>AI의 분류가 정확했나요?</S.FeedbackTitle>

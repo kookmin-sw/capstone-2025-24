@@ -5,14 +5,15 @@ import ResolvedCard from './ResolvedCard';
 
 interface CategorySelectCardProps {
   onClose: () => void;
+  id: number;
 }
 
-const CategorySelectCard = ({ onClose }: CategorySelectCardProps) => {
+const CategorySelectCard = ({ onClose, id }: CategorySelectCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
   const { selectedCategory, groupedCategories, handleSelectCategory } = useSelectCategory({ noDangerOption: false });
 
   return isResolved ? (
-    <ResolvedCard onClose={onClose} />
+    <ResolvedCard onClose={onClose} id={id} />
   ) : (
     <>
       <S.FeedbackTitle>적절한 분류를 선택해주세요</S.FeedbackTitle>
