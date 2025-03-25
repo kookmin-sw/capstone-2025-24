@@ -1,7 +1,6 @@
-import React from 'react';
 import * as S from './IncidentDetailsModal.style.ts';
 
-const Information: React.FC = () => {
+const Information = () => {
   return (
     <S.InformationLayout>
       <S.InfoContainer>
