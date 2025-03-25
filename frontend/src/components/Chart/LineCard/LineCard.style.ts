@@ -8,7 +8,7 @@ export const LineCardLayout = styled.div`
   height: 405px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 0.25);
   padding: 16px;
   margin-top: 33px;
   gap: 15px;
@@ -58,13 +58,13 @@ export const FixedLegendContainer = styled.div`
   margin: 12px;
 `;
 
-export const LegendItem = styled.div<{$isHidden:boolean}>`
+export const LegendItem = styled.div<{ $isHidden: boolean }>`
   display: flex;
   align-items: center;
   gap: 6px;
   cursor: pointer;
   font-size: 12px;
-  opacity: ${({$isHidden})=>$isHidden?"0.5":"1"};
+  opacity: ${({ $isHidden }) => ($isHidden ? '0.5' : '1')};
 `;
 
 interface ColorBoxProps {
@@ -75,5 +75,5 @@ interface ColorBoxProps {
 export const LegendColorBox = styled.div<ColorBoxProps>`
   width: 10px;
   height: 3px;
-  background-color: ${({$isHidden, $bgcolor})=>$isHidden?`var(--gray600)`:$bgcolor};
+  background-color: ${({ $isHidden, $bgcolor }) => ($isHidden ? `var(--gray600)` : $bgcolor)};
 `;

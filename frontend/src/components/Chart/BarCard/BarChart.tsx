@@ -3,6 +3,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import { useFilterStore } from '../../../stores/filterStore';
 import { Bar } from 'react-chartjs-2';
 import { BarData1, BarData2 } from '../../../mocks/BarData';
+
 import {
   Chart as ChartJS,
   LinearScale,

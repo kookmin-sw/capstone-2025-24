@@ -28,4 +28,5 @@ export const ChartSecondDiv = styled.div`
 export const ChartThirdDiv = styled.div`
   display: flex;
   gap: 22px;
+  padding-bottom: 30px;
 `;

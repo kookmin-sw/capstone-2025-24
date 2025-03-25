@@ -8,7 +8,7 @@ export const DoughnutCardLayout = styled.div`
   height: 340px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 5px 0px rgba(117, 117, 117, 0.25);
   padding: 16px;
   margin-top: 33px;
 `;

@@ -1,6 +1,6 @@
 import * as S from './LineCard.style';
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { LineData } from '../../../mocks/LineData';
+import { HourData, HourItem } from '../../../mocks/LineData';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -12,35 +12,10 @@ import {
   CategoryScale,
   Title,
   ChartOptions,
+  ChartData,
 } from 'chart.js';
-
+import { LABELBYCATEGORY } from '../../../constants/labelList';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
-
-const LineOptions: ChartOptions<'line'> = {
-  responsive: true,
-  maintainAspectRatio: false,
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
-  scales: {
-    x: { grid: { display: false }, stacked: true },
-    y: { grid: { display: true }, stacked: true },
-  },
-  animation: {
-    duration: 1500, // 애니메이션 지속 시간
-    easing: 'easeInOutQuad', // 애니메이션 이징 함수
-  },
-  plugins: {
-    legend: {
-      display: true,
-      position: 'bottom',
-    },
-    tooltip: {
-      enabled: false,
-    },
-  },
-};
 
 interface LineChartProps {
   category: string;
@@ -135,6 +110,22 @@ const LineChart = ({ category }: LineChartProps) => {
     setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
+  const hourFormatChanger = (data: HourItem[]) => {
+    return LABELBYCATEGORY.map(({ key, text, color }) => ({
+      label: text,
+      data: data.map((it) => it[key as keyof HourItem] as number),
+      backgroundColor: [color],
+      borderColor: [color],
+      borderWidth: 2,
+      pointRadius: 2,
+      pointHoverRadius: 2,
+    }));
+  };
+
+  const LineData: ChartData<'line'> = {
+    labels: Array.from({ length: 24 }, (_, i) => `${i}`),
+    datasets: hourFormatChanger(HourData),
+  };
   return (
     <S.LineChartLayout>
       <S.LineChart ref={chartRef} options={LineOptions} data={LineData} />
