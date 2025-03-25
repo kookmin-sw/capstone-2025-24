@@ -10,7 +10,9 @@ interface ModalProps {
   onClose: () => void;
   alertItem: AlertItemProps;
 }
+
 interface AlertItemProps {
+  id: number;
   category: string;
   date: string;
   address: string;
@@ -43,7 +45,7 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
         {step === 'category' && (
           <CategorySelectModal onBack={() => setStep('feedback')} onSubmit={() => setStep('submit')} />
         )}
-        {step === 'submit' && <SubmitModal onClose={onClose} />}
+        {step === 'submit' && <SubmitModal onClose={onClose} id={alertItem.id} />}
       </S.ModalContainer>
     </S.Overlay>
   );

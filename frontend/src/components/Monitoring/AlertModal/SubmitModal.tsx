@@ -1,11 +1,19 @@
+import { useAlertStore } from '../../../stores/alertStore.ts';
 import * as S from './AlertModal.style';
 import checkAnimation from '../../../assets/lottie/checkAnimation.json';
 
 interface SubmitModalProps {
   onClose: () => void;
+  id: number;
 }
 
-const SubmitModal = ({ onClose }: SubmitModalProps) => {
+const SubmitModal = ({ onClose, id }: SubmitModalProps) => {
+  const { removeAlert } = useAlertStore();
+
+  const handleClose = () => {
+    removeAlert(id);
+    onClose();
+  };
   return (
     <S.SubmitLayout>
       <S.Check animationData={checkAnimation} loop={false} autoplay />
@@ -15,7 +23,7 @@ const SubmitModal = ({ onClose }: SubmitModalProps) => {
         <br />
         AI 성능 최적화에 사용됩니다.
       </S.SubmitDescription>
-      <S.CloseSubmitButton onClick={onClose}>닫기</S.CloseSubmitButton>
+      <S.CloseSubmitButton onClick={handleClose}>닫기</S.CloseSubmitButton>
     </S.SubmitLayout>
   );
 };

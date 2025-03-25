@@ -3,6 +3,7 @@ import * as S from './style.ts';
 import AlertModal from '../AlertModal/AlertModal.tsx';
 
 interface AlertItemProps {
+  id: number;
   category: string;
   date: string;
   address: string;
@@ -10,7 +11,7 @@ interface AlertItemProps {
   clicked: boolean;
 }
 
-const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) => {
+const AlertItem = ({ id, category, date, address, state, clicked }: AlertItemProps) => {
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
   return (
@@ -32,6 +33,7 @@ const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) 
             <AlertModal
               onClose={closeModal}
               alertItem={{
+                id,
                 category,
                 date,
                 address,
