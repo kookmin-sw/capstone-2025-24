@@ -54,7 +54,7 @@ export const TableBodyRow = styled.tr`
 `;
 
 export const TableData = styled.td<{ index: number }>`
-  padding: 10px;
+  padding: 10px 0;
   border-bottom: ${(props) => (props.index === 8 ? 'none' : '2px solid var(--gray400)')};
 `;
 
