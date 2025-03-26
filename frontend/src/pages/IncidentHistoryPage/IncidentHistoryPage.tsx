@@ -6,11 +6,11 @@ const IncidentHistoryPage = () => {
 
   return (
     <div>
-      <S.Layout>
+      <S.IncidentHistoyLayout>
         <Filtering />
         <br />
         <IncidentList />
-      </S.Layout>
+      </S.IncidentHistoyLayout>
     </div>
   );
 };
