@@ -43,17 +43,17 @@ export const BarBase = styled.div`
 `;
 
 interface BarFillProps {
-  count: number;
-  fillcolor: string;
+  $count: number;
+  $fillcolor: string;
 }
 
 export const BarFill = styled.div<BarFillProps>`
   position: absolute;
   top: 0;
   left: 0;
-  width: ${({ count }) => count}%;
+  width: ${({ $count }) => $count}%;
   height: 100%;
   border-radius: 4px;
-  background-color: ${({ fillcolor }) => fillcolor};
+  background-color: ${({ $fillcolor }) => $fillcolor};
   transition: width 1.5s ease;
 `;

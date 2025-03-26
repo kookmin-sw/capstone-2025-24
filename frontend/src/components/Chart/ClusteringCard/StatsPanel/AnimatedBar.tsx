@@ -19,7 +19,7 @@ const AnimatedBar = ({ target, color }: AnimatedBarProps) => {
 
   return (
     <BarBase>
-      <BarFill count={width} fillcolor={color} />
+      <BarFill $count={width} $fillcolor={color} />
     </BarBase>
   );
 };
