@@ -85,7 +85,6 @@ interface DoughnutChartProps {
 }
 
 const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
-  // const [chartData, setChartData] = useState<number[]>(data);
   // 차트 data
   const DoughnutData: ChartData<'doughnut'> = {
     labels: legendItems.map(it => it.text),

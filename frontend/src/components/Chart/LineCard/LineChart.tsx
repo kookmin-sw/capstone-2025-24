@@ -1,6 +1,7 @@
 import * as S from './LineCard.style';
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { HourData, HourItem } from '../../../mocks/LineData';
+import { hourFormatChanger } from '../../../hooks/dataFormatter';
+import { HourItem } from '../../../mocks/LineData';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -14,27 +15,17 @@ import {
   ChartOptions,
   ChartData,
 } from 'chart.js';
-import { LABELBYCATEGORY } from '../../../constants/labelList';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
 
 interface LineChartProps {
   category: string;
+  chartData: HourItem[];
 }
-const LineChart = ({ category }: LineChartProps) => {
+const LineChart = ({ category, chartData }: LineChartProps) => {
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
   const [isHidden, setIsHidden] = useState<boolean[]>([]);
 
-  useEffect(() => {
-    if (chartRef.current) {
-      const newHiddenStatus = chartRef.current.data.datasets.map(
-        (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
-      );
-      setIsHidden(newHiddenStatus);
-    }
-  }, [category]);
-
-  // 차트 옵션 (legend는 별도로 분리하므로 display: false)
   const LineOptions = useMemo<ChartOptions<'line'>>(
     () => ({
       responsive: true,
@@ -77,7 +68,7 @@ const LineChart = ({ category }: LineChartProps) => {
     [],
   );
 
-  //   filter 값 바뀌면 리렌더링 되도록
+  // legend 배치
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;
@@ -89,14 +80,11 @@ const LineChart = ({ category }: LineChartProps) => {
     if (!chartRef.current) return;
 
     const chart = chartRef.current;
-
-    // 현재 선택된 데이터셋이 모두 숨겨졌는지 확인
     const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
       const meta = chart.getDatasetMeta(i);
       return i === index ? !meta.hidden : meta.hidden;
     });
 
-    // 클릭한 항목만 활성화 / 다른 항목은 비활성화
     chart.data.datasets.forEach((_: number, i: number) => {
       const meta = chart.getDatasetMeta(i);
       if (isOnlyOneVisible) {
@@ -110,21 +98,9 @@ const LineChart = ({ category }: LineChartProps) => {
     setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
-  const hourFormatChanger = (data: HourItem[]) => {
-    return LABELBYCATEGORY.map(({ key, text, color }) => ({
-      label: text,
-      data: data.map((it) => it[key as keyof HourItem] as number),
-      backgroundColor: [color],
-      borderColor: [color],
-      borderWidth: 2,
-      pointRadius: 2,
-      pointHoverRadius: 2,
-    }));
-  };
-
   const LineData: ChartData<'line'> = {
     labels: Array.from({ length: 24 }, (_, i) => `${i}`),
-    datasets: hourFormatChanger(HourData),
+    datasets: hourFormatChanger(chartData),
   };
   return (
     <S.LineChartLayout>

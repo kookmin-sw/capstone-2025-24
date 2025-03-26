@@ -17,15 +17,18 @@ export const CalendarSectionLayout = styled.div`
 export const CalenderComponentLayout = styled.div`
   width: 252px;
   height: 260px;
+  overflow: hidden;
 
   // 최상단 div
   .react-calendar {
-    width: 252px;
-    height: 270px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--gray400);
-    padding: 10px;
+    padding: 10px 7px;
+    background-color: white;
   }
 
   // 네비게이션 배치 설정
@@ -35,17 +38,33 @@ export const CalenderComponentLayout = styled.div`
     justify-content: center;
     margin-bottom: 0;
 
-    button {
-      min-height: 20px;
-      font-weight: 700;
-      font-size: 11.5px;
-    }
+    /* button {
+    } */
 
     button:hover {
-      background: none;
-      box-shadow: none;
-      cursor: pointer;
+      background: none !important;
+      box-shadow: none !important;
     }
+  }
+
+  .react-calendar__navigation button {
+    min-height: 20px;
+    font-weight: 700;
+    font-size: 11.5px;
+    background: transparent;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .react-calendar__navigation button:hover,
+  .react-calendar__navigation button:focus,
+  .react-calendar__navigation button:focus-visible,
+  .react-calendar__navigation button:active {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   /* 요일 밑줄 제거 */
@@ -65,13 +84,18 @@ export const CalenderComponentLayout = styled.div`
   .react-calendar__navigation__arrow {
     color: var(--gray500);
   }
+  .react-calendar__navigation__arrow:hover {
+    color: var(--gray800);
+    background-color: white;
+  }
 
   .react-calendar__tile {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 30px;
-    height: 31px;
+    height: 32px;
+    box-sizing: border-box;
     min-width: unset;
     min-height: unset;
     padding: 0;
@@ -86,7 +110,6 @@ export const CalenderComponentLayout = styled.div`
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
     background: var(--primary800);
-    border-radius: 50%;
     color: white;
   }
 

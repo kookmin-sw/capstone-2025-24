@@ -20,7 +20,7 @@ const Map = () => {
             lineHeight: '50px',
             fontSize: '14px',
           },
-        ]} 
+        ]}
       >
         {ClusterData.map((pos) => (
           <MapMarker
@@ -28,6 +28,11 @@ const Map = () => {
             position={{
               lat: pos.latitude,
               lng: pos.longitude,
+            }}
+            image={{
+              src: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
+              size: { width: 1, height: 1 },
+              options: { offset: { x: 0, y: 0 } },
             }}
           />
         ))}

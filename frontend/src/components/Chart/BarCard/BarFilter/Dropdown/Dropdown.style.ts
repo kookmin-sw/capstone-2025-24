@@ -33,6 +33,7 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   width: 100%;
   max-height: 120px;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 0 0 2px var(--gray400) inset;
@@ -52,16 +53,19 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
       transform: translateY(0);
     `}
 
-  /* 스크롤바 스타일 */
-&::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 6px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.1); /* 연한 회색 */
+    background-color: transparent; /* 연한 회색 */
     border-radius: 4px;
+    transition: background-color 0.2s ease;
   }
 
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1); /* hover 시에만 thumb 보임 */
+  }
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
