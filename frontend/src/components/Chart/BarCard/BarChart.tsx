@@ -39,10 +39,6 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
   const [isHidden, setIsHidden] = useState<boolean[]>([]);
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
 
-  useEffect(() => {
-    console.log('chartData: ', chartData);
-  }, []);
-
   const BarOptions = useMemo<ChartOptions<'bar'>>(
     () => ({
       responsive: true,
