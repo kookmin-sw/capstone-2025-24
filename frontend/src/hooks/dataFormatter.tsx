@@ -1,6 +1,6 @@
 import { LABELBYCATEGORY } from "../constants/labelList";
 import { HourItem } from "../mocks/LineData";
-
+import { CategoryItem } from "../mocks/DoughnutData";
 export const hourFormatChanger = (data: HourItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({
     label: text,
@@ -11,4 +11,8 @@ export const hourFormatChanger = (data: HourItem[]) => {
     pointRadius: 2,
     pointHoverRadius: 2,
   }));
+};
+
+export const categoryFormatChanger = (data: CategoryItem) => {
+    return (Object.values(data));
 };

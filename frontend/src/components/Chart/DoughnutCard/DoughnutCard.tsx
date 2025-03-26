@@ -4,6 +4,7 @@ import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect } from 'react';
 import useCategoryIndexStore from '../../../stores/categoryIndexStore';
 import useRegionIndexStore from '../../../stores/regionIndexStore';
+import { CategoryData, CategoryData2, CategoryData3, CategoryItem } from '../../../mocks/DoughnutData';
 
 interface LegendItem {
   text: string;
@@ -15,6 +16,7 @@ interface DoughnutCardProps {
   legendItems: LegendItem[];
 }
 const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
+  const [data, setData] = useState<CategoryItem>(CategoryData);
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex } = store;
 
@@ -23,18 +25,17 @@ const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
     // 지금은 이렇게 구현했지만 실제로는 api request를 보내겠지요?
     switch (selectedIndex) {
       case 0:
-        setData([21, 9, 7, 4, 1]);
+        setData(CategoryData);
         return;
       case 1:
-        setData([10, 20, 30, 15, 20]);
+        setData(CategoryData2);
         return;
       case 2:
-        setData([4, 2, 25, 7, 12]);
+        setData(CategoryData3);
         return;
     }
   }, [selectedIndex]);
 
-  const [data, setData] = useState<number[]>([21, 9, 7, 4, 1]);
   return (
     <S.DoughnutCardLayout>
       <S.TitleDiv>

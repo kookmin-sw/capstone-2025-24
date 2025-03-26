@@ -14,6 +14,8 @@ import {
   ChartOptions,
 } from 'chart.js';
 import LabelBox from './LabelBox';
+import { CategoryItem } from '../../../mocks/DoughnutData';
+import { categoryFormatChanger } from '../../../hooks/dataFormatter';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 // data 합합
@@ -53,19 +55,19 @@ const textCenterPlugin = {
 // 차트 옵션
 const DoughnutOptions: ChartOptions<'doughnut'> = {
   responsive: true,
-  maintainAspectRatio: false, // 기본 비율 유지 X
+  maintainAspectRatio: false,
   cutout: '47%',
   interaction: {
     // mode: 'index',
     intersect: true,
   },
   animation: {
-    duration: 1500, // 애니메이션 지속 시간
-    easing: 'easeInOutQuad', // 애니메이션 효과
+    duration: 1500,
+    easing: 'easeInOutQuad',
   },
   plugins: {
     legend: {
-      display: false, // 차트 라벨 표시
+      display: false,
     },
     textCenter: {},
     tooltip: {
@@ -80,7 +82,7 @@ interface LegendItem {
 }
 
 interface DoughnutChartProps {
-  data: number[];
+  data: CategoryItem;
   legendItems: LegendItem[];
 }
 
@@ -91,7 +93,7 @@ const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
     datasets: [
       {
         label: '사건 수',
-        data: data,
+        data: categoryFormatChanger(data),
         backgroundColor: legendItems.map(it => it.color),
         hoverOffset: 5,
       },
@@ -103,7 +105,7 @@ const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={data} legendItems={legendItems}/>
+      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems}/>
     </S.DoughnutChartLayout>
   );
 };
