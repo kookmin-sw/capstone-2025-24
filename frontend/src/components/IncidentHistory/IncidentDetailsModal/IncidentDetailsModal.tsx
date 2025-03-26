@@ -7,15 +7,17 @@ import Video from './Video.tsx';
 interface IncidentDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  incidentId: number;
+  incident: {
+    id: number;
+    category: string;
+    date: string;
+    location: string;
+    police: string;
+  };
 }
 
-const IncidentDetailsModal = ({ isOpen, onClose, incidentId }: IncidentDetailsModalProps) => {
+const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModalProps) => {
   if (!isOpen) return null;
-
-  // API 요청할 때 incidentId 넘겨주면 사건 정보 받아옴
-  console.log(incidentId);
-
 
   return (
     <S.Overlay onClick={onClose}>
@@ -26,7 +28,12 @@ const IncidentDetailsModal = ({ isOpen, onClose, incidentId }: IncidentDetailsMo
         </S.TitleBtnContainer>
         <S.WrapperContainer>
           <S.InfoMapWrapper>
-            <Information />
+            <Information
+              location={incident.location}
+              date={incident.date}
+              category={incident.category}
+              police={incident.police}
+            />
             <Map />
           </S.InfoMapWrapper>
           <S.VideoMemoWrapper>

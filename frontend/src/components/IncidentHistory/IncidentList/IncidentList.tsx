@@ -5,18 +5,19 @@ import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 import SortingDropDown from './SortingDropDown.tsx';
 import EmptyView from './EmptyView.tsx';
+import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.tsx';
 
-interface IncidentListProps {
-  onOpen: (id: number) => void;
-}
-
-const IncidentList = ({ onOpen }: IncidentListProps) => {
+const IncidentList = () => {
   // 사건 리스트 데이터
   const incidentdata = IncidentListData;
 
   const truncate = (text: string, maxLength: number) => {
-    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+    return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [selectedIncident, setSelectedIncident] = useState<null | (typeof incidentdata)[0]>(null);
 
   // 페이지네이션
   const incident_num = incidentdata.length; // 사건 총 개수 (나중에 백한테 전달받아서 사용)
@@ -32,68 +33,86 @@ const IncidentList = ({ onOpen }: IncidentListProps) => {
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
-    <S.Layout>
-      <S.Container>
-        <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
-        <SortingDropDown />
-      </S.Container>
+    <div>
+      <S.Layout>
+        <S.Container>
+          <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
+          <SortingDropDown />
+        </S.Container>
 
-      {/* 리스트 */}
-      <S.IncidentListDiv>
-        {incidentdata.length === 0 ? (
-          <EmptyView />
-        ) : (
-          <S.Table>
-            <thead>
-              <S.TableHeaderRow>
-                <S.TableHeader w={10}>번호</S.TableHeader>
-                <S.TableHeader w={16}>사건 분류</S.TableHeader>
-                <S.TableHeader w={22}>날짜</S.TableHeader>
-                <S.TableHeader w={38}>위치</S.TableHeader>
-                <S.TableHeader w={14}>담당 경찰</S.TableHeader>
-              </S.TableHeaderRow>
-            </thead>
-            <tbody>
-              {currentData.map((incident, index) => (
-                <S.TableBodyRow key={incident.id} onClick={() => onOpen(incident.id)}>
-                  <S.TableData index={index + 1}>
-                    <S.InfoP>{startIndex + index + 1}</S.InfoP>
-                  </S.TableData>
-                  <S.TableData index={index + 1}>
-                    <S.InfoP>{incident.category}</S.InfoP>
-                  </S.TableData>
-                  <S.TableData index={index + 1}>
-                    <S.InfoP>{incident.date}</S.InfoP>
-                  </S.TableData>
-                  <S.TableData index={index + 1}>
-                    <S.InfoP>{truncate(incident.address, 22)}</S.InfoP>
-                  </S.TableData>
-                  <S.TableData index={index + 1}>
-                    <S.InfoP>{incident.police}</S.InfoP>
-                  </S.TableData>
-                </S.TableBodyRow>
-              ))}
-            </tbody>
-          </S.Table>
+        {/* 리스트 */}
+        <S.IncidentListDiv>
+          {incidentdata.length === 0 ? (
+            <EmptyView />
+          ) : (
+            <S.Table>
+              <thead>
+                <S.TableHeaderRow>
+                  <S.TableHeader w={10}>번호</S.TableHeader>
+                  <S.TableHeader w={16}>사건 분류</S.TableHeader>
+                  <S.TableHeader w={22}>날짜</S.TableHeader>
+                  <S.TableHeader w={38}>위치</S.TableHeader>
+                  <S.TableHeader w={14}>담당 경찰</S.TableHeader>
+                </S.TableHeaderRow>
+              </thead>
+              <tbody>
+                {currentData.map((incident, index) => (
+                  <S.TableBodyRow
+                    key={incident.id}
+                    onClick={() => {
+                      setSelectedIncident(incident);
+                      setIsModalOpen(true);
+                    }}
+                  >
+                    <S.TableData index={index + 1}>
+                      <S.InfoP>{startIndex + index + 1}</S.InfoP>
+                    </S.TableData>
+                    <S.TableData index={index + 1}>
+                      <S.InfoP>{incident.category}</S.InfoP>
+                    </S.TableData>
+                    <S.TableData index={index + 1}>
+                      <S.InfoP>{incident.date}</S.InfoP>
+                    </S.TableData>
+                    <S.TableData index={index + 1}>
+                      <S.InfoP>{truncate(incident.location, 22)}</S.InfoP>
+                    </S.TableData>
+                    <S.TableData index={index + 1}>
+                      <S.InfoP>{incident.police}</S.InfoP>
+                    </S.TableData>
+                  </S.TableBodyRow>
+                ))}
+              </tbody>
+            </S.Table>
+          )}
+        </S.IncidentListDiv>
+
+        {incident_num > 0 && (
+          <S.Pagination>
+            <S.MoveBtn disabled={startPage <= 1} onClick={() => setCurrentPage(startPage - 1)}>
+              <GrFormPrevious />
+            </S.MoveBtn>
+            {pageNumbers.map((num) => (
+              <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
+                {num}
+              </S.PageButton>
+            ))}
+            <S.MoveBtn disabled={endPage >= totalPages} onClick={() => setCurrentPage(endPage + 1)}>
+              <GrFormNext />
+            </S.MoveBtn>
+          </S.Pagination>
         )}
-      </S.IncidentListDiv>
-
-      {incident_num > 0 && (
-        <S.Pagination>
-          <S.MoveBtn disabled={startPage <= 1} onClick={() => setCurrentPage(startPage - 1)}>
-            <GrFormPrevious />
-          </S.MoveBtn>
-          {pageNumbers.map((num) => (
-            <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
-              {num}
-            </S.PageButton>
-          ))}
-          <S.MoveBtn disabled={endPage >= totalPages} onClick={() => setCurrentPage(endPage + 1)}>
-            <GrFormNext />
-          </S.MoveBtn>
-        </S.Pagination>
+      </S.Layout>
+      {isModalOpen && selectedIncident && (
+        <IncidentDetailsModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedIncident(null); // 닫을 때 초기화
+          }}
+          incident={selectedIncident}
+        />
       )}
-    </S.Layout>
+    </div>
   );
 };
 export default IncidentList;
