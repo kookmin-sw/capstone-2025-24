@@ -8,13 +8,13 @@ import { HourItem, HourData } from '../../../mocks/LineData';
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');
-  const [data, setData] = useState<HourItem[]>([]);
+  const [data, setData] = useState<HourItem[]>(HourData);
   const handleChange = (target: string, newValue: string) => {
     setCategory(newValue);
   };
 
   useEffect(()=> {
-    // api 연결 예정정
+    // api 연결 예정
     setData(HourData);
   },[selectedDate, category]);
 
