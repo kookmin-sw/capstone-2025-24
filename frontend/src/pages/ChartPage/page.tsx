@@ -3,7 +3,7 @@ import DoughnutCard from '../../components/Chart/DoughnutCard/DoughnutCard';
 import BarCard from '../../components/Chart/BarCard/BarCard';
 import OverviewDiv from '../../components/Chart/Overview/OverviewDiv';
 import LineCard from '../../components/Chart/LineCard/LineCard';
-
+import ClusteringCard from '../../components/Chart/ClusteringCard/ClusteringCard';
 import { LABELBYCATEGORY, LABELBYREGION } from '../../constants/labelList';
 const ChartPage = () => {
   return (
@@ -19,6 +19,7 @@ const ChartPage = () => {
       </S.ChartSecondDiv>
       <S.ChartThirdDiv>
         <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} />
+        <ClusteringCard/>
       </S.ChartThirdDiv>
     </S.ChartPageLayout>
   );
