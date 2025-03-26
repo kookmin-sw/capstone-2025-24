@@ -16,7 +16,7 @@ interface KakaoMapProps {
 
 const KakaoMap = ({ selectedIndex, setSelectedIndex, Locations }: KakaoMapProps) => {
   return (
-    <S.Maps id="map" center={{ lat: 37.5665, lng: 126.978 }} level={9}>
+    <S.Maps id="map" center={{ lat: 37.5665, lng: 126.978 }} level={9} draggable={false} zoomable={false}>
       {Locations.map((location, index) => (
         <MapMarker
           key={index}

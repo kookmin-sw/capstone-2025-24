@@ -1,22 +1,19 @@
 import { useState } from 'react';
-import * as S from './InProgress.style';
+import { IncidentCardProps } from '../../../types/alert';
 import ResolvedCard from './ResolvedCard';
 import CategorySelectCard from './CategorySelectCard';
+import * as S from './InProgress.style';
 
-interface FeedbackCardProps {
-  onClose: () => void;
-}
-
-const FeedbackCard = ({ onClose }: FeedbackCardProps) => {
+const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
   const [isCategorySelection, setIsCategorySelection] = useState(false);
   const [isResolved, setIsResolved] = useState(false);
 
   if (isResolved) {
-    return <ResolvedCard onClose={onClose} />;
+    return <ResolvedCard onClose={onClose} id={id} />;
   }
 
   return isCategorySelection ? (
-    <CategorySelectCard onClose={() => setIsCategorySelection(false)} />
+    <CategorySelectCard onClose={() => setIsCategorySelection(false)} id={id} />
   ) : (
     <>
       <S.FeedbackTitle>AI의 분류가 정확했나요?</S.FeedbackTitle>

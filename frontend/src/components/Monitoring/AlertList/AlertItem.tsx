@@ -1,29 +1,26 @@
 import useIsModalOpen from '../../../hooks/useIsModalOpen';
-import * as S from './style.ts';
 import AlertModal from '../AlertModal/AlertModal.tsx';
+import { AlertProps } from '../../../types/alert';
+import * as S from './style.ts';
 
-interface AlertItemProps {
-  category: string;
-  date: string;
-  address: string;
-  state: string;
+interface AlertItemProps extends AlertProps {
   clicked: boolean;
 }
 
-const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) => {
+const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
   return (
     <div>
       <S.Layout clicked={clicked}>
-        <S.ColorDiv category={category} />
+        <S.ColorDiv level={level} />
         <S.CardDiv>
           <S.DateWrapper>
             <S.DateP>{date}</S.DateP>
             <S.StateCircle state={state} />
           </S.DateWrapper>
           <S.CategoryDiv>
-            <S.AlertIcon category={category} />
+            <S.AlertIcon level={level} />
             {category} 감지
           </S.CategoryDiv>
           <S.AddressP>{address}</S.AddressP>
@@ -32,9 +29,12 @@ const AlertItem = ({ category, date, address, state, clicked }: AlertItemProps) 
             <AlertModal
               onClose={closeModal}
               alertItem={{
+                id,
+                level,
                 category,
                 date,
                 address,
+                state,
               }}
             />
           )}

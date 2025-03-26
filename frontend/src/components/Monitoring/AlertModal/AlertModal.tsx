@@ -1,45 +1,69 @@
-import { IoCloseOutline } from 'react-icons/io5';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import { FaClock } from 'react-icons/fa6';
-import VideoComponent from '../../common/VideoComponent/VideoComponent';
+import { useState, useEffect } from 'react';
+import { useItemStore } from '../../../stores/itemStore';
+import FeedbackModal from './FeedbackModal';
+import IncidentModal from './IncidentModal';
+import SubmitModal from './SubmitModal';
+import CategorySelectModal from './CategorySelectModal';
+import { AlertProps } from '../../../types/alert';
 import * as S from './AlertModal.style';
 
 interface ModalProps {
   onClose: () => void;
-  alertItem: AlertItemProps;
+  alertItem: AlertProps;
 }
-interface AlertItemProps {
-  category: string;
-  date: string;
-  address: string;
-}
+
+type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem }: ModalProps) => {
-  const { category, date, address } = alertItem;
-  const videoUrl = ''; // 추후 api 연동
+  const { updateItemState } = useItemStore();
+  const [step, setStep] = useState<ModalStep>('incident');
+
+  const handleOutsideClick = () => {
+    if (step === 'incident') {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (alertItem.state === '미확인') {
+      updateItemState(alertItem.id, '확인');
+    }
+  }, [alertItem, updateItemState]);
+
+  const handleDispatch = () => {
+    updateItemState(alertItem.id, '출동');
+    onClose();
+
+    setTimeout(() => {
+      const target = document.getElementById('in-progress-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 0);
+  };
 
   return (
-    <S.Overlay onClick={onClose}>
+    <S.Overlay onClick={handleOutsideClick}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
-        <S.CloseButton onClick={onClose}>
-          <IoCloseOutline size={39} />
-        </S.CloseButton>
-        <S.Title>{category} 감지</S.Title>
-        <S.InfoContainer>
-          <S.InfoDiv>
-            <FaMapMarkerAlt />
-            {address}
-          </S.InfoDiv>
-          <S.InfoDiv>
-            <FaClock />
-            {date}
-          </S.InfoDiv>
-        </S.InfoContainer>
-        <VideoComponent w={'100%'} h={'100%'} radius={10} videoUrl={videoUrl} />
-        <S.ButtonContainer>
-          <S.Button className="no">미출동</S.Button>
-          <S.Button className="yes">출동하기</S.Button>
-        </S.ButtonContainer>
+        {step === 'incident' && (
+          <IncidentModal
+            onClose={onClose}
+            onFeedbackClick={() => setStep('feedback')}
+            alertItem={alertItem}
+            onDispatch={handleDispatch}
+          />
+        )}
+        {step === 'feedback' && (
+          <FeedbackModal
+            onBack={() => setStep('incident')}
+            onSelectCategory={() => setStep('category')}
+            onSubmitClick={() => setStep('submit')}
+          />
+        )}
+        {step === 'category' && (
+          <CategorySelectModal onBack={() => setStep('feedback')} onSubmit={() => setStep('submit')} />
+        )}
+        {step === 'submit' && <SubmitModal onClose={onClose} id={alertItem.id} />}
       </S.ModalContainer>
     </S.Overlay>
   );

@@ -6,7 +6,7 @@ import { Locations } from '../../../mocks/LocationData';
 import * as S from './style';
 
 const InfoSection = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(4);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   return (
     <S.InfoLayout>
       <S.InfoContent>

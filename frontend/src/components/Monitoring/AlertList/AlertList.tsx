@@ -1,37 +1,48 @@
-import * as S from './style.ts';
+import { useEffect } from 'react';
 import AlertItem from './AlertItem.tsx';
 import ToolTip from '../../common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
-import AlertListData from '../../../mocks/AlertListData.tsx';
-
-// 알림 리스트 데이터
-const alertdata = AlertListData;
-
-// 클릭된 1단계 푸시 알림의 사건 번호
-const clicked_alert_id = 1;
+import { useItemStore } from '../../../stores/itemStore.ts';
+import { InProgressData } from '../../../mocks/InProgressData';
+import * as S from './style.ts';
 
 
 const ToopTipContent = () => {
   return (
     <div>
-      각 알림은 24시간이 지나면 <br />알림 리스트에서 자동 삭제됩니다.
+      각 알림은 24시간이 지나면 <br />
+      알림 리스트에서 자동 삭제됩니다.
     </div>
   );
 };
 
 const AlertList = () => {
+  const clicked_alert_id = 1;
+  const { items, setItems } = useItemStore();
+
+  useEffect(() => {
+    setItems(InProgressData);
+  }, [setItems]);
+
+  const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
+
   return (
     <S.AlertListLayout>
       <S.TitleP>
-        알림 리스트 <ToolTip><ToopTipContent/></ToolTip>
+        알림 리스트{' '}
+        <ToolTip>
+          <ToopTipContent />
+        </ToolTip>
       </S.TitleP>
       <S.AlertContainer>
-        {alertdata.length === 0 ? (
+        {alerts.length === 0 ? (
           <EmptyView />
         ) : (
-          alertdata.map((alert) => (
+          alerts.map((alert) => (
             <AlertItem
               key={alert.id}
+              id={alert.id}
+              level={alert.level}
               category={alert.category}
               date={alert.date}
               address={alert.address}
