@@ -109,17 +109,18 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
     List<Object[]> findLocationCaseStats(@Param("startDate") LocalDateTime startDate, @Param("officeId") int officeId);
 
     @Query(value = """
-        SELECT cv.address, cv.latitude, cv.longitude, SUM(sub.total) AS total
-        FROM (
-            SELECT c.cctv_id, SUM(c.fire_count + c.assult_count + c.swoon_count + c.weapon_count + c.crowd_congestion_count) AS total
-            FROM case_stats_category c
-            WHERE c.date >= :startDate
-            GROUP BY c.cctv_id
-        ) AS sub
-        JOIN cctv_info cv ON sub.cctv_id = cv.id
+        SELECT cv.address, cv.latitude, cv.longitude,
+               SUM(c.fire_count) AS fire,
+               SUM(c.assult_count) AS assault,
+               SUM(c.swoon_count) AS swoon,
+               SUM(c.weapon_count) AS weapon,
+               SUM(c.crowd_congestion_count) AS crowd_congestion
+        FROM case_stats_category c
+        JOIN cctv_info cv ON c.cctv_id = cv.id
+        WHERE c.date >= :startDate
         GROUP BY cv.address, cv.latitude, cv.longitude
-        ORDER BY total DESC
+        ORDER BY (SUM(c.fire_count) + SUM(c.assult_count) + SUM(c.swoon_count) + SUM(c.weapon_count) + SUM(c.crowd_congestion_count)) DESC
         """, nativeQuery = true)
-    List<Object[]> findMapCaseStats(@Param("startDate") LocalDateTime startDate, @Param("officeId") int officeId);
+    List<Object[]> findMapCaseStats(@Param("startDate") LocalDateTime startDate);
 
 }

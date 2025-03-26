@@ -1,10 +1,6 @@
 package com.example.backend.analysis.controller;
 
-import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
-import com.example.backend.analysis.dto.DailyCaseStatsResponse;
-import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
-import com.example.backend.analysis.dto.MonthlyCaseStatsResponse;
-import com.example.backend.analysis.dto.CctvCaseStatsResponse;
+import com.example.backend.analysis.dto.*;
 import com.example.backend.analysis.service.CaseStatsService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -98,7 +94,7 @@ public class CaseStatsController {
     @GetMapping("/location")
     public ResponseEntity<?> getLocationCaseStats(@RequestParam("period") String period, HttpSession session) {
         try {
-            List<CctvCaseStatsResponse> stats = caseStatsService.getLocationCaseStats(period, session);
+            List<LocationCaseStatsResponse> stats = caseStatsService.getLocationCaseStats(period, session);
             return ResponseEntity.ok(stats);
         } catch (IllegalStateException e) {
             return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));
@@ -115,7 +111,7 @@ public class CaseStatsController {
     @GetMapping("/map")
     public ResponseEntity<?> getMapCaseStats(@RequestParam("period") String period, HttpSession session) {
         try {
-            List<CctvCaseStatsResponse> stats = caseStatsService.getMapCaseStats(period, session);
+            List<MapCaseStatsResponse> stats = caseStatsService.getMapCaseStats(period, session);
             return ResponseEntity.ok(stats);
         } catch (IllegalStateException e) {
             return ResponseEntity.status(401).body(Collections.singletonMap("message", e.getMessage()));

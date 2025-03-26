@@ -1,11 +1,7 @@
 package com.example.backend.analysis.service;
 
 import com.example.backend.analysis.domain.CaseStatsOverviewEntity;
-import com.example.backend.analysis.dto.CaseStatsOverviewResponse;
-import com.example.backend.analysis.dto.DailyCaseStatsResponse;
-import com.example.backend.analysis.dto.HourlyCaseStatsResponse;
-import com.example.backend.analysis.dto.MonthlyCaseStatsResponse;
-import com.example.backend.analysis.dto.CctvCaseStatsResponse;
+import com.example.backend.analysis.dto.*;
 import com.example.backend.analysis.repository.CaseStatsCategoryRepository;
 import com.example.backend.analysis.repository.CaseStatsOverviewRepository;
 import com.example.backend.user.dto.UserResponseDto;
@@ -202,7 +198,7 @@ public class CaseStatsService {
     }
 
     // 장소별 사건 수 조회 (startDate를 계산해 전달)
-    public List<CctvCaseStatsResponse> getLocationCaseStats(String period, HttpSession session) {
+    public List<LocationCaseStatsResponse> getLocationCaseStats(String period, HttpSession session) {
         int officeId = getOfficeId(session);
 
         LocalDateTime startDate = getStartDateFromPeriod(period);
@@ -213,7 +209,7 @@ public class CaseStatsService {
         }
 
         return results.stream()
-                .map(row -> new CctvCaseStatsResponse(
+                .map(row -> new LocationCaseStatsResponse(
                         (String) row[0], // address
                         (Double) row[1], // latitude
                         (Double) row[2], // longitude
@@ -222,22 +218,26 @@ public class CaseStatsService {
     }
 
     // 지도용 장소별 사건 수 조회 (startDate를 계산해 전달)
-    public List<CctvCaseStatsResponse> getMapCaseStats(String period, HttpSession session) {
+    public List<MapCaseStatsResponse> getMapCaseStats(String period, HttpSession session) {
         int officeId = getOfficeId(session);
 
         LocalDateTime startDate = getStartDateFromPeriod(period);
-        List<Object[]> results = statsCategoryRepository.findMapCaseStats(startDate, officeId);
+        List<Object[]> results = statsCategoryRepository.findMapCaseStats(startDate);
 
         if (results.isEmpty()) {
             throw new NoSuchElementException("해당 기간에 대한 장소별 사건 데이터가 없습니다.");
         }
 
         return results.stream()
-                .map(row -> new CctvCaseStatsResponse(
+                .map(row -> new MapCaseStatsResponse(
                         (String) row[0], // address
                         (Double) row[1], // latitude
                         (Double) row[2], // longitude
-                        ((Number) row[3]).intValue())) // count
+                        ((Number) row[3]).intValue(), // fire_count
+                        ((Number) row[4]).intValue(),  // assault_count
+                        ((Number) row[5]).intValue(),  // crowd_congestion_count
+                        ((Number) row[6]).intValue(),  // weapon_count
+                        ((Number) row[7]).intValue())) // swoon_count
                 .collect(Collectors.toList());
     }
 
