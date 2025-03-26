@@ -97,3 +97,18 @@ export const ClusterData: positionItem[] = [
     count: 26,
   },
 ];
+
+
+
+interface StatsItem {
+    category: string;
+    count: number;
+}
+
+export const StatsData = [
+  {category: "fireCount", count: 45},
+  {category: "assultCount", count: 28},
+  {category: "swoonCount", count: 30},
+  {category: "weaponCount", count: 17},
+  {category: "crowdCongestionCount", count: 6},
+]

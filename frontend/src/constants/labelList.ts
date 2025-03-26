@@ -19,3 +19,11 @@ export const LABELBYREGION: labelItem[] = [
   { key: '4', text: '정릉 4동', color: '#849DFF' },
   { key: '5', text: '정릉 5동', color: '#D4D8FF' },
 ];
+
+export const STATSLABEL: labelItem[] = [
+  { key: 'fireCount', text: '화재', color: '#5877FF' },
+  { key: 'assultCount', text: '폭행', color: '#A8B3E3' },
+  { key: 'swoonCount', text: '쓰러짐', color: '#3257FE' },
+  { key: 'weaponCount', text: '흉기난동', color: '#849DFF' },
+  { key: 'crowdCongestionCount', text: '군중밀집', color: '#D4D8FF' },
+];

@@ -15,6 +15,13 @@ export const ClusteringCardLayout = styled.div`
   gap: 19px;
 `;
 
+export const TooltipDiv = styled.div`
+  display: flex;
+  height: 100%;
+  align-items: end;
+  padding-bottom: 12px;
+`
+
 // Map.tsx --------------------------------- //
 export const Maps = styled(Map)`
   width: 351px;
