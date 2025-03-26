@@ -8,19 +8,21 @@ import { LABELBYCATEGORY, LABELBYREGION } from '../../constants/labelList';
 const ChartPage = () => {
   return (
     <S.ChartPageLayout>
-      <S.OverviewP>Overview</S.OverviewP>
-      <OverviewDiv />
-      <S.ChartFirstDiv>
-        <LineCard />
-      </S.ChartFirstDiv>
-      <S.ChartSecondDiv>
-        <BarCard />
-        <DoughnutCard title="유형별 사건 수" legendItems={LABELBYCATEGORY} />
-      </S.ChartSecondDiv>
-      <S.ChartThirdDiv>
-        <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} />
-        <ClusteringCard/>
-      </S.ChartThirdDiv>
+      <S.ComponentWrapper>
+        <S.OverviewP>Overview</S.OverviewP>
+        <OverviewDiv />
+        <S.ChartFirstDiv>
+          <LineCard />
+        </S.ChartFirstDiv>
+        <S.ChartSecondDiv>
+          <BarCard />
+          <DoughnutCard title="유형별 사건 수" legendItems={LABELBYCATEGORY} />
+        </S.ChartSecondDiv>
+        <S.ChartThirdDiv>
+          <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} />
+          <ClusteringCard />
+        </S.ChartThirdDiv>
+      </S.ComponentWrapper>
     </S.ChartPageLayout>
   );
 };

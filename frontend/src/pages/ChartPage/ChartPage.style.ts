@@ -4,13 +4,16 @@ export const ChartPageLayout = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: start;
+  align-items: center;
   height: 100vh;
   padding: 15px 50px;
 
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const ComponentWrapper = styled.div`
 `;
 
 export const OverviewP = styled.p`
