@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import LineChart from './LineChart';
 import Dropdown from '../BarCard/BarFilter/Dropdown/Dropdown';
 import { CATEGORY_OPTIONS } from '../../../constants/dropdownOptions';
-// import { hourFormatChanger } from '../../../hooks/dataFormatter';
 import { HourItem, HourData } from '../../../mocks/LineData';
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());

@@ -6,7 +6,7 @@ interface labelItem {
 
 export const LABELBYCATEGORY: labelItem[] = [
   { key: 'fireCount', text: '화재', color: '#F08676' },
-  { key: 'assultCount', text: '폭행', color: '#A7C972' },
+  { key: 'assaultCount', text: '폭행', color: '#A7C972' },
   { key: 'swoonCount', text: '쓰러짐', color: '#79A4E8' },
   { key: 'weaponCount', text: '흉기난동', color: '#7ED1C1' },
   { key: 'crowdCongestionCount', text: '군중밀집', color: '#EBC266' },
@@ -22,7 +22,7 @@ export const LABELBYREGION: labelItem[] = [
 
 export const STATSLABEL: labelItem[] = [
   { key: 'fireCount', text: '화재', color: '#5877FF' },
-  { key: 'assultCount', text: '폭행', color: '#A8B3E3' },
+  { key: 'assaultCount', text: '폭행', color: '#A8B3E3' },
   { key: 'swoonCount', text: '쓰러짐', color: '#3257FE' },
   { key: 'weaponCount', text: '흉기난동', color: '#849DFF' },
   { key: 'crowdCongestionCount', text: '군중밀집', color: '#D4D8FF' },

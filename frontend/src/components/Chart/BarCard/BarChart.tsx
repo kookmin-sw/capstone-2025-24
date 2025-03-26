@@ -42,16 +42,7 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
   useEffect(() => {
     console.log('chartData: ', chartData);
   }, []);
-  // useEffect(() => {
-  //   if (chartRef.current) {
-  //     const newHiddenStatus = chartRef.current.data.datasets.map(
-  //       (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
-  //     );
-  //     setIsHidden(newHiddenStatus);
-  //   }
-  // }, [filter, chartData]);
 
-  // 차트 옵션 (legend는 별도로 분리하므로 display: false)
   const BarOptions = useMemo<ChartOptions<'bar'>>(
     () => ({
       responsive: true,
@@ -73,7 +64,6 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
     [],
   );
 
-  //  legend 출력 함수
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;
@@ -81,7 +71,6 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
     }
   }, []);
 
-  // legend 클릭 이벤트 핸들러
   const handleLegendClick = (index: number) => {
     if (!chartRef.current) return;
 
