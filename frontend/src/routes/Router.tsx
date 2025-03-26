@@ -3,17 +3,14 @@ import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import ChartPage from '../pages/ChartPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import SidebarLayout from '../components/layouts/SideBarLayout';
+import Layout from '../components/common/Sidebar/Layout';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* 사이드바 없는 페이지 */}
         <Route path="/" element={<LoginPage />} />
-
-        {/* 사이드바 있는 페이지 */}
-        <Route element={<SidebarLayout />}>
+        <Route element={<Layout />}>
           <Route path="/monitoring" element={<MonitoringPage />} />
           <Route path="/history" element={<IncidentHistoryPage />} />
           <Route path="/chart" element={<ChartPage />} />
