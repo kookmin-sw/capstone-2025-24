@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import ChartPage from '../pages/ChartPage';
-import IncidentHistoryPage from '../pages/IncidentHistoryPage';
-import SidebarLayout from '../components/layouts/SideBarLayout';
+import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import SidebarLayout from '../components/layouts/SideBarLayout';
 
 const Router = () => {
   return (

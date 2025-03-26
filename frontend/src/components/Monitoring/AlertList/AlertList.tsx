@@ -10,6 +10,7 @@ const alertdata = AlertListData;
 // 클릭된 1단계 푸시 알림의 사건 번호
 const clicked_alert_id = 1;
 
+
 const ToopTipContent = () => {
   return (
     <div>
