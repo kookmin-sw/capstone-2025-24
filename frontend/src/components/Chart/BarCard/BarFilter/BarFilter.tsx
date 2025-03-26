@@ -17,11 +17,6 @@ const BarFilter = () => {
     setFilter(target, newValue);
   };
 
-  useEffect(()=> {
-    // filter 값 바뀔 때마다 data 다시 get
-  },[filter]);
-
-
   return (
     <S.BarFilterLayout>
       <Dropdown

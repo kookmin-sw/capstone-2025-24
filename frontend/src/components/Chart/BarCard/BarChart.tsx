@@ -2,10 +2,12 @@ import * as S from './BarCard.style';
 import { useRef, useEffect, useState, useMemo } from 'react';
 import { useFilterStore } from '../../../stores/filterStore';
 import { Bar } from 'react-chartjs-2';
-import { BarData1, BarData2 } from '../../../mocks/BarData';
+import { monthFormatChanger, dayFormatChanger } from '../../../hooks/dataFormatter';
+import { BarMonthItem, BarDayItem } from '../../../mocks/BarData';
 
 import {
   Chart as ChartJS,
+  ChartData,
   LinearScale,
   PointElement,
   LineElement,
@@ -21,26 +23,33 @@ import {
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 interface BarChartProps {
-  data: number[];
+  data: BarMonthItem[] | BarDayItem[];
+  isMonthly: boolean;
 }
 
-const BarChart = ({ data }: BarChartProps) => {
+const BarChart = ({ data, isMonthly }: BarChartProps) => {
   const chartRef = useRef<any>(null);
+  const chartData: ChartData<'bar'> = {
+    labels: isMonthly
+      ? ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+      : Array.from({ length: data.length }, (_, i) => `${i + 1}일`),
+    datasets: isMonthly ? monthFormatChanger(data as BarMonthItem[]) : dayFormatChanger(data as BarDayItem[]),
+  };
   const [legendItems, setLegendItems] = useState<any[]>([]);
   const [isHidden, setIsHidden] = useState<boolean[]>([]);
-  const { filter } = useFilterStore();
-  const isMonthly = filter.month === '전체' || filter.month === '월';
-  const chartData = isMonthly ? BarData1 : BarData2;
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
-  
+
   useEffect(() => {
-    if (chartRef.current) {
-      const newHiddenStatus = chartRef.current.data.datasets.map(
-        (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
-      );
-      setIsHidden(newHiddenStatus);
-    }
-  }, [filter, chartData]);
+    console.log('chartData: ', chartData);
+  }, []);
+  // useEffect(() => {
+  //   if (chartRef.current) {
+  //     const newHiddenStatus = chartRef.current.data.datasets.map(
+  //       (_: number, i: number) => !!chartRef.current.getDatasetMeta(i)?.hidden,
+  //     );
+  //     setIsHidden(newHiddenStatus);
+  //   }
+  // }, [filter, chartData]);
 
   // 차트 옵션 (legend는 별도로 분리하므로 display: false)
   const BarOptions = useMemo<ChartOptions<'bar'>>(
@@ -60,29 +69,28 @@ const BarChart = ({ data }: BarChartProps) => {
         tooltip: { enabled: false },
         legend: { display: false }, // 기존 legend 숨기기
       },
-    }),[]);
+    }),
+    [],
+  );
 
-  // filter 값 바뀌면 리렌더링 되도록
+  //  legend 출력 함수
   useEffect(() => {
     if (chartRef.current) {
       const chart = chartRef.current;
       setLegendItems(chart.legend?.legendItems || []);
     }
-  }, [filter, chartData]);
+  }, []);
 
   // legend 클릭 이벤트 핸들러
   const handleLegendClick = (index: number) => {
     if (!chartRef.current) return;
 
     const chart = chartRef.current;
-
-    // 현재 선택된 데이터셋이 모두 숨겨졌는지 확인
     const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
       const meta = chart.getDatasetMeta(i);
       return i === index ? !meta.hidden : meta.hidden;
     });
 
-    // 클릭한 항목만 활성화 / 다른 항목은 비활성화
     chart.data.datasets.forEach((_: number, i: number) => {
       const meta = chart.getDatasetMeta(i);
       if (isOnlyOneVisible) {
