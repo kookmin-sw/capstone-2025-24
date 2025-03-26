@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useItemStore } from '../../../stores/itemStore';
-import { InProgressData } from '../../../mocks/InProgressData';
+import { useItemStore } from '@/stores/itemStore';
+import { InProgressData } from '@/mocks/InProgressData';
 import IncidentCard from './IncidentCard';
 import * as S from './InProgress.style';
-import policerEmpty from '../../../assets/images/policerEmpty.png';
+import policerEmpty from '@/assets/images/policerEmpty.png';
 
 const InProgress = () => {
   const { items, setItems } = useItemStore();

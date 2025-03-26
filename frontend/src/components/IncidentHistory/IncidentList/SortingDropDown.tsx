@@ -1,7 +1,7 @@
 import * as S from './IncidentList.style.ts';
 import { useState, useRef } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
-import useOutsideClick from '../../../hooks/useOutsideClick.ts';
+import useOutsideClick from '@/hooks/useOutsideClick.ts';
 
 // 드롭다운 옵션 리스트
 const options: string[] = ['최신순', '과거순'];
