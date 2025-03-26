@@ -3,12 +3,14 @@ import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import ChartPage from '../pages/ChartPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage';
 import { Sidebar } from '../components/common/Sidebar/Sidebar';
+import LoginPage from '../pages/LoginPage/LoginPage';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Sidebar />}>
+          <Route path="/" element={<LoginPage />} />
           <Route path="/monitoring" element={<MonitoringPage />} />
           <Route path="/history" element={<IncidentHistoryPage />} />
           <Route path="/chart" element={<ChartPage />} />
