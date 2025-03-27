@@ -17,6 +17,7 @@ import {
   BarElement,
   Title,
   ChartOptions,
+  LegendItem,
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
@@ -28,14 +29,14 @@ interface BarChartProps {
 }
 
 const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
-  const chartRef = useRef<any>(null);
+  const chartRef = useRef<ChartJS<'bar'> | null>(null);
   const chartData: ChartData<'bar'> = {
     labels: isMonthly
       ? ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
       : Array.from({ length: data.length }, (_, i) => `${i + 1}일`),
     datasets: isMonthly ? monthFormatChanger(data as BarMonthItem[]) : dayFormatChanger(data as BarDayItem[]),
   };
-  const [legendItems, setLegendItems] = useState<any[]>([]);
+  const [legendItems, setLegendItems] = useState<LegendItem[]>([]);
   const [isHidden, setIsHidden] = useState<boolean[]>([]);
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
 
@@ -71,12 +72,12 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
     if (!chartRef.current) return;
 
     const chart = chartRef.current;
-    const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
+    const isOnlyOneVisible = chart.data.datasets.every((_, i) => {
       const meta = chart.getDatasetMeta(i);
       return i === index ? !meta.hidden : meta.hidden;
     });
 
-    chart.data.datasets.forEach((_: number, i: number) => {
+    chart.data.datasets.forEach((_, i) => {
       const meta = chart.getDatasetMeta(i);
       if (isOnlyOneVisible) {
         meta.hidden = false;
@@ -86,7 +87,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
     });
 
     chart.update();
-    setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
+    setIsHidden(chart.data.datasets.map((_, i) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
   return (
@@ -100,7 +101,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
         {legendItems.reverse().map((item, index) => {
           return (
             <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
-              <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
+              <S.LegendColorBox $bgcolor={item.fillStyle as string} $isHidden={isHidden[index]} />
               <span>{item.text}</span>
             </S.LegendItem>
           );
