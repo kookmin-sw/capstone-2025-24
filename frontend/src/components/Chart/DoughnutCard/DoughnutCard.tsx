@@ -1,11 +1,11 @@
 import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useCategoryIndexStore from '../../../stores/categoryIndexStore';
 import useRegionIndexStore from '../../../stores/regionIndexStore';
 import { CategoryData, CategoryData2, CategoryData3, CategoryItem } from '../../../mocks/DoughnutData';
-
+import { useScrollObserver } from '../../../hooks/useScrollObserver';
 interface LegendItem {
   text: string;
   color: string;
@@ -15,10 +15,13 @@ interface DoughnutCardProps {
   title: string;
   legendItems: LegendItem[];
 }
+
 const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
   const [data, setData] = useState<CategoryItem>(CategoryData);
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex } = store;
+  const [inviewPort, setInviewPort] = useState<boolean>(false);
+  const element = useRef<HTMLDivElement | null>(null);
 
   // 여기서 api get을 해줄 겁니다.
   useEffect(() => {
@@ -36,13 +39,17 @@ const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
     }
   }, [selectedIndex]);
 
+  useEffect(() => {
+    useScrollObserver({ setInviewPort, element });
+  });
+
   return (
-    <S.DoughnutCardLayout>
+    <S.DoughnutCardLayout ref={element}>
       <S.TitleDiv>
         <S.TitleP>{title}</S.TitleP>
         <ChartFilter title={title} />
       </S.TitleDiv>
-      <DoughnutChart data={data} legendItems={legendItems} />
+      {inviewPort && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort}/>}
     </S.DoughnutCardLayout>
   );
 };

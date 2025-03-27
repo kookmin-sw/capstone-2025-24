@@ -53,30 +53,6 @@ const textCenterPlugin = {
   },
 };
 
-// 차트 옵션
-const DoughnutOptions: ChartOptions<'doughnut'> = {
-  responsive: true,
-  maintainAspectRatio: false,
-  cutout: '47%',
-  interaction: {
-    // mode: 'index',
-    intersect: true,
-  },
-  animation: {
-    duration: 1500,
-    easing: 'easeInOutQuad',
-  },
-  plugins: {
-    legend: {
-      display: false,
-    },
-    textCenter: {},
-    tooltip: {
-      enabled: false,
-    },
-  },
-} as unknown as ChartOptions<'doughnut'>;
-
 interface LegendItem {
   text: string;
   color: string;
@@ -85,9 +61,10 @@ interface LegendItem {
 interface DoughnutChartProps {
   data: CategoryItem;
   legendItems: LegendItem[];
+  isVisible: boolean;
 }
 
-const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
+const DoughnutChart = ({ data, legendItems, isVisible }: DoughnutChartProps) => {
   // 차트 data
   const DoughnutData: ChartData<'doughnut'> = {
     labels: legendItems.map((it) => it.text),
@@ -101,6 +78,31 @@ const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
     ],
   };
 
+  // 차트 옵션
+  const DoughnutOptions: ChartOptions<'doughnut'> = {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '47%',
+    interaction: {
+      // mode: 'index',
+      intersect: true,
+    },
+    animation: isVisible?
+       {
+          duration: 1500,
+          easing: 'easeInOutQuad',
+        }
+      : { duration: 0 },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      textCenter: {},
+      tooltip: {
+        enabled: false,
+      },
+    },
+  } as unknown as ChartOptions<'doughnut'>;
   return (
     <S.DoughnutChartLayout>
       <S.GraphDiv>

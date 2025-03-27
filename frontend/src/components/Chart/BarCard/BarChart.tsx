@@ -24,9 +24,10 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcEleme
 interface BarChartProps {
   data: BarMonthItem[] | BarDayItem[];
   isMonthly: boolean;
+  isVisible: boolean;
 }
 
-const BarChart = ({ data, isMonthly }: BarChartProps) => {
+const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
   const chartRef = useRef<any>(null);
   const chartData: ChartData<'bar'> = {
     labels: isMonthly
@@ -50,7 +51,7 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
         x: { grid: { display: false }, stacked: true },
         y: { grid: { display: true }, stacked: true },
       },
-      animation: { duration: 1500, easing: 'easeInOutQuad' },
+      animation: isVisible ? { duration: 1500, easing: 'easeInOutQuad' } : { duration: 0 },
       plugins: {
         tooltip: { enabled: false },
         legend: { display: false }, // 기존 legend 숨기기

@@ -4,8 +4,9 @@ import { STATSLABEL } from '../../../../constants/labelList';
 interface StatsItemProps {
   label: string;
   count: string;
+  isVisible: boolean;
 }
-const StatsItem = ({ label, count }: StatsItemProps) => {
+const StatsItem = ({ label, count, isVisible }: StatsItemProps) => {
   return (
     <S.StatsItemLayout>
       <S.LabelDiv>
@@ -13,7 +14,11 @@ const StatsItem = ({ label, count }: StatsItemProps) => {
         <p>{count}%</p>
       </S.LabelDiv>
       <S.RatioBar>
-        <AnimatedBar target={parseInt(count)} color={STATSLABEL.find((item) => item.key === label)?.color || '#000'} />
+        <AnimatedBar
+          target={parseInt(count)}
+          color={STATSLABEL.find((item) => item.key === label)?.color || '#000'}
+          isVisible={isVisible}
+        />
       </S.RatioBar>
     </S.StatsItemLayout>
   );

@@ -12,28 +12,27 @@ const LineCard = () => {
   const handleChange = (_target: string, newValue: string) => {
     setCategory(newValue);
   };
-
-  useEffect(()=> {
+  useEffect(() => {
     // api 연결 예정
     setData(HourData);
-  },[selectedDate, category]);
+  }, [selectedDate, category]);
 
   return (
     <S.LineCardLayout>
       <S.TitleDiv>
         <S.TitleP>시간대별 사건수</S.TitleP>
         <Dropdown
-        items={CATEGORY_OPTIONS}
-        width={113}
-        placeholder="전체"
-        type="category"
-        onChange={handleChange}
-        value={category}
-      />
+          items={CATEGORY_OPTIONS}
+          width={113}
+          placeholder="전체"
+          type="category"
+          onChange={handleChange}
+          value={category}
+        />
       </S.TitleDiv>
       <S.ContentDiv>
         <CalendarSection selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-        <LineChart category={category} chartData={data}/>
+        <LineChart category={category} chartData={data} />
       </S.ContentDiv>
     </S.LineCardLayout>
   );
