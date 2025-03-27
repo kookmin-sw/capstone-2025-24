@@ -14,7 +14,7 @@ const ClusteringCard = () => {
   });
 
   return (
-    <S.ClusteringCardLayout>
+    <S.ClusteringCardLayout ref={element}>
       <ClusterMap />
       {inviewPort && <StatsPanel isVisible={inviewPort}/>}
       <S.TooltipDiv>
