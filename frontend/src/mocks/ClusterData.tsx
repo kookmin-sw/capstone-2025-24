@@ -105,7 +105,7 @@ interface StatsItem {
     count: number;
 }
 
-export const StatsData = [
+export const StatsData:StatsItem[] = [
   {category: "fireCount", count: 45},
   {category: "assaultCount", count: 28},
   {category: "swoonCount", count: 30},
