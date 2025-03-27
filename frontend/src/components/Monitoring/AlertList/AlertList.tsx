@@ -4,8 +4,8 @@ import ToolTip from '../../common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
 import { useItemStore } from '../../../stores/itemStore.ts';
 import { InProgressData } from '../../../mocks/InProgressData';
-import * as S from './style.ts';
-
+import * as S from './AlertList.style.ts';
+import { useLocation } from 'react-router-dom';
 
 const ToopTipContent = () => {
   return (
@@ -17,7 +17,8 @@ const ToopTipContent = () => {
 };
 
 const AlertList = () => {
-  const clicked_alert_id = 1;
+  const location = useLocation();
+  const clicked_alert_id = location.state?.clicked_alert_id;
   const { items, setItems } = useItemStore();
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const PushNotification = () => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/monitoring`);
+    navigate(`/monitoring`, { state: { clicked_alert_id: 3 } }); // 실제 감지된 사건 id를 전달 
   };
   return (
     <S.PushNotificationLayout onClick={handleClick}>
