@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useItemStore } from '../../../stores/itemStore';
+import { useItemStore } from '@/stores/itemStore';
 import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
 import CategorySelectModal from './CategorySelectModal';
-import { AlertProps } from '../../../types/alert';
+import { AlertProps } from '@/types/alert';
 import * as S from './AlertModal.style';
 
 interface ModalProps {

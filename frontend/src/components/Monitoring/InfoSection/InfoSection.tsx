@@ -2,8 +2,8 @@ import { useState } from 'react';
 import KakaoMap from './KakaoMap';
 import InfoBox from './InfoBox';
 import VideoBox from './VideoBox';
-import { Locations } from '../../../mocks/LocationData';
 import * as S from './InfoSection.style';
+import { Locations } from '@/mocks/LocationData';
 
 const InfoSection = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);

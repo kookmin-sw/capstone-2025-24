@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import AlertItem from './AlertItem.tsx';
-import ToolTip from '../../common/ToolTip/ToolTip.tsx';
+import ToolTip from '@/components/common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
-import { useItemStore } from '../../../stores/itemStore.ts';
-import { InProgressData } from '../../../mocks/InProgressData';
 import * as S from './AlertList.style.ts';
 import { useLocation } from 'react-router-dom';
+import { useItemStore } from '@/stores/itemStore.ts';
+import { InProgressData } from '@/mocks/InProgressData';
 
 const ToopTipContent = () => {
   return (

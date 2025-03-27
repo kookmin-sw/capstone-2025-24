@@ -2,7 +2,7 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
-import { AlertProps } from '../../../types/alert';
+import { AlertProps } from '@/types/alert';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {

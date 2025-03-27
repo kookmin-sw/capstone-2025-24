@@ -15,10 +15,10 @@ export const Sidebar = () => {
 
   useEffect(() => {
     switch (location.pathname) {
-      case "/history":
+      case '/history':
         setPage(() => 2);
         break;
-      case "/chart":
+      case '/chart':
         setPage(() => 3);
         break;
       default:

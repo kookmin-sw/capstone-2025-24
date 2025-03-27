@@ -1,4 +1,4 @@
-import { IncidentItemProps } from '../types/alert';
+import { IncidentItemProps } from '@/types/alert';
 
 export const InProgressData: IncidentItemProps[] = [
   {

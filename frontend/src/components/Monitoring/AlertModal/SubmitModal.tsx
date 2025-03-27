@@ -1,7 +1,7 @@
-import { useItemStore } from '../../../stores/itemStore';
-import { IncidentCardProps } from '../../../types/alert';
+import { useItemStore } from '@/stores/itemStore';
+import { IncidentCardProps } from '@/types/alert';
 import * as S from './AlertModal.style';
-import checkAnimation from '../../../assets/lottie/checkAnimation.json';
+import checkAnimation from '@/assets/lottie/checkAnimation.json';
 
 const SubmitModal = ({ onClose, id }: IncidentCardProps) => {
   const { removeItem } = useItemStore();

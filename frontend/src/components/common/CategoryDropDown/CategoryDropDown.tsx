@@ -1,7 +1,7 @@
 import * as S from './CategoryDropDown.style.ts';
 import { useState, useRef } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
-import useOutsideClick from '../../../hooks/useOutsideClick.ts';
+import useOutsideClick from '@/hooks/useOutsideClick.ts';
 
 // 드롭다운 옵션 리스트
 const options: string[] = ['전체', '화재', '싸움', '쓰러짐', '흉기 난동', '군중 밀집'];

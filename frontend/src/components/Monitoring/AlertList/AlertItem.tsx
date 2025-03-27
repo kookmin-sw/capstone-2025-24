@@ -1,7 +1,7 @@
-import useIsModalOpen from '../../../hooks/useIsModalOpen';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 import AlertModal from '../AlertModal/AlertModal.tsx';
-import { AlertProps } from '../../../types/alert';
 import * as S from './AlertList.style.ts';
+import { AlertProps } from '@/types/alert';
 
 interface AlertItemProps extends AlertProps {
   clicked: boolean;

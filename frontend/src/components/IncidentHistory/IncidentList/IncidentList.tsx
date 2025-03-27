@@ -1,5 +1,5 @@
 import * as S from './IncidentList.style.ts';
-import IncidentListData from '../../../mocks/IncidentListData.ts';
+import IncidentListData from '@/mocks/IncidentListData.ts';
 import { useState } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
