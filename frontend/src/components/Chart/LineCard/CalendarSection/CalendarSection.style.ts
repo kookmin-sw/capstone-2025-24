@@ -150,7 +150,7 @@ export const DateDisplayLayout = styled.div`
   width: 252px;
   height: 40px;
   padding: 2px 13px;
-  gap: 10px;
+  gap: 15px;
   border: 1px solid var(--gray400);
   border-radius: 10px;
 

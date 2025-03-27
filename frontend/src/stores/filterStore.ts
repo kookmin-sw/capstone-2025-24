@@ -35,16 +35,3 @@ export const useFilterStore = create<FilterStore>((set) => ({
     }),
 }));
 
-// type FilterType = {
-//   category: string;
-//   year: string;
-//   month: string;
-// };
-
-// interface FilterStore {
-//   filter: FilterType;
-//   setFilter: (key: keyof FilterType, value: string) => void;
-//   resetFilter: () => void;
-// }
-
-// export const useMiniFilterStore = create

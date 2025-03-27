@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-interface FilterItemProps {
-  $isSelected: boolean;
-}
 export const ChartFilterLayout = styled.div`
   display: flex;
   flex-direction: row;
@@ -13,11 +10,11 @@ export const ChartFilterLayout = styled.div`
   width: 175px;
 `;
 
-export const FilterItem = styled.button<FilterItemProps>`
+export const FilterItem = styled.button<{$isSelected:boolean}>`
   flex: 1;
   font-size: 12px;
-  min-width: 0; /* ✅ MUI 기본 min-width(64px) 무력화 */
-  width: 33%; /* ✅ 부모 크기에 맞춤 */
+  min-width: 0;
+  width: 33%;
   font-weight: 600;
   border-radius: 0%;
   color: ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray500)`)};

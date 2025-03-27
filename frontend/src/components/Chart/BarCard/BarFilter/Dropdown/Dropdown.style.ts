@@ -37,6 +37,7 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 0 0 2px var(--gray400) inset;
+  padding-left: 3px;
   margin-top: 3px;
   list-style: none;
   opacity: 0;

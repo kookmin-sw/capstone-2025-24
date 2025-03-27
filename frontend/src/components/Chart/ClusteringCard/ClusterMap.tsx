@@ -1,8 +1,8 @@
 import * as S from './ClusteringCard.style';
 import { MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import { ClusterData } from '../../../mocks/ClusterData';
-
-const Map = () => {
+import pinIcon from '@/assets/icons/pinIcon.svg';
+const ClusterMap = () => {
   return (
     <S.Maps center={{ lat: 37.5863, lng: 127.0203 }} level={8}>
       <MarkerClusterer
@@ -30,8 +30,11 @@ const Map = () => {
               lng: pos.longitude,
             }}
             image={{
-              src: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
-              size: { width: 1, height: 1 },
+              src: pinIcon,
+              size: {
+                width: 20,
+                height: 30,
+              },
               options: { offset: { x: 0, y: 0 } },
             }}
           />
@@ -41,4 +44,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default ClusterMap;

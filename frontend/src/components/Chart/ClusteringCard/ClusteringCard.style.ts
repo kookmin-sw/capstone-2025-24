@@ -19,11 +19,11 @@ export const TooltipDiv = styled.div`
   display: flex;
   height: 100%;
   align-items: end;
-  padding-bottom: 12px;
-`
+  padding-bottom: 2px;
+`;
 
 // Map.tsx --------------------------------- //
 export const Maps = styled(Map)`
   width: 351px;
-  height: 271px;
+  height: 280px;
 `;

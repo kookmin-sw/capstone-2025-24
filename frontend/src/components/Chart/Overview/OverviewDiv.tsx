@@ -1,4 +1,4 @@
-import * as S from '../Chart.style';
+import * as S from './Overview.style';
 import OverviewCard from '../../../components/Chart/Overview/OverviewCard';
 import OverviewLargeCard from '../../../components/Chart/Overview/OverviewLargeCard';
 import { OVERVIEW_LIST } from '../../../constants/overviewList';

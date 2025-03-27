@@ -40,14 +40,14 @@ export const Layout = styled.div<LayoutProps>`
 `;
 
 export const CardDiv = styled.div`
-    background-color: white;
-    width: 263px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: white;
+  width: 263px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const ColorDiv = styled.div<LevelProps>`

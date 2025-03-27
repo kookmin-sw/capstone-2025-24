@@ -1,4 +1,4 @@
-import * as S from '../Chart.style';
+import * as S from './Overview.style';
 import policer from '../../../assets/images/policer.svg';
 
 const OverviewLargeCard = () => {

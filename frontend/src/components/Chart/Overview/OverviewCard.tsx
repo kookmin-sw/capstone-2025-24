@@ -1,4 +1,4 @@
-import * as S from '../Chart.style';
+import * as S from './Overview.style';
 import ToolTip from '../../common/ToolTip/ToolTip';
 import useCountUp from '../../../hooks/useCountUp';
 

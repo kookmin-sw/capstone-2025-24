@@ -46,7 +46,7 @@ export const ChartScrollWrapper = styled.div`
   }
 `;
 
-export const ChartCanvasWrapper = styled.div<{$customWidth:string}>`
+export const ChartCanvasWrapper = styled.div<{ $customWidth: string }>`
   width: ${(props) => props.$customWidth};
   min-width: 100%;
   height: 97%;

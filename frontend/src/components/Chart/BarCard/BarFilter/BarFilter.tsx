@@ -8,9 +8,8 @@ import {
 } from '../../../../constants/dropdownOptions';
 import { useFilterStore } from '../../../../stores/filterStore';
 
-
 const BarFilter = () => {
-  const {filter, setFilter} = useFilterStore();
+  const { filter, setFilter } = useFilterStore();
 
   const handleChange = (target: 'category' | 'year' | 'month', newValue: string) => {
     setFilter(target, newValue);
