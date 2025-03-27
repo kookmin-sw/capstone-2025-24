@@ -1,6 +1,5 @@
-package com.example.backend.analysis.domain;
+package com.example.backend.common.domain;
 
-import com.example.backend.dashboard.domain.CaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
