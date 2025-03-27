@@ -1,12 +1,27 @@
 import * as S from './PushNotification.style';
 import exclamationMark from '../../../assets/icons/exclamationMark.svg';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const PushNotification = () => {
+  const [visible, setVisible] = useState(true); // 푸시알림 상태
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/monitoring`, { state: { clicked_alert_id: 3 } }); // 실제 감지된 사건 id를 전달 
+    navigate(`/monitoring`, { state: { clicked_alert_id: 3 } }); // 실제 감지된 사건 id를 전달
+    setVisible(false);
   };
+
+  // 5초 후 푸시알림 끄기
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible) return null;
+
   return (
     <S.PushNotificationLayout onClick={handleClick}>
       <S.ExclamationMark src={exclamationMark} />
