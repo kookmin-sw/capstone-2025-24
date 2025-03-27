@@ -12,7 +12,7 @@ const blinkShadow = keyframes`
   }
 `;
 
-export const Layout = styled.div<{clicked: boolean}>`
+export const Layout = styled.div<{ clicked: boolean }>`
   display: flex;
   width: 274px;
   height: 159px;
@@ -38,7 +38,7 @@ export const CardDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const ColorDiv = styled.div<{level: number}>`
+export const ColorDiv = styled.div<{ level: number }>`
   background-color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   width: 11px;
   height: 159px;
@@ -58,7 +58,7 @@ export const DateWrapper = styled.div`
   align-items: center;
 `;
 
-export const StateCircle = styled.div<{state: string}>`
+export const StateCircle = styled.div<{ state: string }>`
   width: 10px;
   height: 10px;
   border-radius: 5px;
@@ -72,7 +72,7 @@ export const CategoryDiv = styled.div`
   align-items: center;
 `;
 
-export const AlertIcon = styled(TbAlertTriangleFilled)<{level: number}>`
+export const AlertIcon = styled(TbAlertTriangleFilled)<{ level: number }>`
   color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   margin-right: 5px;
   font-size: 25px;
@@ -95,6 +95,7 @@ export const ShowButtoon = styled.button`
   border: 1px solid var(--primary900);
   background-color: white;
   border-radius: 5px;
+  cursor: pointer;
   &:hover {
     background-color: #f5f7fe;
   }
@@ -109,14 +110,12 @@ export const ShowButtoon = styled.button`
 export const AlertListLayout = styled.div`
   width: 300px;
   height: 100vh;
-  background-color: #fafafa;
 `;
 
 export const TitleP = styled.p`
   font-size: 25px;
   font-weight: 700;
   padding: 0px 17px;
-  background-color: #fafafa;
   width: 300px;
   height: 53px;
   z-index: 100;
@@ -129,9 +128,14 @@ export const AlertContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fafafa;
-  height: 100vh;
+  height: calc(100vh - 53px);
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 1.5px;
+    opacity: 0;
+  }
+
 `;
 
 // EmptyView.tsx --------------------------------------------//
