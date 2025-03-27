@@ -42,6 +42,7 @@ export const TableHeader = styled.th<{ w: number }>`
   font-weight: 600;
   text-align: left;
   border-bottom: 2px solid var(--gray800);
+  padding: 0 0 0 10px;
 `;
 
 export const TableBodyRow = styled.tr`
@@ -61,6 +62,7 @@ export const TableData = styled.td<{ index: number }>`
 export const InfoP = styled.p`
   font-size: 18px;
   font-weight: 400;
+  padding: 0 0 0 12px;
 `;
 
 export const Pagination = styled.div`
