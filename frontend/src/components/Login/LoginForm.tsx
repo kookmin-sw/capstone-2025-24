@@ -9,10 +9,10 @@ const LoginForm = () => {
 
   return (
     <S.StyledForm>
-      <S.StyledInput placeholder="아이디" type="id" required onChange={(e) => setId(e.target.value)}></S.StyledInput>
+      <S.StyledInput placeholder="아이디" type="text" required onChange={(e) => setId(e.target.value)}></S.StyledInput>
       <S.StyledInput
         placeholder="비밀번호"
-        type="id"
+        type="password"
         required
         onChange={(e) => setPassword(e.target.value)}
       ></S.StyledInput>
