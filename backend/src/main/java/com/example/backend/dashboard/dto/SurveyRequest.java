@@ -1,5 +1,5 @@
 package com.example.backend.dashboard.dto;
-import com.example.backend.dashboard.domain.CaseEntity.CaseCategory;
+import com.example.backend.common.domain.CaseEntity.CaseCategory;
 
 import lombok.Data;
 

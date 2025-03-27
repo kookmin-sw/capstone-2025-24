@@ -1,6 +1,6 @@
 package com.example.backend.analysis.service;
 
-import com.example.backend.analysis.domain.CaseStatsOverviewEntity;
+import com.example.backend.common.domain.CaseStatsOverviewEntity;
 import com.example.backend.analysis.dto.*;
 import com.example.backend.analysis.repository.CaseStatsCategoryRepository;
 import com.example.backend.analysis.repository.CaseStatsOverviewRepository;

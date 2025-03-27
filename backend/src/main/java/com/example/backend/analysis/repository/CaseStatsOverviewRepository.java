@@ -1,6 +1,6 @@
 package com.example.backend.analysis.repository;
 
-import com.example.backend.analysis.domain.CaseStatsOverviewEntity;
+import com.example.backend.common.domain.CaseStatsOverviewEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

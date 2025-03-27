@@ -1,5 +1,6 @@
 package com.example.backend.search.domain;
 
+import com.example.backend.common.domain.CaseEntity;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;

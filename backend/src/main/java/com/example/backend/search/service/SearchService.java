@@ -1,6 +1,6 @@
 package com.example.backend.search.service;
 
-import com.example.backend.search.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.search.domain.SearchSpecification;
 import com.example.backend.search.dto.*;
 import com.example.backend.search.repository.CctvRepository;

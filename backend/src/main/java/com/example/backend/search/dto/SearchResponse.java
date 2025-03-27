@@ -1,6 +1,6 @@
 package com.example.backend.search.dto;
 
-import com.example.backend.search.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;

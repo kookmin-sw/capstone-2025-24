@@ -1,6 +1,6 @@
 package com.example.backend.dashboard.dto;
 
-import com.example.backend.dashboard.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

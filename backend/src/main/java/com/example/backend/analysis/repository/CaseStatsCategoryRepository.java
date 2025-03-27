@@ -1,6 +1,6 @@
 package com.example.backend.analysis.repository;
 
-import com.example.backend.analysis.domain.CaseStatsCategoryEntity;
+import com.example.backend.common.domain.CaseStatsCategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

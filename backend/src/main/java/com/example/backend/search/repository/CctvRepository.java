@@ -1,6 +1,6 @@
 package com.example.backend.search.repository;
 
-import com.example.backend.search.domain.CctvEntity;
+import com.example.backend.common.domain.CctvEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
