@@ -1,4 +1,4 @@
-import * as S from './style.ts';
+import * as S from './AlertList.style.ts';
 import FolderImg from '@/assets/icons/folderIcon.svg';
 
 const EmptyView = () => {

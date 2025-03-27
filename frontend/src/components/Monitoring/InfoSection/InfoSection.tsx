@@ -3,7 +3,7 @@ import KakaoMap from './KakaoMap';
 import InfoBox from './InfoBox';
 import VideoBox from './VideoBox';
 import { Locations } from '../../../mocks/LocationData';
-import * as S from './style';
+import * as S from './InfoSection.style';
 
 const InfoSection = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);

@@ -1,4 +1,4 @@
-import * as S from './style';
+import * as S from './InfoSection.style';
 
 interface VideoProps {
   selectedIndex: number | null;
@@ -9,9 +9,7 @@ interface VideoProps {
 
 const VideoBox = ({ selectedIndex, Locations }: VideoProps) => {
   return (
-    <div>
-      {selectedIndex !== null && <S.VideoPlayer src={Locations[selectedIndex].cctvUrl} title="CCTV Video" />}
-    </div>
+    <div>{selectedIndex !== null && <S.VideoPlayer src={Locations[selectedIndex].cctvUrl} title="CCTV Video" />}</div>
   );
 };
 
