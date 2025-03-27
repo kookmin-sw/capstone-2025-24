@@ -106,7 +106,7 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
     <S.LineChartLayout>
       <S.LineChart ref={chartRef} options={LineOptions} data={LineData} />
       <S.FixedLegendContainer>
-        {legendItems.map((item, index) => {
+        {[...legendItems].reverse().map((item, index) => {
           return (
             <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
               <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
