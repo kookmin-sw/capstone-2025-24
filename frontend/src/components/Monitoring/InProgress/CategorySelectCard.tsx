@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useSelectCategory } from '../../../hooks/useSelectCategory';
-import { IncidentCardProps } from '../../../types/alert';
+import { useSelectCategory } from '@/hooks/useSelectCategory';
+import { IncidentCardProps } from '@/types/alert';
 import * as S from './InProgress.style';
 import ResolvedCard from './ResolvedCard';
 

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import AlertItem from './AlertItem.tsx';
-import ToolTip from '../../common/ToolTip/ToolTip.tsx';
+import ToolTip from '@/components/common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
-import { useItemStore } from '../../../stores/itemStore.ts';
-import { InProgressData } from '../../../mocks/InProgressData';
+import { useItemStore } from '@/stores/itemStore.ts';
+import { InProgressData } from '@/mocks/InProgressData';
 import * as S from './style.ts';
-
 
 const ToopTipContent = () => {
   return (

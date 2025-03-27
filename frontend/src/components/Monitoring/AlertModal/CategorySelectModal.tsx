@@ -1,4 +1,4 @@
-import { useSelectCategory } from '../../../hooks/useSelectCategory';
+import { useSelectCategory } from '@/hooks/useSelectCategory';
 import * as S from './AlertModal.style';
 
 interface CategorySelectModalProps {

@@ -1,6 +1,6 @@
-import useIsModalOpen from '../../../hooks/useIsModalOpen';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 import AlertModal from '../AlertModal/AlertModal.tsx';
-import { AlertProps } from '../../../types/alert';
+import { AlertProps } from '@/types/alert';
 import * as S from './style.ts';
 
 interface AlertItemProps extends AlertProps {

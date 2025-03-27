@@ -1,6 +1,6 @@
 import * as S from './VideoModal.style';
 import { IoMdClose } from 'react-icons/io';
-import VideoComponent from '../../../common/VideoComponent/VideoComponent';
+import VideoComponent from '@/components/common/VideoComponent/VideoComponent';
 
 interface VideoModalProps {
   isOpen: boolean;

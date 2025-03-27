@@ -1,6 +1,6 @@
-import { useItemStore } from '../../../stores/itemStore';
-import { IncidentCardProps } from '../../../types/alert';
-import checkAnimation from '../../../assets/lottie/checkAnimation.json';
+import { useItemStore } from '@/stores/itemStore';
+import { IncidentCardProps } from '@/types/alert';
+import checkAnimation from '@/assets/lottie/checkAnimation.json';
 import * as S from './InProgress.style';
 
 const ResolvedCard = ({ onClose, id }: IncidentCardProps) => {

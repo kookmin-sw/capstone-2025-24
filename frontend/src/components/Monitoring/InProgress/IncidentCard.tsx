@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import useIsModalOpen from '../../../hooks/useIsModalOpen';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
-import { IncidentItemProps } from '../../../types/alert';
+import { IncidentItemProps } from '@/types/alert';
 import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police, videoUrl }: IncidentItemProps) => {

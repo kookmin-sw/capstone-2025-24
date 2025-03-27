@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { IncidentItemProps } from '../types/alert';
+import { IncidentItemProps } from '@/types/alert';
 
 interface ItemStore {
   items: IncidentItemProps[];
