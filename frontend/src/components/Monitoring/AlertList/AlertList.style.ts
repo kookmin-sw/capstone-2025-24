@@ -130,12 +130,12 @@ export const AlertContainer = styled.div`
   align-items: center;
   height: calc(100vh - 53px);
   overflow-y: auto;
+  padding-top: 5px;
 
   &::-webkit-scrollbar {
     width: 1.5px;
     opacity: 0;
   }
-
 `;
 
 // EmptyView.tsx --------------------------------------------//
