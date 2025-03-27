@@ -1,7 +1,23 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // PushNotification.tsx -------------------------//
+const slideDown = keyframes`
+  from {
+    opacity: 0;
+    transform: translate(-50%, -96px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+`;
+
 export const PushNotificationLayout = styled.div`
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 9999;
   width: 498px;
   height: 96px;
   background-color: #fffaee;
@@ -11,6 +27,9 @@ export const PushNotificationLayout = styled.div`
   display: flex;
   padding: 21px 23px;
   gap: 26px;
+  cursor: pointer;
+
+  animation: ${slideDown} 1s ease-out;
 `;
 
 export const ExclamationMark = styled.img`
