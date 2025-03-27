@@ -1,6 +1,5 @@
 import * as S from './BarFilter.style';
 import Dropdown from './Dropdown/Dropdown';
-import { useEffect } from 'react';
 import {
   CATEGORY_OPTIONS,
   YEAR_OPTIONS,

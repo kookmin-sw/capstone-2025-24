@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import * as S from './ChartFilter.style';
 import FilterItem from './FilterItem';
 import useCategoryIndexStore from '../../../../stores/categoryIndexStore';

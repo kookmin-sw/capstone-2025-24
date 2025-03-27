@@ -1,6 +1,5 @@
 import * as S from './BarCard.style';
 import { useRef, useEffect, useState, useMemo } from 'react';
-import { useFilterStore } from '../../../stores/filterStore';
 import { Bar } from 'react-chartjs-2';
 import { monthFormatChanger, dayFormatChanger } from '../../../hooks/dataFormatter';
 import { BarMonthItem, BarDayItem } from '../../../mocks/BarData';

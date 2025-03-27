@@ -9,7 +9,7 @@ const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');
   const [data, setData] = useState<HourItem[]>(HourData);
-  const handleChange = (target: string, newValue: string) => {
+  const handleChange = (_target: string, newValue: string) => {
     setCategory(newValue);
   };
 
