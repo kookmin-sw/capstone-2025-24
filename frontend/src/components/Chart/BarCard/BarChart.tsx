@@ -96,7 +96,7 @@ const BarChart = ({ data, isMonthly }: BarChartProps) => {
         </S.ChartCanvasWrapper>
       </S.ChartScrollWrapper>
       <S.FixedLegendContainer>
-        {[...legendItems].reverse().map((item, index) => {
+        {legendItems.reverse().map((item, index) => {
           return (
             <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
               <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />

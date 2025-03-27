@@ -15,6 +15,7 @@ import {
   ChartOptions,
   ChartData,
 } from 'chart.js';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
 
 interface LineChartProps {
@@ -32,10 +33,10 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
       maintainAspectRatio: false,
       interaction: {
         mode: 'nearest',
-        intersect: true,
+        intersect: false,
       },
       scales: {
-        x: { grid: { display: false } },
+        x: { grid: { display: false }, stacked: false },
         y: { grid: { display: true }, stacked: false },
       },
       animation: {
@@ -52,7 +53,7 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
           bodyColor: 'black',
           titleColor: 'black',
           titleFont: {
-            size: 13,
+            size: 0,
           },
 
           bodyFont: {
@@ -106,7 +107,7 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
     <S.LineChartLayout>
       <S.LineChart ref={chartRef} options={LineOptions} data={LineData} />
       <S.FixedLegendContainer>
-        {[...legendItems].reverse().map((item, index) => {
+        {legendItems.reverse().map((item, index) => {
           return (
             <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
               <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
