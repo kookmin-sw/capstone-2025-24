@@ -19,14 +19,15 @@ import { categoryFormatChanger } from '../../../hooks/dataFormatter';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 // data 합합
-const getTotal = (chart: any) => {
-  return chart.data.datasets[0].data.reduce((acc: number, value: number) => acc + value, 0);
+const getTotal = (chart: ChartJS) => {
+  const data = chart.data.datasets[0].data as number[];
+  return data.reduce((acc, value) => acc + value, 0);
 };
 
 // 가운데 총계 text 추가를 위한 plugin
 const textCenterPlugin = {
   id: 'textCenter',
-  beforeDraw: (chart: any) => {
+  beforeDraw: (chart: ChartJS) => {
     const { width, height } = chart;
     const ctx = chart.ctx;
 
@@ -89,12 +90,12 @@ interface DoughnutChartProps {
 const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
   // 차트 data
   const DoughnutData: ChartData<'doughnut'> = {
-    labels: legendItems.map(it => it.text),
+    labels: legendItems.map((it) => it.text),
     datasets: [
       {
         label: '사건 수',
         data: categoryFormatChanger(data),
-        backgroundColor: legendItems.map(it => it.color),
+        backgroundColor: legendItems.map((it) => it.color),
         hoverOffset: 5,
       },
     ],
@@ -105,7 +106,7 @@ const DoughnutChart = ({ data, legendItems }: DoughnutChartProps) => {
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems}/>
+      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} />
     </S.DoughnutChartLayout>
   );
 };
