@@ -12,10 +12,10 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;  // PK
+    private Integer id;  // PK
 
-    @Column(name = "office_id")
-    private int officeId;
+    @Column(name = "office_id", nullable = false)
+    private Integer officeId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -28,4 +28,7 @@ public class UserEntity {
 
     @Column(name = "profile_url", nullable = false)
     private String profileUrl;
+
+    @Column(name = "rank", nullable = false)
+    private String rank;
 }
