@@ -1,7 +1,7 @@
 package com.example.backend.dashboard.service;
 
-import com.example.backend.dashboard.domain.CaseEntity;
-import com.example.backend.dashboard.domain.CaseEntity.CaseState;
+import com.example.backend.common.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity.CaseState;
 import com.example.backend.dashboard.dto.CaseResponse;
 import com.example.backend.dashboard.dto.SurveyRequest;
 import com.example.backend.dashboard.dto.SurveyResponse;
@@ -52,7 +52,7 @@ public class DashboardService {
 
         List<CaseEntity> cases = caseRepository.findAllByOfficeIdAndStateOrderById(officeId, CaseState.출동);
 
-        return cases.stream().map(this::convertToDto).collect(Collectors.toList());
+        return cases.stream().map(CaseResponse::fromEntity).collect(Collectors.toList());
     }
 
     // 출동 중인 사건 영상 확인
@@ -101,21 +101,4 @@ public class DashboardService {
 
         return new SurveyResponse(id, caseEntity.getCategory(), "설문조사가 정상적으로 저장되었습니다.");
     }
-
-    // Entity → DTO 변환
-    private CaseResponse convertToDto(CaseEntity entity) {
-        CaseResponse dto = new CaseResponse();
-        dto.setId(entity.getId());
-        dto.setPolice_name(entity.getPolice().getName());
-        dto.setPolice_rank(String.valueOf(entity.getPolice().getRank()));
-        dto.setCctv_address(entity.getCctv().getAddress());
-        dto.setDate(entity.getDate());
-        dto.setLevel(entity.getLevel());
-        dto.setCategory(entity.getCategory());
-        dto.setVideo(entity.getVideo());
-        dto.setState(entity.getState());
-        dto.setMemo(entity.getMemo());
-        return dto;
-    }
-
 }
