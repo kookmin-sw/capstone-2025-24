@@ -4,7 +4,6 @@ import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.common.domain.PoliceEntity;
 import com.example.backend.dashboard.dto.AlarmResponse;
 import com.example.backend.dashboard.repository.AlarmListRepository;
-import com.example.backend.dashboard.repository.CaseRepository;
 import com.example.backend.user.dto.UserResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +21,6 @@ import static com.example.backend.common.domain.CaseEntity.CaseState;
 @RequiredArgsConstructor
 public class AlarmListService {
     private final AlarmListRepository alarmListRepository;
-    private final CaseRepository caseRepository;
 
     // 세션에서 officeId 추출
     private int getAuthenticatedOfficeId(HttpSession session) {
@@ -45,7 +43,7 @@ public class AlarmListService {
     private CaseEntity getAuthorizedCase(int caseId, HttpSession session) {
         int officeId = getAuthenticatedOfficeId(session);
 
-        CaseEntity caseEntity = caseRepository.findById(caseId)
+        CaseEntity caseEntity = alarmListRepository.findById(caseId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
         if (caseEntity.getOffice().getId() != officeId) {
             throw new NoSuchElementException("해당 사건에 대한 권한이 없습니다.");
@@ -55,7 +53,7 @@ public class AlarmListService {
 
     public List<AlarmResponse> getReadyCases(HttpSession session) {
         int officeId = getAuthenticatedOfficeId(session);
-        List<CaseEntity> cases = alarmListRepository.findByOffice_IdAndStateIn(
+        List<CaseEntity> cases = alarmListRepository.findByOfficeIdAndStateIn(
                 officeId,
                 Arrays.asList(CaseState.확인, CaseState.미확인)
         );
@@ -67,6 +65,11 @@ public class AlarmListService {
 
     public AlarmResponse getCaseById(Integer id, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
+
+        if(caseEntity.getState() != CaseEntity.CaseState.확인 && caseEntity.getState() != CaseEntity.CaseState.미확인) {
+            throw new IllegalStateException("해당 사건은 이미 출동 되었거나 완료된 사건입니다.");
+        }
+
         return AlarmResponse.fromEntityWithVideo(caseEntity);
     }
 
