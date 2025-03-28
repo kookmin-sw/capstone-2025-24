@@ -67,8 +67,8 @@ export const InfoDiv = styled.div`
 `;
 
 export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
-  font-size: ${({ type }) => (type === 'name' ? '20px' : type === 'level' ? '14px' : '12px')};
-  font-weight: ${({ type }) => (type === 'name' ? 'bold' : '')};
+  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'level' ? '14px' : '12px')};
+  font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
 `;
 
@@ -80,13 +80,13 @@ export const SidebarBtn = styled(Button)`
   justify-content: start;
   align-items: center;
   width: 95%;
-  font-size: 17px;
+  font-size: 16px;
   border-radius: 10px;
   padding: 8px 6px;
   padding-left: 15px;
   gap: 6px;
   color: black;
-  font-weight: bold;
+  /* font-weight: bold; */
   background-color: #00ff0000;
 
   &:hover {
