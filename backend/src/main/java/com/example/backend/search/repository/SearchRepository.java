@@ -1,6 +1,6 @@
 package com.example.backend.search.repository;
 
-import com.example.backend.search.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

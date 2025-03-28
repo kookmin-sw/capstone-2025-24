@@ -1,4 +1,4 @@
-package com.example.backend.analysis.domain;
+package com.example.backend.common.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

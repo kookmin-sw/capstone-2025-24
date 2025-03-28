@@ -1,6 +1,6 @@
 package com.example.backend.dashboard.service;
 
-import com.example.backend.dashboard.domain.CaseEntity;
+import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.dashboard.dto.AlarmResponse;
 import com.example.backend.dashboard.repository.AlarmListRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.backend.dashboard.domain.CaseEntity.CaseState;
+import static com.example.backend.common.domain.CaseEntity.CaseState;
 
 @Service
 @RequiredArgsConstructor

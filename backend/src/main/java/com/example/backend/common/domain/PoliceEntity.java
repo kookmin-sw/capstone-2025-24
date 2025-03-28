@@ -1,4 +1,4 @@
-package com.example.backend.search.domain;
+package com.example.backend.common.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +13,7 @@ public class PoliceEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "office_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "office_id", referencedColumnName = "id")
     private OfficeEntity office ;
 
     @Column(name = "name", nullable = false, length = 40)
@@ -25,7 +25,15 @@ public class PoliceEntity {
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;
 
-    @Column(name = "profile_url", nullable = false, length = 255)
+    @Column(name = "profile_url", nullable = false)
     private String profileUrl;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "rank", nullable = false)
+    private police_rank rank;
+
+    public enum police_rank {
+        순경, 경장, 경사, 경위, 경감, 경정, 총경, 경무관, 치안감, 치안정감, 치안총감
+    }
 
 }

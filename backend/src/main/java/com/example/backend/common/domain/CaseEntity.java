@@ -1,6 +1,5 @@
-package com.example.backend.search.domain;
+package com.example.backend.common.domain;
 
-import com.example.backend.search.dto.SearchResponse;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -36,7 +35,7 @@ public class CaseEntity {
     @Column(name = "category", nullable = false)
     private CaseCategory category;
 
-    @Column(name = "video", nullable = false, length = 255)
+    @Column(name = "video", nullable = false)
     private String video;
 
     @Enumerated(EnumType.STRING)
