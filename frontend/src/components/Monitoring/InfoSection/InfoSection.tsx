@@ -2,7 +2,7 @@ import { useState } from 'react';
 import KakaoMap from './KakaoMap';
 import InfoBox from './InfoBox';
 import VideoBox from './VideoBox';
-import { Locations } from '../../../mocks/LocationData';
+import { Locations } from '@/mocks/LocationData';
 import * as S from './style';
 
 const InfoSection = () => {

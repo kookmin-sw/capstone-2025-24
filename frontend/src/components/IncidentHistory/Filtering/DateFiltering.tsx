@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { ko } from 'date-fns/locale';
 import { Locale } from 'date-fns';
 import DatePicker from 'react-datepicker';
-import useOutsideClick from '../../../hooks/useOutsideClick.ts';
+import useOutsideClick from '@/hooks/useOutsideClick.ts';
 
 interface DateFilteringProps {
   startDate: Date;

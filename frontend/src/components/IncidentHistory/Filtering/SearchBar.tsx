@@ -1,7 +1,7 @@
 import * as S from './Filtering.style.ts';
 import { useState, useRef } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
-import useOutsideClick from '../../../hooks/useOutsideClick.ts';
+import useOutsideClick from '@/hooks/useOutsideClick.ts';
 
 const options: string[] = ['담당 경찰', '위치'];
 

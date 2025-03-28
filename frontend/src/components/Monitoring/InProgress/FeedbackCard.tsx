@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IncidentCardProps } from '../../../types/alert';
+import { IncidentCardProps } from '@/types/alert';
 import ResolvedCard from './ResolvedCard';
 import CategorySelectCard from './CategorySelectCard';
 import * as S from './InProgress.style';

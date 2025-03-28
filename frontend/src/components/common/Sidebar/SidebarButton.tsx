@@ -1,5 +1,5 @@
 import * as S from './Sidebar.style';
-import sidebarStore from '../../../stores/sidebarStore';
+import sidebarStore from '@/stores/sidebarStore';
 
 interface SidebarButtonProps {
   id: number;
