@@ -3,11 +3,16 @@ package com.example.backend.dashboard.service;
 import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.dashboard.dto.AlarmResponse;
 import com.example.backend.dashboard.repository.AlarmListRepository;
+import com.example.backend.dashboard.repository.CaseRepository;
+import com.example.backend.user.dto.UserResponseDto;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static com.example.backend.common.domain.CaseEntity.CaseState;
@@ -16,8 +21,31 @@ import static com.example.backend.common.domain.CaseEntity.CaseState;
 @RequiredArgsConstructor
 public class AlarmListService {
     private final AlarmListRepository alarmListRepository;
+    private final CaseRepository caseRepository;
 
-    public List<AlarmResponse> getReadyCases(Integer officeId) {
+    // 세션에서 officeId 추출
+    private int getAuthenticatedOfficeId(HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("세션이 만료되었거나 로그인되지 않았습니다.");
+        }
+        return user.getOfficeId();
+    }
+
+    // 사건 조회 및 권한 검증 (중복 제거)
+    private CaseEntity getAuthorizedCase(int caseId, HttpSession session) {
+        int officeId = getAuthenticatedOfficeId(session);
+
+        CaseEntity caseEntity = caseRepository.findById(caseId)
+                .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
+        if (caseEntity.getOffice().getId() != officeId) {
+            throw new NoSuchElementException("해당 사건에 대한 권한이 없습니다.");
+        }
+        return caseEntity;
+    }
+
+    public List<AlarmResponse> getReadyCases(HttpSession session) {
+        int officeId = getAuthenticatedOfficeId(session);
         List<CaseEntity> cases = alarmListRepository.findByOffice_IdAndStateIn(
                 officeId,
                 Arrays.asList(CaseState.확인, CaseState.미확인)
@@ -28,15 +56,13 @@ public class AlarmListService {
                 .collect(Collectors.toList());
     }
 
-    public AlarmResponse getCaseById(Integer id, Integer officeId) {
-        CaseEntity caseEntity = alarmListRepository.findByIdAndOffice_Id(id, officeId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사건이 존재하지 않거나, 접근 권한이 없습니다."));
+    public AlarmResponse getCaseById(Integer id, HttpSession session) {
+        CaseEntity caseEntity = getAuthorizedCase(id, session);
         return AlarmResponse.fromEntityWithVideo(caseEntity);
     }
 
-    public String updateCaseState(Integer id, Integer officeId) {
-        CaseEntity caseEntity = alarmListRepository.findByIdAndOffice_Id(id, officeId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 사건이 존재하지 않거나, 접근 권한이 없습니다."));
+    public String updateCaseState(Integer id, HttpSession session) {
+        CaseEntity caseEntity = getAuthorizedCase(id, session);
 
         // 이미 state가 "출동"이면 메시지 반환
         if (caseEntity.getState() == CaseEntity.CaseState.출동) {

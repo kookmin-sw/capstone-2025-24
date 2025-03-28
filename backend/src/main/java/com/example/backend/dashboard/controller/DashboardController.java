@@ -33,21 +33,21 @@ public class DashboardController {
 
     // 출동 중인 사건 영상 확인
     @GetMapping("/case/move/{id}")
-    public ResponseEntity<?> getCaseVideo(@PathVariable int id, HttpSession session) {
+    public ResponseEntity<?> getCaseVideo(@PathVariable("id") int id, HttpSession session) {
         Map<String, String> videoResponse = dashboardService.getCaseVideo(id, session);
         return ResponseEntity.ok(videoResponse);
     }
 
     // 출동 중인 사건 해결 처리
     @PutMapping("/case/complete/{id}")
-    public ResponseEntity<?> completeCase(@PathVariable int id, HttpSession session) {
+    public ResponseEntity<?> completeCase(@PathVariable("id")  int id, HttpSession session) {
         Map<Integer, String> completedCase = dashboardService.completeCase(id, session);
         return ResponseEntity.ok(completedCase);
     }
 
     // AI 설문조사 결과 저장
     @PutMapping("/survey/{id}")
-    public ResponseEntity<?> saveSurveyResult(@PathVariable int id,
+    public ResponseEntity<?> saveSurveyResult(@PathVariable("id")  int id,
                                               @RequestBody SurveyRequest surveyRequest,
                                               HttpSession session) {
         SurveyResponse surveyResult = dashboardService.saveSurveyResult(id, surveyRequest, session);
