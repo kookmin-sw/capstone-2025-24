@@ -1,0 +1,6 @@
+train: /content/drive/MyDrive/YOLO/yolov11n-finetuning/detection-finetuing-data-3-3/train/images
+val: /content/drive/MyDrive/YOLO/yolov11n-finetuning/detection-finetuing-data-3-3/valid/images
+test: /content/drive/MyDrive/YOLO/yolov11n-finetuning/detection-finetuing-data-3-3/test/images
+
+nc: 2
+names: ['fire', 'person']
