@@ -49,7 +49,7 @@ public class CaseEntity {
     private String memo;
 
     public enum CaseCategory {
-        fire, assult, crowd_congestion, weapon, swoon
+        fire, assault, crowd_congestion, weapon, swoon
     }
 
     public enum CaseState {

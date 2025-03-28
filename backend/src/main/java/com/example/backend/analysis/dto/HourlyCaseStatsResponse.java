@@ -8,7 +8,7 @@ import lombok.Data;
 public class HourlyCaseStatsResponse {
     private int hour;
     private int fireCount;
-    private int assultCount;
+    private int assaultCount;
     private int crowdCongestionCount;
     private int weaponCount;
     private int swoonCount;

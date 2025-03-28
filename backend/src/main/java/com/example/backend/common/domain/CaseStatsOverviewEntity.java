@@ -16,10 +16,14 @@ public class CaseStatsOverviewEntity {
     @JoinColumn(name = "office_id", referencedColumnName = "id")
     private OfficeEntity office;
 
+    @JoinColumn(name = "recent_case_count", nullable = false)
     private int recentCaseCount;
+
+    @JoinColumn(name = "today_case_count", nullable = false)
     private int todayCaseCount;
 
     @Enumerated(EnumType.STRING)
+    @JoinColumn(name = "most_case", nullable = false)
     private CaseEntity.CaseCategory mostCase;
 
 }

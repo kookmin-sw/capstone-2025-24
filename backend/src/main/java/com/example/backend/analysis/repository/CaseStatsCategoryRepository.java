@@ -16,7 +16,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
         SELECT
             EXTRACT(HOUR FROM c.date) AS hour,
             SUM(CASE WHEN :category = 'fire' OR :category = 'all' THEN c.fire_count ELSE 0 END) AS fire,
-            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assult_count ELSE 0 END) AS assault,
+            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assault_count ELSE 0 END) AS assault,
             SUM(CASE WHEN :category = 'crowd' OR :category = 'all' THEN c.crowd_congestion_count ELSE 0 END) AS crowdCongestion,
             SUM(CASE WHEN :category = 'weapon' OR :category = 'all' THEN c.weapon_count ELSE 0 END) AS weapon,
             SUM(CASE WHEN :category = 'swoon' OR :category = 'all' THEN c.swoon_count ELSE 0 END) AS swoon
@@ -32,7 +32,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
         SELECT
             EXTRACT(MONTH FROM c.date) AS month,
             SUM(CASE WHEN :category = 'fire' OR :category = 'all' THEN c.fire_count ELSE 0 END) AS fire,
-            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assult_count ELSE 0 END) AS assault,
+            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assault_count ELSE 0 END) AS assault,
             SUM(CASE WHEN :category = 'crowd' OR :category = 'all' THEN c.crowd_congestion_count ELSE 0 END) AS crowdCongestion,
             SUM(CASE WHEN :category = 'weapon' OR :category = 'all' THEN c.weapon_count ELSE 0 END) AS weapon,
             SUM(CASE WHEN :category = 'swoon' OR :category = 'all' THEN c.swoon_count ELSE 0 END) AS swoon
@@ -48,7 +48,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
         SELECT
             EXTRACT(DAY FROM c.date) AS day,
             SUM(CASE WHEN :category = 'fire' OR :category = 'all' THEN c.fire_count ELSE 0 END) AS fire,
-            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assult_count ELSE 0 END) AS assault,
+            SUM(CASE WHEN :category = 'assault' OR :category = 'all' THEN c.assault_count ELSE 0 END) AS assault,
             SUM(CASE WHEN :category = 'crowd' OR :category = 'all' THEN c.crowd_congestion_count ELSE 0 END) AS crowdCongestion,
             SUM(CASE WHEN :category = 'weapon' OR :category = 'all' THEN c.weapon_count ELSE 0 END) AS weapon,
             SUM(CASE WHEN :category = 'swoon' OR :category = 'all' THEN c.swoon_count ELSE 0 END) AS swoon
@@ -69,7 +69,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
             WHERE c.office_id = :officeId
               AND c.date >= :startDate
             UNION ALL
-            SELECT 'assault', SUM(c.assult_count)
+            SELECT 'assault', SUM(c.assault_count)
             FROM case_stats_category c
             WHERE c.office_id = :officeId
               AND c.date >= :startDate
@@ -96,7 +96,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
     @Query(value = """
         SELECT cv.address, cv.latitude, cv.longitude, SUM(total) AS total
         FROM (
-            SELECT c.cctv_id, SUM(c.fire_count + c.assult_count + c.swoon_count + c.weapon_count + c.crowd_congestion_count) AS total
+            SELECT c.cctv_id, SUM(c.fire_count + c.assault_count + c.swoon_count + c.weapon_count + c.crowd_congestion_count) AS total
             FROM case_stats_category c
             WHERE c.office_id = :officeId
               AND c.date >= :startDate
@@ -111,7 +111,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
     @Query(value = """
         SELECT cv.address, cv.latitude, cv.longitude,
                SUM(c.fire_count) AS fire,
-               SUM(c.assult_count) AS assault,
+               SUM(c.assault_count) AS assault,
                SUM(c.swoon_count) AS swoon,
                SUM(c.weapon_count) AS weapon,
                SUM(c.crowd_congestion_count) AS crowd_congestion
@@ -119,7 +119,7 @@ public interface CaseStatsCategoryRepository extends JpaRepository<CaseStatsCate
         JOIN cctv_info cv ON c.cctv_id = cv.id
         WHERE c.date >= :startDate
         GROUP BY cv.address, cv.latitude, cv.longitude
-        ORDER BY (SUM(c.fire_count) + SUM(c.assult_count) + SUM(c.swoon_count) + SUM(c.weapon_count) + SUM(c.crowd_congestion_count)) DESC
+        ORDER BY (SUM(c.fire_count) + SUM(c.assault_count) + SUM(c.swoon_count) + SUM(c.weapon_count) + SUM(c.crowd_congestion_count)) DESC
         """, nativeQuery = true)
     List<Object[]> findMapCaseStats(@Param("startDate") LocalDateTime startDate);
 
