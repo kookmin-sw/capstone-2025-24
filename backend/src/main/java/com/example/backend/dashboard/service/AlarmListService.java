@@ -1,6 +1,7 @@
 package com.example.backend.dashboard.service;
 
 import com.example.backend.common.domain.CaseEntity;
+import com.example.backend.common.domain.PoliceEntity;
 import com.example.backend.dashboard.dto.AlarmResponse;
 import com.example.backend.dashboard.repository.AlarmListRepository;
 import com.example.backend.dashboard.repository.CaseRepository;
@@ -30,6 +31,14 @@ public class AlarmListService {
             throw new IllegalStateException("세션이 만료되었거나 로그인되지 않았습니다.");
         }
         return user.getOfficeId();
+    }
+
+    private int getAuthenticatedPoliceId(HttpSession session) {
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("세션이 만료되었거나 로그인되지 않았습니다.");
+        }
+        return user.getId();
     }
 
     // 사건 조회 및 권한 검증 (중복 제거)
@@ -63,6 +72,7 @@ public class AlarmListService {
 
     public String updateCaseState(Integer id, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
+        int policeId = getAuthenticatedPoliceId(session);
 
         // 이미 state가 "출동"이면 메시지 반환
         if (caseEntity.getState() == CaseEntity.CaseState.출동) {
@@ -70,6 +80,11 @@ public class AlarmListService {
         } else {
             // 그 외의 경우, state를 "출동"으로 변경 후 저장
             caseEntity.setState(CaseEntity.CaseState.출동);
+
+            // 경찰관 배정: 현재 로그인한 경찰관의 id를 PoliceEntity에 할당
+            PoliceEntity assignedPolice = PoliceEntity.builder().id(policeId).build();
+            caseEntity.setPolice(assignedPolice);
+
             alarmListRepository.save(caseEntity);
             return "지금 출동합니다.";
         }
