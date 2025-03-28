@@ -1,12 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import React from 'react';
-import MonitorPage from '../pages/MonitorPage';
+import ChartPage from '../pages/ChartPage/page';
+import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
+import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import Layout from '../components/common/Sidebar/Layout';
 
-const Router: React.FC = () => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MonitorPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route element={<Layout />}>
+          <Route path="/monitoring" element={<MonitoringPage />} />
+          <Route path="/history" element={<IncidentHistoryPage />} />
+          <Route path="/chart" element={<ChartPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
