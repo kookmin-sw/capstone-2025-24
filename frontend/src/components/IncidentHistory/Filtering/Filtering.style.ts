@@ -162,7 +162,7 @@ export const SearchContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  width:;
+  width: 100%;
   outline: none;
   font-size: 18px;
   border: none;

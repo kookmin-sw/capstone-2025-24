@@ -1,4 +1,4 @@
-import * as S from './style';
+import * as S from './InfoSection.style';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import cctvIcon from '@/assets/icons/cctvIcon.svg';
 import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';

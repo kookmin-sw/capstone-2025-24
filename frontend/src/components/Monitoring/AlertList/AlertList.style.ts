@@ -1,19 +1,7 @@
 import styled, { keyframes, css } from 'styled-components';
 import { TbAlertTriangleFilled } from 'react-icons/tb';
 
-// AlertItem.tsx
-
-interface StateCircleProps {
-  state: string;
-}
-
-interface LevelProps {
-  level: number;
-}
-
-interface LayoutProps {
-  clicked: boolean;
-}
+// AlertItem.tsx --------------------------------------------//
 
 const blinkShadow = keyframes`
   0%, 100% {
@@ -24,7 +12,7 @@ const blinkShadow = keyframes`
   }
 `;
 
-export const Layout = styled.div<LayoutProps>`
+export const Layout = styled.div<{ clicked: boolean }>`
   display: flex;
   width: 274px;
   height: 159px;
@@ -50,7 +38,7 @@ export const CardDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const ColorDiv = styled.div<LevelProps>`
+export const ColorDiv = styled.div<{ level: number }>`
   background-color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   width: 11px;
   height: 159px;
@@ -70,7 +58,7 @@ export const DateWrapper = styled.div`
   align-items: center;
 `;
 
-export const StateCircle = styled.div<StateCircleProps>`
+export const StateCircle = styled.div<{ state: string }>`
   width: 10px;
   height: 10px;
   border-radius: 5px;
@@ -84,7 +72,7 @@ export const CategoryDiv = styled.div`
   align-items: center;
 `;
 
-export const AlertIcon = styled(TbAlertTriangleFilled)<LevelProps>`
+export const AlertIcon = styled(TbAlertTriangleFilled)<{ level: number }>`
   color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
   margin-right: 5px;
   font-size: 25px;
@@ -107,6 +95,7 @@ export const ShowButtoon = styled.button`
   border: 1px solid var(--primary900);
   background-color: white;
   border-radius: 5px;
+  cursor: pointer;
   &:hover {
     background-color: #f5f7fe;
   }
@@ -116,22 +105,17 @@ export const ShowButtoon = styled.button`
   }
 `;
 
-//AlertList.tsx
+//AlertList.tsx --------------------------------------------//
 
 export const AlertListLayout = styled.div`
   width: 300px;
   height: 100vh;
-  background-color: #fafafa;
-  overflow-y: hidden; /* 넘치는 부분 숨김 */
 `;
 
 export const TitleP = styled.p`
   font-size: 25px;
   font-weight: 700;
-  position: fixed;
   padding: 0px 17px;
-  top: 0;
-  background-color: #fafafa;
   width: 300px;
   height: 53px;
   z-index: 100;
@@ -144,13 +128,17 @@ export const AlertContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 59px;
-  background-color: #fafafa;
-  height: 100vh;
-  overflow-y: auto; /* 내부 스크롤 */
+  height: calc(100vh - 53px);
+  overflow-y: auto;
+  padding-top: 5px;
+
+  &::-webkit-scrollbar {
+    width: 1.5px;
+    opacity: 0;
+  }
 `;
 
-// EmptyView.tsx
+// EmptyView.tsx --------------------------------------------//
 
 export const EmptyViewLayout = styled.div`
   display: flex;
