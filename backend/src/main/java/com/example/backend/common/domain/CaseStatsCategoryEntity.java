@@ -28,8 +28,8 @@ public class CaseStatsCategoryEntity {
     @Column(name = "fire_count", nullable = false)
     private int fireCount;
 
-    @Column(name = "assult_count", nullable = false)
-    private int assultCount;
+    @Column(name = "assault_count", nullable = false)
+    private int assaultCount;
 
     @Column(name = "crowd_congestion_count", nullable = false)
     private int crowdCongestionCount;
