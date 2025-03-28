@@ -6,7 +6,6 @@ export const getLogin = async (userId: string, password: string) => {
       userId,
       password,
     });
-    console.log('로그인 응답:', response.data);
     return response.data;
   } catch (error) {
     console.error('로그인 에러:', error);

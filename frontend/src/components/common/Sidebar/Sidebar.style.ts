@@ -86,7 +86,6 @@ export const SidebarBtn = styled(Button)`
   padding-left: 15px;
   gap: 6px;
   color: black;
-  /* font-weight: bold; */
   background-color: #00ff0000;
 
   &:hover {
