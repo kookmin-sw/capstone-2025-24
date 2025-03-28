@@ -6,7 +6,6 @@ export const InfoIcon = styled(IoAlertCircleOutline)`
   font-size: 18px;
   color: var(--gray600);
   margin: 0px 8px;
-  cursor: pointer;
 `;
 
 export const TooltipP = styled.p`

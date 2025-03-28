@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ChartPage from '../pages/ChartPage/page';
 import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
-import ChartPage from '../pages/ChartPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import Layout from '../components/common/Sidebar/Layout';

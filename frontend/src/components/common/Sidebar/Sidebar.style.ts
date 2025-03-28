@@ -11,6 +11,7 @@ export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   height: 100vh;
+  background-color: #FAFAFA;
 `;
 
 // Sidebar --------------------------//

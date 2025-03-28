@@ -1,4 +1,4 @@
-import * as S from './style';
+import * as S from './Sidebar.style';
 import Profile from './Profile';
 import SidebarButton from './SidebarButton';
 import { SIDEBAR_LIST } from '../../../constants/sidebarList';
