@@ -6,7 +6,7 @@ export interface CategoryItem {
   weapon: number;
 }
 
-// 백에서 주는 형태태
+// 백에서 주는 형태
 export const CategoryData: CategoryItem = {
   assault: 12,
   crowd_congestion: 24,

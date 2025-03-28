@@ -1,7 +1,7 @@
 import * as S from './DoughnutCard.style';
 import Label from './Label';
 
-interface LegendItem {
+export interface LegendItem {
   text: string;
   color: string;
 }
@@ -9,12 +9,13 @@ interface LegendItem {
 interface LabelBoxProps {
   data: number[];
   legendItems: LegendItem[];
+  type: string;
 }
-const LabelBox = ({ data, legendItems }: LabelBoxProps) => {
+const LabelBox = ({ data, legendItems, type }: LabelBoxProps) => {
   return (
     <S.LabelBoxLayout>
       {legendItems.map((it, i) => {
-        return <Label color={it.color} text={it.text} count={data[i]} key={it.text} />;
+        return <Label color={it.color} text={it.text} count={data[i]} key={it.text} type={type} />;
       })}
     </S.LabelBoxLayout>
   );

@@ -6,17 +6,15 @@ import useCategoryIndexStore from '../../../stores/categoryIndexStore';
 import useRegionIndexStore from '../../../stores/regionIndexStore';
 import { CategoryData, CategoryData2, CategoryData3, CategoryItem } from '../../../mocks/DoughnutData';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
-interface LegendItem {
-  text: string;
-  color: string;
-}
+import { LegendItem } from './LabelBox';
 
 interface DoughnutCardProps {
   title: string;
   legendItems: LegendItem[];
+  type: string;
 }
 
-const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
+const DoughnutCard = ({ title, legendItems, type }: DoughnutCardProps) => {
   const [data, setData] = useState<CategoryItem>(CategoryData);
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex } = store;
@@ -49,7 +47,7 @@ const DoughnutCard = ({ title, legendItems }: DoughnutCardProps) => {
         <S.TitleP>{title}</S.TitleP>
         <ChartFilter title={title} />
       </S.TitleDiv>
-      {inviewPort && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort}/>}
+      {inviewPort && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort} type={type}/>}
     </S.DoughnutCardLayout>
   );
 };

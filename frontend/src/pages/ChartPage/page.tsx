@@ -16,10 +16,10 @@ const ChartPage = () => {
         </S.ChartFirstDiv>
         <S.ChartSecondDiv>
           <BarCard />
-          <DoughnutCard title="유형별 사건 수" legendItems={LABELBYCATEGORY} />
+          <DoughnutCard title="유형별 사건 수" legendItems={LABELBYCATEGORY} type="category"/>
         </S.ChartSecondDiv>
         <S.ChartThirdDiv>
-          <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} />
+          <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} type="region"/>
           <ClusteringCard />
         </S.ChartThirdDiv>
       </S.ComponentWrapper>

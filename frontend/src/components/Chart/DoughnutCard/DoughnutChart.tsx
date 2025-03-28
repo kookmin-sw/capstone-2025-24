@@ -62,9 +62,10 @@ interface DoughnutChartProps {
   data: CategoryItem;
   legendItems: LegendItem[];
   isVisible: boolean;
+  type: string;
 }
 
-const DoughnutChart = ({ data, legendItems, isVisible }: DoughnutChartProps) => {
+const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProps) => {
   // 차트 data
   const DoughnutData: ChartData<'doughnut'> = {
     labels: legendItems.map((it) => it.text),
@@ -84,7 +85,6 @@ const DoughnutChart = ({ data, legendItems, isVisible }: DoughnutChartProps) => 
     maintainAspectRatio: false,
     cutout: '47%',
     interaction: {
-      // mode: 'index',
       intersect: true,
     },
     animation: isVisible?
@@ -108,7 +108,7 @@ const DoughnutChart = ({ data, legendItems, isVisible }: DoughnutChartProps) => 
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} />
+      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} type={type}/>
     </S.DoughnutChartLayout>
   );
 };

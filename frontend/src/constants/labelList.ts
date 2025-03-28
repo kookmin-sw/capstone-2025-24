@@ -13,11 +13,11 @@ export const LABELBYCATEGORY: labelItem[] = [
 ];
 
 export const LABELBYREGION: labelItem[] = [
-  { key: '1', text: '정릉 1동', color: '#5877FF' },
-  { key: '2', text: '정릉 2동', color: '#A8B3E3' },
-  { key: '3', text: '정릉 3동', color: '#3257FE' },
-  { key: '4', text: '정릉 4동', color: '#849DFF' },
-  { key: '5', text: '정릉 5동', color: '#D4D8FF' },
+  { key: '1', text: '보국문로 35길 21-54', color: '#5877FF' },
+  { key: '2', text: '테헤란로 87길 12', color: '#A8B3E3' },
+  { key: '3', text: '홍익로 5길 9-7', color: '#3257FE' },
+  { key: '4', text: '보국문로 35길 21-54', color: '#849DFF' },
+  { key: '5', text: '홍익로 5길 9-7', color: '#D4D8FF' },
 ];
 
 export const STATSLABEL: labelItem[] = [

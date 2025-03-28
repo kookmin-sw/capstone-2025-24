@@ -48,7 +48,6 @@ export const DoughnutChart = styled(Doughnut)`
 export const LabelBoxLayout = styled.div`
   display: flex;
   flex-direction: column;
-  width: 110px;
   height: 112px;
   justify-content: space-between;
 `;
@@ -69,10 +68,10 @@ export const ColorChip = styled.div<{ color?: string }>`
   background-color: ${({ color }) => color};
 `;
 
-export const LabelP = styled.p`
+export const LabelP = styled.p<{ $type: string }>`
   &.category {
     color: var(--gray800);
-    font-size: 12px;
+    font-size: ${({ $type }) => ($type === 'category' ? '12px' : '10px')};
     font-weight: 600;
     margin-left: 5px;
   }
