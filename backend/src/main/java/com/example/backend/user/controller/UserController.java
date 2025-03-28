@@ -29,8 +29,7 @@ public class UserController {
     public ResponseEntity<?> getSessionUser(HttpSession session) {
         UserResponseDto user = (UserResponseDto) session.getAttribute("user");
         if (user == null) {
-            // 예외 발생 시 GlobalExceptionHandler가 처리합니다.
-            throw new IllegalStateException("사용자가 존재하지 않습니다.");
+            throw new IllegalStateException( "로그인이 필요합니다.");
         }
         return ResponseEntity.ok(user);
     }

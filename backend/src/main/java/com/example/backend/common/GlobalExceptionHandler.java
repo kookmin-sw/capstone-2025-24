@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<?> handleIllegalStateException(IllegalStateException e) {
-        if (e.getMessage().contains("세션이 만료") || e.getMessage().contains("로그인되지")) {
+        if (e.getMessage().contains("로그인이 필요합니다.")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Collections.singletonMap("message", e.getMessage()));
         }
