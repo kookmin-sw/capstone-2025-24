@@ -29,6 +29,30 @@ interface BarChartProps {
 }
 
 const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!scrollRef.current) return;
+    isDragging.current = true;
+    startX.current = e.pageX - scrollRef.current.offsetLeft;
+    scrollLeft.current = scrollRef.current.scrollLeft;
+  };
+
+  const onMouseLeave = () => (isDragging.current = false);
+
+  const onMouseUp = () => (isDragging.current = false);
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging.current || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeft.current - walk;
+  };
+
   const chartRef = useRef<ChartJS<'bar'> | null>(null);
   const chartData: ChartData<'bar'> = {
     labels: isMonthly
@@ -92,7 +116,13 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
 
   return (
     <S.BarChartLayout>
-      <S.ChartScrollWrapper>
+      <S.ChartScrollWrapper
+        ref={scrollRef}
+        onMouseDown={onMouseDown}
+        onMouseLeave={onMouseLeave}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+      >
         <S.ChartCanvasWrapper $customWidth={isMonthly ? '100%' : containerWidth}>
           <Bar ref={chartRef} options={BarOptions} data={chartData} />
         </S.ChartCanvasWrapper>
