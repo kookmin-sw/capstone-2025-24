@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline } from 'react-icons/io5';
 import { Map } from 'react-kakao-maps-sdk';
 
 // IncidentDetailsModal.tsx------------------------//
@@ -34,11 +34,11 @@ export const WrapperContainer = styled.div`
 `;
 
 export const Overlay = styled.div`
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
@@ -73,10 +73,12 @@ export const InformationLayout = styled.div`
 export const NameP = styled.p`
   font-size: 16px;
   font-weight: 600;
+  width: 20%;
 `;
 
 export const ValueP = styled.p`
   font-size: 16px;
+  width: 80%;
 `;
 
 export const InfoContainer = styled.div`
