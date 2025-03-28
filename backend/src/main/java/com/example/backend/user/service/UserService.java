@@ -27,7 +27,7 @@ public class UserService {
         Optional<PoliceEntity> user = userRepository.findByUserIdAndPassword(requestDto.getUserId(), requestDto.getPassword());
 
         // 조회한 결과가 있으면 UserResponseDto 객체로 변환하여 반환하고, 없으면 예외 던짐
-        return user.map(value -> new UserResponseDto(value.getOffice().getId(), value.getName(), value.getProfileUrl()))  // 사용자 이름을 포함한 응답 생성
+        return user.map(value -> new UserResponseDto(value.getId(), value.getOffice().getId(), value.getName(), value.getProfileUrl()))  // 사용자 이름을 포함한 응답 생성
                 .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));  // 사용자 정보가 없으면 예외 처리
     }
 
