@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 @RestController
 @RequestMapping("/api/v1/case")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://127.0.0.1:5500", allowCredentials = "true")
 public class CaseDetectController {
 
     private final CaseDetectService caseDetectService;
