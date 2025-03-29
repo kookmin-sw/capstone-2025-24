@@ -1,37 +1,15 @@
 import * as S from './IncidentList.style.ts';
-//import IncidentListData from '@/mocks/IncidentListData.ts';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
 import EmptyView from './EmptyView.tsx';
 import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.tsx';
-import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
-
-interface Incident {
-  id: number;
-  policeId: number;
-  policeName: string;
-  cctvId: number;
-  location: string;
-  date: string;
-  category: string;
-  memo: string | null;
-}
+import Filtering from '../Filtering/Filtering.tsx';
+import {Incident} from '@/types/incident.ts';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
   const [incidentData, setIncidentData] = useState<Incident[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getIncidentList(null, null, null, 'latest', 1);
-      if (data) {
-        setIncidentData(data);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const truncate = (text: string, maxLength: number) => {
     return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
@@ -55,6 +33,7 @@ const IncidentList = () => {
 
   return (
     <div>
+      <Filtering setIncidentData={setIncidentData} page={currentPage}/>
       <S.Layout>
         <S.IncidentListDiv>
           {incidentData.length === 0 ? (
