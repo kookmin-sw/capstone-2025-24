@@ -14,18 +14,14 @@ interface IncidentModalProps {
   onDispatch: () => void;
 }
 
-const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: IncidentModalProps) => {
+const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: IncidentModalProps) => {
   const { id, category, date, address } = alertItem;
   const [videoUrl, setVideoUrl] = useState('');
 
   useEffect(() => {
     const fetchVideo = async () => {
-      try {
-        const response = await getVideo(id);
-        setVideoUrl(response.video);
-      } catch (error) {
-        console.error('video get 에러:', error);
-      }
+      const response = await getVideo(id);
+      setVideoUrl(response.video);
     };
     fetchVideo();
   }, [id]);
