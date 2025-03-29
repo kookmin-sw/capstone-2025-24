@@ -70,6 +70,11 @@ public class AlarmListService {
             throw new IllegalStateException("해당 사건은 이미 출동 처리되었거나 완료된 사건입니다.");
         }
 
+        if(caseEntity.getState() == CaseState.미확인){
+            caseEntity.setState(CaseState.확인);
+            alarmListRepository.save(caseEntity);
+        }
+
         return AlarmResponse.fromEntityWithVideo(caseEntity);
     }
 

@@ -1,6 +1,5 @@
 package com.example.backend.dashboard.controller;
 
-import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.dashboard.dto.AlarmRequest;
 import com.example.backend.dashboard.dto.AlarmResponse;
 import com.example.backend.dashboard.service.AlarmListService;
