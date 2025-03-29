@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
 import { AlertProps } from '@/types/alert';
+import { getVideo } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
@@ -13,8 +15,21 @@ interface IncidentModalProps {
 }
 
 const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: IncidentModalProps) => {
-  const { category, date, address } = alertItem;
-  const videoUrl = ''; // 추후 api 연동
+  const { id, category, date, address } = alertItem;
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      try {
+        const response = await getVideo(id);
+        setVideoUrl(response.video);
+      } catch (error) {
+        console.error('video get 에러:', error);
+      }
+    };
+    fetchVideo();
+  }, [id]);
+
   return (
     <>
       <S.CloseButton onClick={onClose}>

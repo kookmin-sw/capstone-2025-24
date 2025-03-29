@@ -10,3 +10,13 @@ export const getTotalAlert = async (): Promise<AlertProps[]> => {
     return []; // promise로 객체 지정 -> catch 에러 발생 시에도 반환 값은 있어야 함
   }
 };
+
+export const getVideo = async (id: number): Promise<{ video: string }> => {
+  try {
+    const response = await axiosInstance.get(`api/v1/case/ready/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log('alert video get 에러', error);
+    return { video: '' };
+  }
+};
