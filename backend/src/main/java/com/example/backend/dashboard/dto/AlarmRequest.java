@@ -1,0 +1,11 @@
+package com.example.backend.dashboard.dto;
+
+import com.example.backend.common.domain.CaseEntity.CaseState;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class AlarmRequest {
+    private CaseState state; // "출동" or "미출동"
+}
