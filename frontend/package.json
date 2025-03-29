@@ -16,6 +16,7 @@
     "axios": "^1.8.4",
     "chart.js": "^4.4.8",
     "chartjs": "^0.3.24",
+    "dotenv": "^16.4.7",
     "lottie-react": "^2.4.1",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
