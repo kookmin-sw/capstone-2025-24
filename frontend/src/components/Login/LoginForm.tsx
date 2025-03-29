@@ -10,7 +10,7 @@ const LoginForm = () => {
 
   const submitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = postLogin(userId, password);
+    const data = await postLogin(userId, password);
     console.log('로그인 응답', data);
     navigate('monitoring');
   };
