@@ -17,7 +17,7 @@ public class SearchResponse {
     private int policeId;
     private String policeName;
     private int cctvId;
-    private String location;
+    private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
@@ -26,13 +26,13 @@ public class SearchResponse {
     private String memo;
 
     @Builder
-    public SearchResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String location, LocalDateTime date,
+    public SearchResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String address, LocalDateTime date,
                           String category, String memo) {
         this.id = id;
         this.policeId = policeId;
         this.policeName = policeName;
         this.cctvId = cctvId;
-        this.location = location;
+        this.address = address;
         this.date = date;
         this.category = category;
         this.memo = memo;
@@ -44,7 +44,7 @@ public class SearchResponse {
                 .policeId(entity.getPolice() != null ? entity.getPolice().getId() : null)
                 .policeName(entity.getPolice() != null ? entity.getPolice().getName() : null)
                 .cctvId(entity.getCctv() != null ? entity.getCctv().getId() : null)
-                .location(entity.getCctv().getAddress())
+                .address(entity.getCctv().getAddress())
                 .date(entity.getDate())
                 .category(entity.getCategory().name())
                 .memo(entity.getMemo())

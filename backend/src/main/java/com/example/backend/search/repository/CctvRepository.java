@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface CctvRepository extends JpaRepository<CctvEntity, Integer> {
 
-    @Query("SELECT c.id FROM CctvEntity c WHERE c.address LIKE %:location%")
-    List<Integer> findCctvIdsByAddress(@Param("location") String location);
+    @Query("SELECT c.id FROM CctvEntity c WHERE c.address LIKE %:address%")
+    List<Integer> findCctvIdsByAddress(@Param("location") String address);
 }
