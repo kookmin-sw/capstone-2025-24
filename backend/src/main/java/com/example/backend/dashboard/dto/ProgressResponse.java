@@ -14,7 +14,7 @@ public class ProgressResponse {
     private Integer id;
     private String police_name;
     private String police_rank;
-    private String cctv_address;
+    private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
@@ -30,7 +30,7 @@ public class ProgressResponse {
                 .id(entity.getId())
                 .police_name(entity.getPolice().getName())
                 .police_rank(String.valueOf(entity.getPolice().getRank()))
-                .cctv_address(entity.getCctv().getAddress())
+                .address(entity.getCctv().getAddress())
                 .date(entity.getDate())
                 .level(entity.getLevel())
                 .category(entity.getCategory())

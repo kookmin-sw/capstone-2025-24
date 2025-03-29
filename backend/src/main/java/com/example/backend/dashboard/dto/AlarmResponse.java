@@ -15,7 +15,7 @@ public class AlarmResponse {
     private Integer id;
     private Integer officeId;
     private Integer cctvId;
-    private String location;
+    private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
@@ -30,7 +30,7 @@ public class AlarmResponse {
                 .id(entity.getId())
                 .officeId(entity.getOffice() != null ? entity.getOffice().getId() : null)
                 .cctvId(entity.getCctv() != null ? entity.getCctv().getId() : null)
-                .location(entity.getCctv() != null ? entity.getCctv().getAddress() : null)
+                .address(entity.getCctv() != null ? entity.getCctv().getAddress() : null)
                 .date(entity.getDate())
                 .level(entity.getLevel())
                 .category(entity.getCategory().name())
@@ -43,7 +43,7 @@ public class AlarmResponse {
                 .id(entity.getId())
                 .officeId(entity.getOffice() != null ? entity.getOffice().getId() : null)
                 .cctvId(entity.getCctv() != null ? entity.getCctv().getId() : null)
-                .location(entity.getCctv() != null ? entity.getCctv().getAddress() : null)
+                .address(entity.getCctv() != null ? entity.getCctv().getAddress() : null)
                 .date(entity.getDate())
                 .level(entity.getLevel())
                 .category(entity.getCategory().name())
