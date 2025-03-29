@@ -2,18 +2,36 @@ import * as S from './Overview.style';
 import OverviewCard from '../../../components/Chart/Overview/OverviewCard';
 import OverviewLargeCard from '../../../components/Chart/Overview/OverviewLargeCard';
 import { OVERVIEW_LIST } from '../../../constants/overviewList';
-import { OVERVIEWCOUNT } from '../../../mocks/OverviewCount';
-
+// import { OVERVIEWMOCK } from '../../../mocks/OverviewMock';
+import { getOverview } from '@/apis/ChartApi';
+import { useEffect, useState } from 'react';
+import { overviewType } from '@/types/chartType';
+import { EVENT_CATEGORY } from '@/constants/EventCategory';
 const OverviewDiv = () => {
+  const [overviewData, setOverviewData] = useState<overviewType | undefined>(undefined);
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const data = await getOverview();
+      setOverviewData(data.applications);
+    };
+
+    fetchNotifications();
+  }, []);
   return (
     <S.OverviewDiv>
-      {OVERVIEW_LIST.map((it, idx) => {
+      {OVERVIEW_LIST.map((it) => {
+        const count = overviewData ? overviewData[it.type as keyof typeof overviewData] : 0;
+
+        let displayCount = count;
+        if (it.type === 'mostCase' && typeof overviewData?.mostCase === 'string') {
+          displayCount = EVENT_CATEGORY[overviewData?.mostCase] || overviewData?.mostCase; // 매핑된 한국어 값으로 변환
+        }
         return (
           <OverviewCard
             key={it.title}
             title={it.title}
             tooltipText={it.tooltipText}
-            count={OVERVIEWCOUNT[idx]}
+            count={displayCount.toString()}
             $barColor={it.$barColor}
           />
         );

@@ -1,8 +1,9 @@
 import * as S from './BarCard.style';
 import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
+import { getPatePerYearMonth } from '@/apis/ChartApi';
 import BarFilter from './BarFilter/BarFilter';
-import { BarMonthData, BarMonthItem, BarDayData, BarDayItem } from '../../../mocks/BarData';
+import { BarMonthItem, BarDayItem } from '@/types/chartType';
 import { useFilterStore } from '../../../stores/filterStore';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
 const BarCard = () => {
@@ -13,12 +14,17 @@ const BarCard = () => {
   const element = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // filter 값 바뀔 때마다 api get
-    if (filter.month === '전체' || filter.month === '월') {
-      setMonthData(BarMonthData);
-    } else {
-      setDayData(BarDayData);
-    }
+    const fetchChartData = async () => {
+      const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
+      const data = await getPatePerYearMonth(filter.year, monthParam, filter.category);
+      if (monthParam) {
+        setDayData(data.applications);
+      } else {
+        setMonthData(data.applications);
+      }
+    };
+
+    fetchChartData();
   }, [filter]);
 
   useEffect(() => {

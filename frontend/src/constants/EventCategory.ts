@@ -1,10 +1,10 @@
-export const EVENT_CATEGORY = {
-  FIRE: '화재',
-  FAINT: '쓰러짐',
-  CROWD: '군중밀집',
-  WEAPON: '흉기난동',
-  ASSAULT: '폭행',
-} as const;
+export const EVENT_CATEGORY: { [key: string]: string }= {
+  fire: '화재',
+  swoon: '쓰러짐',
+  crowd: '군중밀집',
+  weapon: '흉기난동',
+  assault: '폭행',
+} ;
 
 export const CATEGORY: string[] = ['화재', '쓰러짐', '폭행', '흉기난동', '군중밀집'];
 export type EventCategory = (typeof EVENT_CATEGORY)[keyof typeof EVENT_CATEGORY];

@@ -1,10 +1,4 @@
-export interface CategoryItem {
-  assault: number;
-  crowd_congestion: number;
-  fire: number;
-  swoon: number;
-  weapon: number;
-}
+import { CategoryItem } from "@/types/chartType";
 
 // 백에서 주는 형태
 export const CategoryData: CategoryItem = {

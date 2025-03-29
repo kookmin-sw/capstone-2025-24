@@ -14,7 +14,7 @@ import {
   ChartOptions,
 } from 'chart.js';
 import LabelBox from './LabelBox';
-import { CategoryItem } from '../../../mocks/DoughnutData';
+import { CategoryItem } from '@/types/chartType';
 import { categoryFormatChanger } from '../../../hooks/dataFormatter';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
@@ -72,7 +72,7 @@ const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProp
     datasets: [
       {
         label: '사건 수',
-        data: categoryFormatChanger(data),
+        data: categoryFormatChanger(data) as number[],
         backgroundColor: legendItems.map((it) => it.color),
         hoverOffset: 5,
       },
@@ -108,7 +108,7 @@ const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProp
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} type={type}/>
+      <LabelBox data={categoryFormatChanger(data) as number[]} legendItems={legendItems} type={type}/>
     </S.DoughnutChartLayout>
   );
 };

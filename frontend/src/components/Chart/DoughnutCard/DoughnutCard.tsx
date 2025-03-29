@@ -4,9 +4,11 @@ import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect, useRef } from 'react';
 import useCategoryIndexStore from '../../../stores/categoryIndexStore';
 import useRegionIndexStore from '../../../stores/regionIndexStore';
-import { CategoryData, CategoryData2, CategoryData3, CategoryItem } from '../../../mocks/DoughnutData';
+import { CategoryItem } from '@/types/chartType';
+import { CategoryData } from '../../../mocks/DoughnutData';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
 import { LegendItem } from './LabelBox';
+import { getDataPerCategory } from '@/apis/ChartApi';
 
 interface DoughnutCardProps {
   title: string;
@@ -15,26 +17,31 @@ interface DoughnutCardProps {
 }
 
 const DoughnutCard = ({ title, legendItems, type }: DoughnutCardProps) => {
-  const [data, setData] = useState<CategoryItem>(CategoryData);
+  const [data, setData] = useState<CategoryItem | undefined>(CategoryData);
+  const [period, setPeriod] = useState<string>('weekly');
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex } = store;
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
 
-  // 여기서 api get을 해줄 겁니다.
   useEffect(() => {
-    // 지금은 이렇게 구현했지만 실제로는 api request를 보내겠지요?
     switch (selectedIndex) {
       case 0:
-        setData(CategoryData);
-        return;
+        setPeriod(() => 'weekly');
+        break;
       case 1:
-        setData(CategoryData2);
-        return;
+        setPeriod(() => 'monthly');
+        break;
       case 2:
-        setData(CategoryData3);
-        return;
+        setPeriod(() => 'yearly');
+        break;
     }
+    const fetchChartData = async () => {
+      const data = await getDataPerCategory(period);
+      setData(data.applications);
+    };
+
+    fetchChartData();
   }, [selectedIndex]);
 
   useEffect(() => {
@@ -47,7 +54,7 @@ const DoughnutCard = ({ title, legendItems, type }: DoughnutCardProps) => {
         <S.TitleP>{title}</S.TitleP>
         <ChartFilter title={title} />
       </S.TitleDiv>
-      {inviewPort && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort} type={type}/>}
+      {inviewPort && data && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort} type={type} />}
     </S.DoughnutCardLayout>
   );
 };
