@@ -5,8 +5,7 @@ import { CgSearch } from 'react-icons/cg';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Filtering.tsx ---------------------------------------------//
-export const Layout = styled.div`
-`;
+export const Layout = styled.div``;
 
 export const FilteringLayout = styled.div`
   border: 1px soild black;
@@ -175,6 +174,7 @@ export const SearchContainer = styled.div`
   border: 1px solid var(--gray400);
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
+  background-color: white;
 `;
 
 export const SearchInput = styled.input`
