@@ -3,6 +3,8 @@ import CategoryDropDown from '../../common/CategoryDropDown/CategoryDropDown.tsx
 import DateFiltering from './DateFiltering.tsx';
 import SearchBar from './SearchBar.tsx';
 import { useState } from 'react';
+import SortingDropDown from './SortingDropDown.tsx';
+// import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
 
 const Filtering = () => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
@@ -10,6 +12,7 @@ const Filtering = () => {
   const [endDateFilter, setEndDateFilter] = useState(new Date());
   const [searchType, setSearchType] = useState('담당 경찰');
   const [searchWord, setSearchWord] = useState('');
+  const [sort, setSort] = useState('최신순');
 
   const handleClick = () => {
     // 선택된 필터링 정보들
@@ -18,18 +21,18 @@ const Filtering = () => {
     console.log(endDateFilter);
     console.log(searchType);
     console.log(searchWord);
+    console.log(sort);
   };
 
   return (
-    <div>
+    <S.Layout>
       <S.DropDownInfoLayout>
         <S.InfoP w={165}>사건 분류</S.InfoP>
         <S.InfoP w={201}>시작 날짜</S.InfoP>
         <S.InfoP w={201}>종료 날짜</S.InfoP>
       </S.DropDownInfoLayout>
-
       <S.FilteringLayout>
-      <CategoryDropDown selected={categoryFilter} setSelected={setCategoryFilter} />
+        <CategoryDropDown selected={categoryFilter} setSelected={setCategoryFilter} />
         <DateFiltering
           startDate={startDateFilter}
           endDate={endDateFilter}
@@ -44,7 +47,11 @@ const Filtering = () => {
         />
         <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
       </S.FilteringLayout>
-    </div>
+      <S.Container>
+        <S.IncidentNum>총 112건</S.IncidentNum>
+        <SortingDropDown sort={sort} setSort={setSort} />
+      </S.Container>
+    </S.Layout>
   );
 };
 

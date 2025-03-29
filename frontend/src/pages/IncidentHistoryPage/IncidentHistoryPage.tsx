@@ -8,7 +8,6 @@ const IncidentHistoryPage = () => {
     <div>
       <S.IncidentHistoyLayout>
         <Filtering />
-        <br />
         <IncidentList />
       </S.IncidentHistoyLayout>
     </div>

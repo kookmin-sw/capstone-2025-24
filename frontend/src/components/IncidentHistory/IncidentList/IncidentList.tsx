@@ -1,15 +1,37 @@
 import * as S from './IncidentList.style.ts';
-import IncidentListData from '@/mocks/IncidentListData.ts';
-import { useState } from 'react';
+//import IncidentListData from '@/mocks/IncidentListData.ts';
+import { useState, useEffect } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
-import SortingDropDown from './SortingDropDown.tsx';
 import EmptyView from './EmptyView.tsx';
 import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.tsx';
+import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
+
+interface Incident {
+  id: number;
+  policeId: number;
+  policeName: string;
+  cctvId: number;
+  location: string;
+  date: string;
+  category: string;
+  memo: string | null;
+}
 
 const IncidentList = () => {
   // 사건 리스트 데이터
-  const incidentdata = IncidentListData;
+  const [incidentData, setIncidentData] = useState<Incident[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getIncidentList(null, null, null, 'latest', 1);
+      if (data) {
+        setIncidentData(data);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const truncate = (text: string, maxLength: number) => {
     return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
@@ -17,16 +39,15 @@ const IncidentList = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [selectedIncident, setSelectedIncident] = useState<null | (typeof incidentdata)[0]>(null);
+  const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
   // 페이지네이션
-  const incident_num = incidentdata.length; // 사건 총 개수 (나중에 백한테 전달받아서 사용)
+  const incident_num = incidentData.length; // 사건 총 개수 (나중에 백한테 전달받아서 사용)
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // 한 페이지에 아이템 몇 개 들어가는지
+  const itemsPerPage = 8; // 한 페이지에 아이템 개수
   const startIndex = (currentPage - 1) * itemsPerPage; // 현재페이지의 첫 아이템의 인덱스
-  const currentData = incidentdata.slice(startIndex, startIndex + itemsPerPage); // 현재 페이지에 보여지는 사건 데이터
   const totalPages = Math.ceil(incident_num / itemsPerPage); // 총 페이지수 계산
-  const pageGroupSize = 5; // 페이지를 1-5 , 6-10, 11-15 이렇게 보여줌
+  const pageGroupSize = 5;
   const currentGroup = Math.ceil(currentPage / pageGroupSize);
   const startPage = (currentGroup - 1) * pageGroupSize + 1; // 페이지네이션 버튼의 시작 숫자
   const endPage = Math.min(startPage + pageGroupSize - 1, totalPages); // 페이지네이션의 버튼의 마지막 숫자
@@ -35,14 +56,8 @@ const IncidentList = () => {
   return (
     <div>
       <S.Layout>
-        <S.Container>
-          <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
-          <SortingDropDown />
-        </S.Container>
-
-        {/* 리스트 */}
         <S.IncidentListDiv>
-          {incidentdata.length === 0 ? (
+          {incidentData.length === 0 ? (
             <EmptyView />
           ) : (
             <S.Table>
@@ -56,7 +71,7 @@ const IncidentList = () => {
                 </S.TableHeaderRow>
               </thead>
               <tbody>
-                {currentData.map((incident, index) => (
+                {incidentData.map((incident, index) => (
                   <S.TableBodyRow
                     key={incident.id}
                     onClick={() => {
@@ -77,7 +92,7 @@ const IncidentList = () => {
                       <S.InfoP>{truncate(incident.location, 22)}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{incident.police}</S.InfoP>
+                      <S.InfoP>{incident.policeName}</S.InfoP>
                     </S.TableData>
                   </S.TableBodyRow>
                 ))}
@@ -107,7 +122,7 @@ const IncidentList = () => {
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);
-            setSelectedIncident(null); // 닫을 때 초기화
+            setSelectedIncident(null);
           }}
           incident={selectedIncident}
         />

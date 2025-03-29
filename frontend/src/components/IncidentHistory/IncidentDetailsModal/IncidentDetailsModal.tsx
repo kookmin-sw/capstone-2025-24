@@ -9,10 +9,13 @@ interface IncidentDetailsModalProps {
   onClose: () => void;
   incident: {
     id: number;
-    category: string;
-    date: string;
+    policeId: number;
+    policeName: string;
+    cctvId: number;
     location: string;
-    police: string;
+    date: string;
+    category: string;
+    memo: string | null;
   };
 }
 
@@ -32,7 +35,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
               location={incident.location}
               date={incident.date}
               category={incident.category}
-              police={incident.police}
+              police={incident.policeName}
             />
             <Map />
           </S.InfoMapWrapper>

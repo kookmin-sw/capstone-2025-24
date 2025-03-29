@@ -5,11 +5,15 @@ import { CgSearch } from 'react-icons/cg';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Filtering.tsx ---------------------------------------------//
+export const Layout = styled.div`
+`;
+
 export const FilteringLayout = styled.div`
   border: 1px soild black;
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
 `;
 
 export const DropDownInfoLayout = styled.div`
@@ -43,6 +47,18 @@ export const SearchBtn = styled.button`
     background-color: var(--primary800);
     color: white;
   }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+`;
+
+export const IncidentNum = styled.p`
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 // DataFiltering.tsx ----------------------------------------//
@@ -174,4 +190,75 @@ export const SearchIcon = styled(CgSearch)`
   color: var(--gray800);
   text-align: center;
   margin: 0px 15px;
+`;
+
+// SortingDropDown.tsx -----------------------//
+
+export const SortingDropdownWrapper = styled.div`
+  position: relative;
+  width: 69px;
+`;
+
+export const SortingDropdownHeader = styled.button<{ isOpen: boolean }>`
+  width: 100%;
+  height: 26px;
+  padding: 0px 10px;
+  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  border: 1px solid var(--gray400);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  color: var(--gray800);
+
+  svg {
+    transition: transform 0.3s ease;
+    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+  }
+`;
+
+export const SortingDropdownList = styled.ul<{ isOpen: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px var(--gray400) inset;
+  margin-top: 6px;
+  overflow: hidden;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+
+  ${({ isOpen }: { isOpen: boolean }) =>
+    isOpen &&
+    `
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    `}
+`;
+
+export const SortingDropdownItem = styled.li<{ isSelected: boolean }>`
+  padding: 3px 0px;
+  margin: 5px 5px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  background: ${({ isSelected }) => (isSelected ? 'var(--primary500)' : 'transparent')};
+  color: black;
+  border-radius: 5px;
+  text-align: center;
+
+  &:hover {
+    background: var(--primary500);
+  }
 `;
