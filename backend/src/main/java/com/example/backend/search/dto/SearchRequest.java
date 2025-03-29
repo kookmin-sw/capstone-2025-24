@@ -10,7 +10,7 @@ public class SearchRequest {
     private String category;
     private String startDate;
     private String endDate;
-    private String location;
+    private String address;
     private String police;
     private String order;
     private Integer page;

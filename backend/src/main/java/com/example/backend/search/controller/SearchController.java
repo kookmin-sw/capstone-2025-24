@@ -31,7 +31,7 @@ public class SearchController {
                 request.getCategory(),
                 request.getStartDateTime(),
                 request.getEndDateTime(),
-                request.getLocation(),
+                request.getAddress(),
                 request.getPolice(),
                 request.getOrder(),
                 request.getPage(),
