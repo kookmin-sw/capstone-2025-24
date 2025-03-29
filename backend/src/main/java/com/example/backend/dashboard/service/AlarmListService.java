@@ -66,23 +66,24 @@ public class AlarmListService {
     public AlarmResponse getCaseById(Integer id, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
 
-        if(caseEntity.getState() != CaseEntity.CaseState.확인 && caseEntity.getState() != CaseEntity.CaseState.미확인) {
-            throw new IllegalStateException("해당 사건은 이미 출동 되었거나 완료된 사건입니다.");
+        if (caseEntity.getState() == CaseState.출동 || caseEntity.getState() == CaseState.미출동 || caseEntity.getState() == CaseState.완료) {
+            throw new IllegalStateException("해당 사건은 이미 출동 처리되었거나 완료된 사건입니다.");
         }
 
         return AlarmResponse.fromEntityWithVideo(caseEntity);
     }
 
-    public String updateCaseState(Integer id, HttpSession session) {
+    public String updateCaseState(Integer id, CaseState state, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
         int policeId = getAuthenticatedPoliceId(session);
 
-        // 이미 state가 "출동"이면 메시지 반환
-        if (caseEntity.getState() == CaseEntity.CaseState.출동) {
-            return "이미 출동된 사건입니다.";
-        } else {
-            // 그 외의 경우, state를 "출동"으로 변경 후 저장
-            caseEntity.setState(CaseEntity.CaseState.출동);
+        if (caseEntity.getState() == CaseState.출동 || caseEntity.getState() == CaseState.미출동 || caseEntity.getState() == CaseState.완료) {
+            throw new IllegalStateException("해당 사건은 이미 출동 처리되었거나 완료된 사건입니다.");
+        }
+
+        if (state == CaseState.출동) {
+            // state를 "출동"으로 변경 후 저장
+            caseEntity.setState(CaseState.출동);
 
             // 경찰관 배정: 현재 로그인한 경찰관의 id를 PoliceEntity에 할당
             PoliceEntity assignedPolice = PoliceEntity.builder().id(policeId).build();
@@ -90,6 +91,12 @@ public class AlarmListService {
 
             alarmListRepository.save(caseEntity);
             return "지금 출동합니다.";
+        } else {
+            // state를 "미출동"으로 변경 후 저장
+            caseEntity.setState(CaseState.미출동);
+
+            alarmListRepository.save(caseEntity);
+            return "미출동 사건으로 변경합니다.";
         }
     }
 
