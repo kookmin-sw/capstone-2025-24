@@ -5,6 +5,7 @@ import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
 import CategorySelectModal from './CategorySelectModal';
 import { AlertProps } from '@/types/alert';
+import { putAlertState } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
 
 interface ModalProps {
@@ -30,7 +31,14 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }
   }, [alertItem, updateItemState]);
 
-  const handleDispatch = () => {
+  const handleFeedback = async () => {
+    await putAlertState(alertItem.id, '미출동');
+    updateItemState(alertItem.id, '미출동'); // 해야되는지 아닌지 잘 몰겠다 하든 안 하든 상관없을 거 같긴 한데
+    setStep('feedback');
+  };
+
+  const handleDispatch = async () => {
+    await putAlertState(alertItem.id, '출동');
     updateItemState(alertItem.id, '출동');
     onClose();
 
@@ -48,8 +56,8 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}
-            onFeedbackClick={() => setStep('feedback')}
             alertItem={alertItem}
+            onFeedbackClick={handleFeedback}
             onDispatch={handleDispatch}
           />
         )}

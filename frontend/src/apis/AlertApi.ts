@@ -3,7 +3,9 @@ import { AlertProps } from '@/types/alert';
 
 export const getTotalAlert = async (): Promise<AlertProps[]> => {
   try {
-    const response = await axiosInstance.get('api/v1/case/ready');
+    const response = await axiosInstance.get('api/v1/case/ready', {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error) {
     console.log('alert get 에러', error);
@@ -18,5 +20,15 @@ export const getVideo = async (id: number): Promise<{ video: string }> => {
   } catch (error) {
     console.log('alert video get 에러', error);
     return { video: '' };
+  }
+};
+
+export const putAlertState = async (id: number, state: string): Promise<Pick<AlertProps, 'id' | 'state'>> => {
+  try {
+    const response = await axiosInstance.put(`/api/v1/case/ready/${id}`, { state });
+    return response.data;
+  } catch (error) {
+    console.error('Error updating alert state:', error);
+    throw error;
   }
 };
