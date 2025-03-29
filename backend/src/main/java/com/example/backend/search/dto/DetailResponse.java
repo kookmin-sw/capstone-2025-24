@@ -13,7 +13,7 @@ public class DetailResponse {
     private int policeId;
     private String policeName;
     private int cctvId;
-    private String location;
+    private String address;
     private Double longitude;
     private Double latitude;
 
@@ -25,13 +25,13 @@ public class DetailResponse {
     private String memo;
 
     @Builder
-    public DetailResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String location, Double latitude, Double longitude,LocalDateTime date,
+    public DetailResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String address, Double latitude, Double longitude, LocalDateTime date,
                           String category, String video, String memo) {
         this.id = id;
         this.policeId = policeId;
         this.policeName = policeName;
         this.cctvId = cctvId;
-        this.location = location;
+        this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.date = date;
@@ -46,7 +46,7 @@ public class DetailResponse {
                 .policeId(entity.getPolice() != null ? entity.getPolice().getId() : null)
                 .policeName(entity.getPolice() != null ? entity.getPolice().getName() : null)
                 .cctvId(entity.getCctv() != null ? entity.getCctv().getId() : null)
-                .location(entity.getCctv().getAddress())
+                .address(entity.getCctv().getAddress())
                 .latitude(entity.getCctv().getLatitude())
                 .longitude(entity.getCctv().getLongitude())
                 .date(entity.getDate())

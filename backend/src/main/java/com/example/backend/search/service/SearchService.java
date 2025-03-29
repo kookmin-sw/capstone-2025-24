@@ -23,11 +23,11 @@ public class SearchService {
     private final CctvRepository cctvRepository;
     private static final int PAGE_SIZE = 8; // 한 페이지당 8개씩
 
-    public SearchResult getCheckLog(String category, LocalDateTime startDate, LocalDateTime endDate, String location, String police, String order, Integer page, Integer officeId) {
-        // location이 있을 경우, cctv_info에서 해당 주소를 가진 cctv_id 리스트 조회
+    public SearchResult getCheckLog(String category, LocalDateTime startDate, LocalDateTime endDate, String address, String police, String order, Integer page, Integer officeId) {
+        // address가 있을 경우, cctv_info에서 해당 주소를 가진 cctv_id 리스트 조회
         List<Integer> cctvIds = null;
-        if (location != null) {
-            cctvIds = cctvRepository.findCctvIdsByAddress(location);
+        if (address != null) {
+            cctvIds = cctvRepository.findCctvIdsByAddress(address);
         }
 
         // 동적 검색 조건 생성
