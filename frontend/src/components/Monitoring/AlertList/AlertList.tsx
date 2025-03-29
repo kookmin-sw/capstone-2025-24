@@ -5,7 +5,7 @@ import EmptyView from './EmptyView.tsx';
 import * as S from './AlertList.style.ts';
 import { useLocation } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore.ts';
-import { InProgressData } from '@/mocks/InProgressData';
+import { getTotalAlert } from '@/apis/AlertApi';
 
 const ToopTipContent = () => {
   return (
@@ -22,10 +22,26 @@ const AlertList = () => {
   const { items, setItems } = useItemStore();
 
   useEffect(() => {
-    setItems(InProgressData);
+    const fetchData = async () => {
+      try {
+        const data = await getTotalAlert();
+        const alertData = data.map((item) => ({
+          id: item.id,
+          level: item.level,
+          category: item.category,
+          date: item.date,
+          address: item.address,
+          state: item.state,
+        }));
+        setItems(alertData);
+      } catch (error) {
+        console.error('alert get 호출 에러', error);
+      }
+    };
+    fetchData();
   }, [setItems]);
 
-  const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
+  const alertItems = items.filter((item) => item.state === '미확인' || item.state === '확인');
 
   return (
     <S.AlertListLayout>
@@ -36,10 +52,10 @@ const AlertList = () => {
         </ToolTip>
       </S.TitleP>
       <S.AlertContainer>
-        {alerts.length === 0 ? (
+        {alertItems.length === 0 ? (
           <EmptyView />
         ) : (
-          alerts.map((alert) => (
+          alertItems.map((alert) => (
             <AlertItem
               key={alert.id}
               id={alert.id}
