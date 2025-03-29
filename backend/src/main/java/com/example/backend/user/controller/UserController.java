@@ -21,6 +21,8 @@ public class UserController {
         UserResponseDto userResponse = userService.authenticate(requestDto);
         // 세션에 사용자 정보 저장
         session.setAttribute("user", userResponse);
+        // 세션 생성 기록: 세션 ID와 함께 로그인 정보를 로그에 기록
+        System.out.println("세션 생성됨: " + session.getId() + " - 사용자: " + userResponse.getId());
         return ResponseEntity.ok(userResponse);
     }
 
