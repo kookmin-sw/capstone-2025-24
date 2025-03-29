@@ -38,6 +38,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleGenericException(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Collections.singletonMap("message", "내부 서버 오류가 발생했습니다."));
+                .body(Collections.singletonMap("message", e.getMessage()));
     }
 }

@@ -2,10 +2,10 @@ package com.example.backend.dashboard.service;
 
 import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.common.domain.CaseEntity.CaseState;
-import com.example.backend.dashboard.dto.CaseResponse;
+import com.example.backend.dashboard.dto.ProgressResponse;
 import com.example.backend.dashboard.dto.SurveyRequest;
 import com.example.backend.dashboard.dto.SurveyResponse;
-import com.example.backend.dashboard.repository.CaseRepository;
+import com.example.backend.dashboard.repository.ProgressRepository;
 import com.example.backend.user.dto.UserResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DashboardService {
+public class ProgressService {
 
-    private final CaseRepository caseRepository;
+    private final ProgressRepository progressRepository;
 
     // 세션에서 officeId 추출
     private int getAuthenticatedOfficeId(HttpSession session) {
@@ -38,7 +38,7 @@ public class DashboardService {
     // 사건 조회 및 권한 검증 (중복 제거)
     private CaseEntity getAuthorizedCase(int caseId, HttpSession session) {
         int officeId = getAuthenticatedOfficeId(session);
-        CaseEntity caseEntity = caseRepository.findById(caseId)
+        CaseEntity caseEntity = progressRepository.findById(caseId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
         if (caseEntity.getOffice().getId() != officeId) {
             throw new NoSuchElementException("해당 사건에 대한 권한이 없습니다.");
@@ -47,12 +47,12 @@ public class DashboardService {
     }
 
     // (전체) 출동 중인 사건 조회
-    public List<CaseResponse> getActiveCases(HttpSession session) {
+    public List<ProgressResponse> getActiveCases(HttpSession session) {
         int officeId = getAuthenticatedOfficeId(session);
 
-        List<CaseEntity> cases = caseRepository.findAllByOfficeIdAndStateOrderById(officeId, CaseState.출동);
+        List<CaseEntity> cases = progressRepository.findAllByOfficeIdAndStateOrderById(officeId, CaseState.출동);
 
-        return cases.stream().map(CaseResponse::fromEntity).collect(Collectors.toList());
+        return cases.stream().map(ProgressResponse::fromEntity).collect(Collectors.toList());
     }
 
     // 출동 중인 사건 영상 확인
@@ -80,7 +80,7 @@ public class DashboardService {
         }
 
         caseEntity.setState(CaseState.완료);
-        caseRepository.save(caseEntity);
+        progressRepository.save(caseEntity);
 
         return Collections.singletonMap(id, "해당 사건이 해결 처리되었습니다.");
     }
@@ -97,7 +97,7 @@ public class DashboardService {
         if (surveyRequest.getCategory() != null) {
             caseEntity.setCategory(surveyRequest.getCategory());
         }
-        caseRepository.save(caseEntity);
+        progressRepository.save(caseEntity);
 
         return new SurveyResponse(id, caseEntity.getCategory(), "설문조사가 정상적으로 저장되었습니다.");
     }
