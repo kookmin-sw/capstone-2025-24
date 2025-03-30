@@ -58,10 +58,16 @@ public class CaseStatsService {
         CaseStatsOverviewEntity stats = statsOverviewRepository.findByOfficeId(officeId)
                 .orElseThrow(() -> new NoSuchElementException("해당 office_id에 대한 통계 데이터가 없습니다."));
 
+        // 최근 한 달간 데이터를 기준으로 사건 건수가 가장 많은 CCTV 주소 조회
+        String patrolRegionAddress = statsOverviewRepository.findAddressWithMostIncidentsLastMonth(officeId)
+                .orElse("정보 없음");
+
+        // 응답 생성 (순찰 강화 지역은 주소만 포함)
         return new CaseStatsOverviewResponse(
                 stats.getRecentCaseCount(), // 지난 7일간 사건 수
                 stats.getTodayCaseCount(), // 오늘 사건 수
-                stats.getMostCase().name() // 이번 달 가장 많이 발생 한 사건 유형
+                stats.getMostCase().name(), // 이번 달 가장 많이 발생한 사건 유형
+                patrolRegionAddress // 순찰 강화 지역 (주소)
         );
     }
 
