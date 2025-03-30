@@ -4,6 +4,7 @@ import IncidentCard from './IncidentCard';
 import * as S from './InProgress.style';
 import policerEmpty from '@/assets/images/policerEmpty.png';
 import { getTotalIncident } from '@/apis/AlertApi';
+import { getMappedCategory } from '@/utils/categoryMapper';
 
 const InProgress = () => {
   const { items, setItems, addItem } = useItemStore();
@@ -15,7 +16,7 @@ const InProgress = () => {
         const incidentData = data.map((item) => ({
           id: item.id,
           level: item.level,
-          category: item.category,
+          category: getMappedCategory(item.category),
           date: item.date,
           address: item.address,
           state: item.state,

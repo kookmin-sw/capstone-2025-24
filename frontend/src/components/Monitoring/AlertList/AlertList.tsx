@@ -6,6 +6,7 @@ import * as S from './AlertList.style.ts';
 import { useLocation } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore.ts';
 import { getTotalAlert } from '@/apis/AlertApi';
+import { getMappedCategory } from '@/utils/categoryMapper';
 
 const ToopTipContent = () => {
   return (
@@ -28,7 +29,7 @@ const AlertList = () => {
         const alertData = data.map((item) => ({
           id: item.id,
           level: item.level,
-          category: item.category,
+          category: getMappedCategory(item.category),
           date: item.date,
           address: item.address,
           state: item.state,
