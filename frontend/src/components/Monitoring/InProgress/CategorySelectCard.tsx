@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelectCategory } from '@/hooks/useSelectCategory';
 import { IncidentCardProps } from '@/types/alert';
+import { putIncidentResolve } from '@/apis/AlertApi';
 import * as S from './InProgress.style';
 import ResolvedCard from './ResolvedCard';
 
@@ -11,6 +12,11 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
     ['화재', '쓰러짐', '군중밀집'],
     ['흉기난동', '폭행', '기타'],
   ];
+
+  const handleClickResolve = async () => {
+    await putIncidentResolve(id);
+    setIsResolved(true);
+  };
 
   return isResolved ? (
     <ResolvedCard onClose={onClose} id={id} />
@@ -32,7 +38,7 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
           </S.CategoryRow>
         ))}
       </S.CategoryContainer>
-      <S.SelectButton onClick={() => setIsResolved(true)}>선택 완료</S.SelectButton>
+      <S.SelectButton onClick={handleClickResolve}>선택 완료</S.SelectButton>
       <S.BackButton onClick={onClose}>이전으로 돌아가기</S.BackButton>
     </>
   );

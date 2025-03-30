@@ -25,7 +25,7 @@ export const getVideo = async (id: number): Promise<{ video: string }> => {
 
 export const putAlertState = async (id: number, state: string): Promise<Pick<AlertProps, 'id' | 'state'>> => {
   try {
-    const response = await axiosInstance.put(`/api/v1/case/ready/${id}`, { state });
+    const response = await axiosInstance.put(`api/v1/case/ready/${id}`, { state });
     console.log('출동 or 미출동 : ', response.data);
     return response.data;
   } catch (error) {
@@ -42,5 +42,16 @@ export const getTotalIncident = async (): Promise<AlertProps[]> => {
   } catch (error) {
     console.log('incident get 에러', error);
     return [];
+  }
+};
+
+export const putIncidentResolve = async (id: number): Promise<Pick<AlertProps, 'id'>> => {
+  try {
+    const response = await axiosInstance.put(`api/v1/case/complete/${id}`);
+    console.log('사건 해결 완료 : ', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('사건 해결 put 에러:', error);
+    throw error;
   }
 };
