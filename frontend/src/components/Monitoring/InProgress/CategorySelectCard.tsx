@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useSelectCategory } from '@/hooks/useSelectCategory';
 import { IncidentCardProps } from '@/types/alert';
 import { putIncidentResolve } from '@/apis/AlertApi';
-import * as S from './InProgress.style';
+import { postCategoryInEnglish } from '@/utils/categoryMapper';
 import ResolvedCard from './ResolvedCard';
+import * as S from './InProgress.style';
 
 const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
@@ -14,7 +15,8 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   ];
 
   const handleClickResolve = async () => {
-    await putIncidentResolve(id);
+    const englishCategory = postCategoryInEnglish(selectedCategory || '');
+    await putIncidentResolve(id, '출동', englishCategory);
     setIsResolved(true);
   };
 

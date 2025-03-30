@@ -34,9 +34,13 @@ export const putAlertState = async (id: number, state: string): Promise<Pick<Ale
   }
 };
 
-export const putIncidentResolve = async (id: number): Promise<Pick<AlertProps, 'id'>> => {
+export const putIncidentResolve = async (
+  id: number,
+  state: '미출동' | '출동',
+  category: string | null,
+): Promise<Pick<AlertProps, 'id' | 'state' | 'category'>> => {
   try {
-    const response = await axiosInstance.put(`api/v1/case/complete/${id}`);
+    const response = await axiosInstance.put(`api/v1/case/complete/${id}`, { state, category });
     console.log('사건 해결 완료 : ', response.data);
     return response.data;
   } catch (error) {

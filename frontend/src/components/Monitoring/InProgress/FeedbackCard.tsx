@@ -14,7 +14,7 @@ const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
   }
 
   const handleClickResolve = async () => {
-    await putIncidentResolve(id);
+    await putIncidentResolve(id, '출동', null);
     setIsResolved(true);
   };
 
