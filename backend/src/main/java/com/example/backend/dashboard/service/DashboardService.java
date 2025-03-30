@@ -57,7 +57,12 @@ public class DashboardService {
     public List<DashboardResponse> getCases(HttpSession session) {
         int officeId = getAuthenticatedOfficeId(session);
 
-        List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdOrderById(officeId);
+        List<CaseEntity.CaseState> targetStates = List.of(
+                CaseEntity.CaseState.미확인,
+                CaseEntity.CaseState.확인,
+                CaseEntity.CaseState.출동
+        );
+        List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderById(officeId, targetStates);
 
         return cases.stream()
                 .map(DashboardResponse::fromEntity)

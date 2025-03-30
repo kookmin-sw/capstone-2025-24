@@ -18,6 +18,7 @@ public class DashboardController {
 
     private final DashboardService dashboardService;
 
+    // 사건 정보 조회
     @GetMapping("")
     public ResponseEntity<?> getCases(HttpSession session) {
         List<DashboardResponse> cases = dashboardService.getCases(session);
@@ -28,7 +29,7 @@ public class DashboardController {
         return ResponseEntity.ok(cases);
     }
 
-    // 출동 중인 사건 영상 확인
+    // 사건 영상 확인
     @GetMapping("/{id}")
     public ResponseEntity<?> getCaseVideo(@PathVariable("id") int id, HttpSession session) {
         Map<String, String> videoResponse = dashboardService.getCaseVideo(id, session);
