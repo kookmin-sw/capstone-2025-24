@@ -4,12 +4,12 @@ interface VideoComponentProps {
   w: string | number;
   h: string | number;
   radius: number;
-  videoUrl?: string;
+  video?: string;
 }
-const VideoComponent = ({ w, h, radius, videoUrl }: VideoComponentProps) => {
+const VideoComponent = ({ w, h, radius, video }: VideoComponentProps) => {
   return (
     <S.VideoComponentLayout w={w} h={h} radius={radius}>
-      <S.Player src={videoUrl} controls autoPlay />
+      <S.Player src={video} controls autoPlay />
     </S.VideoComponentLayout>
   );
 };

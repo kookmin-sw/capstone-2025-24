@@ -16,12 +16,12 @@ interface IncidentModalProps {
 
 const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: IncidentModalProps) => {
   const { id, category, date, address } = alertItem;
-  const [videoUrl, setVideoUrl] = useState('');
+  const [video, setVideo] = useState('');
 
   useEffect(() => {
     const fetchVideo = async () => {
       const response = await getVideo(id);
-      setVideoUrl(response.video);
+      setVideo(response.video);
     };
     fetchVideo();
   }, [id]);
@@ -42,7 +42,7 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: Inci
           {date}
         </S.InfoDiv>
       </S.InfoContainer>
-      <VideoComponent w="100%" h="100%" radius={10} videoUrl={videoUrl} />
+      <VideoComponent w="100%" h="100%" radius={10} video={video} />
       <S.ButtonContainer>
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동

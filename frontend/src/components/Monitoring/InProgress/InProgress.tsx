@@ -20,6 +20,7 @@ const InProgress = () => {
           date: item.date,
           address: item.address,
           state: item.state,
+          video: item.video,
         }));
         incidentData.forEach((incident) => {
           addItem(incident);

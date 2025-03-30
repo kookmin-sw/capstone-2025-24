@@ -3,10 +3,10 @@ import useIsModalOpen from '@/hooks/useIsModalOpen';
 import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
-import { IncidentItemProps } from '@/types/alert';
+import { AlertProps } from '@/types/alert';
 import * as S from './InProgress.style';
 
-const IncidentCard = ({ id, category, address, date, police, videoUrl }: IncidentItemProps) => {
+const IncidentCard = ({ id, category, address, date, police_name, video }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
@@ -30,7 +30,7 @@ const IncidentCard = ({ id, category, address, date, police, videoUrl }: Inciden
             </S.CardBody>
             <S.CardFooter>
               <span>{date}</span>
-              <span>{police}</span>
+              <span>{police_name}</span>
             </S.CardFooter>
           </S.CardFront>
 
@@ -39,7 +39,7 @@ const IncidentCard = ({ id, category, address, date, police, videoUrl }: Inciden
           </S.CardBack>
         </S.CardInner>
       </S.FlipCard>
-      <VideoModal isOpen={isModalOpen} onClose={closeModal} videoUrl={videoUrl} />
+      <VideoModal isOpen={isModalOpen} onClose={closeModal} video={video} />
     </>
   );
 };
