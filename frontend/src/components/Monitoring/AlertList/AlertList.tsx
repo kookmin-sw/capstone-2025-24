@@ -5,7 +5,7 @@ import EmptyView from './EmptyView.tsx';
 import * as S from './AlertList.style.ts';
 import { useLocation } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore.ts';
-import { getTotalAlert } from '@/apis/AlertApi';
+import { getTotalIncidents } from '@/apis/AlertApi';
 import { getMappedCategory } from '@/utils/categoryMapper';
 
 const ToopTipContent = () => {
@@ -25,18 +25,21 @@ const AlertList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTotalAlert();
+        const data = await getTotalIncidents();
         const alertData = data.map((item) => ({
           id: item.id,
           level: item.level,
           category: getMappedCategory(item.category),
           date: item.date,
           address: item.address,
+          police_name: item.police_name,
           state: item.state,
+          video: item.video,
+          memo: item.memo,
         }));
         setItems(alertData);
       } catch (error) {
-        console.error('alert get 호출 에러', error);
+        console.error('전체 알림, 사건 get 호출 에러', error);
       }
     };
     fetchData();

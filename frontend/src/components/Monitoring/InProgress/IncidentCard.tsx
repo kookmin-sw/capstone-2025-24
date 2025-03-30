@@ -9,11 +9,11 @@ import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
+  const [video, setVideo] = useState('');
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
-  const [video, setVideo] = useState('');
-
-  const handleVideo = async () => {
+  const handleVideoModal = async () => {
+    openModal();
     const response = await getIncidentVideo(id);
     setVideo(response.video);
   };
@@ -25,8 +25,8 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
           <S.CardFront>
             <S.CardHeader>
               <S.CardTitle>{category} 감지</S.CardTitle>
-              <S.VideoButton onClick={openModal}>
-                <IoMdCamera className="icon" onClick={handleVideo} />
+              <S.VideoButton onClick={handleVideoModal}>
+                <IoMdCamera className="icon" />
                 영상 확인
               </S.VideoButton>
             </S.CardHeader>

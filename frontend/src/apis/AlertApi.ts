@@ -1,14 +1,14 @@
 import { axiosInstance } from '@/apis/axiosInstance';
 import { AlertProps } from '@/types/alert';
 
-export const getTotalAlert = async (): Promise<AlertProps[]> => {
+export const getTotalIncidents = async (): Promise<AlertProps[]> => {
   try {
-    const response = await axiosInstance.get('api/v1/case/ready');
-    console.log('전체 알림 리스트 : ', response.data);
+    const response = await axiosInstance.get('api/v1/case');
+    console.log('전체 알림, 사건 리스트 : ', response.data);
     return response.data;
   } catch (error) {
-    console.log('alert get 에러', error);
-    return []; // promise로 객체 지정 -> catch 에러 발생 시에도 반환 값은 있어야 함
+    console.log('전체 알림, 사건 리스트 get 에러', error);
+    return [];
   }
 };
 
@@ -42,17 +42,6 @@ export const putAlertState = async (id: number, state: string): Promise<Pick<Ale
   } catch (error) {
     console.error('alert state put 에러:', error);
     throw error;
-  }
-};
-
-export const getTotalIncident = async (): Promise<AlertProps[]> => {
-  try {
-    const response = await axiosInstance.get('api/v1/case/move');
-    console.log('출동중인 사건 : ', response.data);
-    return response.data;
-  } catch (error) {
-    console.log('incident get 에러', error);
-    return [];
   }
 };
 
