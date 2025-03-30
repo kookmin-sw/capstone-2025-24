@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class ProgressResponse {
+public class DashboardResponse {
     private Integer id;
     private String police_name;
     private String police_rank;
@@ -21,12 +21,10 @@ public class ProgressResponse {
 
     private Integer level;
     private CaseCategory category;
-    private String video;
     private CaseState state;
-    private String memo;
 
-    public static ProgressResponse fromEntity(CaseEntity entity) {
-        return ProgressResponse.builder()
+    public static DashboardResponse fromEntity(CaseEntity entity) {
+        return DashboardResponse.builder()
                 .id(entity.getId())
                 .police_name(entity.getPolice().getName())
                 .police_rank(String.valueOf(entity.getPolice().getRank()))
@@ -34,9 +32,7 @@ public class ProgressResponse {
                 .date(entity.getDate())
                 .level(entity.getLevel())
                 .category(entity.getCategory())
-                .video(entity.getVideo())
                 .state(entity.getState())
-                .memo(entity.getMemo())
                 .build();
     }
 

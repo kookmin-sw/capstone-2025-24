@@ -6,6 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AlarmRequest {
+public class StateRequest {
     private CaseState state; // "출동" or "미출동"
 }
