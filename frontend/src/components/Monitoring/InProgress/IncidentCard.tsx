@@ -4,7 +4,7 @@ import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
 import { AlertProps } from '@/types/alert';
-import { getIncidentVideo } from '@/apis/AlertApi';
+import { getVideo } from '@/apis/AlertApi';
 import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
@@ -14,7 +14,7 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
 
   const handleVideoModal = async () => {
     openModal();
-    const response = await getIncidentVideo(id);
+    const response = await getVideo(id);
     setVideo(response.video);
   };
 

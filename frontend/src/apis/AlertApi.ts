@@ -12,24 +12,13 @@ export const getTotalIncidents = async (): Promise<AlertProps[]> => {
   }
 };
 
-export const getAlertVideo = async (id: number): Promise<{ video: string }> => {
+export const getVideo = async (id: number): Promise<{ video: string }> => {
   try {
-    const response = await axiosInstance.get(`api/v1/case/ready/${id}`);
-    console.log('알림 리스트 video 보기 : ', response.data);
+    const response = await axiosInstance.get(`api/v1/case/${id}`);
+    console.log('알림, 사건 video 보기 : ', response.data);
     return response.data;
   } catch (error) {
-    console.log('alert video get 에러', error);
-    return { video: '' };
-  }
-};
-
-export const getIncidentVideo = async (id: number): Promise<{ video: string }> => {
-  try {
-    const response = await axiosInstance.get(`api/v1/case/move/${id}`);
-    console.log('출동 중인 사건 video 보기 : ', response.data);
-    return response.data;
-  } catch (error) {
-    console.log('incident video get 에러', error);
+    console.log('알림, 사건 video get 에러', error);
     return { video: '' };
   }
 };
