@@ -4,7 +4,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
 import { AlertProps } from '@/types/alert';
-import { getVideo } from '@/apis/AlertApi';
+import { getAlertVideo } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
@@ -20,7 +20,7 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: Inci
 
   useEffect(() => {
     const fetchVideo = async () => {
-      const response = await getVideo(id);
+      const response = await getAlertVideo(id);
       setVideo(response.video);
     };
     fetchVideo();

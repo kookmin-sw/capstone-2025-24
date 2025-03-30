@@ -4,11 +4,19 @@ import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
 import { AlertProps } from '@/types/alert';
+import { getIncidentVideo } from '@/apis/AlertApi';
 import * as S from './InProgress.style';
 
-const IncidentCard = ({ id, category, address, date, police_name, video }: AlertProps) => {
+const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+
+  const [video, setVideo] = useState('');
+
+  const handleVideo = async () => {
+    const response = await getIncidentVideo(id);
+    setVideo(response.video);
+  };
 
   return (
     <>
@@ -18,7 +26,7 @@ const IncidentCard = ({ id, category, address, date, police_name, video }: Alert
             <S.CardHeader>
               <S.CardTitle>{category} 감지</S.CardTitle>
               <S.VideoButton onClick={openModal}>
-                <IoMdCamera className="icon" />
+                <IoMdCamera className="icon" onClick={handleVideo} />
                 영상 확인
               </S.VideoButton>
             </S.CardHeader>
