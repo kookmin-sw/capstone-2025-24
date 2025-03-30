@@ -3,6 +3,8 @@ package com.example.backend.dashboard.service;
 import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.common.domain.PoliceEntity;
 import com.example.backend.dashboard.dto.DashboardResponse;
+import com.example.backend.dashboard.dto.StateRequest;
+import com.example.backend.dashboard.dto.SurveyRequest;
 import com.example.backend.dashboard.repository.DashboardRepository;
 import com.example.backend.user.dto.UserResponseDto;
 import jakarta.persistence.EntityNotFoundException;
@@ -82,7 +84,7 @@ public class DashboardService {
     }
 
     // 출동, 미출동 상태 변경
-    public Map<Integer, String> updateCaseState(int id, CaseEntity.CaseState state, HttpSession session) {
+    public Map<Integer, String> updateCaseState(int id, StateRequest request, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
         int policeId = getAuthenticatedPoliceId(session);
 
@@ -92,7 +94,7 @@ public class DashboardService {
             throw new IllegalStateException("해당 사건은 이미 출동 처리되었거나 완료된 사건입니다.");
         }
 
-        if (state == CaseEntity.CaseState.출동) {
+        if (request.getState() == CaseEntity.CaseState.출동) {
             // 출동 처리
             caseEntity.setState(CaseEntity.CaseState.출동);
 
@@ -106,6 +108,12 @@ public class DashboardService {
         } else {
             // 미출동 처리
             caseEntity.setState(CaseEntity.CaseState.미출동);
+
+            if (request.getCategory() != null) {
+                caseEntity.setAccuracy(false);
+                caseEntity.setCategory(request.getCategory());
+            }
+
             dashboardRepository.save(caseEntity);
 
             return Collections.singletonMap(id, "미출동 사건으로 변경합니다.");
@@ -113,7 +121,7 @@ public class DashboardService {
     }
 
     // 출동 중인 사건 해결 처리
-    public Map<Integer, String> completeCase(int id, HttpSession session) {
+    public Map<Integer, String> completeCase(int id, SurveyRequest surveyRequest, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
 
         if (caseEntity.getState() != CaseEntity.CaseState.출동) {
@@ -121,6 +129,12 @@ public class DashboardService {
         }
 
         caseEntity.setState(CaseEntity.CaseState.완료);
+
+        if (surveyRequest.getCategory() != null) {
+            caseEntity.setAccuracy(false);
+            caseEntity.setCategory(surveyRequest.getCategory());
+        }
+
         dashboardRepository.save(caseEntity);
 
         return Collections.singletonMap(id, "해당 사건이 해결 처리되었습니다.");

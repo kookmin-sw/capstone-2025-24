@@ -38,15 +38,19 @@ public class DashboardController {
 
     // 출동 | 미출동 클릭 시 => 1. 이미 출동인 상태 or 2. state를 업데이트
     @PutMapping("/ready/{id}")
-    public ResponseEntity<?> updateCaseState(@PathVariable("id") int id, @RequestBody StateRequest request, HttpSession session) {
-        Map<Integer, String> message = dashboardService.updateCaseState(id, request.getState(), session);
+    public ResponseEntity<?> updateCaseState(@PathVariable("id") int id,
+                                             @RequestBody StateRequest request,
+                                             HttpSession session) {
+        Map<Integer, String> message = dashboardService.updateCaseState(id, request, session);
         return ResponseEntity.ok(message);
     }
 
     // 출동 중인 사건 해결 처리
     @PutMapping("/complete/{id}")
-    public ResponseEntity<?> completeCase(@PathVariable("id")  int id, HttpSession session) {
-        Map<Integer, String> completedCase = dashboardService.completeCase(id, session);
+    public ResponseEntity<?> completeCase(@PathVariable("id")  int id,
+                                          @RequestBody SurveyRequest surveyRequest,
+                                          HttpSession session) {
+        Map<Integer, String> completedCase = dashboardService.completeCase(id, surveyRequest, session);
         return ResponseEntity.ok(completedCase);
     }
 

@@ -26,8 +26,8 @@ public class DashboardResponse {
     public static DashboardResponse fromEntity(CaseEntity entity) {
         return DashboardResponse.builder()
                 .id(entity.getId())
-                .police_name(entity.getPolice().getName())
-                .police_rank(String.valueOf(entity.getPolice().getRank()))
+                .police_name(entity.getPolice() != null ? entity.getPolice().getName() : null)
+                .police_rank(entity.getPolice() != null ? String.valueOf(entity.getPolice().getRank()) : null)
                 .address(entity.getCctv().getAddress())
                 .date(entity.getDate())
                 .level(entity.getLevel())
