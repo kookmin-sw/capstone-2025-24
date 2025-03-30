@@ -2,7 +2,6 @@ import * as S from './Overview.style';
 import OverviewCard from '../../../components/Chart/Overview/OverviewCard';
 import OverviewLargeCard from '../../../components/Chart/Overview/OverviewLargeCard';
 import { OVERVIEW_LIST } from '../../../constants/overviewList';
-// import { OVERVIEWMOCK } from '../../../mocks/OverviewMock';
 import { getOverview } from '@/apis/ChartApi';
 import { useEffect, useState } from 'react';
 import { overviewType } from '@/types/chartType';
@@ -12,7 +11,8 @@ const OverviewDiv = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       const data = await getOverview();
-      setOverviewData(data.applications);
+      // console.log(data);
+      setOverviewData(data);
     };
 
     fetchNotifications();
@@ -36,7 +36,7 @@ const OverviewDiv = () => {
           />
         );
       })}
-      <OverviewLargeCard />
+      <OverviewLargeCard title={overviewData?.patrolRegion}/>
     </S.OverviewDiv>
   );
 };

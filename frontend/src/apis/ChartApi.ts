@@ -2,57 +2,58 @@ import { axiosInstance } from '@/apis/axiosInstance';
 
 export const getOverview = async () => {
   try {
-    const res = await axiosInstance.post('api/v1/stats/overview');
+    const res = await axiosInstance.get('api/v1/stats/overview');
+    console.log("res.data:",res.data);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('overview 에러');
   }
 };
 
 export const getDataPerCategory = async (period: string) => {
   try {
-    const res = await axiosInstance.post(`api/v1/stats/category?period=${period}`);
+    const res = await axiosInstance.get(`api/v1/stats/category?period=${period}`);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('카테고리별그래프 에러');
   }
 };
 
-export const getPatePerYearMonth = async (year: string, month: string | undefined, category: string) => {
+export const getDataPerYearMonth = async (year: string, month: string | undefined, category: string) => {
   try {
     const baseUrl = `api/v1/stats/date?year=${year}&category=${category}`;
     const url = month ? `${baseUrl}&month=${month}` : baseUrl;
-    const res = await axiosInstance.post(url);
+    const res = await axiosInstance.get(url);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('일월별사건수 에러');
   }
 };
 
 export const getDataPerTime = async (category: string, date: string) => {
   try {
     // /api/v1/stats/hour?date={yyyy-MM-DD}&category={category}
-    const res = await axiosInstance.post(`api/v1/stats/hour?date=${date}&category=${category}`);
+    const res = await axiosInstance.get(`api/v1/stats/hour?date=${date}&category=${category}`);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('시간대별사건수 에러');
   }
 };
 
 export const getDataPerLocation = async (period: string) => {
   try {
-    const res = await axiosInstance.post(`api/v1/stats/location?period=${period}`);
+    const res = await axiosInstance.get(`api/v1/stats/location?period=${period}`);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('위치별사건수수 에러');
   }
 };
 
 export const getClusterData = async () => {
   try {
-    const res = await axiosInstance.post(`api/v1/stats/map`);
+    const res = await axiosInstance.get(`api/v1/stats/map`);
     return res.data;
   } catch (error) {
-    console.log('로그인 에러');
+    console.log('클러스터 에러');
   }
 };
