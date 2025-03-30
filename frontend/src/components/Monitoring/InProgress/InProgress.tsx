@@ -1,15 +1,33 @@
 import { useEffect } from 'react';
 import { useItemStore } from '@/stores/itemStore';
-import { InProgressData } from '@/mocks/InProgressData';
 import IncidentCard from './IncidentCard';
 import * as S from './InProgress.style';
 import policerEmpty from '@/assets/images/policerEmpty.png';
+import { getTotalIncident } from '@/apis/AlertApi';
 
 const InProgress = () => {
-  const { items, setItems } = useItemStore();
+  const { items, setItems, addItem } = useItemStore();
 
   useEffect(() => {
-    setItems(InProgressData);
+    const fetchData = async () => {
+      try {
+        const data = await getTotalIncident();
+        const incidentData = data.map((item) => ({
+          id: item.id,
+          level: item.level,
+          category: item.category,
+          date: item.date,
+          address: item.address,
+          state: item.state,
+        }));
+        incidentData.forEach((incident) => {
+          addItem(incident);
+        });
+      } catch (error) {
+        console.error('incident get 호출 에러', error);
+      }
+    };
+    fetchData();
   }, [setItems]);
 
   const incidents = items.filter((item) => item.state === '출동');
