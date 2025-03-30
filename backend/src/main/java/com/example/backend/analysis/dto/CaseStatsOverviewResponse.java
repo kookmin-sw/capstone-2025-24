@@ -8,4 +8,5 @@ public class CaseStatsOverviewResponse {
     private int recentCase;
     private int todayCase;
     private String mostCase;
+    private String patrolRegion;
 }

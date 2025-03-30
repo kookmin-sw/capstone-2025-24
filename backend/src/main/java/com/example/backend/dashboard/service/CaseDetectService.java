@@ -5,7 +5,7 @@ import com.example.backend.common.domain.CctvEntity;
 import com.example.backend.common.domain.OfficeEntity;
 import com.example.backend.dashboard.dto.CaseDetectRequest;
 import com.example.backend.dashboard.dto.CaseDetectResponse;
-import com.example.backend.dashboard.repository.ProgressRepository;
+import com.example.backend.dashboard.repository.DashboardRepository;
 import com.example.backend.search.repository.CctvRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class CaseDetectService {
 
-    private final ProgressRepository caseRepository;
+    private final DashboardRepository caseRepository;
     private final CctvRepository cctvRepository; // CCTV 정보(주소) 조회용
 
     public CaseDetectResponse saveCase(CaseDetectRequest request) {
