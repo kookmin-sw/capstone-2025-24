@@ -29,15 +29,15 @@ export const getDataPerLocation = async (period: string) => {
 
 // 일월별 사건 수
 export const getDataPerYearMonth = async (
-  year: string | undefined,
+  year: string,
   month: string | undefined,
   category: string | undefined,
 ) => {
   try {
-    const baseUrl = year || month || category ? `api/v1/stats/date?` : `api/v1/stats/date`;
-    const baseCate = category ? `${baseUrl}category=${category}` : baseUrl;
-    const baseYear = year ? `${baseCate}&year=${year}` : baseCate;
-    const finalUrl = month ? `${baseYear}&month=${month}` : baseYear;
+    const baseUrl = `api/v1/stats/date?year=${year}`;
+    const baseCate = category ? `${baseUrl}&category=${category}` : baseUrl;
+    const finalUrl = month ? `${baseCate}&month=${month}` : baseCate;
+    console.log("여기보세요", finalUrl);
     const res = await axiosInstance.get(finalUrl);
     return res.data;
   } catch (error) {
