@@ -25,3 +25,6 @@ dist-ssr
 
 # API KEY
 .env
+
+# key files
+/cert
