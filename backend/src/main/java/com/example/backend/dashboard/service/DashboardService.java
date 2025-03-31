@@ -66,6 +66,10 @@ public class DashboardService {
         );
         List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderById(officeId, targetStates);
 
+        if (cases.isEmpty()) {
+            throw new NoSuchElementException("미확인, 확인 또는 출동 중인 사건이 없습니다.");
+        }
+
         return cases.stream()
                 .map(DashboardResponse::fromEntity)
                 .collect(Collectors.toList());
