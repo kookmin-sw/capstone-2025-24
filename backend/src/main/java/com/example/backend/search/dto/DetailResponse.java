@@ -2,19 +2,17 @@ package com.example.backend.search.dto;
 
 import com.example.backend.common.domain.CaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
 public class DetailResponse {
     private int id;
-    private Integer policeId;
+    private int policeId;
     private String policeName;
-    private Integer cctvId;
+    private int cctvId;
     private String address;
     private Double longitude;
     private Double latitude;
@@ -25,6 +23,22 @@ public class DetailResponse {
     private String category;
     private String video;
     private String memo;
+
+    @Builder
+    public DetailResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String address, Double latitude, Double longitude, LocalDateTime date,
+                          String category, String video, String memo) {
+        this.id = id;
+        this.policeId = policeId;
+        this.policeName = policeName;
+        this.cctvId = cctvId;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.date = date;
+        this.category = category;
+        this.video = video;
+        this.memo = memo;
+    }
 
     public static DetailResponse fromEntity(CaseEntity entity) {
         return DetailResponse.builder()

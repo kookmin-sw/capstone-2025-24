@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class DashboardResponse {
-    private int id;
+    private Integer id;
     private String police_name;
     private String police_rank;
     private String address;
@@ -19,7 +19,7 @@ public class DashboardResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
-    private int level;
+    private Integer level;
     private CaseCategory category;
     private CaseState state;
 

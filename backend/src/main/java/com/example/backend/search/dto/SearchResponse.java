@@ -2,19 +2,21 @@ package com.example.backend.search.dto;
 
 import com.example.backend.common.domain.CaseEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class SearchResponse {
     private int id;
-    private Integer policeId;
+    private int policeId;
     private String policeName;
-    private Integer cctvId;
+    private int cctvId;
     private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -22,6 +24,19 @@ public class SearchResponse {
 
     private String category;
     private String memo;
+
+    @Builder
+    public SearchResponse(Integer id, Integer policeId, String policeName, Integer cctvId, String address, LocalDateTime date,
+                          String category, String memo) {
+        this.id = id;
+        this.policeId = policeId;
+        this.policeName = policeName;
+        this.cctvId = cctvId;
+        this.address = address;
+        this.date = date;
+        this.category = category;
+        this.memo = memo;
+    }
 
     public static SearchResponse fromEntity(CaseEntity entity) {
         return SearchResponse.builder()

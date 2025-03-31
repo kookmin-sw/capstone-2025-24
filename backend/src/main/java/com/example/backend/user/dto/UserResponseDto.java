@@ -10,8 +10,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class UserResponseDto {
     @JsonIgnore
-    private int id;
-    private int officeId;
+    private Integer id;
+    private Integer officeId;
     private String name;
     private String officeName;
     private String profileUrl;
