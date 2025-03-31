@@ -28,15 +28,3 @@ labels:
   ':hammer: REFACTOR':
     include:
       ['\bRefactor\b', '\bREFACTOR\b', '\brefactor\b']
-
-  ':nail_care: FRONTEND':
-    include:
-      ['\bFrontend\b', '\bfrontend\b', '\bFRONTEND\b']
-
-  ':page_facing_up: AI':
-    include:
-      ['\bAI\b', '\bai\b', '\bAi\b']
-
-  ':rocket: BACKEND':
-    include:
-      ['\bbackend\b', '\bBackend\b', '\bBACKEND\b']

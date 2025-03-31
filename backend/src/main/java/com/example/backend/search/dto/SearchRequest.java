@@ -13,7 +13,7 @@ public class SearchRequest {
     private String address;
     private String police;
     private String order;
-    private int page;
+    private Integer page;
 
     // startDate 변환 00:00:00
     public LocalDateTime getStartDateTime() {

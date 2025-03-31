@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CaseDetectResponse {
-    private int caseId;       // 사건 ID
+    private Integer caseId;       // 사건 ID
     private String category;      // 사건 카테고리 (예: fire, assault 등)
     private String cctvAddress;   // CCTV 주소
     private String dateTime;      // 사건 감지 시각 (문자열 형태, yyyy-MM-dd HH:mm:ss)

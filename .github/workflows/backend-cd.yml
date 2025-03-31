@@ -1,0 +1,62 @@
+name: Secure Backend CD
+
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - "backend/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: secretconfig
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./backend/gradlew
+
+      - name: Build backend application
+        working-directory: ./backend
+        run: ./gradlew build -x test
+
+      - name: Prepare SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 600 key.pem
+
+      - name: Add remote host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copy JAR to EC2 server
+        run: |
+          scp -i key.pem ./backend/build/libs/backend-0.0.1-SNAPSHOT.jar ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/capstone-2025-24/backend/build/libs/
+
+      - name: Deploy on EC2 via SSH
+        env:
+          APP_YML: ${{ secrets.APPLICATION_YML }}
+          DOCKER_COMPOSE_YML: ${{ secrets.DOCKER_COMPOSE_YML }}
+        run: |
+          ssh -i key.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+          cd ~/capstone-2025-24
+          git pull
+          cat > backend/src/main/resources/application.yml << 'END_YML'
+          $APP_YML
+          END_YML
+          cat > docker-compose.yml << 'END_DOCKER'
+          $DOCKER_COMPOSE_YML
+          END_DOCKER
+          docker-compose down
+          docker-compose build
+          docker-compose up -d
+          EOF
