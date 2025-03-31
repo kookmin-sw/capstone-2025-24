@@ -1,6 +1,6 @@
 import * as S from './LineCard.style';
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { hourFormatChanger } from '../../../hooks/dataFormatter';
+import { hourFormatChanger } from '../../../utils/dataFormatter';
 import { HourItem } from '../../../mocks/LineData';
 import {
   Chart as ChartJS,

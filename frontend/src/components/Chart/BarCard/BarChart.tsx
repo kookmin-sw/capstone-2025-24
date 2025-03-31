@@ -1,9 +1,9 @@
 import * as S from './BarCard.style';
 import { useRef, useEffect, useState, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { monthFormatChanger, dayFormatChanger } from '../../../hooks/dataFormatter';
+import { monthFormatChanger, dayFormatChanger } from '../../../utils/dataFormatter';
 import { BarMonthItem, BarDayItem } from '../../../mocks/BarData';
-
+import { useFilterStore } from '@/stores/filterStore';
 import {
   Chart as ChartJS,
   ChartData,
@@ -34,6 +34,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  const { filter } = useFilterStore();
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
@@ -114,8 +115,15 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
     setIsHidden(chart.data.datasets.map((_, i) => !!chart.getDatasetMeta(i)?.hidden));
   };
 
+  useEffect(() => {
+    const index = legendItems.findIndex((item) => item.text === filter.category);
+    if (index >= 0) {
+      handleLegendClick(index);
+    }
+  }, [filter.category, legendItems]);
+  
   return (
-    <S.BarChartLayout onClick={()=>console.log("data:",data)}>
+    <S.BarChartLayout onClick={() => console.log('data:', data)}>
       <S.ChartScrollWrapper
         ref={scrollRef}
         onMouseDown={onMouseDown}

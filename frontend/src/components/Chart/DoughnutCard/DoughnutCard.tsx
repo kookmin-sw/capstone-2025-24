@@ -31,7 +31,7 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
         setChartData(formattedData);
       } else {
         const data = await getDataPerLocation(periodLst[selectedIndex]);
-        const formattedData = data.slice(0, 5).map((it: LocationItem, index: number) => {
+        const formattedData = data.map((it: LocationItem, index: number) => {
           return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
         });
         setChartData(formattedData);

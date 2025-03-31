@@ -13,6 +13,7 @@ const BarCard = () => {
   const [dayData, setDayData] = useState<BarDayItem[]>([]);
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
+
   const getEnglishCategory = (koreanCategory: string): string | undefined => {
     return Object.keys(EVENT_CATEGORY).find((key) => EVENT_CATEGORY[key] === koreanCategory);
   };
