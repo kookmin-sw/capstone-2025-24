@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,10 @@ public class CaseStatsController {
     public ResponseEntity<?> getOverview(HttpSession session) {
         // 결과가 없으면 404, 있으면 200
         CaseStatsOverviewResponse response = caseStatsService.getOverview(session);
+        if (response == null) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("message", "개요 정보가 없습니다."));
+        }
         return ResponseEntity.ok(response);
     }
 
@@ -31,6 +36,10 @@ public class CaseStatsController {
                                                 @RequestParam(value = "category", required = false) String category,
                                                 HttpSession session) {
         List<HourlyCaseStatsResponse> stats = caseStatsService.getHourlyCaseStats(date, category, session);
+        if (stats.isEmpty()) {
+            return ResponseEntity.status(404)
+                    .body(Collections.singletonMap("message", "시간대별 사건 정보가 없습니다."));
+        }
         return ResponseEntity.ok(stats);
     }
 
