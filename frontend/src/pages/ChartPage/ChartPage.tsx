@@ -11,7 +11,7 @@ const ChartPage = () => {
         <S.OverviewP>Overview</S.OverviewP>
         <OverviewDiv />
         <S.ChartFirstDiv>
-          <LineCard />
+          {/* <LineCard /> */}
         </S.ChartFirstDiv>
         <S.ChartSecondDiv>
           <BarCard />

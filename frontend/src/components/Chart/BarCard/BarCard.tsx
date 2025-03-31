@@ -1,7 +1,8 @@
 import * as S from './BarCard.style';
+import { EVENT_CATEGORY } from '@/constants/EventCategory';
 import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
-import { getPatePerYearMonth } from '@/apis/ChartApi';
+import { getDataPerYearMonth } from '@/apis/ChartApi';
 import BarFilter from './BarFilter/BarFilter';
 import { BarMonthItem, BarDayItem } from '@/types/chartType';
 import { useFilterStore } from '../../../stores/filterStore';
@@ -12,15 +13,19 @@ const BarCard = () => {
   const [dayData, setDayData] = useState<BarDayItem[]>([]);
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
-
+  const getEnglishCategory = (koreanCategory: string): string | undefined => {
+    return Object.keys(EVENT_CATEGORY).find((key) => EVENT_CATEGORY[key] === koreanCategory);
+  };
   useEffect(() => {
     const fetchChartData = async () => {
       const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
-      const data = await getPatePerYearMonth(filter.year, monthParam, filter.category);
+      const yearParam = filter.year === '전체' ? undefined : filter.year;
+      const categoryParam = filter.category === '전체' ? undefined : getEnglishCategory(filter.category);
+      const data = await getDataPerYearMonth(yearParam, monthParam, categoryParam);
       if (monthParam) {
-        setDayData(data.applications);
+        setDayData(data);
       } else {
-        setMonthData(data.applications);
+        setMonthData(data);
       }
     };
 

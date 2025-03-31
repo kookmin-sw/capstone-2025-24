@@ -27,11 +27,16 @@ export const getDataPerLocation = async (period: string) => {
   }
 };
 
-export const getDataPerYearMonth = async (year: string, month: string | undefined, category: string) => {
+// 일월별 사건 수
+export const getDataPerYearMonth = async (year: string | undefined, month: string | undefined, category: string | undefined) => {
   try {
-    const baseUrl = `api/v1/stats/date?year=${year}&category=${category}`;
-    const url = month ? `${baseUrl}&month=${month}` : baseUrl;
-    const res = await axiosInstance.get(url);
+    const baseUrl = year || month || category ? `api/v1/stats/date?` : `api/v1/stats/date`;
+    const baseCate = category ? `${baseUrl}category=${category}` : baseUrl;
+    const baseYear = year ? `${baseCate}&year=${year}` : baseCate;
+    const finalUrl = month ? `${baseYear}&month=${month}` : baseYear;
+    const res = await axiosInstance.get(finalUrl);
+    console.log(finalUrl);
+    console.log('res.data:', res.data);
     return res.data;
   } catch (error) {
     console.log('일월별사건수 에러');

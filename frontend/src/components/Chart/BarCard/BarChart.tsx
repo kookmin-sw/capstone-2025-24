@@ -29,6 +29,7 @@ interface BarChartProps {
 }
 
 const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
+  const chartRef = useRef<ChartJS<'bar'> | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
@@ -53,7 +54,6 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
     scrollRef.current.scrollLeft = scrollLeft.current - walk;
   };
 
-  const chartRef = useRef<ChartJS<'bar'> | null>(null);
   const chartData: ChartData<'bar'> = {
     labels: isMonthly
       ? ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
@@ -79,7 +79,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
       animation: isVisible ? { duration: 1500, easing: 'easeInOutQuad' } : { duration: 0 },
       plugins: {
         tooltip: { enabled: false },
-        legend: { display: false }, // 기존 legend 숨기기
+        legend: { display: false },
       },
     }),
     [],
@@ -115,7 +115,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
   };
 
   return (
-    <S.BarChartLayout>
+    <S.BarChartLayout onClick={()=>console.log("data:",data)}>
       <S.ChartScrollWrapper
         ref={scrollRef}
         onMouseDown={onMouseDown}
