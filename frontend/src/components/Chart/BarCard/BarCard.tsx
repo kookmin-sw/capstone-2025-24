@@ -23,6 +23,7 @@ const BarCard = () => {
       const yearParam = filter.year === '전체' ? undefined : filter.year;
       const categoryParam = filter.category === '전체' ? undefined : getEnglishCategory(filter.category);
       const data = await getDataPerYearMonth(yearParam, monthParam, categoryParam);
+      console.log("Data:", data);
       if (monthParam) {
         setDayData(data);
       } else {

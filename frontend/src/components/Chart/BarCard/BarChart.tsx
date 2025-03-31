@@ -3,7 +3,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { monthFormatChanger, dayFormatChanger } from '../../../utils/dataFormatter';
 import { BarMonthItem, BarDayItem } from '../../../mocks/BarData';
-import { useFilterStore } from '@/stores/filterStore';
+// import { useFilterStore } from '@/stores/filterStore';
 import {
   Chart as ChartJS,
   ChartData,
@@ -34,7 +34,7 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const { filter } = useFilterStore();
+  // const { filter } = useFilterStore();
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
@@ -62,7 +62,6 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
     datasets: isMonthly ? monthFormatChanger(data as BarMonthItem[]) : dayFormatChanger(data as BarDayItem[]),
   };
   const [legendItems, setLegendItems] = useState<LegendItem[]>([]);
-  const [isHidden, setIsHidden] = useState<boolean[]>([]);
   const containerWidth = isMonthly ? '100%' : `${(chartData.labels?.length || 0) * 40}px`;
 
   const BarOptions = useMemo<ChartOptions<'bar'>>(
@@ -88,42 +87,12 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
 
   useEffect(() => {
     if (chartRef.current) {
-      const chart = chartRef.current;
-      setLegendItems(chart.legend?.legendItems || []);
+      setLegendItems(chartRef.current.legend?.legendItems || []);
     }
-  }, []);
+  }, [chartRef.current]);
 
-  const handleLegendClick = (index: number) => {
-    if (!chartRef.current) return;
-
-    const chart = chartRef.current;
-    const isOnlyOneVisible = chart.data.datasets.every((_, i) => {
-      const meta = chart.getDatasetMeta(i);
-      return i === index ? !meta.hidden : meta.hidden;
-    });
-
-    chart.data.datasets.forEach((_, i) => {
-      const meta = chart.getDatasetMeta(i);
-      if (isOnlyOneVisible) {
-        meta.hidden = false;
-      } else {
-        meta.hidden = i !== index;
-      }
-    });
-
-    chart.update();
-    setIsHidden(chart.data.datasets.map((_, i) => !!chart.getDatasetMeta(i)?.hidden));
-  };
-
-  useEffect(() => {
-    const index = legendItems.findIndex((item) => item.text === filter.category);
-    if (index >= 0) {
-      handleLegendClick(index);
-    }
-  }, [filter.category, legendItems]);
-  
   return (
-    <S.BarChartLayout onClick={() => console.log('data:', data)}>
+    <S.BarChartLayout>
       <S.ChartScrollWrapper
         ref={scrollRef}
         onMouseDown={onMouseDown}
@@ -136,14 +105,17 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
         </S.ChartCanvasWrapper>
       </S.ChartScrollWrapper>
       <S.FixedLegendContainer>
-        {legendItems.reverse().map((item, index) => {
-          return (
-            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
-              <S.LegendColorBox $bgcolor={item.fillStyle as string} $isHidden={isHidden[index]} />
-              <span>{item.text}</span>
-            </S.LegendItem>
-          );
-        })}
+        {legendItems
+          .slice()
+          .reverse()
+          .map((item) => {
+            return (
+              <S.LegendItem>
+                <S.LegendColorBox $bgcolor={item.fillStyle as string} />
+                <span>{item.text}</span>
+              </S.LegendItem>
+            );
+          })}
       </S.FixedLegendContainer>
     </S.BarChartLayout>
   );

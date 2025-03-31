@@ -28,7 +28,11 @@ export const getDataPerLocation = async (period: string) => {
 };
 
 // 일월별 사건 수
-export const getDataPerYearMonth = async (year: string | undefined, month: string | undefined, category: string | undefined) => {
+export const getDataPerYearMonth = async (
+  year: string | undefined,
+  month: string | undefined,
+  category: string | undefined,
+) => {
   try {
     const baseUrl = year || month || category ? `api/v1/stats/date?` : `api/v1/stats/date`;
     const baseCate = category ? `${baseUrl}category=${category}` : baseUrl;
