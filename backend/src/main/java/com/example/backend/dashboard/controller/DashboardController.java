@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +21,6 @@ public class DashboardController {
     @GetMapping("")
     public ResponseEntity<?> getCases(HttpSession session) {
         List<DashboardResponse> cases = dashboardService.getCases(session);
-        if (cases.isEmpty()) {
-            return ResponseEntity.status(404)
-                    .body(Collections.singletonMap("message", "사건이 없습니다."));
-        }
         return ResponseEntity.ok(cases);
     }
 
