@@ -84,6 +84,11 @@ public class DashboardService {
             throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
         }
 
+        if (caseEntity.getState() == CaseEntity.CaseState.미확인) {
+            caseEntity.setState(CaseEntity.CaseState.확인);
+            dashboardRepository.save(caseEntity);
+        }
+
         return Collections.singletonMap("video", videoUrl);
     }
 
