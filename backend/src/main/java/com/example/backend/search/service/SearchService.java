@@ -3,7 +3,6 @@ package com.example.backend.search.service;
 import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.search.domain.SearchSpecification;
 import com.example.backend.search.dto.*;
-import com.example.backend.search.repository.CctvRepository;
 import com.example.backend.search.repository.SearchRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -20,18 +19,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SearchService {
     private final SearchRepository searchRepository;
-    private final CctvRepository cctvRepository;
     private static final int PAGE_SIZE = 8; // 한 페이지당 8개씩
 
     public SearchResult getCheckLog(String category, LocalDateTime startDate, LocalDateTime endDate, String address, String police, String order, Integer page, Integer officeId) {
-        // address가 있을 경우, cctv_info에서 해당 주소를 가진 cctv_id 리스트 조회
-        List<Integer> cctvIds = null;
-        if (address != null) {
-            cctvIds = cctvRepository.findCctvIdsByAddress(address);
-        }
 
         // 동적 검색 조건 생성
-        Specification<CaseEntity> spec = SearchSpecification.filterCases(category, startDate, endDate, police, cctvIds, officeId);
+        Specification<CaseEntity> spec = SearchSpecification.filterCases(category, startDate, endDate, police, address, officeId);
 
         // 정렬 설정
         Sort sort = Sort.unsorted();
