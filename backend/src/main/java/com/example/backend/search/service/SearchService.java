@@ -55,11 +55,13 @@ public class SearchService {
 
         // 전체 페이지 수 가져오기
         int totalPages = casePage.getTotalPages();
+        long totalElements = casePage.getTotalElements();
 
         // 결과 반환
         return SearchResult.builder()
                 .results(results)
                 .totalPages(totalPages)
+                .totalElements(totalElements)
                 .build();
     }
 
