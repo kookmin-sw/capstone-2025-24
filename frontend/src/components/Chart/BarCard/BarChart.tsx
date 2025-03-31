@@ -34,7 +34,6 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  // const { filter } = useFilterStore();
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
@@ -108,9 +107,9 @@ const BarChart = ({ data, isMonthly, isVisible }: BarChartProps) => {
         {legendItems
           .slice()
           .reverse()
-          .map((item) => {
+          .map((item, index) => {
             return (
-              <S.LegendItem>
+              <S.LegendItem key={index}>
                 <S.LegendColorBox $bgcolor={item.fillStyle as string} />
                 <span>{item.text}</span>
               </S.LegendItem>

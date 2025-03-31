@@ -4,7 +4,7 @@ interface DateDisplayProps {
   content: Date;
 }
 const changeDateFormat = (date:Date) => {
-  return `${date.getFullYear()}.${date.getMonth()}.${date.getDate()}`;
+  return `${date.getFullYear()}.${date.getMonth()+1}.${date.getDate()}`;
 }
 const DateDisplay = ({content}:DateDisplayProps) => {
   return (

@@ -22,10 +22,9 @@ interface LineChartProps {
   category: string;
   chartData: HourItem[];
 }
-const LineChart = ({ category, chartData }: LineChartProps) => {
+const LineChart = ({ chartData }: LineChartProps) => {
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
-  const [isHidden, setIsHidden] = useState<boolean[]>([]);
 
   const LineOptions = useMemo<ChartOptions<'line'>>(
     () => ({
@@ -69,52 +68,30 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
     [],
   );
 
-  // legend 배치
-  useEffect(() => {
-    if (chartRef.current) {
-      const chart = chartRef.current;
-      setLegendItems(chart.legend?.legendItems || []);
-    }
-  }, [category]);
-
-  const handleLegendClick = (index: number) => {
-    if (!chartRef.current) return;
-
-    const chart = chartRef.current;
-    const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
-      const meta = chart.getDatasetMeta(i);
-      return i === index ? !meta.hidden : meta.hidden;
-    });
-
-    chart.data.datasets.forEach((_: number, i: number) => {
-      const meta = chart.getDatasetMeta(i);
-      if (isOnlyOneVisible) {
-        meta.hidden = false;
-      } else {
-        meta.hidden = i !== index;
-      }
-    });
-
-    chart.update();
-    setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
-  };
-
   const LineData: ChartData<'line'> = {
     labels: Array.from({ length: 24 }, (_, i) => `${i}`),
     datasets: hourFormatChanger(chartData),
   };
+  useEffect(() => {
+    if (chartRef.current) {
+      setLegendItems(chartRef.current.legend?.legendItems || []);
+    }
+  }, [chartRef.current]);
   return (
     <S.LineChartLayout>
       <S.LineChart ref={chartRef} options={LineOptions} data={LineData} />
       <S.FixedLegendContainer>
-        {legendItems.reverse().map((item, index) => {
-          return (
-            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
-              <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
-              <span>{item.text}</span>
-            </S.LegendItem>
-          );
-        })}
+        {legendItems
+          .slice()
+          .reverse()
+          .map((item, index) => {
+            return (
+              <S.LegendItem key={index}>
+                <S.LegendColorBox $bgcolor={item.fillStyle} />
+                <span>{item.text}</span>
+              </S.LegendItem>
+            );
+          })}
       </S.FixedLegendContainer>
     </S.LineChartLayout>
   );
