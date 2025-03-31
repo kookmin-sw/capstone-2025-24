@@ -66,6 +66,10 @@ public class DashboardService {
         );
         List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderById(officeId, targetStates);
 
+        if (cases.isEmpty()) {
+            throw new NoSuchElementException("미확인, 확인 또는 출동 중인 사건이 없습니다.");
+        }
+
         return cases.stream()
                 .map(DashboardResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -78,6 +82,11 @@ public class DashboardService {
         String videoUrl = caseEntity.getVideo();
         if (videoUrl == null || videoUrl.trim().isEmpty()) {
             throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
+        }
+
+        if (caseEntity.getState() == CaseEntity.CaseState.미확인) {
+            caseEntity.setState(CaseEntity.CaseState.확인);
+            dashboardRepository.save(caseEntity);
         }
 
         return Collections.singletonMap("video", videoUrl);

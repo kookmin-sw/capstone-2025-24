@@ -56,7 +56,7 @@ public class CaseStatsService {
 
         // 최근 한 달간 데이터를 기준으로 사건 건수가 가장 많은 CCTV 주소 조회
         String patrolRegionAddress = statsOverviewRepository.findAddressWithMostIncidentsLastMonth(officeId)
-                .orElse("정보 없음");
+                .orElse("해당 지역에 순찰 강화 필요 구역이 없습니다.");
 
         return CaseStatsOverviewResponse.fromEntity(stats, patrolRegionAddress);
     }
