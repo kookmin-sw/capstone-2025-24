@@ -18,8 +18,11 @@ const CategorySelectModal = ({ onBack, onSubmit, id }: CategorySelectModalProps)
   ];
 
   const handleSubmit = async () => {
-    const englishCategory = postCategoryInEnglish(selectedCategory || '');
-    await putAlertState(id, '미출동', englishCategory);
+    const categoryToSend =
+      selectedCategory === '기타' || selectedCategory === '위험 상황이 아니에요'
+        ? null
+        : postCategoryInEnglish(selectedCategory || '');
+    await putAlertState(id, '미출동', categoryToSend);
     onSubmit();
   };
 

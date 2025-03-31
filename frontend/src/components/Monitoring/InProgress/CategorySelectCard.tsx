@@ -15,8 +15,8 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   ];
 
   const handleClickResolve = async () => {
-    const englishCategory = postCategoryInEnglish(selectedCategory || '');
-    await putIncidentResolve(id, '출동', englishCategory);
+    const categoryToSend = selectedCategory === '기타' ? null : postCategoryInEnglish(selectedCategory || '');
+    await putIncidentResolve(id, '출동', categoryToSend);
     setIsResolved(true);
   };
 

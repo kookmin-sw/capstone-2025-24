@@ -24,28 +24,24 @@ const AlertList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const data = await getTotalIncidents();
-        const alertData = data.map((item) => ({
-          id: item.id,
-          level: item.level,
-          category: getMappedCategory(item.category),
-          date: item.date,
-          address: item.address,
-          police_name: item.police_name,
-          state: item.state,
-          video: item.video,
-          memo: item.memo,
-        }));
-        setItems(alertData);
-      } catch (error) {
-        console.error('전체 알림, 사건 get 호출 에러', error);
-      }
+      const data = await getTotalIncidents();
+      const alertData = data.map((item) => ({
+        id: item.id,
+        level: item.level,
+        category: getMappedCategory(item.category),
+        date: item.date,
+        address: item.address,
+        police_name: item.police_name,
+        state: item.state,
+        video: item.video,
+        memo: item.memo,
+      }));
+      setItems(alertData);
     };
     fetchData();
   }, [setItems]);
 
-  const alertItems = items.filter((item) => item.state === '미확인' || item.state === '확인');
+  const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
 
   return (
     <S.AlertListLayout>
@@ -56,10 +52,10 @@ const AlertList = () => {
         </ToolTip>
       </S.TitleP>
       <S.AlertContainer>
-        {alertItems.length === 0 ? (
+        {alerts.length === 0 ? (
           <EmptyView />
         ) : (
-          alertItems.map((alert) => (
+          alerts.map((alert) => (
             <AlertItem
               key={alert.id}
               id={alert.id}
