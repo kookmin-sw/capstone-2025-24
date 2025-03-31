@@ -6,11 +6,14 @@ import { useState, useEffect } from 'react';
 import SortingDropDown from './SortingDropDown.tsx';
 import { Incident } from '@/types/incident.ts';
 import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
-import { LABELBYCATEGORY } from '@/constants/labelList.ts';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
 
 interface FilteringProps {
   setIncidentData: React.Dispatch<React.SetStateAction<Incident[]>>;
   page: number;
+  dataLength: number;
+  setDataLength: (value: number) => void;
+  setPageLength: (value: number) => void;
 }
 
 const SortMap: Record<string, string> = {
@@ -19,10 +22,10 @@ const SortMap: Record<string, string> = {
 };
 
 const formatDateTime = (date: Date): string => {
-  return date.toISOString().replace('T', ' ').substring(0, 19);
+  return date.toISOString().substring(0, 10);
 };
 
-const Filtering = ({ setIncidentData, page }: FilteringProps) => {
+const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLength }: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
   const [endDateFilter, setEndDateFilter] = useState(new Date());
@@ -38,32 +41,23 @@ const Filtering = ({ setIncidentData, page }: FilteringProps) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const categoryItem = LABELBYCATEGORY.find((item) => item.text === categoryFilter);
-      const CategoryLabel = categoryItem ? categoryItem.key : null;
-      const sortLabel = SortMap[sort];
-      const location = searchType === '위치' ? searchWord : null;
-      const police = searchType === '담당 경찰' ? searchWord : null;
+      const categoryLabel = categoryToEnglish[categoryFilter] || null;
 
       const requestData = {
-        category: CategoryLabel,
+        category: categoryLabel,
         startDate: formatDateTime(startDateFilter),
         endDate: formatDateTime(endDateFilter),
-        location: location,
-        police: police,
-        order: sortLabel,
-        page: 1,
+        location: searchType === '위치' ? searchWord : null,
+        police: searchType === '담당 경찰' ? searchWord : null,
+        order: SortMap[sort],
+        page,
       };
-      // const requestData = {
-      //   category: null,
-      //   startDate: null,
-      //   endDate: null,
-      //   order: "latest",
-      //   page: 1,
-      // };
 
       const data = await getIncidentList(requestData);
       if (data) {
-        setIncidentData(data);
+        setIncidentData(data.results);
+        setDataLength(data.totalElements);
+        setPageLength(data.totalPages);
       }
     };
 
@@ -94,7 +88,7 @@ const Filtering = ({ setIncidentData, page }: FilteringProps) => {
         <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
       </S.FilteringLayout>
       <S.Container>
-        <S.IncidentNum>총 112건</S.IncidentNum>
+        <S.IncidentNum>총 {dataLength}건</S.IncidentNum>
         <SortingDropDown sort={sort} setSort={setSort} />
       </S.Container>
     </S.Layout>

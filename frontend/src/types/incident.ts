@@ -3,7 +3,7 @@ export interface Incident {
     policeId: number;
     policeName: string;
     cctvId: number;
-    location: string;
+    address: string;
     date: string;
     category: string;
     memo: string | null;

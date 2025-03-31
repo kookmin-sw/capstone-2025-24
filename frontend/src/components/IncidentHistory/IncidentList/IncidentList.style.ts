@@ -65,7 +65,7 @@ export const PageButton = styled.button<{ active?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ active }) => (active ? 'var(--primary800)' : 'white')};
+  background: ${({ active }) => (active ? 'var(--primary800)' : '#fafafa')};
   color: ${({ active }) => (active ? 'white' : 'black')};
   border: 1px solid var(--gray300);
   padding: 8px 12px;
@@ -84,7 +84,7 @@ export const MoveBtn = styled.button`
   width: 35px;
   height: 35px;
   border: none;
-  background-color: white;
+  background-color: #fafafa;
   font-size: 25px;
   display: flex;
   justify-content: center;

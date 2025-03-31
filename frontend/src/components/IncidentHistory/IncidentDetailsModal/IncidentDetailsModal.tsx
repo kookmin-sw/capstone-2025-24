@@ -3,20 +3,12 @@ import Information from './Information.tsx';
 import Memo from './Memo.tsx';
 import Map from './Map.tsx';
 import Video from './Video.tsx';
+import { Incident } from '@/types/incident.ts';
 
 interface IncidentDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  incident: {
-    id: number;
-    policeId: number;
-    policeName: string;
-    cctvId: number;
-    location: string;
-    date: string;
-    category: string;
-    memo: string | null;
-  };
+  incident: Incident;
 }
 
 const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModalProps) => {
@@ -32,7 +24,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
         <S.WrapperContainer>
           <S.InfoMapWrapper>
             <Information
-              location={incident.location}
+              location={incident.address}
               date={incident.date}
               category={incident.category}
               police={incident.policeName}
