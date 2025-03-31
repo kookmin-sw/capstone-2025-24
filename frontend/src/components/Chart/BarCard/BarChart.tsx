@@ -1,7 +1,7 @@
 import * as S from './BarCard.style';
 import { useRef, useEffect, useState, useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { monthFormatChanger, dayFormatChanger } from '../../../hooks/dataFormatter';
+import { monthFormatChanger, dayFormatChanger } from '../../../utils/dataFormatter';
 import { BarMonthItem, BarDayItem } from '../../../mocks/BarData';
 
 import {

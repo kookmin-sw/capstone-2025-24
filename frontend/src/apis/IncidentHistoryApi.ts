@@ -10,19 +10,19 @@ export const getIncidentList = async ({
   page,
 }: {
   category: string | null;
-  startDate: string | null | Date;
-  endDate: string | null | Date;
+  startDate: string | null;
+  endDate: string | null;
   location?: string | null;
   police?: string | null;
   order: string;
   page: number;
 }) => {
   try {
-    const response = await axiosInstance.get('api/v1/auth', {
+    const response = await axiosInstance.get('api/v1/log', {
       params: {
         category,
-        startDate: startDate,
-        endDate: endDate,
+        startDate,
+        endDate,
         location,
         police,
         order,

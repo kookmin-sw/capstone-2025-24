@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import LabelBox from './LabelBox';
 import { CategoryItem } from '../../../mocks/DoughnutData';
-import { categoryFormatChanger } from '../../../hooks/dataFormatter';
+import { categoryFormatChanger } from '../../../utils/dataFormatter';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 // data 합합
@@ -87,8 +87,8 @@ const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProp
     interaction: {
       intersect: true,
     },
-    animation: isVisible?
-       {
+    animation: isVisible
+      ? {
           duration: 1500,
           easing: 'easeInOutQuad',
         }
@@ -108,7 +108,7 @@ const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProp
       <S.GraphDiv>
         <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} type={type}/>
+      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} type={type} />
     </S.DoughnutChartLayout>
   );
 };

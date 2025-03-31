@@ -4,7 +4,7 @@ import DateFiltering from './DateFiltering.tsx';
 import SearchBar from './SearchBar.tsx';
 import { useState, useEffect } from 'react';
 import SortingDropDown from './SortingDropDown.tsx';
-import {Incident} from '@/types/incident.ts';
+import { Incident } from '@/types/incident.ts';
 import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
 import { LABELBYCATEGORY } from '@/constants/labelList.ts';
 
@@ -14,11 +14,15 @@ interface FilteringProps {
 }
 
 const SortMap: Record<string, string> = {
-  '최신순': 'latest',
-  '과거순': 'oldest',
+  최신순: 'latest',
+  과거순: 'oldest',
 };
 
-const Filtering = ({setIncidentData, page} : FilteringProps) => {
+const formatDateTime = (date: Date): string => {
+  return date.toISOString().replace('T', ' ').substring(0, 19);
+};
+
+const Filtering = ({ setIncidentData, page }: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
   const [endDateFilter, setEndDateFilter] = useState(new Date());
@@ -42,13 +46,20 @@ const Filtering = ({setIncidentData, page} : FilteringProps) => {
 
       const requestData = {
         category: CategoryLabel,
-        startDate: startDateFilter,
-        endDate: endDateFilter,
-        location,
-        police,
+        startDate: formatDateTime(startDateFilter),
+        endDate: formatDateTime(endDateFilter),
+        location: location,
+        police: police,
         order: sortLabel,
-        page,
+        page: 1,
       };
+      // const requestData = {
+      //   category: null,
+      //   startDate: null,
+      //   endDate: null,
+      //   order: "latest",
+      //   page: 1,
+      // };
 
       const data = await getIncidentList(requestData);
       if (data) {
@@ -58,7 +69,6 @@ const Filtering = ({setIncidentData, page} : FilteringProps) => {
 
     fetchData();
   }, [triggerFetch, sort, page]);
-
 
   return (
     <S.Layout>
