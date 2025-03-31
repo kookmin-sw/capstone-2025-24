@@ -19,11 +19,10 @@ public class SearchController {
 
     // 로그 검색 API
     @GetMapping("/log")
-    public ResponseEntity<?> getCheckLog(@RequestBody SearchRequest request, HttpSession session) {
+    public ResponseEntity<?> getCheckLog(@ModelAttribute SearchRequest request, HttpSession session) {
         // 세션에서 사용자 정보 가져오기
         UserResponseDto user = (UserResponseDto) session.getAttribute("user");
         if (user == null) {
-            // 전역 예외 핸들러에서 처리할 수 있도록 예외를 던짐
             throw new IllegalStateException("로그인이 필요합니다.");
         }
         int officeId = user.getOfficeId();
