@@ -5,7 +5,7 @@ interface observerProps {
   element: RefObject<HTMLDivElement | null>;
 }
 
-export const useScrollObserver = ({setInviewPort, element}:observerProps) => {
+export const useScrollObserver = ({ setInviewPort, element }: observerProps) => {
   const observerCallback = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {

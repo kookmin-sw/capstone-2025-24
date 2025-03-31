@@ -1,16 +1,9 @@
-import { useEffect } from 'react';
 import { useItemStore } from '@/stores/itemStore';
-import { InProgressData } from '@/mocks/InProgressData';
 import IncidentCard from './IncidentCard';
 import * as S from './InProgress.style';
 import policerEmpty from '@/assets/images/policerEmpty.png';
-
 const InProgress = () => {
-  const { items, setItems } = useItemStore();
-
-  useEffect(() => {
-    setItems(InProgressData);
-  }, [setItems]);
+  const { items } = useItemStore();
 
   const incidents = items.filter((item) => item.state === '출동');
 

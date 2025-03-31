@@ -1,6 +1,6 @@
 import * as S from './Login.style.ts';
 import { useState } from 'react';
-import { getLogin } from '@/apis/LoginApi';
+import { postLogin } from '@/apis/LoginApi';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
@@ -10,7 +10,8 @@ const LoginForm = () => {
 
   const submitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    getLogin(userId, password);
+    const data = await postLogin(userId, password);
+    console.log('로그인 응답', data);
     navigate('monitoring');
   };
 
