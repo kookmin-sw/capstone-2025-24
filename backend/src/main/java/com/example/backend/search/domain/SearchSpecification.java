@@ -4,7 +4,6 @@ import com.example.backend.common.domain.CaseEntity;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class SearchSpecification {
 
@@ -53,25 +52,24 @@ public class SearchSpecification {
 //                police == null ? criteriaBuilder.conjunction() : criteriaBuilder.equal(root.get("police"), police);
     }
 
-
-    // cctv_id 필터 추가 (cctv_info 테이블에서 가져온 id 값)
-    public static Specification<CaseEntity> hasCctvIds(List<Integer> cctvIds) {
+    // 주소 포함 필터
+    public static Specification<CaseEntity> hasAddress(String address) {
         return (root, query, criteriaBuilder) -> {
-            if (cctvIds == null || cctvIds.isEmpty()) {
-                return criteriaBuilder.conjunction(); // 조건 없으면 전체 조회
+            if (address == null || address.trim().isEmpty()) {
+                return criteriaBuilder.conjunction();
             }
-            return root.get("cctv").get("id").in(cctvIds);
+            return criteriaBuilder.like(root.get("cctv").get("address"), "%" + address + "%");
         };
     }
 
     // 여러 조건을 조합하는 메서드
-    public static Specification<CaseEntity> filterCases(String category, LocalDateTime startDate, LocalDateTime endDate, String police, List<Integer> cctvIds, Integer officeId) {
+    public static Specification<CaseEntity> filterCases(String category, LocalDateTime startDate, LocalDateTime endDate, String police, String address, Integer officeId) {
         return Specification
                 .where(hasOffice(officeId))
                 .and(hasState("완료"))
-                .and(hasDateRange(startDate, endDate))  // 날짜 범위 조건을 추가
-                .and(hasCctvIds(cctvIds))
-                .and(hasPolice(police)) // police 필터 추가
+                .and(hasDateRange(startDate, endDate))
+                .and(hasAddress(address))
+                .and(hasPolice(police))
                 .and(hasCategory(category));
     }
 
