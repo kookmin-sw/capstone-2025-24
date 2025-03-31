@@ -1,9 +1,9 @@
 package com.example.backend.analysis.service;
 
-import com.example.backend.common.domain.CaseStatsOverviewEntity;
 import com.example.backend.analysis.dto.*;
 import com.example.backend.analysis.repository.CaseStatsCategoryRepository;
 import com.example.backend.analysis.repository.CaseStatsOverviewRepository;
+import com.example.backend.common.domain.CaseStatsOverviewEntity;
 import com.example.backend.user.dto.UserResponseDto;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,13 +58,7 @@ public class CaseStatsService {
         String patrolRegionAddress = statsOverviewRepository.findAddressWithMostIncidentsLastMonth(officeId)
                 .orElse("정보 없음");
 
-        // 응답 생성 (순찰 강화 지역은 주소만 포함)
-        return new CaseStatsOverviewResponse(
-                stats.getRecentCaseCount(), // 지난 7일간 사건 수
-                stats.getTodayCaseCount(), // 오늘 사건 수
-                stats.getMostCase().name(), // 이번 달 가장 많이 발생한 사건 유형
-                patrolRegionAddress // 순찰 강화 지역 (주소)
-        );
+        return CaseStatsOverviewResponse.fromEntity(stats, patrolRegionAddress);
     }
 
     // 시간대별 사건 수 조회 (결과에 없는 시간은 0으로 채움)
@@ -81,28 +71,22 @@ public class CaseStatsService {
         // 조회된 결과를 hour를 key로 하는 맵에 담음
         Map<Integer, HourlyCaseStatsResponse> hourMap = new LinkedHashMap<>();
         for (Object[] row : results) {
-            int hour = ((Number) row[0]).intValue();
-            HourlyCaseStatsResponse response = new HourlyCaseStatsResponse(
-                    hour,
-                    ((Number) row[1]).intValue(),  // fire
-                    ((Number) row[2]).intValue(),  // assault
-                    ((Number) row[3]).intValue(),  // crowdCongestion
-                    ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
-            );
-            hourMap.put(hour, response);
+            HourlyCaseStatsResponse response = HourlyCaseStatsResponse.fromRow(row);
+            hourMap.put(response.getHour(), response);
         }
 
-        // 0시부터 23시까지 모두 포함하는 리스트 생성
+        // 0시부터 23시까지 모두 포함
         List<HourlyCaseStatsResponse> fullHourlyList = new ArrayList<>();
         for (int h = 0; h < 24; h++) {
             if (hourMap.containsKey(h)) {
                 fullHourlyList.add(hourMap.get(h));
             } else {
-                fullHourlyList.add(new HourlyCaseStatsResponse(h, 0, 0, 0, 0, 0));
+                // 값이 없는 시간대는 0으로 채움
+                fullHourlyList.add(HourlyCaseStatsResponse.builder()
+                        .hour(h).fireCount(0).assaultCount(0).crowdCongestionCount(0).weaponCount(0).swoonCount(0)
+                        .build());
             }
         }
-
         return fullHourlyList;
     }
 
@@ -116,16 +100,8 @@ public class CaseStatsService {
         // 조회된 결과를 day를 key로 하는 맵에 담음
         Map<Integer, DailyCaseStatsResponse> dayMap = new LinkedHashMap<>();
         for (Object[] row : results) {
-            int day = ((Number) row[0]).intValue();
-            DailyCaseStatsResponse response = new DailyCaseStatsResponse(
-                    day,
-                    ((Number) row[1]).intValue(),  // fire
-                    ((Number) row[2]).intValue(),  // assault
-                    ((Number) row[3]).intValue(),  // crowdCongestion
-                    ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
-            );
-            dayMap.put(day, response);
+            DailyCaseStatsResponse response = DailyCaseStatsResponse.fromRow(row);
+            dayMap.put(response.getDay(), response);
         }
 
         // 해당 월의 일 수 계산
@@ -137,10 +113,11 @@ public class CaseStatsService {
             if (dayMap.containsKey(d)) {
                 fullDailyList.add(dayMap.get(d));
             } else {
-                fullDailyList.add(new DailyCaseStatsResponse(d, 0, 0, 0, 0, 0));
+                fullDailyList.add(DailyCaseStatsResponse.builder()
+                        .day(d).fireCount(0).assaultCount(0).crowdCongestionCount(0).weaponCount(0).swoonCount(0)
+                        .build());
             }
         }
-
         return fullDailyList;
     }
 
@@ -151,19 +128,10 @@ public class CaseStatsService {
         String categoryParam = processCategory(category);
         List<Object[]> results = statsCategoryRepository.findMonthlyCaseStats(year, officeId, categoryParam);
 
-        // 조회된 결과를 month를 key로 하는 맵에 담음
         Map<Integer, MonthlyCaseStatsResponse> monthMap = new LinkedHashMap<>();
         for (Object[] row : results) {
-            int month = ((Number) row[0]).intValue();
-            MonthlyCaseStatsResponse response = new MonthlyCaseStatsResponse(
-                    month,
-                    ((Number) row[1]).intValue(),  // fire
-                    ((Number) row[2]).intValue(),  // assault
-                    ((Number) row[3]).intValue(),  // crowdCongestion
-                    ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
-            );
-            monthMap.put(month, response);
+            MonthlyCaseStatsResponse response = MonthlyCaseStatsResponse.fromRow(row);
+            monthMap.put(response.getMonth(), response);
         }
 
         List<MonthlyCaseStatsResponse> fullMonthlyList = new ArrayList<>();
@@ -171,10 +139,11 @@ public class CaseStatsService {
             if (monthMap.containsKey(m)) {
                 fullMonthlyList.add(monthMap.get(m));
             } else {
-                fullMonthlyList.add(new MonthlyCaseStatsResponse(m, 0, 0, 0, 0, 0));
+                fullMonthlyList.add(MonthlyCaseStatsResponse.builder()
+                        .month(m).fireCount(0).assaultCount(0).crowdCongestionCount(0).weaponCount(0).swoonCount(0)
+                        .build());
             }
         }
-
         return fullMonthlyList;
     }
 
@@ -199,7 +168,6 @@ public class CaseStatsService {
             int count = (row[1] == null) ? 0 : ((Number) row[1]).intValue();
             resultMap.put(cat, count);
         }
-
         return resultMap;
     }
 
@@ -215,11 +183,7 @@ public class CaseStatsService {
         }
 
         return results.stream()
-                .map(row -> new LocationCaseStatsResponse(
-                        (String) row[0], // address
-                        (Double) row[1], // latitude
-                        (Double) row[2], // longitude
-                        ((Number) row[3]).intValue())) // count
+                .map(LocationCaseStatsResponse::fromRow)
                 .collect(Collectors.toList());
     }
 
@@ -235,16 +199,7 @@ public class CaseStatsService {
         }
 
         return results.stream()
-                .map(row -> new MapCaseStatsResponse(
-                        (String) row[0], // address
-                        (Double) row[1], // latitude
-                        (Double) row[2], // longitude
-                        ((Number) row[3]).intValue(), // fire_count
-                        ((Number) row[4]).intValue(),  // assault_count
-                        ((Number) row[5]).intValue(),  // crowd_congestion_count
-                        ((Number) row[6]).intValue(),  // weapon_count
-                        ((Number) row[7]).intValue())) // swoon_count
+                .map(MapCaseStatsResponse::fromRow)
                 .collect(Collectors.toList());
     }
-
 }
