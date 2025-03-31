@@ -2,43 +2,40 @@ import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect, useRef } from 'react';
-import useCategoryIndexStore from '../../../stores/categoryIndexStore';
-import useRegionIndexStore from '../../../stores/regionIndexStore';
-import { CategoryItem } from '@/types/chartType';
-import { CategoryData } from '../../../mocks/DoughnutData';
-import { useScrollObserver } from '../../../hooks/useScrollObserver';
-import { LegendItem } from './LabelBox';
-import { getDataPerCategory } from '@/apis/ChartApi';
-
+import useCategoryIndexStore from '@/stores/categoryIndexStore';
+import useRegionIndexStore from '@/stores/regionIndexStore';
+import { LocationItem, DataItem } from '@/types/chartType';
+import { useScrollObserver } from '@/hooks/useScrollObserver';
+import { getDataPerCategory, getDataPerLocation } from '@/apis/ChartApi';
+import { periodLst } from '@/constants/EventCategory';
+import { LABELBYCATEGORY, LABELBYREGION } from '@/constants/labelList';
 interface DoughnutCardProps {
   title: string;
-  legendItems: LegendItem[];
   type: string;
 }
 
-const DoughnutCard = ({ title, legendItems, type }: DoughnutCardProps) => {
-  const [data, setData] = useState<CategoryItem | undefined>(CategoryData);
-  const [period, setPeriod] = useState<string>('weekly');
+const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
+  const [chartData, setChartData] = useState<DataItem[] | undefined>();
   const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
   const { selectedIndex } = store;
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    switch (selectedIndex) {
-      case 0:
-        setPeriod(() => 'weekly');
-        break;
-      case 1:
-        setPeriod(() => 'monthly');
-        break;
-      case 2:
-        setPeriod(() => 'yearly');
-        break;
-    }
     const fetchChartData = async () => {
-      const data = await getDataPerCategory(period);
-      setData(data.applications);
+      if (type === 'category') {
+        const data = await getDataPerCategory(periodLst[selectedIndex]);
+        const formattedData = Object.values(data).map((it, index) => {
+          return { text: LABELBYCATEGORY[index].text, count: it as number, color: LABELBYCATEGORY[index].color };
+        });
+        setChartData(formattedData);
+      } else {
+        const data = await getDataPerLocation(periodLst[selectedIndex]);
+        const formattedData = data.slice(0, 5).map((it: LocationItem, index: number) => {
+          return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
+        });
+        setChartData(formattedData);
+      }
     };
 
     fetchChartData();
@@ -54,7 +51,7 @@ const DoughnutCard = ({ title, legendItems, type }: DoughnutCardProps) => {
         <S.TitleP>{title}</S.TitleP>
         <ChartFilter title={title} />
       </S.TitleDiv>
-      {inviewPort && data && <DoughnutChart data={data} legendItems={legendItems} isVisible={inviewPort} type={type} />}
+      {inviewPort && <DoughnutChart data={chartData} isVisible={inviewPort} type={type} />}
     </S.DoughnutCardLayout>
   );
 };

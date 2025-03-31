@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ChartPage from '../pages/ChartPage/page';
+import ChartPage from '../pages/ChartPage/ChartPage';
 import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';

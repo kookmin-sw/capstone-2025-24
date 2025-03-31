@@ -9,13 +9,12 @@ import { EVENT_CATEGORY } from '@/constants/EventCategory';
 const OverviewDiv = () => {
   const [overviewData, setOverviewData] = useState<overviewType | undefined>(undefined);
   useEffect(() => {
-    const fetchNotifications = async () => {
+    const fetchOverviewData = async () => {
       const data = await getOverview();
-      // console.log(data);
       setOverviewData(data);
     };
 
-    fetchNotifications();
+    fetchOverviewData();
   }, []);
   return (
     <S.OverviewDiv>
@@ -24,7 +23,7 @@ const OverviewDiv = () => {
 
         let displayCount = count;
         if (it.type === 'mostCase' && typeof overviewData?.mostCase === 'string') {
-          displayCount = EVENT_CATEGORY[overviewData?.mostCase] || overviewData?.mostCase; // 매핑된 한국어 값으로 변환
+          displayCount = EVENT_CATEGORY[overviewData?.mostCase] || overviewData?.mostCase;
         }
         return (
           <OverviewCard
@@ -36,7 +35,7 @@ const OverviewDiv = () => {
           />
         );
       })}
-      <OverviewLargeCard title={overviewData?.patrolRegion}/>
+      <OverviewLargeCard title={overviewData?.patrolRegion} />
     </S.OverviewDiv>
   );
 };

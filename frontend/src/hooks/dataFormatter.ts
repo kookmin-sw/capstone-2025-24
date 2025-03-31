@@ -1,6 +1,5 @@
 import { LABELBYCATEGORY } from '../constants/labelList';
 import { HourItem } from '../mocks/LineData';
-import { CategoryItem } from '../mocks/DoughnutData';
 import { BarDayItem, BarMonthItem } from '../mocks/BarData';
 export const hourFormatChanger = (data: HourItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({
@@ -14,9 +13,6 @@ export const hourFormatChanger = (data: HourItem[]) => {
   }));
 };
 
-export const categoryFormatChanger = (data: CategoryItem) => {
-  return Object.values(data);
-};
 
 export const monthFormatChanger = (data: BarMonthItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({

@@ -8,3 +8,6 @@ export const EVENT_CATEGORY: { [key: string]: string }= {
 
 export const CATEGORY: string[] = ['화재', '쓰러짐', '폭행', '흉기난동', '군중밀집'];
 export type EventCategory = (typeof EVENT_CATEGORY)[keyof typeof EVENT_CATEGORY];
+
+
+export const periodLst: string[] = ['weekly', 'monthly','yearly'];

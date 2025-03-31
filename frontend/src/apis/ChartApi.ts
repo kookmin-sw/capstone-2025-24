@@ -3,7 +3,6 @@ import { axiosInstance } from '@/apis/axiosInstance';
 export const getOverview = async () => {
   try {
     const res = await axiosInstance.get('api/v1/stats/overview');
-    console.log("res.data:",res.data);
     return res.data;
   } catch (error) {
     console.log('overview 에러');
@@ -16,6 +15,15 @@ export const getDataPerCategory = async (period: string) => {
     return res.data;
   } catch (error) {
     console.log('카테고리별그래프 에러');
+  }
+};
+
+export const getDataPerLocation = async (period: string) => {
+  try {
+    const res = await axiosInstance.get(`api/v1/stats/location?period=${period}`);
+    return res.data;
+  } catch (error) {
+    console.log('장소별사건수 에러');
   }
 };
 
@@ -37,15 +45,6 @@ export const getDataPerTime = async (category: string, date: string) => {
     return res.data;
   } catch (error) {
     console.log('시간대별사건수 에러');
-  }
-};
-
-export const getDataPerLocation = async (period: string) => {
-  try {
-    const res = await axiosInstance.get(`api/v1/stats/location?period=${period}`);
-    return res.data;
-  } catch (error) {
-    console.log('위치별사건수수 에러');
   }
 };
 
