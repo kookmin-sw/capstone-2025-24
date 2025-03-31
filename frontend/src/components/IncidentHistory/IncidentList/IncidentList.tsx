@@ -75,7 +75,7 @@ const IncidentList = () => {
                       <S.InfoP>{incident.date}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{truncate(incident.address, 22)}</S.InfoP>
+                      <S.InfoP>{truncate(incident.address, 25)}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
                       <S.InfoP>{incident.policeName}</S.InfoP>
