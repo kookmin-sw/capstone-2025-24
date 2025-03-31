@@ -67,8 +67,8 @@ public class CaseStatsController {
 
     // 지도용 장소별 사건 수 조회
     @GetMapping("/map")
-    public ResponseEntity<?> getMapCaseStats(@RequestParam("period") String period, HttpSession session) {
-        List<MapCaseStatsResponse> stats = caseStatsService.getMapCaseStats(period, session);
+    public ResponseEntity<?> getMapCaseStats(HttpSession session) {
+        List<MapCaseStatsResponse> stats = caseStatsService.getMapCaseStats(session);
         return ResponseEntity.ok(stats);
     }
 

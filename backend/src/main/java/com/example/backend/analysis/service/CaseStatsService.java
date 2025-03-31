@@ -188,10 +188,10 @@ public class CaseStatsService {
     }
 
     // 지도용 장소별 사건 수 조회 (startDate를 계산해 전달)
-    public List<MapCaseStatsResponse> getMapCaseStats(String period, HttpSession session) {
+    public List<MapCaseStatsResponse> getMapCaseStats(HttpSession session) {
         int officeId = getOfficeId(session);
 
-        LocalDateTime startDate = getStartDateFromPeriod(period);
+        LocalDateTime startDate = getStartDateFromPeriod("monthly");
         List<Object[]> results = statsCategoryRepository.findMapCaseStats(startDate);
 
         if (results.isEmpty()) {
