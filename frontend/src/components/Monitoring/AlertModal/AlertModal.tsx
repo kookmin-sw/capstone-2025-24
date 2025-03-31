@@ -31,14 +31,8 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }
   }, [alertItem, updateItemState]);
 
-  const handleFeedback = async () => {
-    await putAlertState(alertItem.id, '미출동');
-    updateItemState(alertItem.id, '미출동'); // 해야되는지 아닌지 잘 몰겠다 하든 안 하든 상관없을 거 같긴 한데
-    setStep('feedback');
-  };
-
   const handleDispatch = async () => {
-    await putAlertState(alertItem.id, '출동');
+    await putAlertState(alertItem.id, '출동', null);
     updateItemState(alertItem.id, '출동');
     onClose();
 
@@ -50,6 +44,11 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }, 0);
   };
 
+  const handleSubmit = async () => {
+    await putAlertState(alertItem.id, '미출동', null);
+    setStep('submit');
+  };
+
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
@@ -57,7 +56,7 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
           <IncidentModal
             onClose={onClose}
             alertItem={alertItem}
-            onFeedbackClick={handleFeedback}
+            onFeedbackClick={() => setStep('feedback')}
             onDispatch={handleDispatch}
           />
         )}
@@ -65,11 +64,15 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
           <FeedbackModal
             onBack={() => setStep('incident')}
             onSelectCategory={() => setStep('category')}
-            onSubmitClick={() => setStep('submit')}
+            onSubmitClick={handleSubmit}
           />
         )}
         {step === 'category' && (
-          <CategorySelectModal onBack={() => setStep('feedback')} onSubmit={() => setStep('submit')} />
+          <CategorySelectModal
+            onBack={() => setStep('feedback')}
+            onSubmit={() => setStep('submit')}
+            id={alertItem.id}
+          />
         )}
         {step === 'submit' && <SubmitModal onClose={onClose} id={alertItem.id} />}
       </S.ModalContainer>

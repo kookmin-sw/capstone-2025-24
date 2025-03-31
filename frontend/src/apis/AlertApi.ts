@@ -23,13 +23,17 @@ export const getVideo = async (id: number): Promise<{ video: string }> => {
   }
 };
 
-export const putAlertState = async (id: number, state: string): Promise<Pick<AlertProps, 'id' | 'state'>> => {
+export const putAlertState = async (
+  id: number,
+  state: '미출동' | '출동',
+  category: string | null,
+): Promise<Pick<AlertProps, 'id' | 'state' | 'category'>> => {
   try {
-    const response = await axiosInstance.put(`api/v1/case/ready/${id}`, { state });
-    console.log('출동 or 미출동 : ', response.data);
+    const response = await axiosInstance.put(`api/v1/case/ready/${id}`, { state, category });
+    console.log('미출동 or 출동 완료 : ', response.data);
     return response.data;
   } catch (error) {
-    console.error('alert state put 에러:', error);
+    console.error('미출동 or 출동 put 에러:', error);
     throw error;
   }
 };
