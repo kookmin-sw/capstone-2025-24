@@ -35,8 +35,6 @@ export const getDataPerYearMonth = async (year: string | undefined, month: strin
     const baseYear = year ? `${baseCate}&year=${year}` : baseCate;
     const finalUrl = month ? `${baseYear}&month=${month}` : baseYear;
     const res = await axiosInstance.get(finalUrl);
-    console.log(finalUrl);
-    console.log('res.data:', res.data);
     return res.data;
   } catch (error) {
     console.log('일월별사건수 에러');

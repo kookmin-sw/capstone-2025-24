@@ -9,12 +9,13 @@ export interface LegendItem {
 
 interface LabelBoxProps {
   data: DataItem[] | undefined;
+  type: string;
 }
-const LabelBox = ({ data}: LabelBoxProps) => {
+const LabelBox = ({ data, type }: LabelBoxProps) => {
   return (
     <S.LabelBoxLayout>
       {data?.map((it) => {
-        return <Label color={it.color} text={it.text} count={it.count} key={it.text} />;
+        return <Label color={it.color} text={it.text} count={it.count} key={it.text} type={type} />;
       })}
     </S.LabelBoxLayout>
   );

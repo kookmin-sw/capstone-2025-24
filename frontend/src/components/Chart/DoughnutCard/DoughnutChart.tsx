@@ -61,7 +61,6 @@ interface DoughnutChartProps {
 
 const DoughnutChart = ({ data, isVisible, type }: DoughnutChartProps) => {
   const chartRef = useRef<ChartJS<'doughnut'> | null>(null);
-  // const legendItems = type === "category"? (data.):()
   const DoughnutData: ChartData<'doughnut'> = {
     labels: data?.map((it) => it.text),
     datasets: [
@@ -108,7 +107,7 @@ const DoughnutChart = ({ data, isVisible, type }: DoughnutChartProps) => {
       <S.GraphDiv>
         <S.DoughnutChart ref={chartRef} data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={data} />
+      <LabelBox data={data} type={type}/>
     </S.DoughnutChartLayout>
   );
 };
