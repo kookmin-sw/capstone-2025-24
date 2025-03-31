@@ -2,11 +2,16 @@ import * as S from './IncidentDetailsModal.style.ts';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import pinIcon from '@/assets/icons/pinIcon.svg';
 
-const Map = () => {
+interface MapProps {
+  latitude: number;
+  longitude: number;
+}
+
+const Map = ({latitude, longitude} : MapProps) => {
   return (
-    <S.MapDiv id="map" center={{ lat: 37.5665, lng: 126.978 }} level={4} draggable={false}>
+    <S.MapDiv id="map" center={{ lat: latitude, lng: longitude }} level={4} draggable={false}>
       <MapMarker
-        position={{ lat: 37.5665, lng: 126.978 }}
+        position={{ lat: latitude, lng: longitude }}
         image={{
           src: pinIcon,
           size: {
