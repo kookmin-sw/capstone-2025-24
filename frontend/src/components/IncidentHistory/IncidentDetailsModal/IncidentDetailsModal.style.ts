@@ -115,11 +115,3 @@ export const MapDiv = styled(Map)`
   height: 328px;
   border-radius: 8px;
 `;
-
-// Video.tsx---------------------------------//
-export const VideoDiv = styled.div`
-  width: 586px;
-  height: 361px;
-  background-color: var(--gray500);
-  border-radius: 8px;
-`;

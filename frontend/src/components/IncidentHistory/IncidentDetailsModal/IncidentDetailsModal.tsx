@@ -2,7 +2,7 @@ import * as S from './IncidentDetailsModal.style.ts';
 import Information from './Information.tsx';
 import Memo from './Memo.tsx';
 import Map from './Map.tsx';
-import Video from './Video.tsx';
+import VideoComponent from '@/components/common/VideoComponent/VideoComponent.tsx';
 import { Incident } from '@/types/incident.ts';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';
 import { useState, useEffect } from 'react';
@@ -66,7 +66,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
             <Map latitude={latitude} longitude={longitude}/>
           </S.InfoMapWrapper>
           <S.VideoMemoWrapper>
-            <Video />
+            <VideoComponent w={586} h={361} radius={8} videoUrl={videourl}/>
             <Memo content={memo} setContent={setMemo} />
           </S.VideoMemoWrapper>
         </S.WrapperContainer>
