@@ -7,7 +7,6 @@ export const OverviewDiv = styled.div`
   margin-top: 10px;
 `;
 
-
 // OverviewCard.tsx -----------------------------------//
 export const OverviewCardLayout = styled.div`
   display: flex;
@@ -23,7 +22,7 @@ export const OverviewCardLayout = styled.div`
 `;
 
 export const VerticalLine = styled.div<{ $barColor: string }>`
-  background-color: ${({$barColor})=>$barColor};
+  background-color: ${({ $barColor }) => $barColor};
   border-radius: 10px;
   width: 3px;
   height: 58px;
@@ -43,8 +42,8 @@ export const TitleP = styled.p`
   min-width: 110px;
 `;
 
-export const CountP = styled.p<{$barColor:string}>`
-  font-size: ${({$barColor})=>$barColor==="#A8B3E3"? `25px`:`30px`};
+export const CountP = styled.p<{ $barColor: string }>`
+  font-size: ${({ $barColor }) => ($barColor === '#A8B3E3' ? `25px` : `30px`)};
   color: black;
   font-weight: 700;
 `;
@@ -90,15 +89,16 @@ export const StreetDiv = styled.div`
 `;
 export const StreetP = styled.p`
   &.big {
-    font-size: 28px;
+    font-size: 18px;
     font-weight: 700;
     color: #0c2cbb;
   }
+`;
 
-  &.small {
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--gray600);
-    margin-bottom: 4px;
-  }
+export const TooltipDiv = styled.div`
+  display: flex;
+  align-items: end;
+  padding-bottom: 6px;
+  padding-right: 3px;
+  height: 100%;
 `;

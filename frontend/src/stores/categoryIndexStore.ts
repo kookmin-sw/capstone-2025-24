@@ -1,13 +1,21 @@
 import { create } from 'zustand';
 
-interface useSelectedIndexState {
-    selectedIndex: number;
-    setSelectedIndex: (state:number)=>void;
-
+interface IndexStoreState {
+  selectedIndex: number;
+  setSelectedIndex: (state: number) => void;
 }
-const useCategoryIndexStore = create<useSelectedIndexState>((set)=> ({
-    selectedIndex: 0,
-    setSelectedIndex: (state) => set({selectedIndex:state}),
-}));
 
-export default useCategoryIndexStore;
+const createIndexStore = (initial: number = 0) =>
+  create<IndexStoreState>((set) => ({
+    selectedIndex: initial,
+    setSelectedIndex: (index: number) => set({ selectedIndex: index }),
+  }));
+
+const categoryStore = createIndexStore(0);
+const regionStore = createIndexStore(0);
+
+export const useIndexStore = (key: string) => {
+  return key === 'category' ? categoryStore : regionStore;
+};
+
+export const useIndex = (key: string) => useIndexStore(key)((state) => state);

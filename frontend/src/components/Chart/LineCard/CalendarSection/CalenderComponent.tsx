@@ -23,6 +23,14 @@ const CalenderComponent = ({ selectedDate, setSelectedDate }: CalendarComponentP
         showNeighboringMonth={false}
         formatDay={(_locale, date) => date.toLocaleString('en', { day: 'numeric' })}
         formatShortWeekday={(_locale, date) => date.toLocaleDateString('en-US', { weekday: 'short' })}
+        tileDisabled={({ date, view }) => {
+          if (view === 'month') {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            return date > today;
+          }
+          return false;
+        }}
       />
     </S.CalenderComponentLayout>
   );

@@ -13,7 +13,7 @@ const useSidebarStore = create<sidebarStoreType>()(
       setPage: (updater) => set((state) => ({ page: updater(state.page) })),
     }),
     {
-      name: 'sidebar-storage', // zustand localstorage 사용용
+      name: 'sidebar-storage', // zustand localstorage 사용
     }
   )
 );

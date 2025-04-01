@@ -1,7 +1,7 @@
 import * as S from './LineCard.style';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { hourFormatChanger } from '../../../utils/dataFormatter';
-import { HourItem } from '../../../mocks/LineData';
+import { HourItem } from '@/types/chartType';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -14,6 +14,7 @@ import {
   Title,
   ChartOptions,
   ChartData,
+  LegendItem,
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
@@ -22,10 +23,9 @@ interface LineChartProps {
   category: string;
   chartData: HourItem[];
 }
-const LineChart = ({ category, chartData }: LineChartProps) => {
-  const chartRef = useRef<any>(null);
-  const [legendItems, setLegendItems] = useState<any[]>([]);
-  const [isHidden, setIsHidden] = useState<boolean[]>([]);
+const LineChart = ({ chartData, category }: LineChartProps) => {
+  const chartRef = useRef<ChartJS<'line'> | null>(null);
+  const [legendItems, setLegendItems] = useState<LegendItem[]>([]);
 
   const LineOptions = useMemo<ChartOptions<'line'>>(
     () => ({
@@ -37,7 +37,7 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
       },
       scales: {
         x: { grid: { display: false }, stacked: false },
-        y: { grid: { display: true }, stacked: false },
+        y: { grid: { display: true }, stacked: false, beginAtZero: true, min: 0 },
       },
       animation: {
         duration: 1500,
@@ -69,52 +69,30 @@ const LineChart = ({ category, chartData }: LineChartProps) => {
     [],
   );
 
-  // legend 배치
-  useEffect(() => {
-    if (chartRef.current) {
-      const chart = chartRef.current;
-      setLegendItems(chart.legend?.legendItems || []);
-    }
-  }, [category]);
-
-  const handleLegendClick = (index: number) => {
-    if (!chartRef.current) return;
-
-    const chart = chartRef.current;
-    const isOnlyOneVisible = chart.data.datasets.every((_: number, i: number) => {
-      const meta = chart.getDatasetMeta(i);
-      return i === index ? !meta.hidden : meta.hidden;
-    });
-
-    chart.data.datasets.forEach((_: number, i: number) => {
-      const meta = chart.getDatasetMeta(i);
-      if (isOnlyOneVisible) {
-        meta.hidden = false;
-      } else {
-        meta.hidden = i !== index;
-      }
-    });
-
-    chart.update();
-    setIsHidden(chart.data.datasets.map((_: number, i: number) => !!chart.getDatasetMeta(i)?.hidden));
-  };
-
   const LineData: ChartData<'line'> = {
     labels: Array.from({ length: 24 }, (_, i) => `${i}`),
-    datasets: hourFormatChanger(chartData),
+    datasets: hourFormatChanger(chartData, category),
   };
+  useEffect(() => {
+    if (chartRef.current) {
+      setLegendItems(chartRef.current.legend?.legendItems || []);
+    }
+  }, [chartRef.current]);
   return (
     <S.LineChartLayout>
       <S.LineChart ref={chartRef} options={LineOptions} data={LineData} />
       <S.FixedLegendContainer>
-        {legendItems.reverse().map((item, index) => {
-          return (
-            <S.LegendItem key={index} onClick={() => handleLegendClick(index)} $isHidden={isHidden[index]}>
-              <S.LegendColorBox $bgcolor={item.fillStyle} $isHidden={isHidden[index]} />
-              <span>{item.text}</span>
-            </S.LegendItem>
-          );
-        })}
+        {legendItems
+          .slice()
+          .reverse()
+          .map((item, index) => {
+            return (
+              <S.LegendItem key={index}>
+                <S.LegendColorBox $bgcolor={item.fillStyle as string} />
+                <span>{item.text}</span>
+              </S.LegendItem>
+            );
+          })}
       </S.FixedLegendContainer>
     </S.LineChartLayout>
   );

@@ -1,9 +1,9 @@
 import * as S from './Sidebar.style';
 import Profile from './Profile';
 import SidebarButton from './SidebarButton';
-import { SIDEBAR_LIST } from '../../../constants/sidebarList';
+import { SIDEBAR_LIST } from '@/constants/sidebarList';
 import { useNavigate } from 'react-router-dom';
-import useSidebarStore from '../../../stores/sidebarStore';
+import useSidebarStore from '@/stores/sidebarStore';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -11,7 +11,6 @@ export const Sidebar = () => {
   const location = useLocation();
   const { setPage } = useSidebarStore();
   const navigate = useNavigate();
-  const tmpData = { name: '홍길동', imgUrl: '', level: '순경', territory: '정릉2동 파출소' };
 
   useEffect(() => {
     switch (location.pathname) {
@@ -45,7 +44,7 @@ export const Sidebar = () => {
   return (
     <S.SidebarDiv>
       <S.LogoDiv>로고</S.LogoDiv>
-      <Profile name={tmpData.name} imgUrl={tmpData.imgUrl} level={tmpData.level} territory={tmpData.territory} />
+      <Profile />
       <S.BtnDiv>
         {SIDEBAR_LIST.map((it) => (
           <SidebarButton

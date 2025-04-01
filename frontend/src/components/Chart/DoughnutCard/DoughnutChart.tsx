@@ -13,12 +13,12 @@ import {
   ChartData,
   ChartOptions,
 } from 'chart.js';
+import { useEffect, useRef } from 'react';
 import LabelBox from './LabelBox';
-import { CategoryItem } from '../../../mocks/DoughnutData';
-import { categoryFormatChanger } from '../../../utils/dataFormatter';
+import { DataItem } from '@/types/chartType';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
-// data 합합
+// data 합
 const getTotal = (chart: ChartJS) => {
   const data = chart.data.datasets[0].data as number[];
   return data.reduce((acc, value) => acc + value, 0);
@@ -37,11 +37,12 @@ const textCenterPlugin = {
     ctx.textBaseline = 'middle';
     const labelText = '총계';
     const labelX = Math.round((width - ctx.measureText(labelText).width) / 2);
-    const labelY = height / 2 - 10; // 숫자보다 위쪽으로 조정
+    const labelY = height / 2 - 10;
 
     ctx.fillText(labelText, labelX, labelY);
     ctx.save();
-    // 숫자 텍스트
+
+    // 큰 텍스트
     ctx.font = `700 20px sans-serif`;
     ctx.fillStyle = '#000000';
     const totalText = `${getTotal(chart)}`;
@@ -53,28 +54,21 @@ const textCenterPlugin = {
   },
 };
 
-interface LegendItem {
-  text: string;
-  color: string;
-}
-
 interface DoughnutChartProps {
-  data: CategoryItem;
-  legendItems: LegendItem[];
+  data: DataItem[] | undefined;
   isVisible: boolean;
   type: string;
 }
 
-const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProps) => {
-  // 차트 data
+const DoughnutChart = ({ data, isVisible, type }: DoughnutChartProps) => {
+  const chartRef = useRef<ChartJS<'doughnut'> | null>(null);
   const DoughnutData: ChartData<'doughnut'> = {
-    labels: legendItems.map((it) => it.text),
+    labels: data?.map((it) => it.text),
     datasets: [
       {
         label: '사건 수',
-        data: categoryFormatChanger(data),
-        backgroundColor: legendItems.map((it) => it.color),
-        hoverOffset: 5,
+        data: data?.map((it) => it.count) || [1, 1, 1, 1, 1],
+        backgroundColor: data?.map((it) => it.color),
       },
     ],
   };
@@ -103,12 +97,18 @@ const DoughnutChart = ({ data, legendItems, isVisible, type }: DoughnutChartProp
       },
     },
   } as unknown as ChartOptions<'doughnut'>;
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.update();
+    }
+  }, [data, isVisible]);
   return (
     <S.DoughnutChartLayout>
       <S.GraphDiv>
-        <S.DoughnutChart data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
+        <S.DoughnutChart ref={chartRef} data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={categoryFormatChanger(data)} legendItems={legendItems} type={type} />
+      <LabelBox data={data} type={type} />
     </S.DoughnutChartLayout>
   );
 };

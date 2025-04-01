@@ -1,4 +1,4 @@
-import { Avatar, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 // Layout ---------------------------//
@@ -11,7 +11,7 @@ export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   height: 100vh;
-  background-color: var(--gray300);
+  background-color: #fafafa;
 `;
 
 // Sidebar --------------------------//
@@ -49,14 +49,15 @@ export const ProfileLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   margin-top: 9px;
   gap: 8px;
 `;
 
-export const ProfileAvatar = styled(Avatar)`
+export const ProfileAvatar = styled.img`
   width: 55px;
   height: 55px;
-  border: 1px solid var(--gray500);
+  border-radius: 50%;
 `;
 
 export const InfoDiv = styled.div`
@@ -66,8 +67,8 @@ export const InfoDiv = styled.div`
   width: fit-content;
 `;
 
-export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
-  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'level' ? '14px' : '12px')};
+export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
+  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'rank' ? '14px' : '12px')};
   font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
 `;

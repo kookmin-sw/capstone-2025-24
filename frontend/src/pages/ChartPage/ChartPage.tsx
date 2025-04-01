@@ -4,7 +4,6 @@ import BarCard from '../../components/Chart/BarCard/BarCard';
 import OverviewDiv from '../../components/Chart/Overview/OverviewDiv';
 import LineCard from '../../components/Chart/LineCard/LineCard';
 import ClusteringCard from '../../components/Chart/ClusteringCard/ClusteringCard';
-import { LABELBYCATEGORY, LABELBYREGION } from '../../constants/labelList';
 const ChartPage = () => {
   return (
     <S.ChartPageLayout>
@@ -16,10 +15,10 @@ const ChartPage = () => {
         </S.ChartFirstDiv>
         <S.ChartSecondDiv>
           <BarCard />
-          <DoughnutCard title="유형별 사건 수" legendItems={LABELBYCATEGORY} type="category"/>
+          <DoughnutCard title="유형별 사건 수" type="category" />
         </S.ChartSecondDiv>
         <S.ChartThirdDiv>
-          <DoughnutCard title="위치별 사건 수" legendItems={LABELBYREGION} type="region"/>
+          <DoughnutCard title="장소별 사건 수" type="region" />
           <ClusteringCard />
         </S.ChartThirdDiv>
       </S.ComponentWrapper>
