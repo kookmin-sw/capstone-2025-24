@@ -11,13 +11,16 @@ export interface DataItem {
   color: string;
 }
 
-export interface HourItem {
-  hour: number;
+export interface eventCountItem {
   fireCount: number;
   assaultCount: number;
   crowdCongestionCount: number;
   weaponCount: number;
   swoonCount: number;
+}
+
+export interface HourItem extends eventCountItem{
+  hour: number;
 }
 
 export interface LocationItem {
@@ -27,24 +30,12 @@ export interface LocationItem {
   count: number;
 }
 
-
-
-export interface BarMonthItem {
+export interface BarMonthItem extends eventCountItem{
   month: number;
-  fireCount: number;
-  assaultCount: number;
-  crowdCongestionCount: number;
-  weaponCount: number;
-  swoonCount: number;
 }
 
-export interface BarDayItem {
+export interface BarDayItem extends eventCountItem{
   day: number;
-  fireCount: number;
-  assaultCount: number;
-  crowdCongestionCount: number;
-  weaponCount: number;
-  swoonCount: number;
 }
 
 export interface positionItem {
