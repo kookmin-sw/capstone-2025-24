@@ -1,33 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-export interface ProfileType {
-  officeId: number;
-  name: string;
-  officeName: string;
-  profileUrl: string;
-  rank: string;
-}
+import { ProfileType } from '@/types/profile';
 
 interface ProfileStore {
   profile: ProfileType;
   setProfile: (updater: (value: ProfileType) => ProfileType) => void;
 }
-
-// export const useProfileStore = create<ProfileStore>((set) => ({
-//   profile: {
-//     officeId: 1,
-//     name: '',
-//     officeName: '',
-//     profileUrl: '',
-//     rank: '',
-//   },
-//   setProfile: (value) =>
-//     set((state) => ({
-//       profile: value,
-//     })),
-// }));
-
 export const useProfileStore = create<ProfileStore>()(
   persist(
     (set) => ({

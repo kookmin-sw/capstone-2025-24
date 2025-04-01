@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { postLogin } from '@/apis/LoginApi';
 import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '@/stores/profileStore.ts';
-import { ProfileType } from '@/stores/profileStore.ts';
+import { ProfileType } from '@/types/profile';
 const LoginForm = () => {
   const { setProfile } = useProfileStore();
   const [userId, setUserId] = useState<string>('');
@@ -12,9 +12,9 @@ const LoginForm = () => {
 
   const submitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data:ProfileType = await postLogin(userId, password);
-    setProfile(()=>data);
-    // console.log('로그인 응답', data);
+    const data: ProfileType = await postLogin(userId, password);
+    setProfile(() => data);
+    console.log('로그인 응답', data);
     navigate('monitoring');
   };
 

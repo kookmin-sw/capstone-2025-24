@@ -11,7 +11,7 @@ export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   height: 100vh;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 `;
 
 // Sidebar --------------------------//
@@ -65,7 +65,6 @@ export const InfoDiv = styled.div`
   flex-direction: column;
   justify-content: start;
   width: fit-content;
-
 `;
 
 export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
