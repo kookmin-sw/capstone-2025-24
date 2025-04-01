@@ -8,7 +8,6 @@ import { HourItem } from '@/types/chartType';
 import { getDataPerTime } from '@/apis/ChartApi';
 import { formatDate } from '@/utils/dataFormatter';
 import { getKeyCategory } from '@/utils/dataFormatter';
-
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');

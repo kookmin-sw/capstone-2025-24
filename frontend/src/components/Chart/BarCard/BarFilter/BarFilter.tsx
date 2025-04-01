@@ -12,7 +12,8 @@ import { useEffect } from 'react';
 
 const BarFilter = () => {
   const { filter, setFilter } = useFilterStore();
-
+  const now = new Date();
+  const nowYear = now.getFullYear();
   const handleChange = (target: 'category' | 'year' | 'month', newValue: string) => {
     setFilter(target, newValue);
   };
@@ -36,7 +37,7 @@ const BarFilter = () => {
       <Dropdown
         items={YEAR_OPTIONS}
         width={85}
-        placeholder="2025"
+        placeholder={nowYear.toString()}
         type="year"
         onChange={handleChange}
         value={filter.year}

@@ -171,6 +171,7 @@ export const CalendarIcon = styled(FaRegCalendar)`
   color: var(--gray800);
   width: 15px;
   height: 15px;
+  padding-top: 1px;
 `;
 
 export const DisplaySpan = styled.span`

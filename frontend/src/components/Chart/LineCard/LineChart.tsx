@@ -22,7 +22,7 @@ interface LineChartProps {
   category: string;
   chartData: HourItem[];
 }
-const LineChart = ({ chartData }: LineChartProps) => {
+const LineChart = ({ chartData, category }: LineChartProps) => {
   const chartRef = useRef<any>(null);
   const [legendItems, setLegendItems] = useState<any[]>([]);
 
@@ -36,7 +36,7 @@ const LineChart = ({ chartData }: LineChartProps) => {
       },
       scales: {
         x: { grid: { display: false }, stacked: false },
-        y: { grid: { display: true }, stacked: false },
+        y: { grid: { display: true }, stacked: false, beginAtZero: true, min: 0 },
       },
       animation: {
         duration: 1500,
@@ -70,7 +70,7 @@ const LineChart = ({ chartData }: LineChartProps) => {
 
   const LineData: ChartData<'line'> = {
     labels: Array.from({ length: 24 }, (_, i) => `${i}`),
-    datasets: hourFormatChanger(chartData),
+    datasets: hourFormatChanger(chartData, category),
   };
   useEffect(() => {
     if (chartRef.current) {
