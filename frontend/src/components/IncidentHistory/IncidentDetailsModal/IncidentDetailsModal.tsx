@@ -7,6 +7,7 @@ import { Incident } from '@/types/incident.ts';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';
 import { useState, useEffect } from 'react';
 import { getIncidentInfo, putMemo } from '@/apis/IncidentHistoryApi';
+import { IncidentModalInfo } from '@/types/incident.ts';
 
 interface IncidentDetailsModalProps {
   isOpen: boolean;
@@ -15,20 +16,23 @@ interface IncidentDetailsModalProps {
 }
 
 const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModalProps) => {
-  const [memo, setMemo] = useState('');
-  const [latitude, setLatitude] = useState(0);
-  const [longitude, setLongitude] = useState(0);
-  const [videourl, setVideourl] = useState('');
+  const [incidentDetails, setIncidentDetails] = useState<IncidentModalInfo>({
+    memo: '',
+    latitude: 0,
+    longitude: 0,
+    videourl: '',
+  });
 
   useEffect(() => {
     const fetchIncident = async () => {
       try {
         const data = await getIncidentInfo(incident.id);
-        setMemo(data.memo);
-        setLatitude(data.latitude);
-        setLongitude(data.longitude);
-        setVideourl(data.video);
-
+        setIncidentDetails({
+          memo: data.memo,
+          latitude: data.latitude,
+          longitude: data.longitude,
+          videourl: data.video,
+        });
       } catch (error) {
         console.log('사건 정보를 불러오는데 실패했습니다.', error);
       }
@@ -39,7 +43,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
 
   const handleClose = async () => {
     try {
-      await putMemo(incident.id, memo);
+      await putMemo(incident.id, incidentDetails.memo);
       onClose();
     } catch (error) {
       console.log('메모 저장에 실패했습니다.', error);
@@ -63,11 +67,14 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
               category={categoryToKorean[incident.category] || incident.category}
               police={incident.policeName}
             />
-            <Map latitude={latitude} longitude={longitude}/>
+            <Map latitude={incidentDetails.latitude} longitude={incidentDetails.longitude} />
           </S.InfoMapWrapper>
           <S.VideoMemoWrapper>
-            <VideoComponent w={586} h={361} radius={8} video={videourl}/>
-            <Memo content={memo} setContent={setMemo} />
+            <VideoComponent w={586} h={361} radius={8} video={incidentDetails.videourl} />
+            <Memo
+              content={incidentDetails.memo}
+              setContent={(newMemo) => setIncidentDetails((prev) => ({ ...prev, memo: newMemo }))}
+            />
           </S.VideoMemoWrapper>
         </S.WrapperContainer>
       </S.Layout>

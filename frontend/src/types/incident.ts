@@ -18,3 +18,10 @@ export interface GetIncidentListParams {
   order: string;
   page: number;
 }
+
+export interface IncidentModalInfo{
+  memo: string;
+  latitude: number;
+  longitude: number;
+  videourl: string;
+}

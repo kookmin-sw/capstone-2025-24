@@ -2,9 +2,8 @@ import * as S from './IncidentDetailsModal.style.ts';
 
 interface MemoProps {
   content: string;
-  setContent: React.Dispatch<React.SetStateAction<string>>;
+  setContent: (value: string) => void;
 }
-
 const Memo = ({ content, setContent }: MemoProps) => {
 
   return (
