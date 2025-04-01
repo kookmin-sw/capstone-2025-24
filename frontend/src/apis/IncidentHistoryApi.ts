@@ -1,4 +1,5 @@
 import { axiosInstance } from '@/apis/axiosInstance';
+import { GetIncidentListParams } from '@/types/incident';
 
 export const getIncidentList = async ({
   category,
@@ -8,15 +9,7 @@ export const getIncidentList = async ({
   police,
   order,
   page,
-}: {
-  category: string | null;
-  startDate: string | null;
-  endDate: string | null;
-  location?: string | null;
-  police?: string | null;
-  order: string;
-  page: number;
-}) => {
+}: GetIncidentListParams) => {
   try {
     const response = await axiosInstance.get('api/v1/log', {
       params: {
@@ -36,7 +29,6 @@ export const getIncidentList = async ({
   }
 };
 
-
 export const getIncidentInfo = async (id: number) => {
   try {
     const response = await axiosInstance.get(`/api/v1/log/${id}`);
@@ -47,8 +39,7 @@ export const getIncidentInfo = async (id: number) => {
   }
 };
 
-
-export const putMemo = async (id: number, memo:string) => {
+export const putMemo = async (id: number, memo: string) => {
   try {
     const response = await axiosInstance.put(`/api/v1/log/${id}`, {
       memo,
