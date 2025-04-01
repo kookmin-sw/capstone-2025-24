@@ -84,7 +84,7 @@ export const ValueP = styled.p`
 export const InfoContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin: 7.5px 0;
+  margin: 5px 0;
 `;
 
 // Memo.tsx---------------------------------//
