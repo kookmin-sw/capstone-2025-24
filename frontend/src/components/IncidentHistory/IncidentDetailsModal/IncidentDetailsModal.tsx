@@ -66,7 +66,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
             <Map latitude={latitude} longitude={longitude}/>
           </S.InfoMapWrapper>
           <S.VideoMemoWrapper>
-            <VideoComponent w={586} h={361} radius={8} videoUrl={videourl}/>
+            <VideoComponent w={586} h={361} radius={8} video={videourl}/>
             <Memo content={memo} setContent={setMemo} />
           </S.VideoMemoWrapper>
         </S.WrapperContainer>
