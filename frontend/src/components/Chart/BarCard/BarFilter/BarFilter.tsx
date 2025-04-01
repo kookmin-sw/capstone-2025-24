@@ -9,7 +9,6 @@ import {
 import { useFilterStore } from '../../../../stores/filterStore';
 import { useEffect } from 'react';
 
-
 const BarFilter = () => {
   const { filter, setFilter } = useFilterStore();
   const now = new Date();
@@ -18,11 +17,11 @@ const BarFilter = () => {
     setFilter(target, newValue);
   };
 
-  useEffect(()=> {
-    if (filter.year==='전체') {
+  useEffect(() => {
+    if (filter.year === '전체') {
       setFilter('month', '전체');
     }
-  },[filter.year])
+  }, [filter.year]);
 
   return (
     <S.BarFilterLayout>
@@ -41,7 +40,6 @@ const BarFilter = () => {
         type="year"
         onChange={handleChange}
         value={filter.year}
-        
       />
       <Dropdown
         items={MONTH_OPTIONS}

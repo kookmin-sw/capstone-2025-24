@@ -2,8 +2,7 @@ import * as S from './DoughnutCard.style';
 import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect, useRef } from 'react';
-import useCategoryIndexStore from '@/stores/categoryIndexStore';
-import useRegionIndexStore from '@/stores/regionIndexStore';
+import { useIndex } from '@/stores/categoryIndexStore';
 import { LocationItem, DataItem } from '@/types/chartType';
 import { useScrollObserver } from '@/hooks/useScrollObserver';
 import { getDataPerCategory, getDataPerLocation } from '@/apis/ChartApi';
@@ -16,8 +15,8 @@ interface DoughnutCardProps {
 
 const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
   const [chartData, setChartData] = useState<DataItem[] | undefined>();
-  const store = title === '유형별 사건 수' ? useCategoryIndexStore() : useRegionIndexStore();
-  const { selectedIndex } = store;
+  const { selectedIndex } = useIndex(type);
+
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
 
@@ -49,7 +48,7 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
     <S.DoughnutCardLayout ref={element}>
       <S.TitleDiv>
         <S.TitleP>{title}</S.TitleP>
-        <ChartFilter title={title} />
+        <ChartFilter title={title} type={type} />
       </S.TitleDiv>
       {inviewPort && <DoughnutChart data={chartData} isVisible={inviewPort} type={type} />}
     </S.DoughnutCardLayout>

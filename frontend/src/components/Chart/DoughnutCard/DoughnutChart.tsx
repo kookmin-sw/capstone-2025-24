@@ -41,6 +41,7 @@ const textCenterPlugin = {
 
     ctx.fillText(labelText, labelX, labelY);
     ctx.save();
+
     // 큰 텍스트
     ctx.font = `700 20px sans-serif`;
     ctx.fillStyle = '#000000';
@@ -107,7 +108,7 @@ const DoughnutChart = ({ data, isVisible, type }: DoughnutChartProps) => {
       <S.GraphDiv>
         <S.DoughnutChart ref={chartRef} data={DoughnutData} options={DoughnutOptions} plugins={[textCenterPlugin]} />
       </S.GraphDiv>
-      <LabelBox data={data} type={type}/>
+      <LabelBox data={data} type={type} />
     </S.DoughnutChartLayout>
   );
 };

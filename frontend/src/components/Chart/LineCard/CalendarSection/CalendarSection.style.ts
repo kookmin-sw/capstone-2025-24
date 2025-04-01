@@ -110,7 +110,7 @@ export const CalenderComponentLayout = styled.div`
   .react-calendar__tile:disabled:hover,
   .react-calendar__tile:disabled:focus {
     background: inherit !important;
-    color: var(--gray400)  !important;
+    color: var(--gray400) !important;
   }
 
   .react-calendar__tile:enabled:focus,
