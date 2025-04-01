@@ -1,8 +1,10 @@
+import { useState, useEffect } from 'react';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
 import { AlertProps } from '@/types/alert';
+import { getVideo } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
@@ -12,9 +14,18 @@ interface IncidentModalProps {
   onDispatch: () => void;
 }
 
-const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: IncidentModalProps) => {
-  const { category, date, address } = alertItem;
-  const videoUrl = ''; // 추후 api 연동
+const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: IncidentModalProps) => {
+  const { id, category, date, address } = alertItem;
+  const [video, setVideo] = useState('');
+
+  useEffect(() => {
+    const fetchVideo = async () => {
+      const response = await getVideo(id);
+      setVideo(response.video);
+    };
+    fetchVideo();
+  }, [id]);
+
   return (
     <>
       <S.CloseButton onClick={onClose}>
@@ -31,7 +42,7 @@ const IncidentModal = ({ onClose, onFeedbackClick, alertItem, onDispatch }: Inci
           {date}
         </S.InfoDiv>
       </S.InfoContainer>
-      <VideoComponent w="100%" h="100%" radius={10} videoUrl={videoUrl} />
+      <VideoComponent w="100%" h="100%" radius={10} video={video} />
       <S.ButtonContainer>
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동

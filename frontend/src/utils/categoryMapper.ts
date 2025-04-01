@@ -15,6 +15,7 @@ export const categoryToEnglish: Record<string, string> = {
 
 export const postCategoryInEnglish = (category: string): string => categoryToEnglish[category] || category;
 
+
 export const categoryToKorean: Record<string, string> = {
     fire: '화재',
     assault: '폭행',
@@ -22,3 +23,4 @@ export const categoryToKorean: Record<string, string> = {
     weapon: '흉기난동',
     swoon: '쓰러짐',
   };
+

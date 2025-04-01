@@ -1,6 +1,6 @@
-import { IncidentItemProps } from '@/types/alert';
+import { AlertProps } from '@/types/alert';
 
-export const InProgressData: IncidentItemProps[] = [
+export const InProgressData: AlertProps[] = [
   {
     id: 1,
     level: 2,
@@ -8,8 +8,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 성북구 보국문로 35길 21-54',
     date: '2025.02.28 15:43:36',
     state: '출동',
-    police: '김하나',
-    videoUrl: 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9',
+    police_name: '김하나',
+    video: 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9',
   },
   {
     id: 2,
@@ -18,8 +18,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 강남구 테헤란로 87길 12',
     date: '2025.02.28 14:20:10',
     state: '출동',
-    police: '박준영',
-    videoUrl: 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9',
+    police_name: '박준영',
+    video: 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9',
   },
   {
     id: 3,
@@ -28,8 +28,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '확인',
-    police: '이수민',
-    videoUrl: '',
+    police_name: '이수민',
+    video: '',
   },
   {
     id: 4,
@@ -38,8 +38,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 성북구 보국문로 35길 21-54',
     date: '2025.02.28 15:43:36',
     state: '확인',
-    police: '김하나',
-    videoUrl: '',
+    police_name: '김하나',
+    video: '',
   },
   {
     id: 5,
@@ -48,8 +48,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 강남구 테헤란로 87길 12',
     date: '2025.02.28 14:20:10',
     state: '미확인',
-    police: '박준영',
-    videoUrl: '',
+    police_name: '박준영',
+    video: '',
   },
   {
     id: 6,
@@ -58,8 +58,8 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '미확인',
-    police: '이수민',
-    videoUrl: '',
+    police_name: '이수민',
+    video: '',
   },
   {
     id: 7,
@@ -68,7 +68,7 @@ export const InProgressData: IncidentItemProps[] = [
     address: '서울특별시 마포구 홍익로 5길 9-7',
     date: '2025.02.28 13:55:22',
     state: '출동',
-    police: '이수민',
-    videoUrl: '',
+    police_name: '이수민',
+    video: '',
   },
 ];

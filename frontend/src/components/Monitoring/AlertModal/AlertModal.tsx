@@ -5,6 +5,7 @@ import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
 import CategorySelectModal from './CategorySelectModal';
 import { AlertProps } from '@/types/alert';
+import { putAlertState } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
 
 interface ModalProps {
@@ -30,7 +31,8 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }
   }, [alertItem, updateItemState]);
 
-  const handleDispatch = () => {
+  const handleDispatch = async () => {
+    await putAlertState(alertItem.id, '출동', null);
     updateItemState(alertItem.id, '출동');
     onClose();
 
@@ -42,14 +44,19 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
     }, 0);
   };
 
+  const handleSubmit = async () => {
+    await putAlertState(alertItem.id, '미출동', null);
+    setStep('submit');
+  };
+
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <S.ModalContainer onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}
-            onFeedbackClick={() => setStep('feedback')}
             alertItem={alertItem}
+            onFeedbackClick={() => setStep('feedback')}
             onDispatch={handleDispatch}
           />
         )}
@@ -57,11 +64,15 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
           <FeedbackModal
             onBack={() => setStep('incident')}
             onSelectCategory={() => setStep('category')}
-            onSubmitClick={() => setStep('submit')}
+            onSubmitClick={handleSubmit}
           />
         )}
         {step === 'category' && (
-          <CategorySelectModal onBack={() => setStep('feedback')} onSubmit={() => setStep('submit')} />
+          <CategorySelectModal
+            onBack={() => setStep('feedback')}
+            onSubmit={() => setStep('submit')}
+            id={alertItem.id}
+          />
         )}
         {step === 'submit' && <SubmitModal onClose={onClose} id={alertItem.id} />}
       </S.ModalContainer>

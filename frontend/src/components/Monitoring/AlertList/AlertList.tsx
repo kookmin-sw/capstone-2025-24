@@ -5,7 +5,8 @@ import EmptyView from './EmptyView.tsx';
 import * as S from './AlertList.style.ts';
 import { useLocation } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore.ts';
-import { InProgressData } from '@/mocks/InProgressData';
+import { getTotalIncidents } from '@/apis/AlertApi';
+import { getMappedCategory } from '@/utils/categoryMapper';
 
 const ToopTipContent = () => {
   return (
@@ -22,7 +23,22 @@ const AlertList = () => {
   const { items, setItems } = useItemStore();
 
   useEffect(() => {
-    setItems(InProgressData);
+    const fetchData = async () => {
+      const data = await getTotalIncidents();
+      const alertData = data.map((item) => ({
+        id: item.id,
+        level: item.level,
+        category: getMappedCategory(item.category),
+        date: item.date,
+        address: item.address,
+        police_name: item.police_name,
+        state: item.state,
+        video: item.video,
+        memo: item.memo,
+      }));
+      setItems(alertData);
+    };
+    fetchData();
   }, [setItems]);
 
   const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
