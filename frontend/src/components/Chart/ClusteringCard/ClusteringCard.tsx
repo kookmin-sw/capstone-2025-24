@@ -15,7 +15,6 @@ const ClusteringCard = () => {
   useEffect(() => {
     const fetchClusterData = async () => {
       const data = await getClusterData();
-      console.log('data', data);
       setClusterData(data);
 
       const initialStats: statsItem = {
@@ -50,7 +49,7 @@ const ClusteringCard = () => {
   });
 
   return (
-    <S.ClusteringCardLayout ref={element} onClick={() => console.log(statsData)}>
+    <S.ClusteringCardLayout ref={element}>
       <ClusterMap clusterData={clusterData} />
       {inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}
       <S.TooltipDiv>

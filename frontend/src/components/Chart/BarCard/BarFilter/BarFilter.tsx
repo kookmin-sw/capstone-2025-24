@@ -14,7 +14,6 @@ const BarFilter = () => {
   const { filter, setFilter } = useFilterStore();
 
   const handleChange = (target: 'category' | 'year' | 'month', newValue: string) => {
-    console.log(newValue);
     setFilter(target, newValue);
   };
 
