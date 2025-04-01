@@ -8,7 +8,7 @@ interface StatsPanelProps {
   statsData: statsItem | undefined;
 }
 const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
-  const [data, setData] = useState<number[]>(Object.values(statsData || {}));
+  const data = Object.values(statsData || {});
   const [total, setTotal] = useState(0);
 
   const changeToRatio = (target: number) => {
@@ -23,7 +23,15 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
     <S.StatsPanelLayout>
       <p>정릉 1동</p>
       {STATSLABEL.map((it, index) => {
-        return <StatsItem key={it.key} label={it.text} count={changeToRatio(data[index])} isVisible={isVisible} color={it.color}/>;
+        return (
+          <StatsItem
+            key={it.key}
+            label={it.text}
+            count={changeToRatio(data[index])}
+            isVisible={isVisible}
+            color={it.color}
+          />
+        );
       })}
     </S.StatsPanelLayout>
   );

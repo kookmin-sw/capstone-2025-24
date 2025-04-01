@@ -3,11 +3,11 @@ import CalendarSection from './CalendarSection/CalendarSection';
 import { useState, useEffect } from 'react';
 import LineChart from './LineChart';
 import Dropdown from '../BarCard/BarFilter/Dropdown/Dropdown';
-import { CATEGORY_OPTIONS } from '../../../constants/dropdownOptions';
-import { HourItem } from '../../../mocks/LineData';
+import { CATEGORY_OPTIONS } from '@/constants/dropdownOptions';
+import { HourItem } from '@/types/chartType';
 import { getDataPerTime } from '@/apis/ChartApi';
 import { formatDate } from '@/utils/dataFormatter';
-import { getKeyCategory } from '../../../utils/dataFormatter';
+import { getKeyCategory } from '@/utils/dataFormatter';
 
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());

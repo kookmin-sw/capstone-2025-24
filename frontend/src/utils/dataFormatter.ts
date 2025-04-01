@@ -1,7 +1,8 @@
-import { EVENT_CATEGORY} from '@/constants/EventCategory';
+import { EVENT_CATEGORY } from '@/constants/EventCategory';
 import { LABELBYCATEGORY } from '../constants/labelList';
-import { HourItem } from '../mocks/LineData';
-import { BarDayItem, BarMonthItem } from '../mocks/BarData';
+import { HourItem } from '@/types/chartType';
+import { BarDayItem,BarMonthItem } from '@/types/chartType';
+
 export const hourFormatChanger = (data: HourItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({
     label: text,
@@ -40,3 +41,4 @@ export const formatDate = (date: Date) => {
 export const getKeyCategory = (koreanCategory: string): string | undefined => {
   return Object.keys(EVENT_CATEGORY).find((key) => EVENT_CATEGORY[key] === koreanCategory);
 };
+

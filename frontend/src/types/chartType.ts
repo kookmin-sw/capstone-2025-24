@@ -11,12 +11,23 @@ export interface DataItem {
   color: string;
 }
 
+export interface HourItem {
+  hour: number;
+  fireCount: number;
+  assaultCount: number;
+  crowdCongestionCount: number;
+  weaponCount: number;
+  swoonCount: number;
+}
+
 export interface LocationItem {
   address: string;
   latitude: number;
   longitude: number;
   count: number;
 }
+
+
 
 export interface BarMonthItem {
   month: number;
