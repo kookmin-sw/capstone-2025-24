@@ -49,6 +49,7 @@ export const ProfileLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   margin-top: 9px;
   gap: 8px;
 `;
@@ -64,10 +65,11 @@ export const InfoDiv = styled.div`
   flex-direction: column;
   justify-content: start;
   width: fit-content;
+
 `;
 
-export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
-  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'level' ? '14px' : '12px')};
+export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
+  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'rank' ? '14px' : '12px')};
   font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
 `;
