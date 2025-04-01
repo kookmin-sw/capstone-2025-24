@@ -27,7 +27,7 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
         setMemo(data.memo);
         setLatitude(data.latitude);
         setLongitude(data.longitude);
-        setVideourl(data.videourl);
+        setVideourl(data.video);
 
       } catch (error) {
         console.log('사건 정보를 불러오는데 실패했습니다.', error);
