@@ -49,7 +49,6 @@ const BarFilter = () => {
         type="month"
         onChange={handleChange}
         value={filter.month}
-        disabled={filter.year==="전체"}
       />
     </S.BarFilterLayout>
   );

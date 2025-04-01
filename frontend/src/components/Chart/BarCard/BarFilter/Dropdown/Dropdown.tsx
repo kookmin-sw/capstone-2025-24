@@ -6,11 +6,10 @@ interface dropdownProps {
   placeholder: string;
   width: number;
   value: string;
-  disabled?: boolean;
   type: 'category' | 'year' | 'month';
   onChange: (type: 'category' | 'year' | 'month', newValue: string) => void;
 }
-const Dropdown = ({ items, width, value, disabled = false, type, onChange }: dropdownProps) => {
+const Dropdown = ({ items, width, value, type, onChange }: dropdownProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
