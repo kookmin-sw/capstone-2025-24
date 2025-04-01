@@ -3,10 +3,9 @@ import FilterItem from './FilterItem';
 import { useIndex } from '@/stores/categoryIndexStore';
 
 interface ChartFilterProps {
-  title: string;
   type: string;
 }
-const ChartFilter = ({ title, type }: ChartFilterProps) => {
+const ChartFilter = ({ type }: ChartFilterProps) => {
   const { selectedIndex, setSelectedIndex } = useIndex(type);
   const range: { type: string }[] = [{ type: '일주일' }, { type: '이번 달' }, { type: '올해' }];
 

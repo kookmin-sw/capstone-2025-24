@@ -48,7 +48,7 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
     <S.DoughnutCardLayout ref={element}>
       <S.TitleDiv>
         <S.TitleP>{title}</S.TitleP>
-        <ChartFilter title={title} type={type} />
+        <ChartFilter type={type} />
       </S.TitleDiv>
       {inviewPort && <DoughnutChart data={chartData} isVisible={inviewPort} type={type} />}
     </S.DoughnutCardLayout>
