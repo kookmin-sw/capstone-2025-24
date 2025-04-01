@@ -1,24 +1,29 @@
 import * as S from './Sidebar.style';
-
-interface ProfileProps {
-  imgUrl?: string;
-  name?: string;
-  level?: string;
-  territory?: string;
-}
-
-const Profile = ({ imgUrl, name, level, territory }: ProfileProps) => {
+import { useProfileStore } from '@/stores/profileStore';
+import { useState } from 'react';
+import emptyProfile from '@/assets/images/emptyProfile.svg';
+const Profile = () => {
+  const { profile } = useProfileStore();
+  const [avatarSrc, setAvatarSrc] = useState(profile.profileUrl);
   return (
     <S.ProfileLayout>
       <div className="avartar">
-        <S.ProfileAvatar alt="police avatar" src={imgUrl} />
+        <S.ProfileAvatar
+          alt="police avatar"
+          src={avatarSrc || emptyProfile}
+          onError={() => {
+            if (avatarSrc !== emptyProfile) {
+              setAvatarSrc(emptyProfile);
+            }
+          }}
+        />
       </div>
       <S.InfoDiv>
         <div>
-          <S.InfoText type="name">{name}</S.InfoText>
-          <S.InfoText type="level">{level}</S.InfoText>
+          <S.InfoText type="name">{profile.name}</S.InfoText>
+          <S.InfoText type="rank">{profile.rank}</S.InfoText>
         </div>
-        <S.InfoText type="territory">{territory}</S.InfoText>
+        <S.InfoText type="officeName">{profile.officeName}</S.InfoText>
       </S.InfoDiv>
     </S.ProfileLayout>
   );
