@@ -29,7 +29,7 @@ export const DoughnutChartLayout = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   gap: 10px;
 `;
 
@@ -50,6 +50,7 @@ export const LabelBoxLayout = styled.div`
   flex-direction: column;
   height: 112px;
   justify-content: space-between;
+  gap: 2px;
 `;
 
 // Label.tsx ----------------------//
@@ -57,7 +58,7 @@ export const LabelItem = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  align-items: center;
+  align-items: start;
   gap: 5px;
 `;
 
@@ -65,6 +66,7 @@ export const ColorChip = styled.div<{ color?: string }>`
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  margin-top: 3px;
   background-color: ${({ color }) => color};
 `;
 
@@ -74,12 +76,17 @@ export const LabelP = styled.p<{ $type: string }>`
     font-size: ${({ $type }) => ($type === 'category' ? '12px' : '10px')};
     font-weight: 600;
     margin-left: 5px;
+    width: 90px;
+    height: 100%;
   }
 
   &.count {
+    display: flex;
+    justify-content: end;
     color: var(--gray500);
     font-size: 12px;
     font-weight: 600;
     margin-left: auto;
+    width: 50px;
   }
 `;
