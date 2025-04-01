@@ -1,6 +1,7 @@
 import * as S from './Sidebar.style';
 import { useProfileStore } from '@/stores/profileStore';
 import { useState } from 'react';
+import emptyProfile from '@/assets/images/emptyProfile.svg';
 const Profile = () => {
   const { profile } = useProfileStore();
   const [avatarSrc, setAvatarSrc] = useState(profile.profileUrl);
@@ -9,10 +10,10 @@ const Profile = () => {
       <div className="avartar">
         <S.ProfileAvatar
           alt="police avatar"
-          src={avatarSrc}
+          src={avatarSrc || emptyProfile}
           onError={() => {
-            if (avatarSrc !== '/broken-image.jpg') {
-              setAvatarSrc('/broken-image.jpg');
+            if (avatarSrc !== emptyProfile) {
+              setAvatarSrc(emptyProfile);
             }
           }}
         />

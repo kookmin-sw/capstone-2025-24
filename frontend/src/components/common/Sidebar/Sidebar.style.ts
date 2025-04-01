@@ -54,10 +54,10 @@ export const ProfileLayout = styled.div`
   gap: 8px;
 `;
 
-export const ProfileAvatar = styled(Avatar)`
+export const ProfileAvatar = styled.img`
   width: 55px;
   height: 55px;
-  border: 1px solid var(--gray500);
+  border-radius: 50%;
 `;
 
 export const InfoDiv = styled.div`
