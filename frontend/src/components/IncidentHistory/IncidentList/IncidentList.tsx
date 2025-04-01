@@ -72,7 +72,7 @@ const IncidentList = () => {
                       <S.InfoP>{categoryToKorean[incident.category] || incident.category}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{incident.date}</S.InfoP>
+                      <S.InfoP>{incident.date.replace(/-/g, '.')}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
                       <S.InfoP>{truncate(incident.address, 25)}</S.InfoP>

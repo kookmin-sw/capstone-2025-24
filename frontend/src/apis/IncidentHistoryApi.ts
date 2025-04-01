@@ -31,7 +31,7 @@ export const getIncidentList = async ({
 
 export const getIncidentInfo = async (id: number) => {
   try {
-    const response = await axiosInstance.get(`/api/v1/log/${id}`);
+    const response = await axiosInstance.get(`api/v1/log/${id}`);
     return response.data;
   } catch (error) {
     console.error('사건 정보 조회 실패', error);
@@ -41,7 +41,7 @@ export const getIncidentInfo = async (id: number) => {
 
 export const putMemo = async (id: number, memo: string) => {
   try {
-    const response = await axiosInstance.put(`/api/v1/log/${id}`, {
+    const response = await axiosInstance.put(`api/v1/log/${id}`, {
       memo,
     });
     console.log(response.data);
