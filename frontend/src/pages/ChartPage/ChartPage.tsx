@@ -19,7 +19,7 @@ const ChartPage = () => {
         </S.ChartSecondDiv>
         <S.ChartThirdDiv>
           <DoughnutCard title="장소별 사건 수" type="region" />
-          {/* <ClusteringCard /> */}
+          <ClusteringCard />
         </S.ChartThirdDiv>
       </S.ComponentWrapper>
     </S.ChartPageLayout>

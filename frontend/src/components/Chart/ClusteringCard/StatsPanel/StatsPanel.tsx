@@ -1,16 +1,13 @@
 import * as S from './StatsPanel.style';
 import StatsItem from './StatsItem';
-// import { StatsData } from '../../../../mocks/ClusterData';
 import { useEffect, useState } from 'react';
 import { statsItem } from '@/types/chartType';
-import { CATEGORY } from '@/constants/EventCategory';
-
+import { STATSLABEL } from '@/constants/labelList';
 interface StatsPanelProps {
   isVisible: boolean;
   statsData: statsItem | undefined;
 }
 const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
-  // 여기서 get할 예정이라 mockData 쓰겠습니다람쥐
   const [data, setData] = useState<number[]>(Object.values(statsData || {}));
   const [total, setTotal] = useState(0);
 
@@ -25,8 +22,8 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
   return (
     <S.StatsPanelLayout>
       <p>정릉 1동</p>
-      {CATEGORY.map((it, index) => {
-        return <StatsItem key={it} label={it} count={changeToRatio(data[index])} isVisible={isVisible} />;
+      {STATSLABEL.map((it, index) => {
+        return <StatsItem key={it.key} label={it.text} count={changeToRatio(data[index])} isVisible={isVisible} color={it.color}/>;
       })}
     </S.StatsPanelLayout>
   );

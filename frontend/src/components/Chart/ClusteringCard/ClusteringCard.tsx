@@ -12,41 +12,45 @@ const ClusteringCard = () => {
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
 
-  // useEffect(() => {
-  //   const fetchClusterData = async () => {
-  //     const data = await getClusterData();
-  //     setClusterData(data);
+  useEffect(() => {
+    const fetchClusterData = async () => {
+      const data = await getClusterData();
+      console.log('data', data);
+      setClusterData(data);
 
-  //     const initialStats: statsItem = {
-  //       fire_count: 0,
-  //       assault_count: 0,
-  //       crowd_congestion_count: 0,
-  //       weapon_count: 0,
-  //       swoon_count: 0,
-  //     };
+      const initialStats: statsItem = {
+        fire_count: 0,
+        assault_count: 0,
+        crowd_congestion_count: 0,
+        weapon_count: 0,
+        swoon_count: 0,
+      };
 
-  //     const computedStats: statsItem = (clusterData ?? []).reduce(
-  //       (acc, item) => ({
-  //         fire_count: acc.fire_count + item.fire_count,
-  //         assault_count: acc.assault_count + item.assault_count,
-  //         crowd_congestion_count: acc.crowd_congestion_count + item.crowd_congestion_count,
-  //         weapon_count: acc.weapon_count + item.weapon_count,
-  //         swoon_count: acc.swoon_count + item.swoon_count,
-  //       }),
-  //       initialStats,
-  //     );
-  //     setStatsData(computedStats);
-  //   };
+      const computedStats = (data: positionItem[] | undefined) => {
+        const stats = data?.reduce(
+          (acc, item) => ({
+            fire_count: acc.fire_count + item.fire_count,
+            assault_count: acc.assault_count + item.assault_count,
+            crowd_congestion_count: acc.crowd_congestion_count + item.crowd_congestion_count,
+            weapon_count: acc.weapon_count + item.weapon_count,
+            swoon_count: acc.swoon_count + item.swoon_count,
+          }),
+          initialStats,
+        );
+        return stats;
+      };
+      setStatsData(computedStats(data as positionItem[]));
+    };
 
-  //   fetchClusterData();
-  // }, []);
+    fetchClusterData();
+  }, []);
 
   useEffect(() => {
     useScrollObserver({ setInviewPort, element });
   });
 
   return (
-    <S.ClusteringCardLayout ref={element}>
+    <S.ClusteringCardLayout ref={element} onClick={() => console.log(statsData)}>
       <ClusterMap clusterData={clusterData} />
       {inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}
       <S.TooltipDiv>

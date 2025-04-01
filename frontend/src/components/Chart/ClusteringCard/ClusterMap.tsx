@@ -7,7 +7,7 @@ interface ClusterMapProps {
 }
 const ClusterMap = ({ clusterData }: ClusterMapProps) => {
   return (
-    <S.Maps center={{ lat: 37.5863, lng: 127.0203 }} level={8}>
+    <S.Maps center={{ lat: 37.611035490773, lng: 126.99457310622 }} level={5}>
       <MarkerClusterer
         averageCenter={true}
         minLevel={3}
