@@ -7,7 +7,7 @@ export const hourFormatChanger = (data: HourItem[], category: string) => {
   return category === '전체'
     ? LABELBYCATEGORY.map(({ key, text, color }) => ({
         label: text,
-        data: data.map((it) => it[key as keyof HourItem] as number),
+        data: data?.map((it) => it[key as keyof HourItem] as number),
         backgroundColor: [color],
         borderColor: [color],
         borderWidth: 2,
