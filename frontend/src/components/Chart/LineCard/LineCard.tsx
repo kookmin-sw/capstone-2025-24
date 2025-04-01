@@ -11,7 +11,7 @@ import { getKeyCategory } from '@/utils/dataFormatter';
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');
-  const [timeData, setTimeData] = useState<HourItem[]>();
+  const [timeData, setTimeData] = useState<HourItem[]>([]);
   const handleChange = (_target: string, newValue: string) => {
     setCategory(newValue);
   };
@@ -39,7 +39,7 @@ const LineCard = () => {
       </S.TitleDiv>
       <S.ContentDiv>
         <CalendarSection selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-        <LineChart category={category} chartData={timeData as HourItem[]} />
+        <LineChart category={category} chartData={timeData} />
       </S.ContentDiv>
     </S.LineCardLayout>
   );

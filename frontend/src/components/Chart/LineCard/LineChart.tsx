@@ -14,6 +14,7 @@ import {
   Title,
   ChartOptions,
   ChartData,
+  LegendItem,
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Title);
@@ -23,8 +24,8 @@ interface LineChartProps {
   chartData: HourItem[];
 }
 const LineChart = ({ chartData, category }: LineChartProps) => {
-  const chartRef = useRef<any>(null);
-  const [legendItems, setLegendItems] = useState<any[]>([]);
+  const chartRef = useRef<ChartJS<'line'> | null>(null);
+  const [legendItems, setLegendItems] = useState<LegendItem[]>([]);
 
   const LineOptions = useMemo<ChartOptions<'line'>>(
     () => ({
@@ -87,7 +88,7 @@ const LineChart = ({ chartData, category }: LineChartProps) => {
           .map((item, index) => {
             return (
               <S.LegendItem key={index}>
-                <S.LegendColorBox $bgcolor={item.fillStyle} />
+                <S.LegendColorBox $bgcolor={item.fillStyle as string} />
                 <span>{item.text}</span>
               </S.LegendItem>
             );
