@@ -29,7 +29,7 @@ export const DoughnutChartLayout = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   gap: 10px;
 `;
 
@@ -81,9 +81,12 @@ export const LabelP = styled.p<{ $type: string }>`
   }
 
   &.count {
+    display: flex;
+    justify-content: end;
     color: var(--gray500);
     font-size: 12px;
     font-weight: 600;
     margin-left: auto;
+    width: 50px;
   }
 `;
