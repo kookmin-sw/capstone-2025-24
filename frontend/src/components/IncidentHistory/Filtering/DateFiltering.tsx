@@ -21,13 +21,26 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
   useOutsideClick(startRef, () => setIsStartOpen(false));
   useOutsideClick(endRef, () => setIsEndOpen(false));
 
+
+  const handleDatePickerToggle = (
+    e: React.MouseEvent,
+    setCurrentOpen: React.Dispatch<React.SetStateAction<boolean>>,
+    setOtherOpen?: React.Dispatch<React.SetStateAction<boolean>>,
+  ) => {
+    const target = e.target as HTMLElement;
+    if (document.querySelector('.react-datepicker-popper')?.contains(target)) return;
+
+    setCurrentOpen((prev) => !prev);
+    if (setOtherOpen) setOtherOpen(false);
+  };
+
   return (
     <S.DateFilteringContainer>
       {/* 시작 날짜 */}
       <S.DatePickerWrapper
         ref={startRef}
         className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`}
-        onClick={() => setIsStartOpen(!isStartOpen)}
+        onClick={(e) => handleDatePickerToggle(e, setIsStartOpen, setIsEndOpen)}
         isOpen={isStartOpen}
       >
         <S.CalendarIcon />
@@ -53,7 +66,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
       <S.DatePickerWrapper
         ref={endRef}
         className={`date-picker-wrapper ${isEndOpen ? 'open' : ''}`}
-        onClick={() => setIsEndOpen(!isEndOpen)}
+        onClick={(e) => handleDatePickerToggle(e, setIsEndOpen, setIsStartOpen)}
         isOpen={isEndOpen}
       >
         <S.CalendarIcon />

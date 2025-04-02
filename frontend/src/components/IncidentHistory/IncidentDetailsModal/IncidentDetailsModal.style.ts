@@ -84,7 +84,7 @@ export const ValueP = styled.p`
 export const InfoContainer = styled.div`
   display: flex;
   gap: 20px;
-  margin: 7.5px 0;
+  margin: 5px 0;
 `;
 
 // Memo.tsx---------------------------------//
@@ -113,13 +113,5 @@ export const MemoInput = styled.textarea`
 export const MapDiv = styled(Map)`
   width: 332px;
   height: 328px;
-  border-radius: 8px;
-`;
-
-// Video.tsx---------------------------------//
-export const VideoDiv = styled.div`
-  width: 586px;
-  height: 361px;
-  background-color: var(--gray500);
   border-radius: 8px;
 `;
