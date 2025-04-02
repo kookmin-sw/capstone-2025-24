@@ -40,7 +40,7 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
             <div>
               <S.ResolveButton onClick={() => setClickResolve(true)}>사건 해결</S.ResolveButton>
               <S.CardFooter>
-                <span>{date}</span>
+                <span>{date.replace(/-/g, '.')}</span>
                 <span>{police_name}</span>
               </S.CardFooter>
             </div>
