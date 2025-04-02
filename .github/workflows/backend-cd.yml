@@ -45,7 +45,6 @@ jobs:
       - name: Deploy on EC2 via SSH
         env:
           APP_YML: ${{ secrets.APPLICATION_YML }}
-          DOCKER_COMPOSE_YML: ${{ secrets.DOCKER_COMPOSE_YML }}
         run: |
           ssh -i key.pem ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
           cd ~/capstone-2025-24
@@ -53,9 +52,6 @@ jobs:
           cat > backend/src/main/resources/application.yml << 'END_YML'
           $APP_YML
           END_YML
-          cat > docker-compose.yml << 'END_DOCKER'
-          $DOCKER_COMPOSE_YML
-          END_DOCKER
           docker-compose down
           docker-compose build
           docker-compose up -d
