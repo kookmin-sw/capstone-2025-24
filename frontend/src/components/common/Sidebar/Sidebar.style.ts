@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 
 // Layout ---------------------------//
@@ -11,12 +11,12 @@ export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   height: 100vh;
-  background-color: #fafafa;
+  background-color:#fdfdfd;
 `;
 
 // Sidebar --------------------------//
 export const SidebarDiv = styled.div`
-  width: 204px;
+  width: 250px;
   height: 100vh;
   background-color: var(--primary400);
 `;
@@ -49,15 +49,14 @@ export const ProfileLayout = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   margin-top: 9px;
   gap: 8px;
 `;
 
-export const ProfileAvatar = styled.img`
+export const ProfileAvatar = styled(Avatar)`
   width: 55px;
   height: 55px;
-  border-radius: 50%;
+  border: 1px solid var(--gray500);
 `;
 
 export const InfoDiv = styled.div`
@@ -67,8 +66,8 @@ export const InfoDiv = styled.div`
   width: fit-content;
 `;
 
-export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
-  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'rank' ? '14px' : '12px')};
+export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
+  font-size: ${({ type }) => (type === 'name' ? '18px' : type === 'level' ? '14px' : '12px')};
   font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
 `;
@@ -80,12 +79,13 @@ export const SidebarBtn = styled(Button)`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  width: 95%;
+  width: 90%;
   font-size: 16px;
-  border-radius: 10px;
-  padding: 8px 6px;
+  border-radius: 8px;
+  padding: 10px 6px;
   padding-left: 15px;
-  gap: 6px;
+
+  gap: 9px;
   color: black;
   background-color: #00ff0000;
 
@@ -94,7 +94,7 @@ export const SidebarBtn = styled(Button)`
   }
 
   &.active {
-    background-color: var(--primary900);
-    color: white;
+    background-color: rgba(88,115,238,0.3);
+    color: black;
   }
 `;
