@@ -47,7 +47,7 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
         category: categoryLabel,
         startDate: formatDateTime(startDateFilter),
         endDate: formatDateTime(endDateFilter),
-        location: searchType === '위치' ? searchWord : null,
+        address: searchType === '위치' ? searchWord : null,
         police: searchType === '담당 경찰' ? searchWord : null,
         order: SortMap[sort],
         page,

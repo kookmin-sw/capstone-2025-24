@@ -13,7 +13,7 @@ export interface GetIncidentListParams {
   category: string | null;
   startDate: string | null;
   endDate: string | null;
-  location?: string | null;
+  address?: string | null;
   police?: string | null;
   order: string;
   page: number;
