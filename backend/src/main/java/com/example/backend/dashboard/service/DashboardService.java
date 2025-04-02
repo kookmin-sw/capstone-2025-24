@@ -64,7 +64,7 @@ public class DashboardService {
                 CaseEntity.CaseState.확인,
                 CaseEntity.CaseState.출동
         );
-        List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderById(officeId, targetStates);
+        List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderByIdDesc(officeId, targetStates);
 
         if (cases.isEmpty()) {
             throw new NoSuchElementException("미확인, 확인 또는 출동 중인 사건이 없습니다.");
