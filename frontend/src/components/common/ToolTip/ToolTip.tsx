@@ -1,4 +1,4 @@
-import * as S from './style.ts';
+import * as S from './ToolTip.style.ts';
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
@@ -20,7 +20,7 @@ const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
 const ToolTip = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <BootstrapTooltip title={<S.TooltipP>{children}</S.TooltipP>}>
+      <BootstrapTooltip title={<S.TooltipDiv>{children}</S.TooltipDiv>}>
         <S.InfoIcon />
       </BootstrapTooltip>
     </div>
