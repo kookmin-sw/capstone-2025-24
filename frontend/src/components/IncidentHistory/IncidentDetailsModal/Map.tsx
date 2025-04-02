@@ -9,7 +9,7 @@ interface MapProps {
 
 const Map = ({latitude, longitude} : MapProps) => {
   return (
-    <S.MapDiv id="map" center={{ lat: latitude, lng: longitude }} level={4} draggable={false}>
+    <S.MapDiv id="map" center={{ lat: latitude, lng: longitude }} level={4}>
       <MapMarker
         position={{ lat: latitude, lng: longitude }}
         image={{
