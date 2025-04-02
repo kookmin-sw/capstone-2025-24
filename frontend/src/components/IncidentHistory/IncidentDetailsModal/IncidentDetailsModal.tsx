@@ -25,29 +25,21 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
 
   useEffect(() => {
     const fetchIncident = async () => {
-      try {
-        const data = await getIncidentInfo(incident.id);
-        setIncidentDetails({
-          memo: data.memo,
-          latitude: data.latitude,
-          longitude: data.longitude,
-          videourl: data.video,
-        });
-      } catch (error) {
-        console.log('사건 정보를 불러오는데 실패했습니다.', error);
-      }
+      const data = await getIncidentInfo(incident.id);
+      setIncidentDetails({
+        memo: data.memo,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        videourl: data.video,
+      });
     };
 
     fetchIncident();
   }, []);
 
   const handleClose = async () => {
-    try {
-      await putMemo(incident.id, incidentDetails.memo);
-      onClose();
-    } catch (error) {
-      console.log('메모 저장에 실패했습니다.', error);
-    }
+    await putMemo(incident.id, incidentDetails.memo);
+    onClose();
   };
 
   if (!isOpen) return null;

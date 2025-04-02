@@ -35,7 +35,6 @@ export const getIncidentInfo = async (id: number) => {
     return response.data;
   } catch (error) {
     console.error('사건 정보 조회 실패', error);
-    throw error;
   }
 };
 
@@ -48,6 +47,5 @@ export const putMemo = async (id: number, memo: string) => {
     return response.data;
   } catch (error) {
     console.error('메모 업데이트 실패', error);
-    throw error;
   }
 };
