@@ -1,4 +1,3 @@
-import { IconType } from 'react-icons';
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 
@@ -18,7 +17,7 @@ export const MainContent = styled.div`
 export const SidebarDiv = styled.div`
   width: 240px;
   height: 100vh;
-  background-color:rgb(16, 36, 117);
+  background-color: rgb(16, 36, 117);
   box-shadow: 5px 0px 5px 0px rgba(203, 203, 203, 0.3);
   z-index: 5;
 `;
@@ -65,8 +64,8 @@ export const InfoDiv = styled.div`
   gap: 3px;
 `;
 
-export const InfoText = styled.span<{ type?: 'name' | 'level' | 'territory' }>`
-  font-size: ${({ type }) => (type === 'name' ? '20px' : type === 'level' ? '14px' : '12px')};
+export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
+  font-size: ${({ type }) => (type === 'name' ? '20px' : type === 'rank' ? '14px' : '12px')};
   font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
   color: var(--primary300);
@@ -92,13 +91,13 @@ export const SidebarBtn = styled(Button)`
   .IconType {
     color: var(--primary700);
   }
-  
+
   &:hover {
-    background-color:rgba(161, 180, 255, 0.1);
+    background-color: rgba(161, 180, 255, 0.1);
   }
 
   &.active {
-    background-color:rgba(151, 172, 255, 0.14);
+    background-color: rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
   }
 `;

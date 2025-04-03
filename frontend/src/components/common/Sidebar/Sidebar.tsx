@@ -48,28 +48,10 @@ export const Sidebar = () => {
       <S.BtnDiv>
         {SIDEBAR_LIST.map((it) => {
           const Icon = it.icon;
-          return(
-          
-          <SidebarButton
-            key={it.text}
-            text={it.text}
-            icon={Icon}
-            size={'20px'}
-            id={it.id}
-            onClick={() => handleNavigate(it.id)}
-          />
-        )})}
-        {/* {SIDEBAR_LIST.map((it) => (
-          <SidebarButton
-            key={it.text}
-            text={it.text}
-            icon={it.icon}
-            icon_focused={it.icon_focused}
-            size={'20px'}
-            id={it.id}
-            onClick={() => handleNavigate(it.id)}
-          />
-        ))} */}
+          return (
+            <SidebarButton key={it.text} text={it.text} icon={Icon} id={it.id} onClick={() => handleNavigate(it.id)} />
+          );
+        })}
       </S.BtnDiv>
     </S.SidebarDiv>
   );
