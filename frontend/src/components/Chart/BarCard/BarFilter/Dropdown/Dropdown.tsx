@@ -38,7 +38,7 @@ const Dropdown = ({ items, width, value, type, onChange }: dropdownProps) => {
       </S.DropdownHeader>
       {isOpen && (
         <S.DropdownList $isOpen={isOpen}>
-          {items.map((option, index) => (
+          {items?.map((option, index) => (
             <S.DropdownItem key={index} onClick={() => handleSelect(option)}>
               {option}
             </S.DropdownItem>

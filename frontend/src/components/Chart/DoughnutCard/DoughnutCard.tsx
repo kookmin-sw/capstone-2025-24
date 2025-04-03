@@ -24,13 +24,19 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
     const fetchChartData = async () => {
       if (type === 'category') {
         const data = await getDataPerCategory(periodLst[selectedIndex]);
+        if (!data) {
+          console.error("getDataPerCategory 실패");
+          setChartData([]);
+          return;
+        }
+
         const formattedData = Object.values(data).map((it, index) => {
           return { text: LABELBYCATEGORY[index].text, count: it as number, color: LABELBYCATEGORY[index].color };
         });
         setChartData(formattedData);
       } else {
         const data = await getDataPerLocation(periodLst[selectedIndex]);
-        const formattedData = data.map((it: LocationItem, index: number) => {
+        const formattedData = data?.map((it: LocationItem, index: number) => {
           return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
         });
         setChartData(formattedData);

@@ -34,7 +34,7 @@ export const hourFormatChanger = (data: HourItem[], category: string) => {
 export const monthFormatChanger = (data: BarMonthItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({
     label: text,
-    data: data.map((it) => it[key as keyof BarMonthItem] as number),
+    data: data?.map((it) => it[key as keyof BarMonthItem] as number),
     backgroundColor: [color],
   }));
 };
