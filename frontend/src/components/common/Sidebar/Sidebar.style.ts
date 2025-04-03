@@ -30,6 +30,7 @@ export const BtnDiv = styled.div`
   justify-content: center;
   width: 100%;
   padding-top: 34px;
+  gap: 4px;
 `;
 
 export const LogoDiv = styled.div`
@@ -81,7 +82,7 @@ export const SidebarBtn = styled(Button)`
   width: 90%;
   font-size: 16px;
   border-radius: 7px;
-  padding: 10px 6px;
+  padding: 8px 6px;
   padding-left: 15px;
   cursor: default;
 
