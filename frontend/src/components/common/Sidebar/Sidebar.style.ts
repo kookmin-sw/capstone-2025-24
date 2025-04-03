@@ -1,3 +1,4 @@
+import { IconType } from 'react-icons';
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 
@@ -15,9 +16,9 @@ export const MainContent = styled.div`
 
 // Sidebar --------------------------//
 export const SidebarDiv = styled.div`
-  width: 250px;
+  width: 240px;
   height: 100vh;
-  background-color:rgb(13, 34, 118);
+  background-color:rgb(16, 36, 117);
   box-shadow: 5px 0px 5px 0px rgba(203, 203, 203, 0.3);
   z-index: 5;
 `;
@@ -79,20 +80,24 @@ export const SidebarBtn = styled(Button)`
   align-items: center;
   width: 90%;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 7px;
   padding: 10px 6px;
   padding-left: 15px;
+  cursor: default;
 
   gap: 9px;
   color: var(--primary700);
   background-color: #00ff0000;
-
+  .IconType {
+    color: var(--primary700);
+  }
+  
   &:hover {
-    background-color:rgb(28, 52, 146);
+    background-color:rgba(161, 180, 255, 0.1);
   }
 
   &.active {
-    background-color: #1b349b;
+    background-color:rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
   }
 `;
