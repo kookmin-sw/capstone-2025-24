@@ -16,7 +16,7 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
   };
 
   useEffect(() => {
-    setTotal(data.reduce((it, accu) => accu + it));
+    setTotal(data?.reduce((it, accu) => accu + it, 0));
   }, []);
 
   return (

@@ -16,7 +16,6 @@ const BarCard = () => {
   useEffect(() => {
     const fetchChartData = async () => {
       const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
-      // const yearParam = filter.year === '전체' ? undefined : filter.year;
 
       const categoryParam = filter.category === '전체' ? undefined : getKeyCategory(filter.category);
       const data = await getDataPerYearMonth(filter.year, monthParam, categoryParam);

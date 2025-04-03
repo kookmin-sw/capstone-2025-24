@@ -33,7 +33,7 @@ const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
       </S.DropdownHeader>
       {isOpen && (
         <S.DropdownList isOpen={isOpen}>
-          {options.map((option, index) => (
+          {options?.map((option, index) => (
             <S.DropdownItem key={index} isSelected={selected === option} onClick={() => handleSelect(option)}>
               {option}
             </S.DropdownItem>

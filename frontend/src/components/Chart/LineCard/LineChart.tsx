@@ -85,7 +85,7 @@ const LineChart = ({ chartData, category }: LineChartProps) => {
         {legendItems
           .slice()
           .reverse()
-          .map((item, index) => {
+          ?.map((item, index) => {
             return (
               <S.LegendItem key={index}>
                 <S.LegendColorBox $bgcolor={item.fillStyle as string} />
