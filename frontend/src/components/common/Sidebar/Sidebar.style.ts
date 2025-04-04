@@ -15,7 +15,7 @@ export const MainContent = styled.div`
 
 // Sidebar --------------------------//
 export const SidebarDiv = styled.div`
-  width: 240px;
+  width: 220px;
   height: 100vh;
   // background-color:rgb(16, 36, 117);
   background-color:rgb(9, 29, 109);
@@ -39,8 +39,10 @@ export const LogoDiv = styled.div`
   justify-content: center;
   padding: 16px 10px;
   margin: 10px;
-  background-color: var(--gray400);
+  background-color: none;
   font-size: 16px;
+  color: white;
+  border: 1px solid var(--primary700);
 `;
 
 // Profile ----------------------------------//
@@ -101,5 +103,6 @@ export const SidebarBtn = styled(Button)`
   &.active {
     background-color: rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
+
   }
 `;
