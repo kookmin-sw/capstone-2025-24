@@ -17,8 +17,10 @@ export const MainContent = styled.div`
 export const SidebarDiv = styled.div`
   width: 240px;
   height: 100vh;
-  background-color: rgb(16, 36, 117);
-  box-shadow: 5px 0px 5px 0px rgba(203, 203, 203, 0.3);
+  // background-color:rgb(16, 36, 117);
+  background-color:rgb(9, 29, 109);
+  // box-shadow: 15px 0px 15px 0px rgba(164, 163, 163, 0.3);
+  box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.70);
   z-index: 5;
 `;
 
