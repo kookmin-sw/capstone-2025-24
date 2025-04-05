@@ -12,12 +12,12 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
 
   return (
     <div>
-      <S.Layout clicked={clicked}>
-        <S.ColorDiv level={level} />
+      <S.Layout $clicked={clicked}>
+        <S.ColorDiv $level={level} />
         <S.CardDiv>
           <S.DateWrapper>
             <S.DateP>{date.replace(/-/g, '.')}</S.DateP>
-            <S.StateCircle state={state} />
+            <S.StateCircle $state={state} />
           </S.DateWrapper>
           <S.CategoryDiv>
             <S.AlertIcon level={level} />
