@@ -19,7 +19,7 @@ const ToopTipContent = () => {
 
 const AlertList = () => {
   const location = useLocation();
-  const clicked_alert_id = location.state?.clicked_alert_id;
+  const highlightAlertId = location.state?.highlightAlertId;
   const { items, setItems } = useItemStore();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const AlertList = () => {
               date={alert.date}
               address={alert.address}
               state={alert.state}
-              clicked={clicked_alert_id === alert.id}
+              clicked={highlightAlertId === alert.id}
             />
           ))
         )}

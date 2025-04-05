@@ -3,11 +3,11 @@ import exclamationMark from '../../../assets/icons/exclamationMark.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const PushNotification = () => {
+const PushNotification = ({ id }: { id: number }) => {
   const [visible, setVisible] = useState(true); // 푸시알림 상태
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/monitoring`, { state: { clicked_alert_id: 3 } }); // 실제 감지된 사건 id를 전달
+    navigate(`/monitoring`, { state: { highlightAlertId: id } });
     setVisible(false);
   };
 

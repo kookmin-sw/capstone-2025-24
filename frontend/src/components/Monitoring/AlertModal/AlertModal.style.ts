@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
 
 // AlertModal.tsx ------------------------------------//
@@ -16,7 +16,7 @@ export const Overlay = styled.div`
   z-index: 1000;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{ highlight: boolean }>`
   position: relative;
   width: 736px;
   height: 647px;
@@ -27,6 +27,21 @@ export const ModalContainer = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+
+  ${({ highlight }) =>
+    highlight &&
+    css`
+      background-color: rgb(255, 182, 182);
+      animation: highlightAnimation 1.3s steps(2, end) infinite;
+    `}
+  @keyframes highlightAnimation {
+    0% {
+      background-color: white;
+    }
+    100% {
+      background-color: rgb(255, 182, 182);
+    }
+  }
 `;
 
 export const CloseButton = styled.div`
@@ -76,7 +91,7 @@ export const Button = styled.button`
   font-size: 23px;
   font-weight: 600;
   &.no {
-    background-color: transparent;
+    background-color: white;
     border: 1px solid var(--primary900);
     color: var(--primary900);
   }

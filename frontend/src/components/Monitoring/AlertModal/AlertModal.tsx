@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useItemStore } from '@/stores/itemStore';
+import { useHighlightStore } from '@/stores/highlightStore';
 import FeedbackModal from './FeedbackModal';
 import IncidentModal from './IncidentModal';
 import SubmitModal from './SubmitModal';
@@ -10,14 +11,16 @@ import * as S from './AlertModal.style';
 
 interface ModalProps {
   onClose: () => void;
+  highlight: boolean;
   alertItem: AlertProps;
 }
 
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
-const AlertModal = ({ onClose, alertItem }: ModalProps) => {
+const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   const { updateItemState } = useItemStore();
   const [step, setStep] = useState<ModalStep>('incident');
+  const { setHighlight } = useHighlightStore();
 
   const handleOutsideClick = () => {
     if (step === 'incident') {
@@ -30,6 +33,11 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
       updateItemState(alertItem.id, '확인');
     }
   }, [alertItem, updateItemState]);
+
+  const handleFeedback = async () => {
+    setHighlight(false);
+    setStep('feedback');
+  };
 
   const handleDispatch = async () => {
     await putAlertState(alertItem.id, '출동', null);
@@ -51,12 +59,12 @@ const AlertModal = ({ onClose, alertItem }: ModalProps) => {
 
   return (
     <S.Overlay onClick={handleOutsideClick}>
-      <S.ModalContainer onClick={(e) => e.stopPropagation()}>
+      <S.ModalContainer highlight={highlight} onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}
             alertItem={alertItem}
-            onFeedbackClick={() => setStep('feedback')}
+            onFeedbackClick={handleFeedback}
             onDispatch={handleDispatch}
           />
         )}
