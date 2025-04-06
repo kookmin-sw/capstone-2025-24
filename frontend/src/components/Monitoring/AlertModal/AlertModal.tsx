@@ -8,6 +8,10 @@ import CategorySelectModal from './CategorySelectModal';
 import { AlertProps } from '@/types/alert';
 import { putAlertState } from '@/apis/AlertApi';
 import * as S from './AlertModal.style';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaRegCheckCircle } from 'react-icons/fa';
 
 interface ModalProps {
   onClose: () => void;
@@ -21,9 +25,13 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   const { updateItemState } = useItemStore();
   const [step, setStep] = useState<ModalStep>('incident');
   const { setHighlight } = useHighlightStore();
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const handleOutsideClick = () => {
     if (step === 'incident') {
+      if (isUpdate) {
+        updateItemState(alertItem.id, '출동');
+      }
       onClose();
     }
   };
@@ -40,7 +48,20 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   };
 
   const handleDispatch = async () => {
-    await putAlertState(alertItem.id, '출동', null);
+    const response = await putAlertState(alertItem.id, '출동', null);
+    if (response == '이미 출동된 사건입니다.') {
+      toast('이미 출동된 사건입니다.', {
+        className: 'custom-toast',
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: true,
+        closeButton: false,
+        icon: <FaRegCheckCircle size={24} />,
+      });
+      setIsUpdate(true);
+      return;
+    }
+
     updateItemState(alertItem.id, '출동');
     onClose();
 
@@ -59,6 +80,7 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
 
   return (
     <S.Overlay onClick={handleOutsideClick}>
+      <ToastContainer />
       <S.ModalContainer highlight={highlight} onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
@@ -66,6 +88,7 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
             alertItem={alertItem}
             onFeedbackClick={handleFeedback}
             onDispatch={handleDispatch}
+            isUpdate={isUpdate}
           />
         )}
         {step === 'feedback' && (

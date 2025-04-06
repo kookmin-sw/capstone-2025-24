@@ -5,6 +5,7 @@ import { FaClock } from 'react-icons/fa6';
 import VideoComponent from '../../common/VideoComponent/VideoComponent';
 import { AlertProps } from '@/types/alert';
 import { getVideo } from '@/apis/AlertApi';
+import { useItemStore } from '@/stores/itemStore.ts';
 import * as S from './AlertModal.style';
 
 interface IncidentModalProps {
@@ -12,11 +13,13 @@ interface IncidentModalProps {
   onFeedbackClick: () => void;
   alertItem: AlertProps;
   onDispatch: () => void;
+  isUpdate: boolean;
 }
 
-const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: IncidentModalProps) => {
+const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate }: IncidentModalProps) => {
   const { id, category, date, address } = alertItem;
   const [video, setVideo] = useState('');
+  const { updateItemState } = useItemStore();
 
   useEffect(() => {
     const fetchVideo = async () => {
@@ -28,7 +31,12 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch }: Inci
 
   return (
     <>
-      <S.CloseButton onClick={onClose}>
+      <S.CloseButton
+        onClick={async () => {
+          if (isUpdate) updateItemState(alertItem.id, '출동');
+          onClose();
+        }}
+      >
         <IoCloseOutline size={39} />
       </S.CloseButton>
       <S.Title>{category} 감지</S.Title>
