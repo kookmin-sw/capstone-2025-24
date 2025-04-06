@@ -33,7 +33,7 @@ const RealTimeAlert = () => {
         />
       )}
 
-      {level === 1 && <PushNotification id={id} />}
+      {level === 1 && <PushNotification id={id} category={category} />}
     </div>
   );
 };
