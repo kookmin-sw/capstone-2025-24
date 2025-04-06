@@ -1,7 +1,6 @@
 import Monitoring from '@/components/Monitoring/InfoSection/InfoSection';
 import AlertList from '@/components/Monitoring/AlertList/AlertList';
 import InProgress from '@/components/Monitoring/InProgress/InProgress';
-import RealTimeAlert from '@/components/RealTimeAlert/RealTimeAlert.tsx';
 import * as S from './MonitoringPage.style.ts';
 
 const MonitoringPage = () => {
@@ -14,7 +13,6 @@ const MonitoringPage = () => {
       <S.BottomSection>
         <InProgress />
       </S.BottomSection>
-      <RealTimeAlert />
     </S.MonitoringLayout>
   );
 };
