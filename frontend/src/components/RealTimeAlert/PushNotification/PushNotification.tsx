@@ -9,7 +9,11 @@ const PushNotification = ({ id, category }: { id: number; category: string | nul
 
   const handleClick = () => {
     sessionStorage.setItem('highlightConsumed', id.toString());
-    navigate(`/monitoring`);
+    if (location.pathname === '/monitoring') {
+      navigate('/monitoring', { state: { refresh: Date.now() } });
+    } else {
+      navigate(`/monitoring`);
+    }
     setVisible(false);
   };
 
