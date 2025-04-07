@@ -29,6 +29,9 @@ public class GlobalExceptionHandler {
         if (e.getMessage().contains("로그인이 필요")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Collections.singletonMap("message", e.getMessage()));
+        } else if (e.getMessage().contains("이미 출동")){
+            return ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+                    .body(Collections.singletonMap("message", e.getMessage()));
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Collections.singletonMap("message", e.getMessage()));
@@ -36,7 +39,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<?> handleNoSuchElementException(NoSuchElementException e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Collections.singletonMap("message", e.getMessage()));
     }
 

@@ -16,6 +16,7 @@ public class CaseDetectResponse {
     private String category;      // 사건 카테고리 (예: fire, assault 등)
     private String cctvAddress;   // CCTV 주소
     private String dateTime;      // 사건 감지 시각 (문자열 형태, yyyy-MM-dd HH:mm:ss)
+    private int level;
     private String video;      // 영상 URL
 
     public static CaseDetectResponse fromEntity(CaseEntity entity) {
@@ -26,6 +27,7 @@ public class CaseDetectResponse {
                 .category(entity.getCategory().name())
                 .cctvAddress(entity.getCctv().getAddress())
                 .dateTime(formattedDateTime)
+                .level(entity.getLevel())
                 .video(entity.getVideo())
                 .build();
     }
