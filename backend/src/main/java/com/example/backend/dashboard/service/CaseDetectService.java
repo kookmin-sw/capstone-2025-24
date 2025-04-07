@@ -38,6 +38,7 @@ public class CaseDetectService {
                 .accuracy(true)
                 .memo(request.getMemo())
                 .level(request.getLevel())
+                .progressDate(null)
                 .build();
 
         CaseEntity saved = caseRepository.save(caseEntity);

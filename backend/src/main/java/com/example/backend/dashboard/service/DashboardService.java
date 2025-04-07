@@ -13,10 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,16 +60,22 @@ public class DashboardService {
 
         List<CaseEntity.CaseState> targetStates = List.of(
                 CaseEntity.CaseState.미확인,
-                CaseEntity.CaseState.확인,
-                CaseEntity.CaseState.출동
+                CaseEntity.CaseState.확인
         );
-        List<CaseEntity> cases = dashboardRepository.findAllByOfficeIdAndStateInOrderById(officeId, targetStates);
 
-        if (cases.isEmpty()) {
+        List<CaseEntity> readyCases = dashboardRepository.findAllByOfficeIdAndStateInOrderByIdDesc(officeId, targetStates);
+
+        List<CaseEntity> progressCases = dashboardRepository.findAllByOfficeIdAndStateOrderByProgressDateDesc(officeId, CaseEntity.CaseState.출동);
+
+        if (readyCases.isEmpty() && progressCases.isEmpty()) {
             throw new NoSuchElementException("미확인, 확인 또는 출동 중인 사건이 없습니다.");
         }
 
-        return cases.stream()
+        List<CaseEntity> combinedCases = new ArrayList<>();
+        combinedCases.addAll(readyCases);
+        combinedCases.addAll(progressCases);
+
+        return combinedCases.stream()
                 .map(DashboardResponse::fromEntity)
                 .collect(Collectors.toList());
     }
@@ -110,6 +115,11 @@ public class DashboardService {
             // 경찰관 배정
             PoliceEntity assignedPolice = PoliceEntity.builder().id(policeId).build();
             caseEntity.setPolice(assignedPolice);
+
+            // 출동 날짜 및 시간
+            LocalDateTime now = LocalDateTime.now();
+            String formatter = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            caseEntity.setProgressDate(LocalDateTime.parse(formatter));
 
             dashboardRepository.save(caseEntity);
 
