@@ -3,11 +3,13 @@ import exclamationMark from '../../../assets/icons/exclamationMark.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const PushNotification = ({ id, category }: { id: number, category: string | null }) => {
+const PushNotification = ({ id, category }: { id: number; category: string | null }) => {
   const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
+
   const handleClick = () => {
-    navigate(`/monitoring`, { state: { highlightAlertId: id } });
+    sessionStorage.setItem('highlightConsumed', id.toString());
+    navigate(`/monitoring`);
     setVisible(false);
   };
 
