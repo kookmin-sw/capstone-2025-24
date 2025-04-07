@@ -235,8 +235,9 @@ export const SubmitLayout = styled.div`
 `;
 
 export const Check = styled(Lottie)`
-  width: 170px;
-  height: 170px;
+  width: 180px;
+  height: 180px;
+  margin-top: 30px;
 `;
 
 export const SubmitTitle = styled.h3`
@@ -250,6 +251,7 @@ export const SubmitDescription = styled.p`
   text-align: center;
   font-size: 15px;
   color: var(--gray500);
+  margin-bottom: 24px;
 `;
 
 export const CloseSubmitButton = styled.button`

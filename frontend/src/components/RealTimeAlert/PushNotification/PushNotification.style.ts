@@ -7,7 +7,7 @@ const slideDown = keyframes`
     transform: translate(-50%, -96px);
   }
   to {
-    opacity: 1;
+    opacity: 0.7;
     transform: translate(-50%, 0);
   }
 `;
@@ -21,6 +21,7 @@ export const PushNotificationLayout = styled.div`
   width: 498px;
   height: 96px;
   background-color: #fffaee;
+  opacity: 0.7;
   border: 1.5px solid var(--yellow);
   border-radius: 10px;
   box-shadow: 0px 2px 7px 0px rgb(0, 0, 0, 0.2);
