@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useItemStore } from '@/stores/itemStore';
 import { useHighlightStore } from '@/stores/highlightStore';
 import FeedbackModal from './FeedbackModal';
@@ -27,6 +27,8 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   const { setHighlight } = useHighlightStore();
   const [isUpdate, setIsUpdate] = useState(false);
 
+  const realTime = useRef(false);
+
   const handleOutsideClick = () => {
     if (step === 'incident') {
       if (isUpdate) {
@@ -37,8 +39,9 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   };
 
   useEffect(() => {
-    if (alertItem.state === '미확인') {
+    if (alertItem.state === '미확인' && !realTime.current) {
       updateItemState(alertItem.id, '확인');
+      realTime.current = true;
     }
   }, [alertItem, updateItemState]);
 
