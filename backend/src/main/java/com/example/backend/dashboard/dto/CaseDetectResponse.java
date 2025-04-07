@@ -12,20 +12,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CaseDetectResponse {
-    private Integer caseId;       // 사건 ID
+    private Integer id;       // 사건 ID
     private String category;      // 사건 카테고리 (예: fire, assault 등)
-    private String cctvAddress;   // CCTV 주소
-    private String dateTime;      // 사건 감지 시각 (문자열 형태, yyyy-MM-dd HH:mm:ss)
+    private String address;   // CCTV 주소
+    private String date;      // 사건 감지 시각 (문자열 형태, yyyy-MM-dd HH:mm:ss)
     private String video;      // 영상 URL
 
     public static CaseDetectResponse fromEntity(CaseEntity entity) {
         String formattedDateTime = entity.getDate()
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         return CaseDetectResponse.builder()
-                .caseId(entity.getId())
+                .id(entity.getId())
                 .category(entity.getCategory().name())
-                .cctvAddress(entity.getCctv().getAddress())
-                .dateTime(formattedDateTime)
+                .address(entity.getCctv().getAddress())
+                .date(formattedDateTime)
                 .video(entity.getVideo())
                 .build();
     }
