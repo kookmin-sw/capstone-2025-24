@@ -50,7 +50,7 @@ public class DashboardService {
         CaseEntity caseEntity = dashboardRepository.findById(caseId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 사건을 찾을 수 없습니다."));
         if (caseEntity.getOffice().getId() != officeId) {
-            throw new NoSuchElementException("해당 사건에 대한 권한이 없습니다.");
+            throw new IllegalStateException("해당 사건에 대한 권한이 없습니다.");
         }
         return caseEntity;
     }
