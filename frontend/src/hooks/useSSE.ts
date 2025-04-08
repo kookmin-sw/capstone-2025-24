@@ -25,7 +25,6 @@ export const useSSE = () => {
       try {
         const rawData = JSON.parse(event.data) as AlertProps;
         const data: AlertProps = { ...rawData, state: '미확인', category: getMappedCategory(rawData.category) };
-        console.log('SSE 실시간 알림 감지 data:', data);
         addItem(data);
         setAlertData(data);
         if (data.level == 2) {
