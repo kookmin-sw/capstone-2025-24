@@ -8,5 +8,4 @@ import java.util.List;
 public interface DashboardRepository extends JpaRepository<CaseEntity, Integer> {
     List<CaseEntity> findAllByOfficeIdAndStateInOrderByIdDesc(int officeId, List<CaseEntity.CaseState> states);
     List<CaseEntity> findAllByOfficeIdAndStateOrderByProgressDateDesc(int officeId, CaseEntity.CaseState state);
-
 }
