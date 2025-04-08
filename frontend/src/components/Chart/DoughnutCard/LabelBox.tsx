@@ -1,5 +1,6 @@
 import * as S from './DoughnutCard.style';
 import Label from './Label';
+import { DataItem } from '@/types/chartType';
 
 export interface LegendItem {
   text: string;
@@ -7,15 +8,14 @@ export interface LegendItem {
 }
 
 interface LabelBoxProps {
-  data: number[];
-  legendItems: LegendItem[];
+  data: DataItem[] | undefined;
   type: string;
 }
-const LabelBox = ({ data, legendItems, type }: LabelBoxProps) => {
+const LabelBox = ({ data, type }: LabelBoxProps) => {
   return (
     <S.LabelBoxLayout>
-      {legendItems.map((it, i) => {
-        return <Label color={it.color} text={it.text} count={data[i]} key={it.text} type={type} />;
+      {data?.map((it) => {
+        return <Label color={it.color} text={it.text} count={it.count} key={it.text} type={type} />;
       })}
     </S.LabelBoxLayout>
   );

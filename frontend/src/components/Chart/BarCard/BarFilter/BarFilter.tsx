@@ -7,13 +7,21 @@ import {
   MONTH_PLACEHOLDER,
 } from '../../../../constants/dropdownOptions';
 import { useFilterStore } from '../../../../stores/filterStore';
+import { useEffect } from 'react';
 
 const BarFilter = () => {
   const { filter, setFilter } = useFilterStore();
-
+  const now = new Date();
+  const nowYear = now.getFullYear();
   const handleChange = (target: 'category' | 'year' | 'month', newValue: string) => {
     setFilter(target, newValue);
   };
+
+  useEffect(() => {
+    if (filter.year === '전체') {
+      setFilter('month', '전체');
+    }
+  }, [filter.year]);
 
   return (
     <S.BarFilterLayout>
@@ -28,7 +36,7 @@ const BarFilter = () => {
       <Dropdown
         items={YEAR_OPTIONS}
         width={85}
-        placeholder="2025"
+        placeholder={nowYear.toString()}
         type="year"
         onChange={handleChange}
         value={filter.year}

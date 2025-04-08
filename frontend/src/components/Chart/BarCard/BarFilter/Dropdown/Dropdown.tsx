@@ -1,7 +1,6 @@
 import * as S from './Dropdown.style.ts';
 import { useState, useRef, useEffect } from 'react';
 import { IoChevronDown } from 'react-icons/io5';
-
 interface dropdownProps {
   items: string[];
   placeholder: string;
@@ -39,7 +38,7 @@ const Dropdown = ({ items, width, value, type, onChange }: dropdownProps) => {
       </S.DropdownHeader>
       {isOpen && (
         <S.DropdownList $isOpen={isOpen}>
-          {items.map((option, index) => (
+          {items?.map((option, index) => (
             <S.DropdownItem key={index} onClick={() => handleSelect(option)}>
               {option}
             </S.DropdownItem>

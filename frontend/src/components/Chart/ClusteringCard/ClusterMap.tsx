@@ -1,10 +1,13 @@
 import * as S from './ClusteringCard.style';
 import { MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
-import { ClusterData } from '../../../mocks/ClusterData';
 import pinIcon from '@/assets/icons/pinIcon.svg';
-const ClusterMap = () => {
+import { positionItem } from '@/types/chartType';
+interface ClusterMapProps {
+  clusterData: positionItem[] | undefined;
+}
+const ClusterMap = ({ clusterData }: ClusterMapProps) => {
   return (
-    <S.Maps center={{ lat: 37.5863, lng: 127.0203 }} level={8}>
+    <S.Maps center={{ lat: 37.611035490773, lng: 126.99457310622 }} level={4}>
       <MarkerClusterer
         averageCenter={true}
         minLevel={3}
@@ -22,7 +25,7 @@ const ClusterMap = () => {
           },
         ]}
       >
-        {ClusterData.map((pos) => (
+        {clusterData?.map((pos) => (
           <MapMarker
             key={`${pos.latitude}-${pos.longitude}`}
             position={{

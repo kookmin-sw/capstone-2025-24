@@ -16,7 +16,7 @@ const Information = ({ location, date, category, police }: InformationProps) => 
       </S.InfoContainer>
       <S.InfoContainer>
         <S.NameP>시간</S.NameP>
-        <S.ValueP>{date}</S.ValueP>
+        <S.ValueP>{date.replace(/-/g, '.')}</S.ValueP>
       </S.InfoContainer>
       <S.InfoContainer>
         <S.NameP>분류</S.NameP>

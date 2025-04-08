@@ -1,9 +1,14 @@
 import * as S from './StatsPanel.style';
 import StatsItem from './StatsItem';
-import { StatsData } from '../../../../mocks/ClusterData';
 import { useEffect, useState } from 'react';
-const StatsPanel = ({ isVisible }: { isVisible: boolean }) => {
-  // 여기서 get할 예정이라 mockData 쓰겠습니다람쥐
+import { statsItem } from '@/types/chartType';
+import { STATSLABEL } from '@/constants/labelList';
+interface StatsPanelProps {
+  isVisible: boolean;
+  statsData: statsItem | undefined;
+}
+const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
+  const data = Object.values(statsData || {});
   const [total, setTotal] = useState(0);
 
   const changeToRatio = (target: number) => {
@@ -11,16 +16,21 @@ const StatsPanel = ({ isVisible }: { isVisible: boolean }) => {
   };
 
   useEffect(() => {
-    const countList = StatsData.map((it) => it.count);
-    setTotal(countList.reduce((it, accu) => accu + it));
+    setTotal(data?.reduce((it, accu) => accu + it, 0));
   }, []);
 
   return (
     <S.StatsPanelLayout>
       <p>정릉 1동</p>
-      {StatsData.map((it) => {
+      {STATSLABEL.map((it, index) => {
         return (
-          <StatsItem key={it.category} label={it.category} count={changeToRatio(it.count)} isVisible={isVisible} />
+          <StatsItem
+            key={it.key}
+            label={it.text}
+            count={changeToRatio(data[index])}
+            isVisible={isVisible}
+            color={it.color}
+          />
         );
       })}
     </S.StatsPanelLayout>

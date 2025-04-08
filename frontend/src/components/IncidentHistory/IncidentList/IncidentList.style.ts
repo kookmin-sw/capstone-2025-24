@@ -6,18 +6,6 @@ export const Layout = styled.div`
   height: 700px;
 `;
 
-export const IncidentNum = styled.p`
-  font-size: 18px;
-  font-weight: 700;
-  margin: 10px 0px;
-`;
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const IncidentListDiv = styled.div`
   background-color: white;
   width: 100%;
@@ -77,7 +65,7 @@ export const PageButton = styled.button<{ active?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ active }) => (active ? 'var(--primary800)' : 'white')};
+  background: ${({ active }) => (active ? 'var(--primary800)' : 'var(--gray300)')};
   color: ${({ active }) => (active ? 'white' : 'black')};
   border: 1px solid var(--gray300);
   padding: 8px 12px;
@@ -96,7 +84,7 @@ export const MoveBtn = styled.button`
   width: 35px;
   height: 35px;
   border: none;
-  background-color: white;
+  background-color: var(--gray300);
   font-size: 25px;
   display: flex;
   justify-content: center;
@@ -106,77 +94,6 @@ export const MoveBtn = styled.button`
   &:disabled {
     color: var(--gray500);
     cursor: default;
-  }
-`;
-
-// SortingDropDown.tsx -----------------------//
-
-export const DropdownWrapper = styled.div`
-  position: relative;
-  width: 69px;
-`;
-
-export const DropdownHeader = styled.button<{ isOpen: boolean }>`
-  width: 100%;
-  height: 26px;
-  padding: 0px 10px;
-  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
-  border: 1px solid var(--gray400);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 11px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-  color: var(--gray800);
-
-  svg {
-    transition: transform 0.3s ease;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
-  }
-`;
-
-export const DropdownList = styled.ul<{ isOpen: boolean }>`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 0 2px var(--gray400) inset;
-  margin-top: 6px;
-  overflow: hidden;
-  padding: 0;
-  list-style: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease-in-out;
-  text-align: center;
-
-  ${({ isOpen }: { isOpen: boolean }) =>
-    isOpen &&
-    `
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    `}
-`;
-
-export const DropdownItem = styled.li<{ isSelected: boolean }>`
-  padding: 3px 0px;
-  margin: 5px 5px;
-  font-size: 11px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  background: ${({ isSelected }) => (isSelected ? 'var(--primary500)' : 'transparent')};
-  color: black;
-  border-radius: 5px;
-  text-align: center;
-
-  &:hover {
-    background: var(--primary500);
   }
 `;
 
