@@ -117,9 +117,17 @@ public class DashboardService {
             caseEntity.setPolice(assignedPolice);
 
             // 출동 날짜 및 시간
+//            LocalDateTime now = LocalDateTime.now();
+//            String formatter = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//            caseEntity.setProgressDate(LocalDateTime.parse(formatter));
+
+            // 출동 날짜 및 시간
             LocalDateTime now = LocalDateTime.now();
-            String formatter = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            caseEntity.setProgressDate(LocalDateTime.parse(formatter));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = now.format(formatter);
+
+            // 올바른 형식으로 파싱하여 progressDate에 설정
+            caseEntity.setProgressDate(LocalDateTime.parse(formattedDate, formatter));
 
             dashboardRepository.save(caseEntity);
 
