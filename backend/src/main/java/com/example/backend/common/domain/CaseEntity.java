@@ -48,6 +48,9 @@ public class CaseEntity {
     @Column(name = "memo", nullable = false, columnDefinition = "TEXT")
     private String memo;
 
+    @Column(name = "progress_date", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private LocalDateTime progressDate;
+
     public enum CaseCategory {
         fire, assault, crowd_congestion, weapon, swoon
     }

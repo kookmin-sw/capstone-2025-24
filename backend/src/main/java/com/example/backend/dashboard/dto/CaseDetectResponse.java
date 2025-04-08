@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class CaseDetectResponse {
     private Integer id;       // 사건 ID
     private String category;      // 사건 카테고리 (예: fire, assault 등)
+    private int level;
     private String address;   // CCTV 주소
     private String date;      // 사건 감지 시각 (문자열 형태, yyyy-MM-dd HH:mm:ss)
     private String video;      // 영상 URL
@@ -24,6 +25,7 @@ public class CaseDetectResponse {
         return CaseDetectResponse.builder()
                 .id(entity.getId())
                 .category(entity.getCategory().name())
+                .level(entity.getLevel())
                 .address(entity.getCctv().getAddress())
                 .date(formattedDateTime)
                 .video(entity.getVideo())
