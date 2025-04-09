@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore';
 import { useHighlightStore } from '@/stores/highlightStore';
 import FeedbackModal from './FeedbackModal';
@@ -26,6 +27,7 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   const [step, setStep] = useState<ModalStep>('incident');
   const { setHighlight } = useHighlightStore();
   const [isUpdate, setIsUpdate] = useState(false);
+  const navigate = useNavigate();
 
   const realTime = useRef(false);
 
@@ -52,7 +54,7 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
 
   const handleDispatch = async () => {
     const response = await putAlertState(alertItem.id, '출동', null);
-    if (response == '이미 출동된 사건입니다.') {
+    if (response != '지금 출동합니다.') {
       toast('이미 출동된 사건입니다.', {
         className: 'custom-toast',
         position: 'top-center',
@@ -65,6 +67,10 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
       return;
     }
 
+    if (location.pathname !== '/monitoring') {
+      navigate('/monitoring');
+    }
+
     updateItemState(alertItem.id, '출동');
     onClose();
 
@@ -73,7 +79,7 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 0);
+    }, 150);
   };
 
   const handleSubmit = async () => {
