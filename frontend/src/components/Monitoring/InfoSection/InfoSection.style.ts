@@ -101,7 +101,7 @@ export const Location = styled.div<LocationProps>`
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray600)')};
 `;
 
-export const VideoPlayer = styled.iframe`
+export const VideoPlayer = styled.video`
   margin-top: 15px;
   width: 831px;
   height: 467px;
