@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore';
 import { useHighlightStore } from '@/stores/highlightStore';
@@ -29,23 +29,12 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const navigate = useNavigate();
 
-  const realTime = useRef(false);
-
   const handleOutsideClick = () => {
     if (step === 'incident') {
-      if (isUpdate) {
-        updateItemState(alertItem.id, '출동');
-      }
+      if (isUpdate) updateItemState(alertItem.id, '출동');
       onClose();
     }
   };
-
-  useEffect(() => {
-    if (alertItem.state === '미확인' && !realTime.current) {
-      updateItemState(alertItem.id, '확인');
-      realTime.current = true;
-    }
-  }, [alertItem, updateItemState]);
 
   const handleFeedback = async () => {
     setHighlight(false);
