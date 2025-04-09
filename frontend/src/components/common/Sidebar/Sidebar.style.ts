@@ -10,17 +10,17 @@ export const MainContent = styled.div`
   flex: 1;
   overflow-y: auto;
   height: 100vh;
-  background-color: #fdfdfd;
+  background-color: var(--gray300);
 `;
 
 // Sidebar --------------------------//
 export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
-  // background-color:rgb(16, 36, 117);
   background-color:rgb(9, 29, 109);
+
   // box-shadow: 15px 0px 15px 0px rgba(164, 163, 163, 0.3);
-  box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.70);
+  box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
   z-index: 5;
 `;
 
@@ -103,6 +103,5 @@ export const SidebarBtn = styled(Button)`
   &.active {
     background-color: rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
-
   }
 `;
