@@ -69,7 +69,7 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     gap: 16px;
-    width: 270px;
+    width: fit-content;
     margin-top: 450px;
   }
 `;

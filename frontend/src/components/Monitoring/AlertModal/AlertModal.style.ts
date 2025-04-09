@@ -18,8 +18,8 @@ export const Overlay = styled.div`
 
 export const ModalContainer = styled.div<{ highlight: boolean }>`
   position: relative;
-  width: 736px;
-  height: 647px;
+  width: 700px;
+  height: 600px;
   background: white;
   padding: 23px;
   padding-top: 30px;
@@ -191,12 +191,12 @@ export const CategoryRow = styled.div`
 `;
 
 export const Chip = styled.button<{ selected: boolean }>`
-  padding: 8px 26px;
+  padding: 6px 26px;
   border-radius: 75px;
   border: 1.5px solid ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray400)')};
   background-color: ${({ selected }) => (selected ? 'var(--primary300)' : 'transparent')};
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray700)')};
   cursor: pointer;
   transition:
@@ -264,6 +264,7 @@ export const CloseSubmitButton = styled.button`
   width: 572px;
   height: 60px;
   margin-top: 40px;
+  font-weight: 600;
 
   &:active {
     background-color: #3d52af;

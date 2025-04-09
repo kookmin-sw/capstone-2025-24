@@ -10,16 +10,7 @@ export const useSSE = () => {
   const [alertData, setAlertData] = useState<AlertProps | null>(null);
 
   useEffect(() => {
-    console.log('SSE 시작');
     const eventSource = new EventSource(`${import.meta.env.VITE_SERVER_URL}api/v1/case/subscribe`);
-
-    eventSource.addEventListener('connect', (event) => {
-      console.log('Connect event:', event.data);
-    });
-
-    eventSource.addEventListener('keep-alive', (event) => {
-      console.log('Keep-alive:', event.data);
-    });
 
     eventSource.addEventListener('alarm-detected', (event) => {
       try {
