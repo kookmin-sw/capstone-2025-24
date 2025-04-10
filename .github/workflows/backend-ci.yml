@@ -56,6 +56,7 @@ jobs:
           SPRING_DATASOURCE_USERNAME: testuser
           SPRING_DATASOURCE_PASSWORD: testpassword
           CORS_ALLOWED_ORIGINS: ${{ secrets.CORS_ALLOWED_ORIGINS }}
+          CCTV_STREAM_URL_PREFIX: ${{ secrets.CCTV_STREAM_URL_PREFIX }}
         run: ./gradlew test
 
   dependency-submission:

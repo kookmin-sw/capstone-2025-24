@@ -19,7 +19,7 @@ public class DashboardResponse {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
-    private Integer level;
+    private int level;
     private CaseCategory category;
     private CaseState state;
 
