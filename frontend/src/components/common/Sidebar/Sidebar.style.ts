@@ -18,8 +18,6 @@ export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
   background-color: rgb(9, 29, 109);
-
-  // box-shadow: 15px 0px 15px 0px rgba(164, 163, 163, 0.3);
   box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
   z-index: 5;
 `;
@@ -77,7 +75,7 @@ export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
 
 // SidebarBtn --------------------------------------//
 export const SidebarBtn = styled(Button)`
-  border: 1px solid #0b227c;
+  border: 1px solid rgb(9, 29, 109);
   display: flex;
   flex-direction: row;
   justify-content: start;
