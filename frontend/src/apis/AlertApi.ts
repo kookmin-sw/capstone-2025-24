@@ -28,7 +28,7 @@ export const putAlertState = async (
 ): Promise<string | Pick<AlertProps, 'id' | 'state' | 'category'>> => {
   try {
     const response = await axiosInstance.put(`api/v1/case/ready/${id}`, { state, category });
-    return response.data[id];
+    return response.data['message'];
   } catch (error) {
     console.error('미출동 or 출동 put 에러:', error);
     throw error;
