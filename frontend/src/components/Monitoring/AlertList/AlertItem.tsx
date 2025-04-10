@@ -35,7 +35,6 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
           {isModalOpen && (
             <AlertModal
               onClose={closeModal}
-              highlight={false}
               alertItem={{
                 id,
                 level,
@@ -44,6 +43,7 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
                 address,
                 state,
               }}
+              highlight={false}
             />
           )}
         </S.CardDiv>

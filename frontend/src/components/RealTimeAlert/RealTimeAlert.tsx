@@ -28,8 +28,8 @@ const RealTimeAlert = () => {
       {level === 2 && isModalOpen && (
         <AlertModal
           onClose={handleModalClose}
-          highlight={highlight}
           alertItem={{ id, level, category, date, address, state, video }}
+          highlight={!!highlight}
         />
       )}
 
