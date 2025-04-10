@@ -65,6 +65,7 @@ export const CardFront = styled.div`
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
   position: absolute;
   top: 0;
@@ -122,7 +123,7 @@ export const LocationAddress = styled.p`
 `;
 
 export const ResolveButton = styled.button`
-  margin-top: 37px;
+  width: 100%;
   margin-bottom: 15px;
   padding: 8px 0;
   border: solid 1.5px var(--primary600);

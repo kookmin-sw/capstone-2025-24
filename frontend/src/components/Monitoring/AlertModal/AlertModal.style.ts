@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
 
 // AlertModal.tsx ------------------------------------//
@@ -16,10 +16,10 @@ export const Overlay = styled.div`
   z-index: 1000;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{ highlight: boolean }>`
   position: relative;
-  width: 736px;
-  height: 647px;
+  width: 700px;
+  height: 600px;
   background: white;
   padding: 23px;
   padding-top: 30px;
@@ -27,6 +27,21 @@ export const ModalContainer = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+
+  ${({ highlight }) =>
+    highlight &&
+    css`
+      background-color: rgb(255, 182, 182);
+      animation: highlightAnimation 1.3s steps(2, end) infinite;
+    `}
+  @keyframes highlightAnimation {
+    0% {
+      background-color: white;
+    }
+    100% {
+      background-color: rgb(255, 182, 182);
+    }
+  }
 `;
 
 export const CloseButton = styled.div`
@@ -76,7 +91,7 @@ export const Button = styled.button`
   font-size: 23px;
   font-weight: 600;
   &.no {
-    background-color: transparent;
+    background-color: white;
     border: 1px solid var(--primary900);
     color: var(--primary900);
   }
@@ -176,12 +191,12 @@ export const CategoryRow = styled.div`
 `;
 
 export const Chip = styled.button<{ selected: boolean }>`
-  padding: 8px 26px;
+  padding: 6px 26px;
   border-radius: 75px;
   border: 1.5px solid ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray400)')};
   background-color: ${({ selected }) => (selected ? 'var(--primary300)' : 'transparent')};
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray700)')};
   cursor: pointer;
   transition:
@@ -220,8 +235,9 @@ export const SubmitLayout = styled.div`
 `;
 
 export const Check = styled(Lottie)`
-  width: 170px;
-  height: 170px;
+  width: 180px;
+  height: 180px;
+  margin-top: 30px;
 `;
 
 export const SubmitTitle = styled.h3`
@@ -235,6 +251,7 @@ export const SubmitDescription = styled.p`
   text-align: center;
   font-size: 15px;
   color: var(--gray500);
+  margin-bottom: 24px;
 `;
 
 export const CloseSubmitButton = styled.button`
@@ -247,6 +264,7 @@ export const CloseSubmitButton = styled.button`
   width: 572px;
   height: 60px;
   margin-top: 40px;
+  font-weight: 600;
 
   &:active {
     background-color: #3d52af;

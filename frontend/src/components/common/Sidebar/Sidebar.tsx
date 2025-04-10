@@ -31,12 +31,15 @@ export const Sidebar = () => {
     switch (target) {
       case 1:
         navigate('/monitoring');
+        window.location.reload();
         break;
       case 2:
         navigate('/history');
+        window.location.reload();
         break;
       case 3:
         navigate('/chart');
+        window.location.reload();
         break;
     }
   };

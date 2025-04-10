@@ -3,7 +3,6 @@ import AlertItem from './AlertItem.tsx';
 import ToolTip from '@/components/common/ToolTip/ToolTip.tsx';
 import EmptyView from './EmptyView.tsx';
 import * as S from './AlertList.style.ts';
-import { useLocation } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore.ts';
 import { getTotalIncidents } from '@/apis/AlertApi';
 import { getMappedCategory } from '@/utils/categoryMapper';
@@ -18,23 +17,14 @@ const ToopTipContent = () => {
 };
 
 const AlertList = () => {
-  const location = useLocation();
-  const clicked_alert_id = location.state?.clicked_alert_id;
   const { items, setItems } = useItemStore();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await getTotalIncidents();
       const alertData = data.map((item) => ({
-        id: item.id,
-        level: item.level,
+        ...item,
         category: getMappedCategory(item.category),
-        date: item.date,
-        address: item.address,
-        police_name: item.police_name,
-        state: item.state,
-        video: item.video,
-        memo: item.memo,
       }));
       setItems(alertData);
     };
@@ -64,7 +54,7 @@ const AlertList = () => {
               date={alert.date}
               address={alert.address}
               state={alert.state}
-              clicked={clicked_alert_id === alert.id}
+              clicked={sessionStorage.getItem('highlightConsumed') === alert.id.toString()}
             />
           ))
         )}
