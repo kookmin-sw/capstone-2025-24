@@ -45,12 +45,12 @@ const AlertList = () => {
 
   return (
     <S.AlertListLayout>
-      <S.TitleP>
+      <S.TitleDiv>
         알림 리스트{' '}
         <ToolTip>
           <ToopTipContent />
         </ToolTip>
-      </S.TitleP>
+      </S.TitleDiv>
       <S.AlertContainer>
         {alerts.length === 0 ? (
           <EmptyView />

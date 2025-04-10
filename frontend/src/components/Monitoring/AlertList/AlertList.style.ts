@@ -112,7 +112,7 @@ export const AlertListLayout = styled.div`
   height: 100vh;
 `;
 
-export const TitleP = styled.p`
+export const TitleDiv = styled.div`
   font-size: 25px;
   font-weight: 700;
   padding: 0px 17px;

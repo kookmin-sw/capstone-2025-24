@@ -33,10 +33,13 @@ export const Maps = styled(Map)`
 // InfoBox.tsx ------------------------------------------------//
 
 export const InfoBoxLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: solid 0.5px var(--gray400);
   width: 413px;
   height: 246px;
-  padding: 22px 10px;
+  padding: 0 10px;
   background: #fff;
   border-radius: 8px;
 `;
