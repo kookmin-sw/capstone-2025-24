@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
@@ -32,5 +34,19 @@ public class UserController {
             throw new IllegalStateException( "로그인이 필요합니다.");
         }
         return ResponseEntity.ok(user);
+    }
+
+    // 로그아웃 API
+    @PostMapping("/logout")
+    public ResponseEntity<?> authLogout(HttpSession session) {
+        // 세션에서 사용자 정보 가져오기
+        UserResponseDto user = (UserResponseDto) session.getAttribute("user");
+        if (user == null) {
+            throw new IllegalStateException("이미 로그아웃 상태입니다.");
+        }
+        // 세션에 사용자 정보 삭제
+        session.removeAttribute("user");
+
+        return ResponseEntity.ok(Collections.singletonMap("message", "로그아웃 성공"));
     }
 }
