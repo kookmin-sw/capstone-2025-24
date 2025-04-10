@@ -15,5 +15,5 @@ export const TooltipDiv = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 10px;
-  color: var(--gray800)
+  color: var(--gray800);
 `;

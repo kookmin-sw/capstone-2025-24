@@ -17,7 +17,7 @@ export const MainContent = styled.div`
 export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
-  background-color:rgb(9, 29, 109);
+  background-color: rgb(9, 29, 109);
 
   // box-shadow: 15px 0px 15px 0px rgba(164, 163, 163, 0.3);
   box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
