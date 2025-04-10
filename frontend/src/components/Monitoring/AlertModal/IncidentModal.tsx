@@ -17,17 +17,22 @@ interface IncidentModalProps {
 }
 
 const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate }: IncidentModalProps) => {
-  const { id, category, date, address } = alertItem;
-  const [video, setVideo] = useState('');
+  const { id, category, date, address, video } = alertItem;
+  const [videoUrl, setVideoUrl] = useState('');
   const { updateItemState } = useItemStore();
 
+  const fetchVideo = async () => {
+    const response = await getVideo(id);
+    setVideoUrl(response.video);
+  };
+
   useEffect(() => {
-    const fetchVideo = async () => {
-      const response = await getVideo(id);
-      setVideo(response.video);
-    };
-    fetchVideo();
-  }, [id]);
+    if (video != undefined) {
+      setVideoUrl(video);
+    } else {
+      fetchVideo();
+    }
+  }, []);
 
   return (
     <>
@@ -50,7 +55,7 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
           {date}
         </S.InfoDiv>
       </S.InfoContainer>
-      <VideoComponent w="100%" h="100%" radius={10} video={video} />
+      <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
       <S.ButtonContainer>
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동

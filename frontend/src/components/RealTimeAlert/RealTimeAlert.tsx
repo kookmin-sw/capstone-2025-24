@@ -21,7 +21,7 @@ const RealTimeAlert = () => {
 
   if (!alertData) return null;
 
-  const { id, level, category, date, address, state } = alertData;
+  const { id, level, category, date, address, state, video } = alertData;
 
   return (
     <div>
@@ -29,7 +29,7 @@ const RealTimeAlert = () => {
         <AlertModal
           onClose={handleModalClose}
           highlight={highlight}
-          alertItem={{ id, level, category, date, address, state }}
+          alertItem={{ id, level, category, date, address, state, video }}
         />
       )}
 
