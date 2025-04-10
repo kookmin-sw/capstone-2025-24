@@ -36,7 +36,7 @@ public class DashboardController {
     public ResponseEntity<?> updateCaseState(@PathVariable("id") int id,
                                              @RequestBody StateRequest request,
                                              HttpSession session) {
-        Map<Integer, String> message = dashboardService.updateCaseState(id, request, session);
+        Map<String, String> message = dashboardService.updateCaseState(id, request, session);
         return ResponseEntity.ok(message);
     }
 
@@ -45,7 +45,7 @@ public class DashboardController {
     public ResponseEntity<?> completeCase(@PathVariable("id")  int id,
                                           @RequestBody SurveyRequest surveyRequest,
                                           HttpSession session) {
-        Map<Integer, String> completedCase = dashboardService.completeCase(id, surveyRequest, session);
+        Map<String, String> completedCase = dashboardService.completeCase(id, surveyRequest, session);
         return ResponseEntity.ok(completedCase);
     }
 

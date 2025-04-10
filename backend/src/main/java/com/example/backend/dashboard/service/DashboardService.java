@@ -98,7 +98,7 @@ public class DashboardService {
     }
 
     // 출동, 미출동 상태 변경
-    public Map<Integer, String> updateCaseState(int id, StateRequest request, HttpSession session) {
+    public Map<String, String> updateCaseState(int id, StateRequest request, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
         int policeId = getAuthenticatedPoliceId(session);
 
@@ -131,7 +131,7 @@ public class DashboardService {
 
             dashboardRepository.save(caseEntity);
 
-            return Collections.singletonMap(id, "지금 출동합니다.");
+            return Collections.singletonMap("message", "지금 출동합니다.");
         } else {
             // 미출동 처리
             caseEntity.setState(CaseEntity.CaseState.미출동);
@@ -143,12 +143,12 @@ public class DashboardService {
 
             dashboardRepository.save(caseEntity);
 
-            return Collections.singletonMap(id, "미출동 사건으로 변경합니다.");
+            return Collections.singletonMap("message", "미출동 사건으로 변경합니다.");
         }
     }
 
     // 출동 중인 사건 해결 처리
-    public Map<Integer, String> completeCase(int id, SurveyRequest surveyRequest, HttpSession session) {
+    public Map<String, String> completeCase(int id, SurveyRequest surveyRequest, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
 
         if (caseEntity.getState() != CaseEntity.CaseState.출동) {
@@ -164,6 +164,6 @@ public class DashboardService {
 
         dashboardRepository.save(caseEntity);
 
-        return Collections.singletonMap(id, "해당 사건이 해결 처리되었습니다.");
+        return Collections.singletonMap("message", "해당 사건이 해결 처리되었습니다.");
     }
 }
