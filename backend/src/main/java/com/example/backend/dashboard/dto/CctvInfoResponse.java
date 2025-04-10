@@ -17,16 +17,7 @@ public class CctvInfoResponse {
     private String address;   // CCTV 주소
     private String liveUrl;   // 생략 가능: getCctvInfo에는 필요 없음
 
-    public static CctvInfoResponse fromEntity(CctvEntity entity) {
-        return CctvInfoResponse.builder()
-                .id(entity.getId())
-                .latitude(entity.getLatitude())
-                .longitude(entity.getLongitude())
-                .address(entity.getAddress())
-                .build();
-    }
-
-    public static CctvInfoResponse fromEntityWithLiveUrl(CctvEntity entity, String urlPrefix) {
+    public static CctvInfoResponse fromEntity(CctvEntity entity, String urlPrefix) {
         return CctvInfoResponse.builder()
                 .id(entity.getId())
                 .latitude(entity.getLatitude())

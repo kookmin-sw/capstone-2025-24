@@ -37,7 +37,7 @@ public class CctvService {
         List<CctvEntity> cctvs = cctvRepository.findAllByOfficeIdOrderById(officeId);
 
         return cctvs.stream()
-                .map(CctvInfoResponse::fromEntity)
+                .map(entity -> CctvInfoResponse.fromEntity(entity, streamUrlPrefix))
                 .toList();
     }
 
@@ -47,7 +47,7 @@ public class CctvService {
         CctvEntity entity = cctvRepository.findById(cctvId)
                 .orElseThrow(() -> new EntityNotFoundException("해당 CCTV를 찾을 수 없습니다."));
 
-        return CctvInfoResponse.fromEntityWithLiveUrl(entity, streamUrlPrefix);
+        return CctvInfoResponse.fromEntity(entity, streamUrlPrefix);
     }
 
 }
