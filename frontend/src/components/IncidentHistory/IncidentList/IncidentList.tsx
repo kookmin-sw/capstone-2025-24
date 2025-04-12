@@ -7,6 +7,7 @@ import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.t
 import Filtering from '../Filtering/Filtering.tsx';
 import { Incident } from '@/types/incident.ts';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
@@ -18,7 +19,7 @@ const IncidentList = () => {
     return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
   const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
@@ -62,7 +63,7 @@ const IncidentList = () => {
                     key={incident.id}
                     onClick={() => {
                       setSelectedIncident(incident);
-                      setIsModalOpen(true);
+                      openModal();
                     }}
                   >
                     <S.TableData index={index + 1}>
@@ -107,7 +108,7 @@ const IncidentList = () => {
         <IncidentDetailsModal
           isOpen={isModalOpen}
           onClose={() => {
-            setIsModalOpen(false);
+            closeModal();
             setSelectedIncident(null);
           }}
           incident={selectedIncident}
