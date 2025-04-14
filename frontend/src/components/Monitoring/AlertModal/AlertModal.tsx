@@ -22,7 +22,7 @@ interface ModalProps {
 
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
-const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
+const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight: boolean }) => {
   const { updateItemState } = useItemStore();
   const [step, setStep] = useState<ModalStep>('incident');
   const { setHighlight } = useHighlightStore();
@@ -68,6 +68,11 @@ const AlertModal = ({ onClose, highlight, alertItem }: ModalProps) => {
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
+      setHighlight(alertItem.id);
+
+      setTimeout(() => {
+        setHighlight(null);
+      }, 4000);
     }, 150);
   };
 

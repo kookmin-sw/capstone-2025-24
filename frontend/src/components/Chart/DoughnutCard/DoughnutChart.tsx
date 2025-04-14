@@ -15,7 +15,7 @@ import {
 } from 'chart.js';
 import { useEffect, useRef } from 'react';
 import LabelBox from './LabelBox';
-import { DataItem } from '@/types/chartType';
+import { DataItem } from '@/types/chart';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, BarElement, Tooltip, Legend, Title);
 
 // data 합

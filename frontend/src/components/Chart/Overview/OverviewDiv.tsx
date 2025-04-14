@@ -4,7 +4,7 @@ import OverviewLargeCard from '../../../components/Chart/Overview/OverviewLargeC
 import { OVERVIEW_LIST } from '../../../constants/overviewList';
 import { getOverview } from '@/apis/ChartApi';
 import { useEffect, useState } from 'react';
-import { overviewType } from '@/types/chartType';
+import { overviewType } from '@/types/chart';
 import { EVENT_CATEGORY } from '@/constants/EventCategory';
 const OverviewDiv = () => {
   const [overviewData, setOverviewData] = useState<overviewType | undefined>(undefined);

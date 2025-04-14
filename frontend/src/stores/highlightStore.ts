@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
 type HighlightState = {
-  highlight: boolean;
-  setHighlight: (value: boolean) => void;
+  highlight: boolean | number | null;
+  setHighlight: (value: boolean | number | null) => void;
 };
 
 export const useHighlightStore = create<HighlightState>((set) => ({
-  highlight: false,
-  setHighlight: (value: boolean) => set({ highlight: value }),
+  highlight: null,
+  setHighlight: (value: boolean | number | null) => set({ highlight: value }),
 }));

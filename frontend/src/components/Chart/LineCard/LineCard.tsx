@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import LineChart from './LineChart';
 import Dropdown from '../BarCard/BarFilter/Dropdown/Dropdown';
 import { CATEGORY_OPTIONS } from '@/constants/dropdownOptions';
-import { HourItem } from '@/types/chartType';
+import { HourItem } from '@/types/chart';
 import { getDataPerTime } from '@/apis/ChartApi';
 import { formatDate } from '@/utils/dataFormatter';
-import { getKeyCategory } from '@/utils/dataFormatter';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
+
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');
@@ -17,7 +18,7 @@ const LineCard = () => {
   };
   useEffect(() => {
     const fetchTimeData = async () => {
-      const data = await getDataPerTime(getKeyCategory(category), formatDate(selectedDate));
+      const data = await getDataPerTime(categoryToEnglish[category] || undefined, formatDate(selectedDate));
       setTimeData(data);
     };
 

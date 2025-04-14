@@ -3,7 +3,7 @@ import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect, useRef } from 'react';
 import { useIndex } from '@/stores/categoryIndexStore';
-import { LocationItem, DataItem } from '@/types/chartType';
+import { LocationItem, DataItem } from '@/types/chart';
 import { useScrollObserver } from '@/hooks/useScrollObserver';
 import { getDataPerCategory, getDataPerLocation } from '@/apis/ChartApi';
 import { periodLst } from '@/constants/EventCategory';
@@ -25,7 +25,7 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
       if (type === 'category') {
         const data = await getDataPerCategory(periodLst[selectedIndex]);
         if (!data) {
-          console.error("getDataPerCategory 실패");
+          console.error('getDataPerCategory 실패');
           setChartData([]);
           return;
         }

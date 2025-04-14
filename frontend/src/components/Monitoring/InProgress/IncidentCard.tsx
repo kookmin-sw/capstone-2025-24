@@ -5,12 +5,16 @@ import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
 import { AlertProps } from '@/types/alert';
 import { getVideo } from '@/apis/AlertApi';
+import { useHighlightStore } from '@/stores/highlightStore';
 import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const [video, setVideo] = useState('');
   const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+
+  const { highlight } = useHighlightStore();
+  const isHighlighted = typeof highlight === 'number' && highlight === id;
 
   const handleVideoModal = async () => {
     openModal();
@@ -20,7 +24,7 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
 
   return (
     <>
-      <S.FlipCard>
+      <S.FlipCard $isHighlighted={isHighlighted}>
         <S.CardInner className={clickResolve ? 'is-resolved' : ''}>
           <S.CardFront>
             <div>

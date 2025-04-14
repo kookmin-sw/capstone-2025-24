@@ -1,12 +1,13 @@
 import * as S from './BarCard.style';
-import { getKeyCategory } from '@/utils/dataFormatter';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
 import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
 import { getDataPerYearMonth } from '@/apis/ChartApi';
 import BarFilter from './BarFilter/BarFilter';
-import { BarMonthItem, BarDayItem } from '@/types/chartType';
+import { BarMonthItem, BarDayItem } from '@/types/chart';
 import { useFilterStore } from '../../../stores/filterStore';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
+
 const BarCard = () => {
   const { filter } = useFilterStore();
   const [monthData, setMonthData] = useState<BarMonthItem[]>([]);
@@ -17,7 +18,8 @@ const BarCard = () => {
     const fetchChartData = async () => {
       const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
 
-      const categoryParam = filter.category === '전체' ? undefined : getKeyCategory(filter.category);
+      const categoryParam =
+        filter.category === '전체' ? undefined : categoryToEnglish[filter.category] || filter.category;
       const data = await getDataPerYearMonth(filter.year, monthParam, categoryParam);
       if (monthParam) {
         setDayData(data);

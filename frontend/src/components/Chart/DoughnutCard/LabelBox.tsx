@@ -1,6 +1,6 @@
 import * as S from './DoughnutCard.style';
 import Label from './Label';
-import { DataItem } from '@/types/chartType';
+import { DataItem } from '@/types/chart';
 
 export interface LegendItem {
   text: string;
