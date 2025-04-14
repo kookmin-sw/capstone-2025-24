@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import LineChart from './LineChart';
 import Dropdown from '../BarCard/BarFilter/Dropdown/Dropdown';
 import { CATEGORY_OPTIONS } from '@/constants/dropdownOptions';
-import { HourItem } from '@/types/chartType';
+import { HourItem } from '@/types/chart';
 import { getDataPerTime } from '@/apis/ChartApi';
 import { formatDate } from '@/utils/dataFormatter';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';

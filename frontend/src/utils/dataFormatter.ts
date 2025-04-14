@@ -1,6 +1,6 @@
 import { LABELBYCATEGORY } from '../constants/labelList';
-import { HourItem } from '@/types/chartType';
-import { BarDayItem, BarMonthItem } from '@/types/chartType';
+import { HourItem } from '@/types/chart';
+import { BarDayItem, BarMonthItem } from '@/types/chart';
 
 export const hourFormatChanger = (data: HourItem[], category: string) => {
   return category === '전체'

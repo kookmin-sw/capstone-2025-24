@@ -4,7 +4,7 @@ import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
 import { getDataPerYearMonth } from '@/apis/ChartApi';
 import BarFilter from './BarFilter/BarFilter';
-import { BarMonthItem, BarDayItem } from '@/types/chartType';
+import { BarMonthItem, BarDayItem } from '@/types/chart';
 import { useFilterStore } from '../../../stores/filterStore';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
 
