@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IncidentCardProps } from '@/types/alert';
 import ResolvedCard from './ResolvedCard';
 import CategorySelectCard from './CategorySelectCard';
+import { putIncidentResolve } from '@/apis/AlertApi';
 import * as S from './InProgress.style';
 
 const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
@@ -12,6 +13,11 @@ const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
     return <ResolvedCard onClose={onClose} id={id} />;
   }
 
+  const handleClickResolve = async () => {
+    await putIncidentResolve(id, '출동', null);
+    setIsResolved(true);
+  };
+
   return isCategorySelection ? (
     <CategorySelectCard onClose={() => setIsCategorySelection(false)} id={id} />
   ) : (
@@ -19,7 +25,7 @@ const FeedbackCard = ({ onClose, id }: IncidentCardProps) => {
       <S.FeedbackTitle>AI의 분류가 정확했나요?</S.FeedbackTitle>
       <S.FeedbackDescription>답변은 AI 모델 성능 최적화에 사용됩니다.</S.FeedbackDescription>
       <S.ButtonGroup>
-        <S.Button className="yes" onClick={() => setIsResolved(true)}>
+        <S.Button className="yes" onClick={handleClickResolve}>
           네, 정확했어요
         </S.Button>
         <S.Button className="no" onClick={() => setIsCategorySelection(true)}>

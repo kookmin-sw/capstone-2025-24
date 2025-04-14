@@ -33,10 +33,13 @@ export const Maps = styled(Map)`
 // InfoBox.tsx ------------------------------------------------//
 
 export const InfoBoxLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border: solid 0.5px var(--gray400);
   width: 413px;
   height: 246px;
-  padding: 22px 10px;
+  padding: 0 10px;
   background: #fff;
   border-radius: 8px;
 `;
@@ -101,7 +104,7 @@ export const Location = styled.div<LocationProps>`
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray600)')};
 `;
 
-export const VideoPlayer = styled.iframe`
+export const VideoPlayer = styled.video`
   margin-top: 15px;
   width: 831px;
   height: 467px;

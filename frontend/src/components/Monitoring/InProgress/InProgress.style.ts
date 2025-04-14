@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import Lottie from 'lottie-react';
 
 // InProgress.tsx ------------------------------------//
@@ -38,10 +38,25 @@ export const EmptyView = styled.div`
 
 // IncidentCard.tsx ------------------------------------//
 
-export const FlipCard = styled.div`
+const blinkShadow = keyframes`
+  0%, 100% {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 1px 1px 10px 5px var(--primary600);
+  }
+`;
+
+export const FlipCard = styled.div<{ $isHighlighted: boolean }>`
   width: 367px;
   height: 270px;
   perspective: 1000px;
+  border-radius: 10px;
+  ${({ $isHighlighted }: { $isHighlighted: boolean }) =>
+      $isHighlighted &&
+      css`
+        animation: ${blinkShadow} 1s ease-in-out 3;
+      `}
 `;
 
 export const CardInner = styled.div`
@@ -65,6 +80,7 @@ export const CardFront = styled.div`
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
   position: absolute;
   top: 0;
@@ -122,7 +138,7 @@ export const LocationAddress = styled.p`
 `;
 
 export const ResolveButton = styled.button`
-  margin-top: 37px;
+  width: 100%;
   margin-bottom: 15px;
   padding: 8px 0;
   border: solid 1.5px var(--primary600);

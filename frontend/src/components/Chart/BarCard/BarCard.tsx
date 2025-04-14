@@ -1,24 +1,34 @@
 import * as S from './BarCard.style';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
 import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
+import { getDataPerYearMonth } from '@/apis/ChartApi';
 import BarFilter from './BarFilter/BarFilter';
-import { BarMonthData, BarMonthItem, BarDayData, BarDayItem } from '../../../mocks/BarData';
+import { BarMonthItem, BarDayItem } from '@/types/chart';
 import { useFilterStore } from '../../../stores/filterStore';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
+
 const BarCard = () => {
   const { filter } = useFilterStore();
   const [monthData, setMonthData] = useState<BarMonthItem[]>([]);
   const [dayData, setDayData] = useState<BarDayItem[]>([]);
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
-    // filter 값 바뀔 때마다 api get
-    if (filter.month === '전체' || filter.month === '월') {
-      setMonthData(BarMonthData);
-    } else {
-      setDayData(BarDayData);
-    }
+    const fetchChartData = async () => {
+      const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
+
+      const categoryParam =
+        filter.category === '전체' ? undefined : categoryToEnglish[filter.category] || filter.category;
+      const data = await getDataPerYearMonth(filter.year, monthParam, categoryParam);
+      if (monthParam) {
+        setDayData(data);
+      } else {
+        setMonthData(data);
+      }
+    };
+
+    fetchChartData();
   }, [filter]);
 
   useEffect(() => {

@@ -1,48 +1,50 @@
 import * as S from './IncidentList.style.ts';
-import IncidentListData from '@/mocks/IncidentListData.ts';
 import { useState } from 'react';
 import { GrFormPrevious } from 'react-icons/gr';
 import { GrFormNext } from 'react-icons/gr';
-import SortingDropDown from './SortingDropDown.tsx';
 import EmptyView from './EmptyView.tsx';
 import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.tsx';
+import Filtering from '../Filtering/Filtering.tsx';
+import { Incident } from '@/types/incident.ts';
+import { categoryToKorean } from '@/utils/categoryMapper.ts';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
-  const incidentdata = IncidentListData;
+  const [incidentData, setIncidentData] = useState<Incident[]>([]);
+  const [dataLength, setDataLength] = useState(0);
+  const [pageLength, setPageLength] = useState(0);
 
   const truncate = (text: string, maxLength: number) => {
     return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
 
-  const [selectedIncident, setSelectedIncident] = useState<null | (typeof incidentdata)[0]>(null);
+  const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
   // 페이지네이션
-  const incident_num = incidentdata.length; // 사건 총 개수 (나중에 백한테 전달받아서 사용)
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8; // 한 페이지에 아이템 몇 개 들어가는지
+  const itemsPerPage = 8; // 한 페이지에 아이템 개수
   const startIndex = (currentPage - 1) * itemsPerPage; // 현재페이지의 첫 아이템의 인덱스
-  const currentData = incidentdata.slice(startIndex, startIndex + itemsPerPage); // 현재 페이지에 보여지는 사건 데이터
-  const totalPages = Math.ceil(incident_num / itemsPerPage); // 총 페이지수 계산
-  const pageGroupSize = 5; // 페이지를 1-5 , 6-10, 11-15 이렇게 보여줌
+  const pageGroupSize = 5;
   const currentGroup = Math.ceil(currentPage / pageGroupSize);
   const startPage = (currentGroup - 1) * pageGroupSize + 1; // 페이지네이션 버튼의 시작 숫자
-  const endPage = Math.min(startPage + pageGroupSize - 1, totalPages); // 페이지네이션의 버튼의 마지막 숫자
+  const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
   return (
     <div>
+      <Filtering
+        setIncidentData={setIncidentData}
+        page={currentPage}
+        dataLength={dataLength}
+        setDataLength={setDataLength}
+        setPageLength={setPageLength}
+      />
       <S.Layout>
-        <S.Container>
-          <S.IncidentNum>총 {incident_num}건</S.IncidentNum>
-          <SortingDropDown />
-        </S.Container>
-
-        {/* 리스트 */}
         <S.IncidentListDiv>
-          {incidentdata.length === 0 ? (
+          {incidentData.length === 0 ? (
             <EmptyView />
           ) : (
             <S.Table>
@@ -56,28 +58,28 @@ const IncidentList = () => {
                 </S.TableHeaderRow>
               </thead>
               <tbody>
-                {currentData.map((incident, index) => (
+                {incidentData.map((incident, index) => (
                   <S.TableBodyRow
                     key={incident.id}
                     onClick={() => {
                       setSelectedIncident(incident);
-                      setIsModalOpen(true);
+                      openModal();
                     }}
                   >
                     <S.TableData index={index + 1}>
                       <S.InfoP>{startIndex + index + 1}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{incident.category}</S.InfoP>
+                      <S.InfoP>{categoryToKorean[incident.category] || incident.category}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{incident.date}</S.InfoP>
+                      <S.InfoP>{incident.date.replace(/-/g, '.')}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{truncate(incident.location, 22)}</S.InfoP>
+                      <S.InfoP>{truncate(incident.address, 25)}</S.InfoP>
                     </S.TableData>
                     <S.TableData index={index + 1}>
-                      <S.InfoP>{incident.police}</S.InfoP>
+                      <S.InfoP>{incident.policeName}</S.InfoP>
                     </S.TableData>
                   </S.TableBodyRow>
                 ))}
@@ -86,7 +88,7 @@ const IncidentList = () => {
           )}
         </S.IncidentListDiv>
 
-        {incident_num > 0 && (
+        {dataLength > 0 && (
           <S.Pagination>
             <S.MoveBtn disabled={startPage <= 1} onClick={() => setCurrentPage(startPage - 1)}>
               <GrFormPrevious />
@@ -96,7 +98,7 @@ const IncidentList = () => {
                 {num}
               </S.PageButton>
             ))}
-            <S.MoveBtn disabled={endPage >= totalPages} onClick={() => setCurrentPage(endPage + 1)}>
+            <S.MoveBtn disabled={endPage >= pageLength} onClick={() => setCurrentPage(endPage + 1)}>
               <GrFormNext />
             </S.MoveBtn>
           </S.Pagination>
@@ -106,8 +108,8 @@ const IncidentList = () => {
         <IncidentDetailsModal
           isOpen={isModalOpen}
           onClose={() => {
-            setIsModalOpen(false);
-            setSelectedIncident(null); // 닫을 때 초기화
+            closeModal();
+            setSelectedIncident(null);
           }}
           incident={selectedIncident}
         />

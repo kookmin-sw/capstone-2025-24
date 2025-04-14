@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { IncidentItemProps } from '@/types/alert';
+import { AlertProps } from '@/types/alert';
 
 interface ItemStore {
-  items: IncidentItemProps[];
-  setItems: (items: IncidentItemProps[]) => void;
-  addItem: (item: IncidentItemProps) => void;
+  items: AlertProps[];
+  setItems: (items: AlertProps[]) => void;
+  addItem: (item: AlertProps) => void;
   removeItem: (id: number) => void;
   updateItemState: (id: number, newState: '미확인' | '확인' | '미출동' | '출동' | '완료') => void;
 }

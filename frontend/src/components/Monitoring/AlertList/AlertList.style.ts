@@ -12,7 +12,7 @@ const blinkShadow = keyframes`
   }
 `;
 
-export const Layout = styled.div<{ clicked: boolean }>`
+export const Layout = styled.div<{ $clicked: boolean }>`
   display: flex;
   width: 274px;
   height: 159px;
@@ -20,8 +20,8 @@ export const Layout = styled.div<{ clicked: boolean }>`
   margin: 7px 0px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
 
-  ${({ clicked }) =>
-    clicked &&
+  ${({ $clicked }) =>
+    $clicked &&
     css`
       animation: ${blinkShadow} 1s ease-in-out 4;
     `}
@@ -38,8 +38,8 @@ export const CardDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const ColorDiv = styled.div<{ level: number }>`
-  background-color: ${({ level }) => (level === 1 ? 'var(--yellow)' : 'var(--red)')};
+export const ColorDiv = styled.div<{ $level: number }>`
+  background-color: ${({ $level }) => ($level === 1 ? 'var(--yellow)' : 'var(--red)')};
   width: 11px;
   height: 159px;
   border-top-left-radius: 10px;
@@ -58,11 +58,11 @@ export const DateWrapper = styled.div`
   align-items: center;
 `;
 
-export const StateCircle = styled.div<{ state: string }>`
+export const StateCircle = styled.div<{ $state: string }>`
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: ${({ state }) => (state === '미확인' ? '#45B404' : 'var(--gray400)')};
+  background-color: ${({ $state }) => ($state === '미확인' ? '#45B404' : 'var(--gray400)')};
 `;
 
 export const CategoryDiv = styled.div`
@@ -112,7 +112,7 @@ export const AlertListLayout = styled.div`
   height: 100vh;
 `;
 
-export const TitleP = styled.p`
+export const TitleDiv = styled.div`
   font-size: 25px;
   font-weight: 700;
   padding: 0px 17px;

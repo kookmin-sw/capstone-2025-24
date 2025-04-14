@@ -1,1 +1,0 @@
-export const OVERVIEWCOUNT: string[] = ["17","9","화재"];

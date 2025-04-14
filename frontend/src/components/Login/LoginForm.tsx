@@ -1,15 +1,31 @@
 import * as S from './Login.style.ts';
 import { useState } from 'react';
-
+import { postLogin } from '@/apis/LoginApi';
+import { useNavigate } from 'react-router-dom';
+import { useProfileStore } from '@/stores/profileStore.ts';
+import { ProfileType } from '@/types/profile';
 const LoginForm = () => {
-  const [id, setId] = useState('');
-  const [password, setPassword] = useState('');
+  const { setProfile } = useProfileStore();
+  const [userId, setUserId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
-  console.log(id, password);
+  const submitLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data: ProfileType = await postLogin(userId, password);
+    setProfile(() => data);
+    console.log('로그인 응답', data);
+    navigate('monitoring');
+  };
 
   return (
-    <S.StyledForm>
-      <S.StyledInput placeholder="아이디" type="text" required onChange={(e) => setId(e.target.value)}></S.StyledInput>
+    <S.StyledForm onSubmit={submitLogin}>
+      <S.StyledInput
+        placeholder="아이디"
+        type="text"
+        required
+        onChange={(e) => setUserId(e.target.value)}
+      ></S.StyledInput>
       <S.StyledInput
         placeholder="비밀번호"
         type="password"

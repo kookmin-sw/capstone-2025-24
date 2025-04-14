@@ -59,13 +59,11 @@ export const FixedLegendContainer = styled.div`
   background: white;
 `;
 
-export const LegendItem = styled.div<{ $isHidden: boolean }>`
+export const LegendItem = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  cursor: pointer;
   font-size: 12px;
-  opacity: ${({ $isHidden }) => ($isHidden ? '0.5' : '1')};
 `;
 
 export const ColorBox = styled.div`
@@ -74,14 +72,9 @@ export const ColorBox = styled.div`
   border-radius: 50%;
 `;
 
-interface ColorBoxProps {
-  $bgcolor: string;
-  $isHidden: boolean;
-}
-
-export const LegendColorBox = styled.div<ColorBoxProps>`
+export const LegendColorBox = styled.div<{ $bgcolor: string }>`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: ${({ $isHidden, $bgcolor }) => ($isHidden ? `var(--gray600)` : $bgcolor)};
+  background-color: ${({ $bgcolor }) => $bgcolor};
 `;

@@ -1,25 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function easeOutExpo(t: number): number {
-  return t === 1 ? 1 : 1 - Math.pow(4, -10 * t);
-}
-
-export default function useCountNum(end: number, duration = 7000) {
+function useCountUp(target: number, duration: number = 1500): number {
   const [count, setCount] = useState(0);
-  const frameRate = 100;
-  const totalFrame = Math.round(duration / frameRate);
 
   useEffect(() => {
-    let currentNumber = 0;
-    const counter = setInterval(() => {
-      const progress = easeOutExpo(++currentNumber / totalFrame);
-      setCount(Math.round(end * progress));
-
-      if (progress === 1) {
-        clearInterval(counter);
+    let startTime: number | null = null;
+    
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      setCount(Math.floor(progress * target));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
       }
-    }, frameRate);
-  }, [end, frameRate, 0, totalFrame]);
+    };
+
+    window.requestAnimationFrame(step);
+
+    return () => {
+      setCount(0);
+    };
+  }, [target, duration]);
 
   return count;
 }
+
+export default useCountUp;

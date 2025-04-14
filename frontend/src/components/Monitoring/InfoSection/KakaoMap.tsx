@@ -2,25 +2,24 @@ import * as S from './InfoSection.style';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import cctvIcon from '@/assets/icons/cctvIcon.svg';
 import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
+import { CctvInfo } from '@/types/cctv';
 
 interface KakaoMapProps {
   selectedIndex: number | null;
   setSelectedIndex: (index: number | null) => void;
-  Locations: {
-    position: {
-      lat: number;
-      lng: number;
-    };
-  }[];
+  Locations: CctvInfo[];
 }
 
 const KakaoMap = ({ selectedIndex, setSelectedIndex, Locations }: KakaoMapProps) => {
   return (
-    <S.Maps id="map" center={{ lat: 37.5665, lng: 126.978 }} level={9} draggable={false} zoomable={false}>
+    <S.Maps id="map" center={{ lat: 37.611, lng: 126.9949 }} level={4} zoomable={false} >
       {Locations.map((location, index) => (
         <MapMarker
           key={index}
-          position={location.position}
+          position={{
+            lat: location.latitude,
+            lng: location.longitude,
+          }}
           image={{
             src: selectedIndex === index ? cctvIconBlue : cctvIcon,
             size: {

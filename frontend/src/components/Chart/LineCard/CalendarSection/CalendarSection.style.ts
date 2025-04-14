@@ -38,9 +38,6 @@ export const CalenderComponentLayout = styled.div`
     justify-content: center;
     margin-bottom: 0;
 
-    /* button {
-    } */
-
     button:hover {
       background: none !important;
       box-shadow: none !important;
@@ -67,7 +64,6 @@ export const CalenderComponentLayout = styled.div`
     outline: none !important;
   }
 
-  /* 요일 밑줄 제거 */
   .react-calendar__month-view__weekdays abbr {
     text-decoration: none;
     font-weight: 500;
@@ -75,7 +71,6 @@ export const CalenderComponentLayout = styled.div`
     color: var(--gray500);
   }
 
-  /* 년/월 상단 네비게이션 칸 크기 줄이기 */
   .react-calendar__navigation__label {
     flex-grow: 0 !important;
     margin: 0 24px;
@@ -107,13 +102,23 @@ export const CalenderComponentLayout = styled.div`
     color: var(--gray800);
   }
 
+  .react-calendar__tile:disabled {
+    pointer-events: none;
+    color: var(--gray400) !important;
+  }
+
+  .react-calendar__tile:disabled:hover,
+  .react-calendar__tile:disabled:focus {
+    background: inherit !important;
+    color: var(--gray400) !important;
+  }
+
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
     background: var(--primary800);
     color: white;
   }
 
-  // 날짜 버튼 hover
   .react-calendar__tile--hover {
     background-color: var(--gray400);
   }
@@ -169,8 +174,9 @@ export const VerticalLine = styled.div`
 
 export const CalendarIcon = styled(FaRegCalendar)`
   color: var(--gray800);
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
+  padding-top: 2px;
 `;
 
 export const DisplaySpan = styled.span`

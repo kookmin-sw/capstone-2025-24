@@ -3,18 +3,26 @@ import CalendarSection from './CalendarSection/CalendarSection';
 import { useState, useEffect } from 'react';
 import LineChart from './LineChart';
 import Dropdown from '../BarCard/BarFilter/Dropdown/Dropdown';
-import { CATEGORY_OPTIONS } from '../../../constants/dropdownOptions';
-import { HourItem, HourData } from '../../../mocks/LineData';
+import { CATEGORY_OPTIONS } from '@/constants/dropdownOptions';
+import { HourItem } from '@/types/chart';
+import { getDataPerTime } from '@/apis/ChartApi';
+import { formatDate } from '@/utils/dataFormatter';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
+
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [category, setCategory] = useState('전체');
-  const [data, setData] = useState<HourItem[]>(HourData);
+  const [timeData, setTimeData] = useState<HourItem[]>([]);
   const handleChange = (_target: string, newValue: string) => {
     setCategory(newValue);
   };
   useEffect(() => {
-    // api 연결 예정
-    setData(HourData);
+    const fetchTimeData = async () => {
+      const data = await getDataPerTime(categoryToEnglish[category] || undefined, formatDate(selectedDate));
+      setTimeData(data);
+    };
+
+    fetchTimeData();
   }, [selectedDate, category]);
 
   return (
@@ -32,7 +40,7 @@ const LineCard = () => {
       </S.TitleDiv>
       <S.ContentDiv>
         <CalendarSection selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-        <LineChart category={category} chartData={data} />
+        <LineChart category={category} chartData={timeData} />
       </S.ContentDiv>
     </S.LineCardLayout>
   );
