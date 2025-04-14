@@ -26,7 +26,6 @@ const BarCard = () => {
       } else {
         setMonthData(data);
       }
-      console.log('챛영', categoryParam, monthParam);
     };
 
     fetchChartData();

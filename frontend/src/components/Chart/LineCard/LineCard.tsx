@@ -18,7 +18,7 @@ const LineCard = () => {
   };
   useEffect(() => {
     const fetchTimeData = async () => {
-      const data = await getDataPerTime(categoryToEnglish[category] || category, formatDate(selectedDate));
+      const data = await getDataPerTime(categoryToEnglish[category] || undefined, formatDate(selectedDate));
       setTimeData(data);
     };
 
