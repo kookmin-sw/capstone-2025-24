@@ -17,6 +17,7 @@
     "chart.js": "^4.4.8",
     "chartjs": "^0.3.24",
     "dotenv": "^16.4.7",
+    "hls.js": "^1.6.0",
     "lottie-react": "^2.4.1",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
@@ -28,6 +29,7 @@
     "react-router-dom": "^7.3.0",
     "react-toastify": "^11.0.5",
     "styled-components": "^6.1.15",
+    "video.js": "^8.22.0",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -35,6 +37,7 @@
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@types/video.js": "^7.3.58",
     "@typescript-eslint/parser": "^8.26.1",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.22.0",

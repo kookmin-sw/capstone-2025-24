@@ -1,12 +1,11 @@
 import * as S from './InfoSection.style';
 import cctvIcon from '@/assets/icons/cctvIcon.svg';
 import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
+import { CctvInfo } from '@/types/cctv';
 
 interface InfoBoxProps {
   selectedIndex: number | null;
-  Locations: {
-    address: string;
-  }[];
+  Locations: CctvInfo[];
 }
 
 const InfoBox = ({ selectedIndex, Locations }: InfoBoxProps) => {

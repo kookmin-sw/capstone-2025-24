@@ -19,4 +19,3 @@ const DateDisplay = ({content}:DateDisplayProps) => {
 
 export default DateDisplay;
 
-DateDisplay;
