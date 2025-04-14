@@ -1,6 +1,6 @@
 import { useSelectCategory } from '@/hooks/useSelectCategory';
 import { putAlertState } from '@/apis/AlertApi';
-import { postCategoryInEnglish } from '@/utils/categoryMapper';
+import { categoryToEnglish } from '@/utils/categoryMapper';
 import * as S from './AlertModal.style';
 
 interface CategorySelectModalProps {
@@ -21,7 +21,7 @@ const CategorySelectModal = ({ onBack, onSubmit, id }: CategorySelectModalProps)
     const categoryToSend =
       selectedCategory === '기타' || selectedCategory === '위험 상황이 아니에요'
         ? null
-        : postCategoryInEnglish(selectedCategory || '');
+        : categoryToEnglish[selectedCategory || ''] || selectedCategory;
     await putAlertState(id, '미출동', categoryToSend);
     onSubmit();
   };

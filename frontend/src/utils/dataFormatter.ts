@@ -1,4 +1,3 @@
-import { EVENT_CATEGORY } from '@/constants/EventCategory';
 import { LABELBYCATEGORY } from '../constants/labelList';
 import { HourItem } from '@/types/chartType';
 import { BarDayItem, BarMonthItem } from '@/types/chartType';
@@ -49,8 +48,4 @@ export const dayFormatChanger = (data: BarDayItem[]) => {
 
 export const formatDate = (date: Date): string => {
   return date.toISOString().substring(0, 10);
-};
-
-export const getKeyCategory = (koreanCategory: string): string | undefined => {
-  return Object.keys(EVENT_CATEGORY).find((key) => EVENT_CATEGORY[key] === koreanCategory);
 };
