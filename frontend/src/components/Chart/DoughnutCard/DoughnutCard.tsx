@@ -36,6 +36,11 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
         setChartData(formattedData);
       } else {
         const data = await getDataPerLocation(periodLst[selectedIndex]);
+        if (!data) {
+          console.error('getDataPerLocation 실패');
+          setChartData([]);
+          return;
+        }
         const formattedData = data?.map((it: LocationItem, index: number) => {
           return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
         });
