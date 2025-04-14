@@ -31,12 +31,15 @@ export const Sidebar = () => {
     switch (target) {
       case 1:
         navigate('/monitoring');
+        window.location.reload();
         break;
       case 2:
         navigate('/history');
+        window.location.reload();
         break;
       case 3:
         navigate('/chart');
+        window.location.reload();
         break;
     }
   };
@@ -46,17 +49,12 @@ export const Sidebar = () => {
       <S.LogoDiv>로고</S.LogoDiv>
       <Profile />
       <S.BtnDiv>
-        {SIDEBAR_LIST.map((it) => (
-          <SidebarButton
-            key={it.text}
-            text={it.text}
-            icon={it.icon}
-            icon_focused={it.icon_focused}
-            size={'20px'}
-            id={it.id}
-            onClick={() => handleNavigate(it.id)}
-          />
-        ))}
+        {SIDEBAR_LIST.map((it) => {
+          const Icon = it.icon;
+          return (
+            <SidebarButton key={it.text} text={it.text} icon={Icon} id={it.id} onClick={() => handleNavigate(it.id)} />
+          );
+        })}
       </S.BtnDiv>
     </S.SidebarDiv>
   );

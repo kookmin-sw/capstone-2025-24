@@ -5,7 +5,7 @@ import ToolTip from '../../common/ToolTip/ToolTip';
 import { useScrollObserver } from '../../../hooks/useScrollObserver';
 import { useRef, useState, useEffect } from 'react';
 import { getClusterData } from '@/apis/ChartApi';
-import { positionItem, statsItem } from '@/types/chartType';
+import { positionItem, statsItem } from '@/types/chart';
 const ClusteringCard = () => {
   const [clusterData, setClusterData] = useState<positionItem[] | undefined>();
   const [statsData, setStatsData] = useState<statsItem | undefined>();

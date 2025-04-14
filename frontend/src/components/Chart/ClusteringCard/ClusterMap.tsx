@@ -1,7 +1,7 @@
 import * as S from './ClusteringCard.style';
 import { MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import pinIcon from '@/assets/icons/pinIcon.svg';
-import { positionItem } from '@/types/chartType';
+import { positionItem } from '@/types/chart';
 interface ClusterMapProps {
   clusterData: positionItem[] | undefined;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelectCategory } from '@/hooks/useSelectCategory';
 import { IncidentCardProps } from '@/types/alert';
 import { putIncidentResolve } from '@/apis/AlertApi';
-import { postCategoryInEnglish } from '@/utils/categoryMapper';
+import { categoryToEnglish } from '@/utils/categoryMapper';
 import ResolvedCard from './ResolvedCard';
 import * as S from './InProgress.style';
 
@@ -15,7 +15,8 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   ];
 
   const handleClickResolve = async () => {
-    const categoryToSend = selectedCategory === '기타' ? null : postCategoryInEnglish(selectedCategory || '');
+    const categoryToSend =
+      selectedCategory === '기타' ? null : categoryToEnglish[selectedCategory || ''] || selectedCategory;
     await putIncidentResolve(id, '출동', categoryToSend);
     setIsResolved(true);
   };

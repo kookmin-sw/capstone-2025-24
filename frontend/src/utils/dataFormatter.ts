@@ -1,7 +1,6 @@
-import { EVENT_CATEGORY } from '@/constants/EventCategory';
 import { LABELBYCATEGORY } from '../constants/labelList';
-import { HourItem } from '@/types/chartType';
-import { BarDayItem, BarMonthItem } from '@/types/chartType';
+import { HourItem } from '@/types/chart';
+import { BarDayItem, BarMonthItem } from '@/types/chart';
 
 export const hourFormatChanger = (data: HourItem[], category: string) => {
   return category === '전체'
@@ -34,7 +33,7 @@ export const hourFormatChanger = (data: HourItem[], category: string) => {
 export const monthFormatChanger = (data: BarMonthItem[]) => {
   return LABELBYCATEGORY.map(({ key, text, color }) => ({
     label: text,
-    data: data.map((it) => it[key as keyof BarMonthItem] as number),
+    data: data?.map((it) => it[key as keyof BarMonthItem] as number),
     backgroundColor: [color],
   }));
 };
@@ -49,8 +48,4 @@ export const dayFormatChanger = (data: BarDayItem[]) => {
 
 export const formatDate = (date: Date): string => {
   return date.toISOString().substring(0, 10);
-};
-
-export const getKeyCategory = (koreanCategory: string): string | undefined => {
-  return Object.keys(EVENT_CATEGORY).find((key) => EVENT_CATEGORY[key] === koreanCategory);
 };

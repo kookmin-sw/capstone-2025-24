@@ -3,7 +3,7 @@ import DoughnutChart from './DoughnutChart';
 import ChartFilter from './ChartFilter/ChartFilter';
 import { useState, useEffect, useRef } from 'react';
 import { useIndex } from '@/stores/categoryIndexStore';
-import { LocationItem, DataItem } from '@/types/chartType';
+import { LocationItem, DataItem } from '@/types/chart';
 import { useScrollObserver } from '@/hooks/useScrollObserver';
 import { getDataPerCategory, getDataPerLocation } from '@/apis/ChartApi';
 import { periodLst } from '@/constants/EventCategory';
@@ -24,13 +24,19 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
     const fetchChartData = async () => {
       if (type === 'category') {
         const data = await getDataPerCategory(periodLst[selectedIndex]);
+        if (!data) {
+          console.error('getDataPerCategory 실패');
+          setChartData([]);
+          return;
+        }
+
         const formattedData = Object.values(data).map((it, index) => {
           return { text: LABELBYCATEGORY[index].text, count: it as number, color: LABELBYCATEGORY[index].color };
         });
         setChartData(formattedData);
       } else {
         const data = await getDataPerLocation(periodLst[selectedIndex]);
-        const formattedData = data.map((it: LocationItem, index: number) => {
+        const formattedData = data?.map((it: LocationItem, index: number) => {
           return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
         });
         setChartData(formattedData);

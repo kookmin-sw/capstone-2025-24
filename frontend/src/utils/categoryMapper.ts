@@ -13,14 +13,10 @@ export const categoryToEnglish: Record<string, string> = {
   쓰러짐: 'swoon',
 };
 
-export const postCategoryInEnglish = (category: string): string => categoryToEnglish[category] || category;
-
-
 export const categoryToKorean: Record<string, string> = {
-    fire: '화재',
-    assault: '폭행',
-    crowd_congestion: '군중밀집',
-    weapon: '흉기난동',
-    swoon: '쓰러짐',
-  };
-
+  fire: '화재',
+  assault: '폭행',
+  crowd_congestion: '군중밀집',
+  weapon: '흉기난동',
+  swoon: '쓰러짐',
+};

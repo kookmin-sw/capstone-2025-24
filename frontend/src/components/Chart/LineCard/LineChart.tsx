@@ -1,7 +1,7 @@
 import * as S from './LineCard.style';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { hourFormatChanger } from '../../../utils/dataFormatter';
-import { HourItem } from '@/types/chartType';
+import { HourItem } from '@/types/chart';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -85,7 +85,7 @@ const LineChart = ({ chartData, category }: LineChartProps) => {
         {legendItems
           .slice()
           .reverse()
-          .map((item, index) => {
+          ?.map((item, index) => {
             return (
               <S.LegendItem key={index}>
                 <S.LegendColorBox $bgcolor={item.fillStyle as string} />

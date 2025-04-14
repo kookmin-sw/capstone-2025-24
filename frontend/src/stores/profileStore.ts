@@ -11,10 +11,10 @@ export const useProfileStore = create<ProfileStore>()(
     (set) => ({
       profile: {
         officeId: 1,
-        name: '',
-        officeName: '',
+        name: '홍길동',
+        officeName: '동해번쩍서해번쩍',
         profileUrl: '',
-        rank: '',
+        rank: '순경',
       },
       setProfile: (updater) => set((state) => ({ profile: updater(state.profile) })),
     }),

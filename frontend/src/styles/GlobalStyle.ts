@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray600: #8D8D8D;
     --gray500: #ADADAD;
     --gray400: #D9D9D9;
-    --gray300: #FAFAFA;
+    --gray300: #fdfdfd;
     --red: #FF6161;
     --yellow: #FFDF86;
   }
@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .date-picker-wrapper input {
     background-color: white;
-}
+  }
 
   .date-picker-wrapper.open input {
     background-color: var(--primary500);
@@ -56,6 +56,22 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     outline: none;
     cursor: pointer;
-}`;
+  }
+
+  .custom-toast {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 12px 25px;
+    backdrop-filter: blur(2px);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: fit-content;
+    margin-top: 450px;
+  }
+`;
 
 export default GlobalStyle;

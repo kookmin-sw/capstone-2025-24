@@ -1,7 +1,7 @@
 import * as S from './StatsPanel.style';
 import StatsItem from './StatsItem';
 import { useEffect, useState } from 'react';
-import { statsItem } from '@/types/chartType';
+import { statsItem } from '@/types/chart';
 import { STATSLABEL } from '@/constants/labelList';
 interface StatsPanelProps {
   isVisible: boolean;
@@ -16,7 +16,7 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
   };
 
   useEffect(() => {
-    setTotal(data.reduce((it, accu) => accu + it));
+    setTotal(data?.reduce((it, accu) => accu + it, 0));
   }, []);
 
   return (
