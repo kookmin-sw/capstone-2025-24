@@ -1,5 +1,5 @@
 import * as S from './BarCard.style';
-import { categoryToKorean } from '@/utils/categoryMapper.ts';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
 import BarChart from './BarChart';
 import { useState, useEffect, useRef } from 'react';
 import { getDataPerYearMonth } from '@/apis/ChartApi';
@@ -19,13 +19,14 @@ const BarCard = () => {
       const monthParam = filter.month === '전체' || filter.month === '월' ? undefined : filter.month;
 
       const categoryParam =
-        filter.category === '전체' ? undefined : categoryToKorean[filter.category] || filter.category;
+        filter.category === '전체' ? undefined : categoryToEnglish[filter.category] || filter.category;
       const data = await getDataPerYearMonth(filter.year, monthParam, categoryParam);
       if (monthParam) {
         setDayData(data);
       } else {
         setMonthData(data);
       }
+      console.log('챛영', categoryParam, monthParam);
     };
 
     fetchChartData();

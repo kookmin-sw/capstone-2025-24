@@ -7,7 +7,7 @@ import { CATEGORY_OPTIONS } from '@/constants/dropdownOptions';
 import { HourItem } from '@/types/chart';
 import { getDataPerTime } from '@/apis/ChartApi';
 import { formatDate } from '@/utils/dataFormatter';
-import { categoryToKorean } from '@/utils/categoryMapper.ts';
+import { categoryToEnglish } from '@/utils/categoryMapper.ts';
 
 const LineCard = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -18,7 +18,7 @@ const LineCard = () => {
   };
   useEffect(() => {
     const fetchTimeData = async () => {
-      const data = await getDataPerTime(categoryToKorean[category] || category, formatDate(selectedDate));
+      const data = await getDataPerTime(categoryToEnglish[category] || category, formatDate(selectedDate));
       setTimeData(data);
     };
 
