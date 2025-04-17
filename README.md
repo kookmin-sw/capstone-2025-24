@@ -1,77 +1,130 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/gFPznrUY)
-# Welcome to GitHub
+# NURINOON
+<!-- 로고 이미지 -->
 
-캡스톤 팀 생성을 축하합니다.
+## 👮 프로젝트 소개
+<!-- 개발 배경 -->
+## 🎥 시연 영상 
 
-## 팀소개 및 페이지를 꾸며주세요.
+## 💡 기능 소개
 
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
+## ⛓️ 시스템 아키텍처
+<!-- 아키텍처 사진 -->
 
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
+## 👥 팀원
 
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
+<table>
+    <tr align="center">
+      <td style="min-width: 100px;">
+            <a href="https://github.com/hummingbbird">
+              <img src="https://github.com/hummingbbird.png" width="100" alt="프로필사진">
+              <br />
+              <b>이채영</b>
+            </a>
+        </td>
+      <td style="min-width: 100px;">
+            <a href="https://github.com/seo0o519">
+              <img src="https://github.com/seo0o519.png" width="100" alt="프로필사진">
+              <br />
+              <b>강서영</b>
+            </a>
+        </td>
+      <td style="min-width: 100px;">
+            <a href="https://github.com/HeeNamgoong">
+              <img src="https://github.com/HeeNamgoong.png" width="100" alt="프로필사진">
+              <br />
+              <b>남궁희</b>
+            </a>
+        </td>
+      <td style="min-width: 100px;">
+            <a href="https://github.com/hyni03">
+              <img src="https://github.com/hyni03.png" width="100" alt="프로필사진">
+              <br />
+              <b>김은지</b>
+            </a>
+        </td>
+        <td style="min-width: 100px;">
+            <a href="https://github.com/mjk25">
+              <img src="https://github.com/mjk25.png" width="100" alt="프로필사진">
+              <br />
+              <b>김민주</b>
+            </a>
+        </td>
+        <td style="min-width: 100px;">
+            <a href="https://github.com/justpers">
+              <img src="https://github.com/justpers.png" width="100" alt="프로필사진">
+              <br />
+              <b>김예향</b>
+            </a>
+        </td>
+    </tr>
+    <tr align="center">
+      <td>
+            TL, Frontend <br/>
+      </td>
+       <td>
+            Frontend <br/>
+      </td>
+       <td>
+            Frontend<br/>
+      </td>
+      <td>
+            Backend <br/>
+      </td>
+      <td>
+            Backend <br/>
+      </td>
+      <td>
+            AI <br/>
+      </td>
+    </tr>
+</table>
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
-
-**예시)** 2023년 0조  https://kookmin-sw.github.io/capstone-2023-00/
+</br>
 
 
-## 내용에 아래와 같은 내용들을 추가하세요.
+## 🛠️ 기술 스택
 
-### 1. 프로잭트 소개
+### 💄 Frontend
+|역할|종류|
+|-|-|
+|**Library**| ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)
+|**Programming Language**| ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)
+|**UI Component Library**| ![MUI](https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=MUI&logoColor=white)
+|**Styling**| ![styled-components](https://img.shields.io/badge/styled_components-DB7093.svg?style=for-the-badge&logo=styledcomponents&logoColor=white)
+|**Formatting**| ![ESLint](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=white)
+|**Package Manager**|![Yarn](https://img.shields.io/badge/Yarn-2C8EBB.svg?style=for-the-badge&logo=Yarn&logoColor=white)
+|**Deployment**|![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+| **Version Control**|![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-프로젝트
+<br />
 
-### 2. 소개 영상
+### 🚀 Backend
+|역할|종류|
+|-|-|
+|**Programming Language**| ![JAVA](https://img.shields.io/badge/JAVA-004027?style=for-the-badge&logo=Jameson&logoColor=white) 
+|**Framework**| ![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white)
+|**Build Tool**| ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white) 
+|**API**| ![Rest](https://img.shields.io/badge/Rest_API-000000?style=for-the-badge&logo=iRobot&logoColor=white)
+|**Database**| ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white)
+|**Storage**| ![AWS_S3](https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
+|**Message Queue**| ![ApacheKafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=ApacheKafka&logoColor=white) 
+|**Deployment**| ![aws ec2](https://img.shields.io/badge/aws_ec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white) ![docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) 
+| **CI/CD** |  ![github actions](https://img.shields.io/badge/Github_actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white) 
 
-프로젝트 소개하는 영상을 추가하세요
+<br />
 
-### 3. 팀 소개
+### 🤖 AI Server
+|역할|종류|
+|-|-|
+|**Operating System**| ![Ubuntu](https://img.shields.io/badge/ubuntu_22.04-E95420?style=for-the-badge&logo=ubuntu&logoColor=white) 
+|**Programming Language**| ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) 
+|**Framework**| 
 
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-소스코드제출시 설치법이나 사용법을 작성하세요.
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
-
-
-## Markdown을 사용하여 내용꾸미기
-
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Support or Contact
-
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+## 📜 제출 서류
+<!-- 수행계획서 -->
+<!-- 중간보고서 -->
+<!-- 중간발표자료 -->
+<!-- 중간시연영상 -->
+<!-- 최종보고서 -->
+<!-- 최종발표자료 -->
+<!-- 최종시연연영상 -->
