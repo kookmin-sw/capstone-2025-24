@@ -1,21 +1,23 @@
 import * as S from './Login.style.ts';
 import { useState } from 'react';
-import { postLogin } from '@/apis/LoginApi';
 import { useNavigate } from 'react-router-dom';
-import { useProfileStore } from '@/stores/profileStore.ts';
-import { ProfileType } from '@/types/profile';
+import { useAuthStore } from '@/stores/authStore';
+
 const LoginForm = () => {
-  const { setProfile } = useProfileStore();
   const [userId, setUserId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
+  const { login } = useAuthStore();
 
   const submitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data: ProfileType = await postLogin(userId, password);
-    setProfile(() => data);
-    console.log('로그인 응답', data);
-    navigate('monitoring');
+    try {
+      await login(userId, password);
+      navigate('/monitoring');
+    } catch (error) {
+      console.error('로그인 실패:', error);
+      alert('아이디 또는 비밀번호가 잘못되었습니다.');
+    }
   };
 
   return (

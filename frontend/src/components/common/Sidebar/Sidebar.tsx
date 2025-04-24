@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import useSidebarStore from '@/stores/sidebarStore';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import LogoutButton from './LogoutButton';
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -56,6 +57,7 @@ export const Sidebar = () => {
           );
         })}
       </S.BtnDiv>
+      <LogoutButton/>
     </S.SidebarDiv>
   );
 };
