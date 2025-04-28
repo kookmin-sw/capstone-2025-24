@@ -19,7 +19,7 @@
 
 ## 🌐 시연 영상
 
-[![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://www.naver.com)
+[![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://www.youtube.com/watch?v=oU1lYYOKgb4)
 <br><br>
 
 ## 🌐 기능 소개
