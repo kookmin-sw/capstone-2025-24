@@ -6,12 +6,17 @@ export const postLogin = async (userId: string, password: string) => {
       userId,
       password,
     });
+
+    if (response.data?.message === '잘못된 아이디 혹은 비밀번호입니다.') {
+      throw new Error('잘못된 아이디 또는 비밀번호입니다.');
+    }
     return response.data;
   } catch (error) {
     console.error('로그인 에러:', error);
     throw error;
   }
 };
+
 export const postLogout = async () => {
   const response = await axiosInstance.post('/api/v1/logout');
   return response.data;
