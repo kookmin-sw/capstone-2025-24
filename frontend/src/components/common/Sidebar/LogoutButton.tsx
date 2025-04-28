@@ -1,9 +1,15 @@
 import { useAuthStore } from '@/stores/authStore';
+import * as S from './Sidebar.style';
 
 const LogoutButton = () => {
   const { logout } = useAuthStore();
 
   const handleLogout = async () => {
+    const confirmLogout = window.confirm('정말 로그아웃하시겠습니까?');
+    if (!confirmLogout) {
+      return;
+    }
+
     try {
       await logout();
       window.location.href = '/';
@@ -14,9 +20,10 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout}>
+    <S.LogoutBtn onClick={handleLogout}>
+      <S.LogoutLogo />
       로그아웃
-    </button>
+    </S.LogoutBtn>
   );
 };
 

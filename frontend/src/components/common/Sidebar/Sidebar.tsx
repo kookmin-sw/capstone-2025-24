@@ -47,17 +47,25 @@ export const Sidebar = () => {
 
   return (
     <S.SidebarDiv>
-      <S.LogoDiv>로고</S.LogoDiv>
-      <Profile />
-      <S.BtnDiv>
-        {SIDEBAR_LIST.map((it) => {
-          const Icon = it.icon;
-          return (
-            <SidebarButton key={it.text} text={it.text} icon={Icon} id={it.id} onClick={() => handleNavigate(it.id)} />
-          );
-        })}
-      </S.BtnDiv>
-      <LogoutButton/>
+      <div>
+        <S.LogoDiv>로고</S.LogoDiv>
+        <Profile />
+        <S.BtnDiv>
+          {SIDEBAR_LIST.map((it) => {
+            const Icon = it.icon;
+            return (
+              <SidebarButton
+                key={it.text}
+                text={it.text}
+                icon={Icon}
+                id={it.id}
+                onClick={() => handleNavigate(it.id)}
+              />
+            );
+          })}
+        </S.BtnDiv>
+      </div>
+      <LogoutButton />
     </S.SidebarDiv>
   );
 };

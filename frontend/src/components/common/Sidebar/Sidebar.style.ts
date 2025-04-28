@@ -1,5 +1,6 @@
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
+import { RiLogoutBoxRFill } from 'react-icons/ri';
 
 // Layout ---------------------------//
 export const Layout = styled.div`
@@ -20,6 +21,9 @@ export const SidebarDiv = styled.div`
   background-color: rgb(9, 29, 109);
   box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const BtnDiv = styled.div`
@@ -102,4 +106,26 @@ export const SidebarBtn = styled(Button)`
     background-color: rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
   }
+`;
+
+// LogoutButton.tsx ------------------------------- //
+export const LogoutBtn = styled.button`
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 90%;
+  font-size: 16px;
+  padding: 8px 6px;
+  padding-left: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--gray400);
+`;
+
+export const LogoutLogo = styled(RiLogoutBoxRFill)`
+  font-size: 20px;
+  margin: 8px;
+  color: var(--gray400);
 `;
