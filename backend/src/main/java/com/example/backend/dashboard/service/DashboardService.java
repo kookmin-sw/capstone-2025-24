@@ -36,39 +36,6 @@ public class DashboardService {
     private final AmazonS3 s3Client;
     private final DashboardRepository dashboardRepository;
 
-
-    public Map<String, String> getCaseVideo(int id, HttpSession session) {
-        CaseEntity caseEntity = getAuthorizedCase(id, session);
-
-        String videoKey = caseEntity.getVideo();
-        if (videoKey == null || videoKey.trim().isEmpty()) {
-            throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
-        }
-
-        if (caseEntity.getState() == CaseEntity.CaseState.미확인) {
-            caseEntity.setState(CaseEntity.CaseState.확인);
-            dashboardRepository.save(caseEntity);
-        }
-
-        // Presigned URL 유효기간 설정 (30분)
-        Date expiration = new Date();
-        long expTime = expiration.getTime();
-        expTime += TimeUnit.MINUTES.toMillis(30);   // 30 minute
-        expiration.setTime(expTime);
-
-        GeneratePresignedUrlRequest presignRequest =
-                new GeneratePresignedUrlRequest(bucket, videoKey)
-                .withMethod(HttpMethod.GET)
-                .withExpiration(expiration);
-
-        String url = s3Client.generatePresignedUrl(presignRequest).toString();
-        return Collections.singletonMap("video", url);
-
-    }
-
-
-
-
     // 세션에서 officeId 추출
     private int getAuthenticatedOfficeId(HttpSession session) {
         UserResponseDto user = (UserResponseDto) session.getAttribute("user");
@@ -124,54 +91,35 @@ public class DashboardService {
                 .collect(Collectors.toList());
     }
 
+    // id별 사건 영상 조회
+    public Map<String, String> getCaseVideo(int id, HttpSession session) {
+        CaseEntity caseEntity = getAuthorizedCase(id, session);
 
-//    public Map<String, String> getCaseVideo(int id, HttpSession session) {
-//        CaseEntity caseEntity = getAuthorizedCase(id, session);
-//
-//        String videoUrl = caseEntity.getVideo();
-//        if (videoUrl == null || videoUrl.trim().isEmpty()) {
-//            throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
-//        }
-//
-//        if (caseEntity.getState() == CaseEntity.CaseState.미확인) {
-//            caseEntity.setState(CaseEntity.CaseState.확인);
-//            dashboardRepository.save(caseEntity);
-//        }
-//        String filename = videoUrl;
-//
-//
-//        Date expiration = new Date();
-//        long expTime = expiration.getTime();
-//        expTime += TimeUnit.MINUTES.toMillis(30);   // 30 minute
-//        expiration.setTime(expTime);
-//
-//        GetPresignedUrlRequest generatePresignedUrlRequest = new GetPresignedUrlRequest(bucket, fileName)
-//                .withMethod(HttpMethod.GET)
-//                .withExpiration(expiration);
-//
-//
-//        return Collections.singletonMap("video", AWSS3ResDto.builder()
-//                .url(s3Presigner.getPresignedUrl(generatePresignedUrlRequest).toString()));
-//    }
-//
+        String videoKey = caseEntity.getVideo();
+        if (videoKey == null || videoKey.trim().isEmpty()) {
+            throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
+        }
 
+        if (caseEntity.getState() == CaseEntity.CaseState.미확인) {
+            caseEntity.setState(CaseEntity.CaseState.확인);
+            dashboardRepository.save(caseEntity);
+        }
 
+        // Presigned URL 유효기간 설정 (30분)
+        Date expiration = new Date();
+        long expTime = expiration.getTime();
+        expTime += TimeUnit.MINUTES.toMillis(30);   // 30 minute
+        expiration.setTime(expTime);
 
-//    public String getPresignedUrl(String originUrl) {
-        // Presigned URL 생성
+        GeneratePresignedUrlRequest presignRequest =
+                new GeneratePresignedUrlRequest(bucket, videoKey)
+                        .withMethod(HttpMethod.GET)
+                        .withExpiration(expiration);
 
+        String url = s3Client.generatePresignedUrl(presignRequest).toString();
+        return Collections.singletonMap("video", url);
 
-//        GetPresignedUrlRequest getPresignedUrlRequest = s3Presigner.presignGetObject(
-//                req -> req.signatureDuration(Duration.ofMinutes(15)) // 15분 유효기간
-//                        .getObjectRequest(
-//                                GetObjectRequest.builder()
-//                                        .bucket(bucketName)
-//                                        .key(key)
-//                                        .build()
-//                        )
-//        )
-
-//    }
+    }
 
     // 출동, 미출동 상태 변경
     public Map<String, String> updateCaseState(int id, StateRequest request, HttpSession session) {
