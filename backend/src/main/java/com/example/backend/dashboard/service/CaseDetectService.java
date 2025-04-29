@@ -27,6 +27,11 @@ public class CaseDetectService {
         CctvEntity cctvEntity = cctvRepository.findById(request.getCctvId())
                 .orElseThrow(() -> new EntityNotFoundException("CCTV 정보를 찾을 수 없습니다."));
 
+        int level;
+        if(request.getCategory().equals("assault") || request.getCategory().equals("crowd_congestion") ) {
+            level = 1;
+        } else level = 2;
+
         // 2) 사건 저장
         CaseEntity caseEntity = CaseEntity.builder()
                 .office(OfficeEntity.builder().id(request.getOfficeId()).build())
@@ -37,7 +42,7 @@ public class CaseDetectService {
                 .state(CaseEntity.CaseState.미확인)
                 .accuracy(true)
                 .memo(request.getMemo())
-                .level(request.getLevel())
+                .level(level)
                 .progressDate(null)
                 .build();
 
