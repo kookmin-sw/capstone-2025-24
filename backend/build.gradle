@@ -35,6 +35,12 @@ dependencies {
 	// Lombok 의존성 추가
 	compileOnly 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+	// S3
+	implementation('com.amazonaws:aws-java-sdk-s3:1.12.543') {
+		// 기존 취약한 ion-java 제외하고
+		exclude group: 'software.amazon.ion', module: 'ion-java'
+	}
 }
 
 tasks.named('test') {

@@ -39,4 +39,11 @@ public class DetailResponse {
                 .memo(entity.getMemo())
                 .build();
     }
+
+    // 오버로드: presignedUrl을 video 필드에 덮어씌워 반환
+    public static DetailResponse fromEntity(CaseEntity e, String presignedUrl) {
+        DetailResponse r = fromEntity(e);
+        r.setVideo(presignedUrl);
+        return r;
+    }
 }
