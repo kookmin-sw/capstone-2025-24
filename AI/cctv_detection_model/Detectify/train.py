@@ -48,7 +48,7 @@ class Train:
         except Exception as ex:
             self.log.error(f"'{model}'를 불러오던 중 문제가 발생했습니다.", ex)
 
-    def start(self, dataset: str, output: str = "output3", epochs: int = 80, batch_size: int = 32, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
+    def start(self, dataset: str, output: str = "output3", epochs: int = 100, batch_size: int = 32, save_per_epochs: int = 10, cache: bool = False, resume: bool = False):
         try:
             self.log.alert(f"데이터셋 유효성 검사를 시작합니다.")
             
