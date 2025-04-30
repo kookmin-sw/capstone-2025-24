@@ -17,7 +17,6 @@ export const StyledInput = styled.input`
   padding: 17px 21px;
   font-size: 16px;
   margin: 10px;
-  outline: none;
 `;
 
 export const LoginBtn = styled(Button)`
