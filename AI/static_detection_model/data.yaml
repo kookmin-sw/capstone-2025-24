@@ -1,0 +1,19 @@
+train: /home/work/YOLOv11/fine-tuning/data_final/train
+val:   /home/work/YOLOv11/fine-tuning/data_final/val
+test:  /home/work/YOLOv11/fine-tuning/data_final/test
+
+nc: 5
+
+names:
+  0: person
+  1: weapon
+  2: head
+  3: fire
+  4: smoke
+
+# roboflow:
+#   workspace: justpers
+#   project: detection-finetuing-data
+#   version: 1
+#   license: CC BY 4.0
+#   url: https://universe.roboflow.com/justpers/detection-finetuing-data/dataset/1
