@@ -3,17 +3,21 @@ import AlertModal from '../AlertModal/AlertModal.tsx';
 import * as S from './AlertList.style.ts';
 import { AlertProps } from '@/types/alert';
 import { useItemStore } from '@/stores/itemStore';
+import { useModalStore } from '@/stores/modalStore';
 
 interface AlertItemProps extends AlertProps {
   clicked: boolean;
 }
 
 const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
-  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+  // const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+  const { isModalOpen, closeModal } = useIsModalOpen();
   const { updateItemState } = useItemStore();
+  const openModal = useModalStore((s) => s.open);
 
   const handleDetail = () => {
-    openModal();
+    // openModal();
+    openModal({ id, level, category, date, address, state }, false);
     if (state === '미확인') updateItemState(id, '확인');
   };
 

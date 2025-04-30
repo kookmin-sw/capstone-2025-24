@@ -10,6 +10,7 @@ interface VideoModalProps {
 
 const VideoModal = ({ isOpen, onClose, video }: VideoModalProps) => {
   if (!isOpen) return null;
+  
 
   return (
     <S.Overlay onClick={onClose}>
