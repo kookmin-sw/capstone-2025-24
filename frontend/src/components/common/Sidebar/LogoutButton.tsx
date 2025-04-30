@@ -5,7 +5,7 @@ const LogoutButton = () => {
   const { logout } = useAuthStore();
 
   const handleLogout = async () => {
-    const confirmLogout = window.confirm('정말 로그아웃하시겠습니까?');
+    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
     if (!confirmLogout) {
       return;
     }
