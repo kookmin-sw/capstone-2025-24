@@ -92,10 +92,10 @@ export const SidebarBtn = styled(Button)`
   cursor: default;
 
   gap: 9px;
-  color: var(--primary700);
+  color: white;
   background-color: #00ff0000;
   .IconType {
-    color: var(--primary700);
+    color: white;
   }
 
   &:hover {
