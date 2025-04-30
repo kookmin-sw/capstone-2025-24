@@ -7,11 +7,12 @@ interface AuthState {
   isLoggedIn: boolean;
   login: (userId: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  clearAuth: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       isLoggedIn: false,
 
       login: async (userId, password) => {
@@ -22,6 +23,10 @@ export const useAuthStore = create<AuthState>()(
 
       logout: async () => {
         await postLogout();
+        get().clearAuth();
+      },
+
+      clearAuth: () => {
         useProfileStore.getState().setProfile(() => ({
           officeId: 0,
           name: '',
@@ -33,7 +38,7 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'auth-storage', 
-    },
+      name: 'auth-storage',
+    }
   )
 );
