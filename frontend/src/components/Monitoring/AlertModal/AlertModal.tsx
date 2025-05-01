@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore';
 import { useHighlightStore } from '@/stores/highlightStore';
@@ -29,6 +29,10 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   const [isUpdate, setIsUpdate] = useState(false);
   const redHighlightEffect = highlight && step === 'incident'; // 실시간 모달 빨간색 강조 용도
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setStep('incident');
+  }, [alertItem.id]);
 
   const handleOutsideClick = () => {
     if (step === 'incident') {
