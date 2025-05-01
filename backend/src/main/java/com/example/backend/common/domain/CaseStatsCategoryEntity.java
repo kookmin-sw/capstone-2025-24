@@ -40,4 +40,7 @@ public class CaseStatsCategoryEntity {
     @Column(name = "swoon_count", nullable = false)
     private int swoonCount;
 
+    @Column(name = "smoke_count", nullable = false)
+    private int smokeCount;
+
 }

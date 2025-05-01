@@ -52,7 +52,7 @@ public class CaseEntity {
     private LocalDateTime progressDate;
 
     public enum CaseCategory {
-        fire, assault, crowd_congestion, weapon, swoon
+        fire, assault, crowd_congestion, weapon, swoon, smoke
     }
 
     public enum CaseState {

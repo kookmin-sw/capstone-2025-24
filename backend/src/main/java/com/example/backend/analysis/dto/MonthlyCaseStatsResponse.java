@@ -13,4 +13,5 @@ public class MonthlyCaseStatsResponse {
     private int crowdCongestionCount;
     private int weaponCount;
     private int swoonCount;
+    private int smokeCount;
 }

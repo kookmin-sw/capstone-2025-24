@@ -19,7 +19,7 @@ public interface CaseStatsOverviewRepository extends JpaRepository<CaseStatsOver
         WHERE csc.office_id = :officeId
           AND csc.date >= NOW() - INTERVAL '1 month'
         GROUP BY ci.address
-        ORDER BY SUM(csc.fire_count + csc.assault_count + csc.crowd_congestion_count + csc.weapon_count + csc.swoon_count) DESC
+        ORDER BY SUM(csc.fire_count + csc.assault_count + csc.crowd_congestion_count + csc.weapon_count + csc.swoon_count + csc.smoke_count) DESC
         LIMIT 1
         """, nativeQuery = true)
     Optional<String> findAddressWithMostIncidentsLastMonth(@Param("officeId") int officeId);
