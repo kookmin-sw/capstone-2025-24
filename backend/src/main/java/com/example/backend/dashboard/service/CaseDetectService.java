@@ -28,7 +28,7 @@ public class CaseDetectService {
                 .orElseThrow(() -> new EntityNotFoundException("CCTV 정보를 찾을 수 없습니다."));
 
         int level;
-        if(request.getCategory().equals("assault") || request.getCategory().equals("crowd_congestion") ) {
+        if(request.getCategory().equals("assault") || request.getCategory().equals("crowd_congestion") || request.getCategory().equals("smoke")) {
             level = 1;
         } else level = 2;
 

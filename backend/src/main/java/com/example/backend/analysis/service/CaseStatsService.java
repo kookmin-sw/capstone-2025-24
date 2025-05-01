@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -34,14 +35,15 @@ public class CaseStatsService {
         return user.getOfficeId();
     }
 
-    // period에 따른 시작일 계산 (weekly: 최근 7일, monthly: 최근 1개월, yearly: 최근 1년)
+    // period에 따른 시작일 계산 (weekly: 이번 주, monthly: 이번 달, yearly: 이번 년도)
     private LocalDateTime getStartDateFromPeriod(String period) {
         String periodParam = (period != null) ? period.toLowerCase() : "weekly";
+        LocalDate today = LocalDate.now();
 
         return switch (periodParam) {
-            case "weekly" -> LocalDateTime.now().minusDays(7);
-            case "monthly" -> LocalDateTime.now().minusMonths(1);
-            case "yearly" -> LocalDateTime.now().minusYears(1);
+            case "weekly" -> today.with(java.time.DayOfWeek.MONDAY).atStartOfDay();
+            case "monthly" -> today.withDayOfMonth(1).atStartOfDay();
+            case "yearly" -> today.withDayOfYear(1).atStartOfDay();
             default -> throw new IllegalArgumentException("잘못된 period 값입니다. 'weekly', 'monthly', 'yearly' 중 하나여야 합니다.");
         };
     }
@@ -88,7 +90,8 @@ public class CaseStatsService {
                     ((Number) row[2]).intValue(),  // assault
                     ((Number) row[3]).intValue(),  // crowdCongestion
                     ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
+                    ((Number) row[5]).intValue(),  // swoon
+                    ((Number) row[6]).intValue()   // smoke
             );
             hourMap.put(hour, response);
         }
@@ -99,7 +102,7 @@ public class CaseStatsService {
             if (hourMap.containsKey(h)) {
                 fullHourlyList.add(hourMap.get(h));
             } else {
-                fullHourlyList.add(new HourlyCaseStatsResponse(h, 0, 0, 0, 0, 0));
+                fullHourlyList.add(new HourlyCaseStatsResponse(h, 0, 0, 0, 0, 0, 0));
             }
         }
 
@@ -123,7 +126,8 @@ public class CaseStatsService {
                     ((Number) row[2]).intValue(),  // assault
                     ((Number) row[3]).intValue(),  // crowdCongestion
                     ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
+                    ((Number) row[5]).intValue(),  // swoon
+                    ((Number) row[6]).intValue()   // smoke
             );
             dayMap.put(day, response);
         }
@@ -137,7 +141,7 @@ public class CaseStatsService {
             if (dayMap.containsKey(d)) {
                 fullDailyList.add(dayMap.get(d));
             } else {
-                fullDailyList.add(new DailyCaseStatsResponse(d, 0, 0, 0, 0, 0));
+                fullDailyList.add(new DailyCaseStatsResponse(d, 0, 0, 0, 0, 0, 0));
             }
         }
 
@@ -161,7 +165,8 @@ public class CaseStatsService {
                     ((Number) row[2]).intValue(),  // assault
                     ((Number) row[3]).intValue(),  // crowdCongestion
                     ((Number) row[4]).intValue(),  // weapon
-                    ((Number) row[5]).intValue()   // swoon
+                    ((Number) row[5]).intValue(),   // swoon
+                    ((Number) row[6]).intValue()   // smoke
             );
             monthMap.put(month, response);
         }
@@ -171,7 +176,7 @@ public class CaseStatsService {
             if (monthMap.containsKey(m)) {
                 fullMonthlyList.add(monthMap.get(m));
             } else {
-                fullMonthlyList.add(new MonthlyCaseStatsResponse(m, 0, 0, 0, 0, 0));
+                fullMonthlyList.add(new MonthlyCaseStatsResponse(m, 0, 0, 0, 0, 0, 0));
             }
         }
 
@@ -239,11 +244,13 @@ public class CaseStatsService {
                         (String) row[0], // address
                         (Double) row[1], // latitude
                         (Double) row[2], // longitude
-                        ((Number) row[3]).intValue(), // fire_count
-                        ((Number) row[4]).intValue(),  // assault_count
-                        ((Number) row[5]).intValue(),  // crowd_congestion_count
-                        ((Number) row[6]).intValue(),  // weapon_count
-                        ((Number) row[7]).intValue())) // swoon_count
+                        ((Number) row[3]).intValue(), // fire
+                        ((Number) row[4]).intValue(),  // assault
+                        ((Number) row[5]).intValue(),  // crowd_congestion
+                        ((Number) row[6]).intValue(),  // weapon
+                        ((Number) row[7]).intValue(), // swoon
+                        ((Number) row[6]).intValue()   // smoke
+                ))
                 .collect(Collectors.toList());
     }
 

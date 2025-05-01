@@ -12,8 +12,9 @@ import java.time.LocalDateTime;
 @Builder
 public class DashboardResponse {
     private Integer id;
-    private String police_name;
-    private String police_rank;
+    private Integer cctvId;
+    private String policeName;
+    private String policeRank;
     private String address;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -26,8 +27,9 @@ public class DashboardResponse {
     public static DashboardResponse fromEntity(CaseEntity entity) {
         return DashboardResponse.builder()
                 .id(entity.getId())
-                .police_name(entity.getPolice() != null ? entity.getPolice().getName() : null)
-                .police_rank(entity.getPolice() != null ? String.valueOf(entity.getPolice().getRank()) : null)
+                .cctvId(entity.getCctv().getId())
+                .policeName(entity.getPolice() != null ? entity.getPolice().getName() : null)
+                .policeRank(entity.getPolice() != null ? String.valueOf(entity.getPolice().getRank()) : null)
                 .address(entity.getCctv().getAddress())
                 .date(entity.getDate())
                 .level(entity.getLevel())

@@ -9,9 +9,10 @@ public class MapCaseStatsResponse {
     String address;
     double latitude;
     double longitude;
-    int fire_count;
-    int assault_count;
-    int crowd_congestion_count;
-    int weapon_count;
-    int swoon_count;
+    int fireCount;
+    int assaultCount;
+    int crowdCongestionCount;
+    int weaponCount;
+    int swoonCount;
+    int smokeCount;
 }
