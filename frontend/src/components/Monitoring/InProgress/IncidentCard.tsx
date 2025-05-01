@@ -1,23 +1,25 @@
 import { useState } from 'react';
-import useIsModalOpen from '@/hooks/useIsModalOpen';
 import { IoMdCamera } from 'react-icons/io';
 import FeedbackCard from './FeedbackCard';
 import VideoModal from './VideoModal/VideoModal';
 import { AlertProps } from '@/types/alert';
 import { getVideo } from '@/apis/AlertApi';
 import { useHighlightStore } from '@/stores/highlightStore';
+import { useModalStore } from '@/stores/modalStore';
 import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const [video, setVideo] = useState('');
-  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+  const open = useModalStore((s) => s.open);
+  const close = useModalStore((s) => s.close);
+  const current = useModalStore((s) => s.current);
 
   const { highlight } = useHighlightStore();
   const isHighlighted = typeof highlight === 'number' && highlight === id;
 
   const handleVideoModal = async () => {
-    openModal();
+    open({ type: 'norealtime', id: id });
     const response = await getVideo(id);
     setVideo(response.video);
   };
@@ -55,7 +57,9 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
           </S.CardBack>
         </S.CardInner>
       </S.FlipCard>
-      <VideoModal isOpen={isModalOpen} onClose={closeModal} video={video} />
+      {current?.type === 'norealtime' && current.id === id && (
+        <VideoModal isOpen={true} onClose={close} video={video} />
+      )}
     </>
   );
 };
