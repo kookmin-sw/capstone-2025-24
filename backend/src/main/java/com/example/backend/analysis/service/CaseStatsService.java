@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -34,14 +35,15 @@ public class CaseStatsService {
         return user.getOfficeId();
     }
 
-    // period에 따른 시작일 계산 (weekly: 최근 7일, monthly: 최근 1개월, yearly: 최근 1년)
+    // period에 따른 시작일 계산 (weekly: 이번 주, monthly: 이번 달, yearly: 이번 년도)
     private LocalDateTime getStartDateFromPeriod(String period) {
         String periodParam = (period != null) ? period.toLowerCase() : "weekly";
+        LocalDate today = LocalDate.now();
 
         return switch (periodParam) {
-            case "weekly" -> LocalDateTime.now().minusDays(7);
-            case "monthly" -> LocalDateTime.now().minusMonths(1);
-            case "yearly" -> LocalDateTime.now().minusYears(1);
+            case "weekly" -> today.with(java.time.DayOfWeek.MONDAY).atStartOfDay();
+            case "monthly" -> today.withDayOfMonth(1).atStartOfDay();
+            case "yearly" -> today.withDayOfYear(1).atStartOfDay();
             default -> throw new IllegalArgumentException("잘못된 period 값입니다. 'weekly', 'monthly', 'yearly' 중 하나여야 합니다.");
         };
     }
