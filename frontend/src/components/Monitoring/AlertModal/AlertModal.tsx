@@ -24,9 +24,10 @@ type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight: boolean }) => {
   const { updateItemState } = useItemStore();
+  const { setHighlight } = useHighlightStore(); // 출동하기 클릭 후, 출동 사건 카드 파란색 강조 용도
   const [step, setStep] = useState<ModalStep>('incident');
-  const { setHighlight } = useHighlightStore();
   const [isUpdate, setIsUpdate] = useState(false);
+  const redHighlightEffect = highlight && step === 'incident'; // 실시간 모달 빨간색 강조 용도
   const navigate = useNavigate();
 
   const handleOutsideClick = () => {
@@ -84,7 +85,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <ToastContainer />
-      <S.ModalContainer highlight={highlight} onClick={(e) => e.stopPropagation()}>
+      <S.ModalContainer highlight={redHighlightEffect} onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}
