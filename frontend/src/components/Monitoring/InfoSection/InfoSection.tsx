@@ -23,7 +23,7 @@ const InfoSection = () => {
     <S.InfoLayout>
       <S.InfoContent>
         <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={cctv} />
-        <InfoBox selectedIndex={selectedIndex} Locations={cctv} />
+        <InfoBox selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={cctv} />
       </S.InfoContent>
       <VideoPlayer selectedIndex={selectedIndex} Locations={cctv} />
     </S.InfoLayout>
