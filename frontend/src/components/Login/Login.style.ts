@@ -13,12 +13,14 @@ export const LoginCard = styled.section`
 
 // VisualSide.tsx ------------------------------------//
 export const VisualSide = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 50%;
   height: 100%;
   background-color: #4373e4;
   border-radius: 20px 0 0 20px;
+  padding: 24px;
 `;
-
 // FormSide.tsx ------------------------------------//
 export const FormSideLayout = styled.div`
   display: flex;
