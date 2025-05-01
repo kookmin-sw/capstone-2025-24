@@ -4,6 +4,7 @@ import { postLogin } from '@/apis/LoginApi';
 import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '@/stores/profileStore.ts';
 import { ProfileType } from '@/types/profile';
+
 const LoginForm = () => {
   const { setProfile } = useProfileStore();
   const [userId, setUserId] = useState<string>('');

@@ -30,7 +30,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   const redHighlightEffect = highlight && step === 'incident'; // 실시간 모달 빨간색 강조 용도
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(() => { // 실시간 모달 중복으로 들어올 경우, incident step으로 초기화
     setStep('incident');
   }, [alertItem.id]);
 
