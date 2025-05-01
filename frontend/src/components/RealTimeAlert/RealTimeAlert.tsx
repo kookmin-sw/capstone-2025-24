@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSSE } from '@/hooks/useSSE';
-import { useModalStore } from '@/stores/modalStore';
 import AlertModal from '@/components/Monitoring/AlertModal/AlertModal';
 import PushNotification from './PushNotification/PushNotification';
 import { AlertProps } from '@/types/alert';
+import { useModal } from '@/hooks/useModal';
 
 export default function RealTimeAlert() {
   const { alertData } = useSSE();
-  const openModal = useModalStore((s) => s.open);
-  const closeModal = useModalStore((s) => s.close);
-  const currentItem = useModalStore((s) => s.currentItem);
+  const { openModal, closeModal, currentItem } = useModal();
 
   const [pushAlert, setPushAlert] = useState<AlertProps | null>(null);
 

@@ -5,15 +5,13 @@ import VideoModal from './VideoModal/VideoModal';
 import { AlertProps } from '@/types/alert';
 import { getVideo } from '@/apis/AlertApi';
 import { useHighlightStore } from '@/stores/highlightStore';
-import { useModalStore } from '@/stores/modalStore';
+import { useModal } from '@/hooks/useModal';
 import * as S from './InProgress.style';
 
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const [video, setVideo] = useState('');
-  const openModal = useModalStore((s) => s.open);
-  const closeModal = useModalStore((s) => s.close);
-  const currentItem = useModalStore((s) => s.currentItem);
+  const { openModal, closeModal, currentItem } = useModal();
 
   const { highlight } = useHighlightStore();
   const isHighlighted = typeof highlight === 'number' && highlight === id;

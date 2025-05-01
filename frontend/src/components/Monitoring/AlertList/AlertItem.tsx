@@ -2,7 +2,7 @@ import AlertModal from '../AlertModal/AlertModal.tsx';
 import * as S from './AlertList.style.ts';
 import { AlertProps } from '@/types/alert';
 import { useItemStore } from '@/stores/itemStore';
-import { useModalStore } from '@/stores/modalStore';
+import { useModal } from '@/hooks/useModal';
 
 interface AlertItemProps extends AlertProps {
   clicked: boolean;
@@ -10,9 +10,7 @@ interface AlertItemProps extends AlertProps {
 
 const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
   const { updateItemState } = useItemStore();
-  const openModal = useModalStore((s) => s.open);
-  const closeModal = useModalStore((s) => s.close);
-  const currentItem = useModalStore((s) => s.currentItem);
+  const { openModal, closeModal, currentItem } = useModal();
 
   const handleDetail = () => {
     openModal({ type: 'norealtime', id: id });

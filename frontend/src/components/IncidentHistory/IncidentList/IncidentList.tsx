@@ -7,7 +7,7 @@ import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.t
 import Filtering from '../Filtering/Filtering.tsx';
 import { Incident } from '@/types/incident.ts';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';
-import { useModalStore } from '@/stores/modalStore';
+import { useModal } from '@/hooks/useModal';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
@@ -25,9 +25,7 @@ const IncidentList = () => {
   const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
-  const openModal = useModalStore((s) => s.open);
-  const closeModal = useModalStore((s) => s.close);
-  const currentItem = useModalStore((s) => s.currentItem);
+  const { openModal, closeModal, currentItem } = useModal();
 
   const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
