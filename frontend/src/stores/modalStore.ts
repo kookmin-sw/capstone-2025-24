@@ -15,27 +15,27 @@ export type NoRealTimePayload = {
 export type QueueItem = RealTimePayload | NoRealTimePayload;
 
 interface ModalStore {
-  current: QueueItem | null;
+  currentItem: QueueItem | null;
   queue: QueueItem[];
   open: (item: QueueItem) => void;
   close: () => void;
 }
 
 export const useModalStore = create<ModalStore>((set, get) => ({
-  current: null,
+  currentItem: null,
   queue: [],
 
   open: (item) => {
-    const { current, queue } = get();
+    const { currentItem, queue } = get();
 
     // 1) norealtime 모달을 보고 있을 때 → 실시간 알림 → 기존 모달 버리고 실시간 모달만 뜸
-    if (item.type === 'realtime' && current?.type === 'norealtime') {
-      set({ current: item, queue: [] });
+    if (item.type === 'realtime' && currentItem?.type === 'norealtime') {
+      set({ currentItem: item, queue: [] });
       return;
     }
 
     // 2) 이미 실시간 모달이 떠 있는 상태
-    if (current) {
+    if (currentItem) {
       const exists = queue.some((q) => {
         if (q.type === item.type) {
           if (q.type === 'realtime') {
@@ -53,16 +53,16 @@ export const useModalStore = create<ModalStore>((set, get) => ({
     }
 
     // 3) 모달이 아무것도 떠 있지 않을 때
-    set({ current: item });
+    set({ currentItem: item });
   },
 
   close: () => {
     const { queue } = get();
     if (queue.length > 0) {
       const [next, ...rest] = queue;
-      set({ current: next, queue: rest });
+      set({ currentItem: next, queue: rest });
     } else {
-      set({ current: null, queue: [] });
+      set({ currentItem: null, queue: [] });
     }
   },
 }));

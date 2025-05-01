@@ -11,15 +11,15 @@ import * as S from './InProgress.style';
 const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const [video, setVideo] = useState('');
-  const open = useModalStore((s) => s.open);
-  const close = useModalStore((s) => s.close);
-  const current = useModalStore((s) => s.current);
+  const openModal = useModalStore((s) => s.open);
+  const closeModal = useModalStore((s) => s.close);
+  const currentItem = useModalStore((s) => s.currentItem);
 
   const { highlight } = useHighlightStore();
   const isHighlighted = typeof highlight === 'number' && highlight === id;
 
   const handleVideoModal = async () => {
-    open({ type: 'norealtime', id: id });
+    openModal({ type: 'norealtime', id: id });
     const response = await getVideo(id);
     setVideo(response.video);
   };
@@ -57,8 +57,8 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
           </S.CardBack>
         </S.CardInner>
       </S.FlipCard>
-      {current?.type === 'norealtime' && current.id === id && (
-        <VideoModal isOpen={true} onClose={close} video={video} />
+      {currentItem?.type === 'norealtime' && currentItem.id === id && (
+        <VideoModal isOpen={true} onClose={closeModal} video={video} />
       )}
     </>
   );

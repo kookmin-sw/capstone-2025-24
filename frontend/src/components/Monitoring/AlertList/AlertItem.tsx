@@ -10,12 +10,12 @@ interface AlertItemProps extends AlertProps {
 
 const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
   const { updateItemState } = useItemStore();
-  const open = useModalStore((s) => s.open);
-  const close = useModalStore((s) => s.close);
-  const current = useModalStore((s) => s.current);
+  const openModal = useModalStore((s) => s.open);
+  const closeModal = useModalStore((s) => s.close);
+  const currentItem = useModalStore((s) => s.currentItem);
 
   const handleDetail = () => {
-    open({ type: 'norealtime', id: id });
+    openModal({ type: 'norealtime', id: id });
     if (state === '미확인') updateItemState(id, '확인');
   };
 
@@ -34,9 +34,9 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
           </S.CategoryDiv>
           <S.AddressP>{address}</S.AddressP>
           <S.ShowButtoon onClick={handleDetail}>자세히 보기</S.ShowButtoon>
-          {current?.type === 'norealtime' && current.id === id && (
+          {currentItem?.type === 'norealtime' && currentItem.id === id && (
             <AlertModal
-              onClose={close}
+              onClose={closeModal}
               alertItem={{
                 id,
                 level,

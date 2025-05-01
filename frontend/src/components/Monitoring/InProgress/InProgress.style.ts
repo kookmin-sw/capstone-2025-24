@@ -229,6 +229,7 @@ export const BackButton = styled.button`
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  text-decoration: underline;
 `;
 
 // CategorySelectCard.tsx ------------------------------------//

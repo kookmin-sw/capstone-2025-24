@@ -25,9 +25,9 @@ const IncidentList = () => {
   const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
-  const open = useModalStore((s) => s.open);
-  const close = useModalStore((s) => s.close);
-  const current = useModalStore((s) => s.current);
+  const openModal = useModalStore((s) => s.open);
+  const closeModal = useModalStore((s) => s.close);
+  const currentItem = useModalStore((s) => s.currentItem);
 
   const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
@@ -65,7 +65,7 @@ const IncidentList = () => {
                     key={incident.id}
                     onClick={() => {
                       setSelectedIncident(incident);
-                      open({ type: 'norealtime', id: incident.id });
+                      openModal({ type: 'norealtime', id: incident.id });
                     }}
                   >
                     <S.TableData index={index + 1}>
@@ -106,11 +106,11 @@ const IncidentList = () => {
           </S.Pagination>
         )}
       </S.Layout>
-      {current?.type === 'norealtime' && selectedIncident && (
+      {currentItem?.type === 'norealtime' && selectedIncident && (
         <IncidentDetailsModal
           isOpen={true}
           onClose={() => {
-            close();
+            closeModal();
             setSelectedIncident(null);
           }}
           incident={selectedIncident}
