@@ -1,6 +1,6 @@
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
-import { RiLogoutBoxRFill } from 'react-icons/ri';
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 // Layout ---------------------------//
 export const Layout = styled.div`
@@ -124,8 +124,9 @@ export const LogoutBtn = styled.button`
   color: var(--gray400);
 `;
 
-export const LogoutLogo = styled(RiLogoutBoxRFill)`
+export const LogoutLogo = styled(RiLogoutBoxRLine)`
   font-size: 20px;
-  margin: 8px;
+  margin: 15px 8px;
   color: var(--gray400);
+
 `;
