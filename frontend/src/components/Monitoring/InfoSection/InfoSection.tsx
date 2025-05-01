@@ -8,7 +8,6 @@ import { CctvInfo } from '@/types/cctv';
 import { getCctvInfo } from '@/apis/CctvApi';
 
 const InfoSection = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   const [cctv, setCctv] = useState<CctvInfo[]>([]);
 
   useEffect(() => {
@@ -22,10 +21,10 @@ const InfoSection = () => {
   return (
     <S.InfoLayout>
       <S.InfoContent>
-        <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={cctv} />
-        <InfoBox selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={cctv} />
+        <KakaoMap Locations={cctv} />
+        <InfoBox Locations={cctv} />
       </S.InfoContent>
-      <VideoPlayer selectedIndex={selectedIndex} Locations={cctv} />
+      <VideoPlayer Locations={cctv} />
     </S.InfoLayout>
   );
 };

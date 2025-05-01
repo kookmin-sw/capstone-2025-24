@@ -2,14 +2,14 @@ import * as S from './InfoSection.style';
 import cctvIcon from '@/assets/icons/cctvIcon.svg';
 import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
 import { CctvInfo } from '@/types/cctv';
+import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface InfoBoxProps {
-  selectedIndex: number | null;
-  setSelectedIndex: (index: number | null) => void;
   Locations: CctvInfo[];
 }
 
-const InfoBox = ({ selectedIndex, setSelectedIndex, Locations }: InfoBoxProps) => {
+const InfoBox = ({ Locations }: InfoBoxProps) => {
+  const { selectedIndex, setSelectedIndex } = useSelectedCctvStore();
   return (
     <S.InfoBoxLayout>
       <S.UpperDiv>
@@ -22,8 +22,8 @@ const InfoBox = ({ selectedIndex, setSelectedIndex, Locations }: InfoBoxProps) =
       <S.Line />
       <S.LocationDiv>
         {Locations.map((location, index) => (
-          <S.Location key={index} selected={selectedIndex === index} onClick={() => setSelectedIndex(index)}>
-            <img src={selectedIndex === index ? cctvIconBlue : cctvIcon} alt="cctv-icon" />
+          <S.Location key={index} selected={selectedIndex === location.id} onClick={() => setSelectedIndex(location.id)}>
+            <img src={selectedIndex === location.id ? cctvIconBlue : cctvIcon} alt="cctv-icon" />
             {location.address}
           </S.Location>
         ))}

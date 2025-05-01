@@ -7,6 +7,8 @@ import { AlertProps } from '@/types/alert';
 import { getVideo } from '@/apis/AlertApi';
 import { useItemStore } from '@/stores/itemStore.ts';
 import * as S from './AlertModal.style';
+import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
+import { useNavigate } from 'react-router-dom';
 
 interface IncidentModalProps {
   onClose: () => void;
@@ -17,9 +19,11 @@ interface IncidentModalProps {
 }
 
 const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate }: IncidentModalProps) => {
-  const { id, category, date, address, video } = alertItem;
+  const { id, category, cctvId, date, address, video } = alertItem;
   const [videoUrl, setVideoUrl] = useState('');
   const { updateItemState } = useItemStore();
+  const { setSelectedIndex } = useSelectedCctvStore();
+  const navigate = useNavigate();
 
   const fetchVideo = async () => {
     const response = await getVideo(id);
@@ -55,7 +59,20 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
           {date}
         </S.InfoDiv>
       </S.InfoContainer>
-      <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
+      <S.VideoWrapper>
+        <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
+        <S.CctvButton
+          onClick={async () => {
+            if (isUpdate) updateItemState(alertItem.id, '출동');
+            onClose();
+            navigate('/monitoring');
+            setSelectedIndex(cctvId);
+          }}
+        >
+          <S.RecordIcon />
+          CCTV 보러 가기
+        </S.CctvButton>
+      </S.VideoWrapper>
       <S.ButtonContainer>
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동

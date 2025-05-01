@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
+import { BsRecord2 } from 'react-icons/bs';
 
 // AlertModal.tsx ------------------------------------//
 
@@ -43,6 +44,7 @@ export const ModalContainer = styled.div<{ highlight: boolean }>`
     }
   }
 `;
+// IncidentModal.tsx -------------------------//
 
 export const CloseButton = styled.div`
   position: absolute;
@@ -100,6 +102,35 @@ export const Button = styled.button`
     border: none;
     color: white;
   }
+`;
+
+export const VideoWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const CctvButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  background-color: rgb(250, 247, 247);
+  border: none;
+  border-radius: 50px;
+  font-size: 12px;
+  padding: 7px 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+`;
+
+export const RecordIcon = styled(BsRecord2)`
+  color: var(--red);
+  width: 20px;
+  height: 20px;
 `;
 
 // FeedbackModal.tsx ------------------------------------
