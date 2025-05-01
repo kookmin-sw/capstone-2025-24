@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
-import { BsRecord2 } from 'react-icons/bs';
+import { BiSolidCctv } from "react-icons/bi";
 
 // AlertModal.tsx ------------------------------------//
 
@@ -127,10 +127,11 @@ export const CctvButton = styled.button`
   z-index: 2;
 `;
 
-export const RecordIcon = styled(BsRecord2)`
-  color: var(--red);
+export const RecordIcon = styled(BiSolidCctv)`
+  color: var(--primary900);
   width: 20px;
   height: 20px;
+  margin: 0 3px;
 `;
 
 // FeedbackModal.tsx ------------------------------------
