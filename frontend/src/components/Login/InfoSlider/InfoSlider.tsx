@@ -6,7 +6,10 @@ import LOGINMONITOR from '@/assets/images/loginMonitor.svg';
 import CustomDots from './CustomDots.tsx';
 import PLUS from '@/assets/icons/plus.svg';
 import FLUID from '@/assets/images/fluid.svg';
-import CCTVBGD from '@/assets/lottie/tmp.json';
+import CCTVBGD from '@/assets/lottie/cctvBackground.json';
+import SPREAD from '@/assets/lottie/spreadCircle.json';
+import BELL from '@/assets/images/bellCircle.svg';
+import MARKER from '@/assets/images/markerCircle.svg';
 
 const InfoSlider = () => {
   const settings: Settings = {
@@ -38,6 +41,10 @@ const InfoSlider = () => {
         </S.SlideCard>
         <S.SlideCard>
           <img src={LOGINMONITOR} alt="img3" />
+          <S.SpreadBell animationData={SPREAD} />
+          <S.SpreadMarker animationData={SPREAD} />
+          <img src={MARKER} alt="marker" className="marker" />
+          <img src={BELL} alt="bell" className="bell" />
         </S.SlideCard>
       </S.CardSlider>
     </S.InfoSliderLayout>

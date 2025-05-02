@@ -70,6 +70,18 @@ export const SlideCard = styled.div`
     width: 90%;
     height: 90%;
   }
+
+  .bell {
+    position: absolute;
+    top: 55%;
+    left: 14%;
+  }
+
+  .marker {
+    position: absolute;
+    top: 15%;
+    left: 70%;
+  }
 `;
 
 export const Background = styled(Lottie)`
@@ -79,6 +91,22 @@ export const Background = styled(Lottie)`
   width: 370px;
   height: 370px;
   transform: rotate(160deg);
+`;
+
+export const SpreadBell = styled(Lottie)`
+  position: absolute;
+  top: 43%;
+  left: 5%;
+  width: 80px;
+  height: 80px;
+`;
+
+export const SpreadMarker = styled(Lottie)`
+  position: absolute;
+  top: 3%;
+  left: 61%;
+  width: 80px;
+  height: 80px;
 `;
 
 // CustomDots.tsx ---------------------------------- //
