@@ -1,15 +1,13 @@
 import { useAuthStore } from '@/stores/authStore';
 import * as S from './Sidebar.style';
+import { useState } from 'react';
+import ConfirmModal from './ConfirmModal';
 
 const LogoutButton = () => {
   const { logout } = useAuthStore();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = async () => {
-    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
-    if (!confirmLogout) {
-      return;
-    }
-
     try {
       await logout();
       window.location.href = '/';
@@ -20,10 +18,20 @@ const LogoutButton = () => {
   };
 
   return (
-    <S.LogoutBtn onClick={handleLogout}>
-      <S.LogoutLogo />
-      로그아웃
-    </S.LogoutBtn>
+    <>
+      <S.LogoutBtn onClick={() => setIsModalOpen(true)}>
+        <S.LogoutLogo />
+        로그아웃
+      </S.LogoutBtn>
+
+      {isModalOpen && (
+        <ConfirmModal
+          message="로그아웃 하시겠습니까?"
+          onConfirm={handleLogout}
+          onCancel={() => setIsModalOpen(false)}
+        />
+      )}
+    </>
   );
 };
 
