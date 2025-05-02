@@ -5,26 +5,33 @@ import Slider from 'react-slick';
 export const VisualSliderLayout = styled.div`
   width: 440px;
   height: 380px;
-  margin-top: 20px;
-  border: 1px solid black;
+  margin-top: 40px;
 `;
 
 export const CardSlider = styled(Slider)`
-border: 1px solid red;
+:focus {
+  border: none;
+}
 `;
 
 export const TmpCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   width: 100%;
   height: 335px;
   background-color: transparent;
-  /* img {
-    border: 1px solid black;
-  } */
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
+
+
+
 
 // CustomDots.tsx ---------------------------------- //
 export const CustomDotsLayout = styled.div`
@@ -33,5 +40,4 @@ export const CustomDotsLayout = styled.div`
   justify-content: center;
   width: 100%;
   height: 30px;
-  margin-top: 20px;
 `;

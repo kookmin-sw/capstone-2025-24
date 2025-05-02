@@ -78,32 +78,35 @@ export const GlobalStyle = createGlobalStyle`
   .dots_custom {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 30px;
-    margin: 10px;
+    align-items: center;
+    padding: 0;
+    margin: 0;
   }
 
   .dots_custom li {
     list-style: none;
     display: inline-block;
+    justify-content: center;
     margin: 0 10px;
+    cursor: pointer;
   }
 
   .dots_custom li button {
-    border: none;
-    background: white;
-    color: transparent;
-    display: block;
     height: 7px;
     width: 7px;
     border-radius: 100%;
-    padding: 0;
+    cursor: pointer;
+    border: none;
+    background: white;
+    vertical-align: middle;
+    color: transparent;
   }
 
   .dots_custom li.slick-active button {
     background-color: white;
     width: 10px;
     height: 10px;
+    cursor: pointer;
   }
 `;
 
