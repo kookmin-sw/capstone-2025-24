@@ -4,14 +4,12 @@ import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import Layout from '../components/common/Sidebar/Layout';
-import RealTimeAlert from '@/components/RealTimeAlert/RealTimeAlert.tsx';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <RealTimeAlert />
       <Routes>
         <Route element={<PublicRoute />}>
           <Route path="/" element={<LoginPage />} />

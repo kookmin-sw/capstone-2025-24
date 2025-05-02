@@ -115,7 +115,6 @@ export const LogoutBtn = styled.button`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  width: 90%;
   font-size: 16px;
   padding: 8px 6px;
   padding-left: 15px;

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
-import { BiSolidCctv } from "react-icons/bi";
+import { BiSolidCctv } from 'react-icons/bi';
 
 // AlertModal.tsx ------------------------------------//
 

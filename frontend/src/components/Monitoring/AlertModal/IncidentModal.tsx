@@ -30,6 +30,13 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
     setVideoUrl(response.video);
   };
 
+  const handleCctvNavigate = async () => {
+    if (isUpdate) updateItemState(alertItem.id, '출동');
+    onClose();
+    navigate('/monitoring');
+    setSelectedIndex(cctvId);
+  };
+
   useEffect(() => {
     if (video != undefined) {
       setVideoUrl(video);
@@ -61,14 +68,7 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
       </S.InfoContainer>
       <S.VideoWrapper>
         <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
-        <S.CctvButton
-          onClick={async () => {
-            if (isUpdate) updateItemState(alertItem.id, '출동');
-            onClose();
-            navigate('/monitoring');
-            setSelectedIndex(cctvId);
-          }}
-        >
+        <S.CctvButton onClick={handleCctvNavigate}>
           <S.RecordIcon />
           CCTV 보러 가기
         </S.CctvButton>

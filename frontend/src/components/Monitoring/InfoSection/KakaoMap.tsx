@@ -6,14 +6,14 @@ import { CctvInfo } from '@/types/cctv';
 import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface KakaoMapProps {
-  Locations: CctvInfo[];
+  locations: CctvInfo[];
 }
 
-const KakaoMap = ({ Locations }: KakaoMapProps) => {
+const KakaoMap = ({ locations }: KakaoMapProps) => {
   const { selectedIndex, setSelectedIndex } = useSelectedCctvStore();
   return (
     <S.Maps id="map" center={{ lat: 37.6105, lng: 126.9978 }} level={4} zoomable={false}>
-      {Locations.map((location, index) => (
+      {locations.map((location, index) => (
         <MapMarker
           key={index}
           position={{

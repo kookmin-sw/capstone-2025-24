@@ -5,17 +5,17 @@ import { CctvInfo } from '@/types/cctv';
 import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface VideoPlayerProps {
-  Locations: CctvInfo[];
+  locations: CctvInfo[];
 }
 
-const VideoPlayer = ({ Locations }: VideoPlayerProps) => {
+const VideoPlayer = ({ locations }: VideoPlayerProps) => {
   const { selectedIndex } = useSelectedCctvStore();
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     if (selectedIndex === null) return;
-    
-    const target = Locations.find((loc) => loc.id === selectedIndex);
+
+    const target = locations.find((loc) => loc.id === selectedIndex);
     if (!target) return;
 
     const video = videoRef.current;
@@ -37,7 +37,7 @@ const VideoPlayer = ({ Locations }: VideoPlayerProps) => {
     return () => {
       hls.destroy();
     };
-  }, [selectedIndex, Locations]);
+  }, [selectedIndex, locations]);
 
   return <S.VideoPlayer ref={videoRef} muted autoPlay playsInline />;
 };
