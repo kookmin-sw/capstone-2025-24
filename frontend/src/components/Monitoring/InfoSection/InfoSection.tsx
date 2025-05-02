@@ -25,7 +25,7 @@ const InfoSection = () => {
   }, []);
   
   return (
-    <S.InfoLayout>
+    <S.InfoLayout id="info-section">
       <S.InfoContent>
         <KakaoMap locations={cctv} />
         <InfoBox locations={cctv} />
