@@ -48,6 +48,7 @@ const AlertList = () => {
           alerts.map((alert) => (
             <AlertItem
               key={alert.id}
+              cctvId={alert.cctvId}
               id={alert.id}
               level={alert.level}
               category={alert.category}

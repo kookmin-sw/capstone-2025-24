@@ -8,7 +8,7 @@ interface AlertItemProps extends AlertProps {
   clicked: boolean;
 }
 
-const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
+const AlertItem = ({ id, level, cctvId, category, date, address, state, clicked }: AlertItemProps) => {
   const { updateItemState } = useItemStore();
   const { openModal, closeModal, currentItem } = useModal();
 
@@ -38,6 +38,7 @@ const AlertItem = ({ id, level, category, date, address, state, clicked }: Alert
               alertItem={{
                 id,
                 level,
+                cctvId,
                 category,
                 date,
                 address,

@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegCheckCircle } from 'react-icons/fa';
+import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface ModalProps {
   onClose: () => void;
@@ -23,6 +24,7 @@ interface ModalProps {
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight: boolean }) => {
+  const { setSelectedIndex } = useSelectedCctvStore();
   const { updateItemState } = useItemStore();
   const { setHighlight } = useHighlightStore(); // 출동하기 클릭 후, 출동 사건 카드 파란색 강조 용도
   const [step, setStep] = useState<ModalStep>('incident');
@@ -86,6 +88,22 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
     setStep('submit');
   };
 
+  const handleCctvView = () => {
+    if (isUpdate) updateItemState(alertItem.id, '출동');
+    onClose();
+    setSelectedIndex(alertItem.cctvId);
+
+    if (location.pathname !== '/monitoring') {
+      navigate('/monitoring');
+    }
+    setTimeout(() => {
+      const target = document.getElementById('info-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <ToastContainer />
@@ -97,6 +115,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
             onFeedbackClick={handleFeedback}
             onDispatch={handleDispatch}
             isUpdate={isUpdate}
+            onCctvClick={handleCctvView}
           />
         )}
         {step === 'feedback' && (
