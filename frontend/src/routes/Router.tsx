@@ -3,7 +3,7 @@ import ChartPage from '../pages/ChartPage/ChartPage';
 import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import Layout from '../components/common/Sidebar/Layout';
+import Layout from '../components/Layout/Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
