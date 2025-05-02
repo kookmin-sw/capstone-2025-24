@@ -1,4 +1,4 @@
-import * as S from './VisualSlider.style';
+import * as S from './InfoSlider.style';
 
 const CustomDots = (dots: any) => {
   return (

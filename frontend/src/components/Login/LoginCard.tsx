@@ -1,11 +1,11 @@
 import * as S from './Login.style.ts';
-import VisualSide from './VisualSide.tsx';
+import InfoSide from './InfoSide.tsx';
 import FormSide from './FormSide.tsx';
 
 const LoginCard = () => {
   return (
     <S.LoginCard>
-      <VisualSide />
+      <InfoSide />
       <FormSide />
     </S.LoginCard>
   );

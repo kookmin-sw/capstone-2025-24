@@ -11,16 +11,17 @@ export const LoginCard = styled.section`
   background-color: white;
 `;
 
-// VisualSide.tsx ------------------------------------//
-export const VisualSide = styled.div`
+// InfoSide.tsx ------------------------------------//
+export const InfoSide = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
-  background-color: #4373e4;
+  background-color: rgb(44, 108, 255);
   border-radius: 20px 0 0 20px;
   padding: 24px;
 `;
+
 // FormSide.tsx ------------------------------------//
 export const FormSideLayout = styled.div`
   display: flex;
@@ -70,7 +71,7 @@ export const ValidSection = styled.section<{ $isFailed: boolean }>`
 export const LoginBtn = styled(Button)`
   width: 330px;
   height: 47px;
-  background-color: #6e9eff;
+  background-color:rgb(66, 110, 255);
   color: white;
   font-size: 16px;
   border-radius: 5px;
