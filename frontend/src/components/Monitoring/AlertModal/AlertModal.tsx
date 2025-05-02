@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaRegCheckCircle } from 'react-icons/fa';
+import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface ModalProps {
   onClose: () => void;
@@ -27,6 +28,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   const [step, setStep] = useState<ModalStep>('incident');
   const { setHighlight } = useHighlightStore();
   const [isUpdate, setIsUpdate] = useState(false);
+  const { setSelectedIndex } = useSelectedCctvStore();
   const navigate = useNavigate();
 
   const handleOutsideClick = () => {
@@ -81,6 +83,22 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
     setStep('submit');
   };
 
+  const handleCctvView = () => {
+    if (isUpdate) updateItemState(alertItem.id, '출동');
+    onClose();
+    setSelectedIndex(alertItem.cctvId);
+
+    if (location.pathname !== '/monitoring') {
+      navigate('/monitoring');
+    }
+    setTimeout(() => {
+      const target = document.getElementById('info-section');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
+  };
+
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <ToastContainer />
@@ -92,6 +110,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
             onFeedbackClick={handleFeedback}
             onDispatch={handleDispatch}
             isUpdate={isUpdate}
+            onCctvClick={handleCctvView}
           />
         )}
         {step === 'feedback' && (
