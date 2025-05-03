@@ -1,6 +1,7 @@
 # 순찰의 새로운 기준이 되다, NURINOON
 
 ## 💡 프로젝트 소개
+
 경찰은 치안 관리를 위해 도보 순찰을 강화하고 있으나, 인력 중심 순찰의 한계, 긴급 상황 대응 지체, 신고 의존형 사후 대응 시스템(신고가 없는 사건에 대한 대응 불가) 등의 문제점을 안고 있습니다. 우리는 이러한 문제에 주목하여, AI를 통해 위험 행동을 실시간으로 탐지·분류하고 사건을 즉시 관리할 수 있는 모니터링 시스템, NURINOON(누리눈)을 개발하였습니다.
 
 NURINOON은 CCTV 영상을 실시간 분석하여 화재, 폭행, 쓰러짐(실신) 등 다양한 위험 상황을 감지하고 사건 유형별로 우선순위를 지정해 경찰의 신속한 대응을 지원합니다. 실시간 스트리밍 기능을 통해 관할 지역 CCTV를 모니터링하며 현장 상황을 즉각적으로 파악할 수 있습니다. 또한 발생한 사건 데이터를 기반으로 경향을 분석하고 시각화하여 순찰 인력 배치 등 치안 전략 수립을 지원합니다.
@@ -11,17 +12,17 @@ NURINOON은 상시 모니터링을 통해 인력 부담을 줄이고, AI를 활�
 <br/>
 <br/>
 
-
 ## 💡기능 및 특징 소개
-![서비스 흐름](https://github.com/user-attachments/assets/d2920144-1bc5-452c-9cac-26ff910ae1e5)
 
+![서비스 흐름](https://github.com/user-attachments/assets/d2920144-1bc5-452c-9cac-26ff910ae1e5)
 
 <br><br>
 NURINOON의 사용 흐름은 다음과 같습니다.
+
 1. CCTV 영상이 실시간으로 송출됨과 동시에 AI 모델에 전달되어 위험 행동을 탐지합니다.
 2. 위험 행동이 감지되면 실시간으로 알림이 전송되고, 경찰은 상황을 확인한 후 적절한 대응을 선택하게 됩니다. 이때 출동과 미출동 2가지 대응 방안이 존재합니다.
-4. 일련의 대응 과정이 모두 끝나면, 해당 사건은 종료 처리되며, 종료된 사건은 누적되어 추후 조회 및 통계 자료로 활용됩니다.
-<br><br><br><br>
+3. 일련의 대응 과정이 모두 끝나면, 해당 사건은 종료 처리되며, 종료된 사건은 누적되어 추후 조회 및 통계 자료로 활용됩니다.
+   <br><br><br><br>
 
 ### 👁️‍🗨️ AI 기반 실시간 위험 행동 감지
 
@@ -57,57 +58,47 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 <br/>
 <br/>
 
+## 💡페이지 소개
 
-
-## 페이지 소개
-
-| 기능 | 시연 화면 |
-|:------:|:--------:|
+|                    기능                    |                     시연 화면                      |
+| :----------------------------------------: | :------------------------------------------------: |
 | **구글 로그인 및 사용자 음성 데이터 수집** | <img src="./resources/feature_1.gif" width="400"/> |
-| **예시 대본 제공 및 사용자 대본 생성** | <img src="./resources/feature_2.gif" width="400"/> |
-| **문장 단위 연습** | <img src="./resources/feature_3.gif" width="400"/> |
-| **프롬프트 연습** | <img src="./resources/feature_4.gif" width="400"/> |
-| **연습 기록 확인** | <img src="./resources/feature_5.gif" width="400"/> |
+|   **예시 대본 제공 및 사용자 대본 생성**   | <img src="./resources/feature_2.gif" width="400"/> |
+|             **문장 단위 연습**             | <img src="./resources/feature_3.gif" width="400"/> |
+|             **프롬프트 연습**              | <img src="./resources/feature_4.gif" width="400"/> |
+|             **연습 기록 확인**             | <img src="./resources/feature_5.gif" width="400"/> |
 
 <br/>
 <br/>
 <br/>
 
+## 💡시연 영상
 
-## 시연 영상
-
-{% include youtube.html id="n0foeiRzmUE" %}
-
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/n0foeiRzmUE" frameborder="0" allowfullscreen></iframe>
 
 <br/>
 <br/>
 <br/>
 
+## 💡시스템 아키텍처
 
-
-## 시스템 아키텍처
 ---
 
 ![시스템아키텍처](https://github.com/user-attachments/assets/7c5cd308-86a6-4bc7-963a-f18b51338ef4)
 
-
 <br/>
 <br/>
 <br/>
-
-
 
 ## Model
+
 내용을 추가해주세요
 
 <br/>
 <br/>
 <br/>
 
-
-
-
-## 팀원
+## 💡팀원
 
 <table>
     <tr align="center">
@@ -175,8 +166,9 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
       </td>
     </tr>
 </table>
-<br><br>
-
+<br/>
+<br/>
+<br/>
 
 ## 기술 스택
 
@@ -221,6 +213,7 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 <br/><br/><br/>
 
 ## 제출 서류
+
 ---
 
 -
