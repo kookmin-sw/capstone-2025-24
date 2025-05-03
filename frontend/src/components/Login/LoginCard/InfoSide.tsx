@@ -1,5 +1,5 @@
 import * as S from './LoginCard.style.ts';
-import LOGOWHITE from '@/assets/icons/logo_white.svg';
+import LOGOWHITE from '@/assets/icons/logoWhite.svg';
 import InfoSlider from '../InfoSlider/InfoSlider.tsx';
 
 const InfoSide = () => {
