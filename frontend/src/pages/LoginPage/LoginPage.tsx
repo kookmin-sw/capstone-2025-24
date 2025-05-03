@@ -1,5 +1,5 @@
 import * as S from './LoginPage.style.ts';
-import LoginCard from '@/components/Login/LoginCard.tsx';
+import LoginCard from '@/components/Login/LoginCard/LoginCard.tsx';
 const LoginPage = () => {
   return (
     <S.LoginPageLayout>

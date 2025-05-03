@@ -1,4 +1,4 @@
-import * as S from './Login.style.ts';
+import * as S from './LoginCard.style.ts';
 import InfoSide from './InfoSide.tsx';
 import FormSide from './FormSide.tsx';
 

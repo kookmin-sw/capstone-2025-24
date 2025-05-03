@@ -11,7 +11,7 @@ declare module 'react-slick' {
     autoplay?: boolean;
     autoplaySpeed?: number;
     className?: string;
-    [key: string]: any;
+    [key: string]: ReactNode;
   }
 
   export default class Slider extends React.Component<Settings> {}

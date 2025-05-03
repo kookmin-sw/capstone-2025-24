@@ -1,6 +1,6 @@
-import * as S from './Login.style.ts';
+import * as S from './LoginCard.style.ts';
 import LOGOWHITE from '@/assets/icons/logo_white.svg';
-import InfoSlider from './InfoSlider/InfoSlider.tsx';
+import InfoSlider from '../InfoSlider/InfoSlider.tsx';
 
 const InfoSide = () => {
   return (

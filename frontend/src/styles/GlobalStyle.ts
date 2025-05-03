@@ -75,7 +75,7 @@ export const GlobalStyle = createGlobalStyle`
     margin-top: 450px;
   }
 
-  .dots_custom {
+  .dots-custom {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,7 +83,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  .dots_custom li {
+  .dots-custom li {
     list-style: none;
     display: inline-block;
     justify-content: center;
@@ -91,7 +91,7 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  .dots_custom li button {
+  .dots-custom li button {
     height: 7px;
     width: 7px;
     border-radius: 100%;
@@ -102,7 +102,7 @@ export const GlobalStyle = createGlobalStyle`
     color: transparent;
   }
 
-  .dots_custom li.slick-active button {
+  .dots-custom li.slick-active button {
     background-color: white;
     width: 10px;
     height: 10px;

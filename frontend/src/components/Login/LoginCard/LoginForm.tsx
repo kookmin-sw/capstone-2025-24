@@ -1,4 +1,4 @@
-import * as S from './Login.style.ts';
+import * as S from './LoginCard.style.ts';
 import { useState } from 'react';
 import { IoWarning } from 'react-icons/io5';
 import { postLogin } from '@/apis/LoginApi';
@@ -15,12 +15,10 @@ const LoginForm = () => {
     const data = await postLogin(userId, password);
     if (data !== undefined && 'message' in data) {
       setIsFailed(true);
-      setUserId('');
-      setPassword('');
       return;
     } else if (data !== undefined) {
       setProfile(() => data);
-      navigate('monitoring');
+      navigate('/monitoring');
     }
   };
 
