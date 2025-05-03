@@ -301,4 +301,10 @@ export const CloseSubmitButton = styled.button`
   &:active {
     background-color: #3d52af;
   }
+
+  &:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
+    cursor: not-allowed;
+  }
 `;
