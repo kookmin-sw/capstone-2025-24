@@ -19,7 +19,11 @@ export const InfoSide = styled.div`
   height: 100%;
   background-color: rgb(44, 108, 255);
   border-radius: 20px 0 0 20px;
-  padding: 24px;
+`;
+
+export const LogoImg = styled.img`
+  margin-top: 24px;
+  margin-left: 24px;
 `;
 
 // FormSide.tsx ------------------------------------//
@@ -71,7 +75,7 @@ export const ValidSection = styled.section<{ $isFailed: boolean }>`
 export const LoginBtn = styled(Button)`
   width: 330px;
   height: 47px;
-  background-color:rgb(66, 110, 255);
+  background-color: rgb(66, 110, 255);
   color: white;
   font-size: 16px;
   border-radius: 5px;
