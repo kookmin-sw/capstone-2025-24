@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Slider from 'react-slick';
 import Lottie from 'lottie-react';
 
@@ -71,18 +71,6 @@ export const SlideCard = styled.div`
     width: 90%;
     height: 90%;
   }
-
-  .bell {
-    position: absolute;
-    top: 55%;
-    left: 14%;
-  }
-
-  .marker {
-    position: absolute;
-    top: 15%;
-    left: 70%;
-  }
 `;
 
 export const Background = styled(Lottie)`
@@ -94,20 +82,50 @@ export const Background = styled(Lottie)`
   transform: rotate(160deg);
 `;
 
-export const SpreadBell = styled(Lottie)`
+export const SpreadBell = styled.div`
   position: absolute;
-  top: 43%;
-  left: 5%;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
+  top: 55%;
+  left: 17%;
+  transform: translate(-50%, -50%);
 `;
 
-export const SpreadMarker = styled(Lottie)`
+export const SpreadMarker = styled.div`
   position: absolute;
-  top: 3%;
-  left: 61%;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
+  top: 15%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+`;
+
+const spread = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.1;
+  }
+`;
+
+export const RippleCircle = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: ${spread} 1.7s ease-out infinite;
+  z-index: 0;
+`;
+
+export const InnerImage = styled.img`
+  width: 43px;
+  height: 43px;
+  z-index: 1;
+  position: relative;
 `;
 
 // CustomDots.tsx ---------------------------------- //
