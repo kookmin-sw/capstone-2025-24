@@ -285,7 +285,6 @@ export const SelectButton = styled.button`
     background-color: #f2f2f2;
     color: #b3b3b3;
     border: solid 1.5px var(--gray400);
-    cursor: not-allowed;
   }
 `;
 

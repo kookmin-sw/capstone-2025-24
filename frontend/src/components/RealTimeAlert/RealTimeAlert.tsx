@@ -5,7 +5,7 @@ import PushNotification from './PushNotification/PushNotification';
 import { AlertProps } from '@/types/alert';
 import { useModal } from '@/hooks/useModal';
 
-function RealTimeAlert() {
+const RealTimeAlert = () => {
   const { alertData } = useSSE();
   const { openModal, closeModal, currentItem } = useModal();
 
@@ -30,6 +30,6 @@ function RealTimeAlert() {
       )}
     </>
   );
-}
+};
 
 export default RealTimeAlert;
