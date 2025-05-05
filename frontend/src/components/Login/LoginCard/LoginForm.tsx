@@ -1,18 +1,21 @@
 import * as S from './LoginCard.style.ts';
 import { useState } from 'react';
-import { IoWarning } from 'react-icons/io5';
-import { postLogin } from '@/apis/LoginApi';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '@/stores/authStore';
 import { useProfileStore } from '@/stores/profileStore.ts';
+import { IoWarning } from 'react-icons/io5';
+
 const LoginForm = () => {
-  const { setProfile } = useProfileStore();
   const [userId, setUserId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const navigate = useNavigate();
   const [isFailed, setIsFailed] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
+  const { setProfile } = useProfileStore();
+
   const submitLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = await postLogin(userId, password);
+    const data = await login(userId, password);
     if (data !== undefined && 'message' in data) {
       setIsFailed(true);
       return;
