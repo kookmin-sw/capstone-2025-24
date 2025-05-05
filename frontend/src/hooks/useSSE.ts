@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useItemStore } from '@/stores/itemStore';
 import { AlertProps } from '@/types/alert';
-import useIsModalOpen from '@/hooks/useIsModalOpen';
 import { getMappedCategory } from '@/utils/categoryMapper';
 
 export const useSSE = () => {
   const { addItem } = useItemStore();
-  const { openModal, closeModal, isModalOpen } = useIsModalOpen();
   const [alertData, setAlertData] = useState<AlertProps | null>(null);
 
   useEffect(() => {
@@ -18,9 +16,6 @@ export const useSSE = () => {
         const data: AlertProps = { ...rawData, state: '미확인', category: getMappedCategory(rawData.category) };
         addItem(data);
         setAlertData(data);
-        if (data.level == 2) {
-          openModal();
-        }
       } catch (error) {
         console.error('실시간 SSE 에러 : ', error);
       }
@@ -36,5 +31,5 @@ export const useSSE = () => {
     };
   }, [alertData]);
 
-  return { alertData, isModalOpen, openModal, closeModal };
+  return { alertData };
 };

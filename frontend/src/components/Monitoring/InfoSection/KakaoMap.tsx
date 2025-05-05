@@ -3,17 +3,17 @@ import { MapMarker } from 'react-kakao-maps-sdk';
 import cctvIcon from '@/assets/icons/cctvIcon.svg';
 import cctvIconBlue from '@/assets/icons/cctvBlueIcon.svg';
 import { CctvInfo } from '@/types/cctv';
+import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 interface KakaoMapProps {
-  selectedIndex: number | null;
-  setSelectedIndex: (index: number | null) => void;
-  Locations: CctvInfo[];
+  locations: CctvInfo[];
 }
 
-const KakaoMap = ({ selectedIndex, setSelectedIndex, Locations }: KakaoMapProps) => {
+const KakaoMap = ({ locations }: KakaoMapProps) => {
+  const { selectedIndex, setSelectedIndex } = useSelectedCctvStore();
   return (
-    <S.Maps id="map" center={{ lat: 37.611, lng: 126.9949 }} level={4} zoomable={false} >
-      {Locations.map((location, index) => (
+    <S.Maps id="map" center={{ lat: 37.6105, lng: 126.9978 }} level={4} zoomable={false}>
+      {locations.map((location, index) => (
         <MapMarker
           key={index}
           position={{
@@ -21,13 +21,13 @@ const KakaoMap = ({ selectedIndex, setSelectedIndex, Locations }: KakaoMapProps)
             lng: location.longitude,
           }}
           image={{
-            src: selectedIndex === index ? cctvIconBlue : cctvIcon,
+            src: selectedIndex === location.id ? cctvIconBlue : cctvIcon,
             size: {
               width: 22,
               height: 22,
             },
           }}
-          onClick={() => setSelectedIndex(index)}
+          onClick={() => setSelectedIndex(location.id)}
         />
       ))}
     </S.Maps>

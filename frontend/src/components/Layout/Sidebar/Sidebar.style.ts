@@ -1,5 +1,6 @@
 import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 // Layout ---------------------------//
 export const Layout = styled.div`
@@ -20,6 +21,9 @@ export const SidebarDiv = styled.div`
   background-color: rgb(9, 29, 109);
   box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const BtnDiv = styled.div`
@@ -88,10 +92,10 @@ export const SidebarBtn = styled(Button)`
   cursor: default;
 
   gap: 9px;
-  color: var(--primary700);
+  color: white;
   background-color: #00ff0000;
   .IconType {
-    color: var(--primary700);
+    color: white;
   }
 
   &:hover {
@@ -102,4 +106,81 @@ export const SidebarBtn = styled(Button)`
     background-color: rgba(151, 172, 255, 0.14);
     border: 1px solid #465fc3;
   }
+`;
+
+// LogoutButton.tsx ------------------------------- //
+export const LogoutBtn = styled.button`
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  font-size: 16px;
+  padding: 8px 6px;
+  padding-left: 15px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--gray400);
+`;
+
+export const LogoutLogo = styled(RiLogoutBoxRLine)`
+  font-size: 20px;
+  margin: 15px 8px;
+  color: var(--gray400);
+`;
+
+// ConfirmModal.tsx -----------------------//
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+export const ModalBox = styled.div`
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 350px;
+`;
+
+export const Message = styled.p`
+  margin-bottom: 20px;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+export const ButtonGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const ConfirmBtn = styled.button`
+  background: var(--primary900);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+`;
+
+export const CancelBtn = styled.button`
+  border: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 15px;
+  font-weight: 500;
 `;

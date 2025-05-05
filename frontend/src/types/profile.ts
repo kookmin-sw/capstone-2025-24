@@ -5,7 +5,3 @@ export interface ProfileType {
     profileUrl: string;
     rank: string;
   }
-
-export interface FailType {
-    message: string;
-}
