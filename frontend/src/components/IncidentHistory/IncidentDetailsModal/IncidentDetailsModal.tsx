@@ -16,6 +16,8 @@ interface IncidentDetailsModalProps {
 }
 
 const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModalProps) => {
+  if (!isOpen) return null;
+
   const [incidentDetails, setIncidentDetails] = useState<IncidentModalInfo>({
     memo: '',
     latitude: 0,
@@ -41,8 +43,6 @@ const IncidentDetailsModal = ({ isOpen, onClose, incident }: IncidentDetailsModa
     await putMemo(incident.id, incidentDetails.memo);
     onClose();
   };
-
-  if (!isOpen) return null;
 
   return (
     <S.Overlay onClick={handleClose}>
