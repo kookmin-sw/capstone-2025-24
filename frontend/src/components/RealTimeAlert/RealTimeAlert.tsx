@@ -1,40 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSSE } from '@/hooks/useSSE';
-import AlertModal from '../Monitoring/AlertModal/AlertModal';
+import AlertModal from '@/components/Monitoring/AlertModal/AlertModal';
 import PushNotification from './PushNotification/PushNotification';
-import { useHighlightStore } from '@/stores/highlightStore';
+import { AlertProps } from '@/types/alert';
+import { useModal } from '@/hooks/useModal';
 
 const RealTimeAlert = () => {
-  const { alertData, isModalOpen, closeModal } = useSSE();
-  const { highlight, setHighlight } = useHighlightStore();
+  const { alertData } = useSSE();
+  const { openModal, closeModal, currentItem } = useModal();
+
+  const [pushAlert, setPushAlert] = useState<AlertProps | null>(null);
 
   useEffect(() => {
-    if (alertData?.level === 2) {
-      setHighlight(true);
+    if (!alertData) return;
+
+    if (alertData.level === 2) {
+      openModal({ type: 'realtime', alertItem: alertData, highlight: true }); // 2단계 : queue 삽입, 모달 open
+    } else {
+      setPushAlert(alertData); // 1단계 푸쉬 알림
     }
-  }, [alertData]);
-
-  const handleModalClose = () => {
-    setHighlight(false);
-    closeModal();
-  };
-
-  if (!alertData) return null;
-
-  const { id, level, cctvId, category, date, address, state, video } = alertData;
+  }, [alertData, openModal]);
 
   return (
-    <div>
-      {level === 2 && isModalOpen && (
-        <AlertModal
-          onClose={handleModalClose}
-          alertItem={{ id, level, cctvId, category, date, address, state, video }}
-          highlight={!!highlight}
-        />
-      )}
+    <>
+      {pushAlert && <PushNotification key={pushAlert.id} id={pushAlert.id} category={pushAlert.category} />}
 
-      {level === 1 && <PushNotification key={id} id={id} category={category} />}
-    </div>
+      {currentItem?.type === 'realtime' && (
+        <AlertModal onClose={closeModal} highlight={currentItem.highlight} alertItem={currentItem.alertItem} />
+      )}
+    </>
   );
 };
 

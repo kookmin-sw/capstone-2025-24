@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useItemStore } from '@/stores/itemStore';
 import { useHighlightStore } from '@/stores/highlightStore';
@@ -24,12 +24,17 @@ interface ModalProps {
 type ModalStep = 'incident' | 'feedback' | 'category' | 'submit';
 
 const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight: boolean }) => {
-  const { updateItemState } = useItemStore();
-  const [step, setStep] = useState<ModalStep>('incident');
-  const { setHighlight } = useHighlightStore();
-  const [isUpdate, setIsUpdate] = useState(false);
   const { setSelectedIndex } = useSelectedCctvStore();
+  const { updateItemState } = useItemStore();
+  const { setHighlight } = useHighlightStore(); // 출동하기 클릭 후, 출동 사건 카드 파란색 강조 용도
+  const [step, setStep] = useState<ModalStep>('incident');
+  const [isUpdate, setIsUpdate] = useState(false);
+  const redHighlightEffect = highlight && step === 'incident'; // 실시간 모달 빨간색 강조 용도
   const navigate = useNavigate();
+
+  useEffect(() => { // 실시간 모달 중복으로 들어올 경우, incident step으로 초기화
+    setStep('incident');
+  }, [alertItem.id]);
 
   const handleOutsideClick = () => {
     if (step === 'incident') {
@@ -102,7 +107,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <ToastContainer />
-      <S.ModalContainer highlight={highlight} onClick={(e) => e.stopPropagation()}>
+      <S.ModalContainer highlight={redHighlightEffect} onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}

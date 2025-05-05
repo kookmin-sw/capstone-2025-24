@@ -297,8 +297,14 @@ export const CloseSubmitButton = styled.button`
   height: 60px;
   margin-top: 40px;
   font-weight: 600;
+  cursor: pointer;
 
   &:active {
     background-color: #3d52af;
+  }
+
+  &:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
   }
 `;

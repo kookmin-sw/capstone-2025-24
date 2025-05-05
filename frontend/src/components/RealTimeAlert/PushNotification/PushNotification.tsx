@@ -2,18 +2,30 @@ import * as S from './PushNotification.style';
 import exclamationMark from '../../../assets/icons/exclamationMark.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useModalStore } from '@/stores/modalStore';
 
 const PushNotification = ({ id, category }: { id: number; category: string | null }) => {
   const [visible, setVisible] = useState(true);
   const navigate = useNavigate();
+  const currentItem = useModalStore((s) => s.currentItem);
+  const closeModal = useModalStore((s) => s.close);
 
   const handleClick = () => {
+    if (currentItem) {
+      closeModal();
+    }
+
     sessionStorage.setItem('highlightConsumed', id.toString());
     if (location.pathname === '/monitoring') {
       navigate('/monitoring', { state: { refresh: Date.now() } });
+      const target = document.getElementById('pushAlarm');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       navigate(`/monitoring`);
     }
+
     setVisible(false);
   };
 

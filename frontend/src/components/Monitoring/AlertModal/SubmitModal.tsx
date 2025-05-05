@@ -7,8 +7,8 @@ const SubmitModal = ({ onClose, id }: IncidentCardProps) => {
   const { removeItem } = useItemStore();
 
   const handleClose = () => {
-    removeItem(id);
     onClose();
+    removeItem(id);
   };
   return (
     <S.SubmitLayout>
