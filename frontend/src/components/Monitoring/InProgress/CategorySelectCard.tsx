@@ -41,7 +41,9 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
           </S.CategoryRow>
         ))}
       </S.CategoryContainer>
-      <S.SelectButton onClick={handleClickResolve}>선택 완료</S.SelectButton>
+      <S.SelectButton disabled={!selectedCategory} onClick={handleClickResolve}>
+        선택 완료
+      </S.SelectButton>
       <S.BackButton onClick={onClose}>이전으로 돌아가기</S.BackButton>
     </>
   );

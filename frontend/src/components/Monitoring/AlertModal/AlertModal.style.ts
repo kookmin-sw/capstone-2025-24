@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Lottie from 'lottie-react';
+import { BiSolidCctv } from 'react-icons/bi';
 
 // AlertModal.tsx ------------------------------------//
 
@@ -43,6 +44,7 @@ export const ModalContainer = styled.div<{ highlight: boolean }>`
     }
   }
 `;
+// IncidentModal.tsx -------------------------//
 
 export const CloseButton = styled.div`
   position: absolute;
@@ -100,6 +102,36 @@ export const Button = styled.button`
     border: none;
     color: white;
   }
+`;
+
+export const VideoWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+export const CctvButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  background-color: rgb(250, 247, 247);
+  border: none;
+  border-radius: 50px;
+  font-size: 12px;
+  padding: 7px 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+`;
+
+export const RecordIcon = styled(BiSolidCctv)`
+  color: var(--primary900);
+  width: 20px;
+  height: 20px;
+  margin: 0 3px;
 `;
 
 // FeedbackModal.tsx ------------------------------------
@@ -265,8 +297,14 @@ export const CloseSubmitButton = styled.button`
   height: 60px;
   margin-top: 40px;
   font-weight: 600;
+  cursor: pointer;
 
   &:active {
     background-color: #3d52af;
+  }
+
+  &:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
   }
 `;

@@ -1,9 +1,10 @@
 import * as S from './LoginPage.style.ts';
-import LoginCard from '@/components/Login/LoginCard/LoginCard.tsx';
+import LoginForm from '../../components/Login/LoginForm.tsx';
+
 const LoginPage = () => {
   return (
     <S.LoginPageLayout>
-      <LoginCard />
+      <LoginForm />
     </S.LoginPageLayout>
   );
 };

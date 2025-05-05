@@ -7,8 +7,8 @@ const ResolvedCard = ({ onClose, id }: IncidentCardProps) => {
   const { removeItem } = useItemStore();
   const handelResolvedIncident = () => {
     setTimeout(() => {
-      removeItem(id);
       onClose();
+      removeItem(id);
     }, 2000);
   };
 
