@@ -2,10 +2,11 @@ import { create } from 'zustand';
 import { postLogin, postLogout } from '@/apis/LoginApi';
 import { useProfileStore } from './profileStore';
 import { persist } from 'zustand/middleware';
+import { ProfileType } from '@/types/profile';
 
 interface AuthState {
   isLoggedIn: boolean;
-  login: (userId: string, password: string) => Promise<void>;
+  login: (userId: string, password: string) => Promise<'success' | 'fail'>;
   logout: () => Promise<void>;
   clearAuth: () => void;
 }
@@ -16,9 +17,15 @@ export const useAuthStore = create<AuthState>()(
       isLoggedIn: false,
 
       login: async (userId, password) => {
-        const profile = await postLogin(userId, password);
-        useProfileStore.getState().setProfile(() => profile);
+        const result = await postLogin(userId, password);
+
+        if (result !== undefined && 'message' in result ) {
+          return 'fail';
+        }
+
+        useProfileStore.getState().setProfile(() => result as ProfileType);
         set({ isLoggedIn: true });
+        return 'success';
       },
 
       logout: async () => {
@@ -39,6 +46,6 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
-    }
-  )
+    },
+  ),
 );
