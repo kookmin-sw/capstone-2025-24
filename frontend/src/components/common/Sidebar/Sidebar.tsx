@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import useSidebarStore from '@/stores/sidebarStore';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import LogoutButton from './LogoutButton';
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -47,25 +46,16 @@ export const Sidebar = () => {
 
   return (
     <S.SidebarDiv>
-      <div>
-        <S.LogoDiv>로고</S.LogoDiv>
-        <Profile />
-        <S.BtnDiv>
-          {SIDEBAR_LIST.map((it) => {
-            const Icon = it.icon;
-            return (
-              <SidebarButton
-                key={it.text}
-                text={it.text}
-                icon={Icon}
-                id={it.id}
-                onClick={() => handleNavigate(it.id)}
-              />
-            );
-          })}
-        </S.BtnDiv>
-      </div>
-      <LogoutButton />
+      <S.LogoDiv>로고</S.LogoDiv>
+      <Profile />
+      <S.BtnDiv>
+        {SIDEBAR_LIST.map((it) => {
+          const Icon = it.icon;
+          return (
+            <SidebarButton key={it.text} text={it.text} icon={Icon} id={it.id} onClick={() => handleNavigate(it.id)} />
+          );
+        })}
+      </S.BtnDiv>
     </S.SidebarDiv>
   );
 };

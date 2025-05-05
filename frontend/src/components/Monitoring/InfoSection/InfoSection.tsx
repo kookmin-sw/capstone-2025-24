@@ -6,31 +6,26 @@ import VideoPlayer from './VideoPlayer';
 import { useEffect } from 'react';
 import { CctvInfo } from '@/types/cctv';
 import { getCctvInfo } from '@/apis/CctvApi';
-import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
 
 const InfoSection = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   const [cctv, setCctv] = useState<CctvInfo[]>([]);
-  const { setSelectedIndex } = useSelectedCctvStore();
 
   useEffect(() => {
     const fetchCctv = async () => {
       const data = await getCctvInfo();
       setCctv(data);
-      if (data.length > 0) {
-        setSelectedIndex(data[0].id);
-      }
     };
-  
+
     fetchCctv();
   }, []);
-  
   return (
-    <S.InfoLayout id="info-section">
+    <S.InfoLayout>
       <S.InfoContent>
-        <KakaoMap locations={cctv} />
-        <InfoBox locations={cctv} />
+        <KakaoMap selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} Locations={cctv} />
+        <InfoBox selectedIndex={selectedIndex} Locations={cctv} />
       </S.InfoContent>
-      <VideoPlayer locations={cctv} />
+      <VideoPlayer selectedIndex={selectedIndex} Locations={cctv} />
     </S.InfoLayout>
   );
 };

@@ -48,9 +48,7 @@ const CategorySelectModal = ({ onBack, onSubmit, id }: CategorySelectModalProps)
           </S.CategoryRow>
         ))}
       </S.CategoryContainer>
-      <S.CloseSubmitButton disabled={!selectedCategory} onClick={handleSubmit}>
-        선택 완료
-      </S.CloseSubmitButton>
+      <S.CloseSubmitButton onClick={handleSubmit}>선택 완료</S.CloseSubmitButton>
       <S.BackButton onClick={onBack}>이전으로 돌아가기</S.BackButton>
     </S.SubmitLayout>
   );

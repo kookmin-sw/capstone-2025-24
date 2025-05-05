@@ -3,23 +3,20 @@ import ChartPage from '../pages/ChartPage/ChartPage';
 import MonitoringPage from '../pages/MonitoringPage/MonitoringPage';
 import IncidentHistoryPage from '../pages/IncidentHistoryPage/IncidentHistoryPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import Layout from '../components/Layout/Layout';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import Layout from '../components/common/Sidebar/Layout';
+import RealTimeAlert from '@/components/RealTimeAlert/RealTimeAlert.tsx';
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <RealTimeAlert />
       <Routes>
-        <Route element={<PublicRoute />}>
-          <Route path="/" element={<LoginPage />} />
-        </Route>
-        <Route element={<PrivateRoute />}>
-          <Route element={<Layout />}>
-            <Route path="/monitoring" element={<MonitoringPage />} />
-            <Route path="/history" element={<IncidentHistoryPage />} />
-            <Route path="/chart" element={<ChartPage />} />
-          </Route>
+        <Route path="/" element={<LoginPage />} />
+        <Route element={<Layout />}>
+          <Route path="/monitoring" element={<MonitoringPage />} />
+          <Route path="/history" element={<IncidentHistoryPage />} />
+          <Route path="/chart" element={<ChartPage />} />
+          <Route element={<RealTimeAlert />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -14,10 +14,9 @@ interface IncidentModalProps {
   alertItem: AlertProps;
   onDispatch: () => void;
   isUpdate: boolean;
-  onCctvClick: () => void;
 }
 
-const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate, onCctvClick }: IncidentModalProps) => {
+const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate }: IncidentModalProps) => {
   const { id, category, date, address, video } = alertItem;
   const [videoUrl, setVideoUrl] = useState('');
   const { updateItemState } = useItemStore();
@@ -26,7 +25,6 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
     const response = await getVideo(id);
     setVideoUrl(response.video);
   };
-
 
   useEffect(() => {
     if (video != undefined) {
@@ -57,13 +55,7 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
           {date}
         </S.InfoDiv>
       </S.InfoContainer>
-      <S.VideoWrapper>
-        <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
-        <S.CctvButton onClick={onCctvClick}>
-          <S.RecordIcon />
-          CCTV 보러 가기
-        </S.CctvButton>
-      </S.VideoWrapper>
+      <VideoComponent w="100%" h="100%" radius={10} video={videoUrl} />
       <S.ButtonContainer>
         <S.Button className="no" onClick={onFeedbackClick}>
           미출동

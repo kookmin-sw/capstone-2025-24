@@ -7,13 +7,21 @@ import IncidentDetailsModal from '../IncidentDetailsModal/IncidentDetailsModal.t
 import Filtering from '../Filtering/Filtering.tsx';
 import { Incident } from '@/types/incident.ts';
 import { categoryToKorean } from '@/utils/categoryMapper.ts';
-import { useModal } from '@/hooks/useModal';
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 
 const IncidentList = () => {
   // 사건 리스트 데이터
   const [incidentData, setIncidentData] = useState<Incident[]>([]);
   const [dataLength, setDataLength] = useState(0);
   const [pageLength, setPageLength] = useState(0);
+
+  const truncate = (text: string, maxLength: number) => {
+    return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
+  };
+
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
+
+  const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
 
   // 페이지네이션
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,14 +32,6 @@ const IncidentList = () => {
   const startPage = (currentGroup - 1) * pageGroupSize + 1; // 페이지네이션 버튼의 시작 숫자
   const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-
-  const { openModal, closeModal, currentItem } = useModal();
-
-  const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
-
-  const truncate = (text: string, maxLength: number) => {
-    return text.length > maxLength ? `${text.slice(0, maxLength)} ...` : text;
-  };
 
   return (
     <div>
@@ -63,7 +63,7 @@ const IncidentList = () => {
                     key={incident.id}
                     onClick={() => {
                       setSelectedIncident(incident);
-                      openModal({ type: 'norealtime', id: incident.id });
+                      openModal();
                     }}
                   >
                     <S.TableData index={index + 1}>
@@ -104,9 +104,9 @@ const IncidentList = () => {
           </S.Pagination>
         )}
       </S.Layout>
-      {currentItem?.type === 'norealtime' && selectedIncident && (
+      {isModalOpen && selectedIncident && (
         <IncidentDetailsModal
-          isOpen={true}
+          isOpen={isModalOpen}
           onClose={() => {
             closeModal();
             setSelectedIncident(null);

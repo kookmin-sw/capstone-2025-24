@@ -87,7 +87,6 @@ export const LocationDiv = styled.div`
   padding: 0 7px;
   max-height: 157px;
   overflow-y: auto;
-  cursor: pointer;
 
   img {
     width: 22px;

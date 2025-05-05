@@ -1,19 +1,19 @@
+import useIsModalOpen from '@/hooks/useIsModalOpen';
 import AlertModal from '../AlertModal/AlertModal.tsx';
 import * as S from './AlertList.style.ts';
 import { AlertProps } from '@/types/alert';
 import { useItemStore } from '@/stores/itemStore';
-import { useModal } from '@/hooks/useModal';
 
 interface AlertItemProps extends AlertProps {
   clicked: boolean;
 }
 
-const AlertItem = ({ id, level, cctvId, category, date, address, state, clicked }: AlertItemProps) => {
+const AlertItem = ({ id, level, category, date, address, state, clicked }: AlertItemProps) => {
+  const { isModalOpen, openModal, closeModal } = useIsModalOpen();
   const { updateItemState } = useItemStore();
-  const { openModal, closeModal, currentItem } = useModal();
 
   const handleDetail = () => {
-    openModal({ type: 'norealtime', id: id });
+    openModal();
     if (state === '미확인') updateItemState(id, '확인');
   };
 
@@ -32,13 +32,12 @@ const AlertItem = ({ id, level, cctvId, category, date, address, state, clicked 
           </S.CategoryDiv>
           <S.AddressP>{address}</S.AddressP>
           <S.ShowButtoon onClick={handleDetail}>자세히 보기</S.ShowButtoon>
-          {currentItem?.type === 'norealtime' && currentItem.id === id && (
+          {isModalOpen && (
             <AlertModal
               onClose={closeModal}
               alertItem={{
                 id,
                 level,
-                cctvId,
                 category,
                 date,
                 address,
