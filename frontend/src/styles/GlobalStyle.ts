@@ -1,4 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 export const GlobalStyle = createGlobalStyle`
   :root{
@@ -71,6 +73,40 @@ export const GlobalStyle = createGlobalStyle`
     gap: 16px;
     width: fit-content;
     margin-top: 450px;
+  }
+
+  .dots-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .dots-custom li {
+    list-style: none;
+    display: inline-block;
+    justify-content: center;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  .dots-custom li button {
+    height: 7px;
+    width: 7px;
+    border-radius: 100%;
+    cursor: pointer;
+    border: none;
+    background: white;
+    vertical-align: middle;
+    color: transparent;
+  }
+
+  .dots-custom li.slick-active button {
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
   }
 `;
 
