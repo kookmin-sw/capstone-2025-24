@@ -19,7 +19,7 @@ export const useAuthStore = create<AuthState>()(
       login: async (userId, password) => {
         const result = await postLogin(userId, password);
 
-        if (result !== undefined && 'message' in result ) {
+        if (result !== undefined && 'message' in result) {
           return 'fail';
         }
 
