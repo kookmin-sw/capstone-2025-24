@@ -250,6 +250,25 @@
       .go-button:hover {
         background-color: #374151;
       }
+
+      .doc-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .doc-link {
+        display: inline-block;
+        color: #1f2937;
+        padding: 0.75rem;
+        font-weight: 500;
+        text-decoration: none;
+        width: fit-content;
+      }
+
+      .doc-link:hover {
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -699,6 +718,14 @@
 
     <section id="docs">
       <h2>💡 자료</h2>
+      <div class="doc-list">
+        <a href="./pdf/business_plan.pdf" target="_blank" class="doc-link"
+          >📎&nbsp; 수행계획서</a
+        >
+        <a href="./pdf/mid_ppt.pdf" target="_blank" class="doc-link"
+          >📎&nbsp; 중간 발표 자료</a
+        >
+      </div>
     </section>
 
     <footer>© 2025 KMUCS 캡스톤디자인 24조 | NURINOON 프로젝트</footer>
