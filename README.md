@@ -3,14 +3,15 @@
 ![nurinoon_tmp_logo](https://github.com/user-attachments/assets/5ead0eea-39df-4d71-b501-965c9e33597a)
 
 - 소개 페이지 링크: [소개 페이지](https://kookmin-sw.github.io/capstone-2025-24/)
-<br><br>
+  <br><br>
 
 <!-- 🌐🎯📍📌 -->
 
 ## 🌐 프로젝트 소개
+
 ![스크린샷 2025-04-28 183746](https://github.com/user-attachments/assets/9b8ce7e7-a697-4807-9896-d9bca58a67ce)
 
-경찰은 치안 관리를 위해 도보 순찰을 강화하고 있으나, 인력 중심 순찰의 한계, 긴급 상황 대응 지체, 신고 의존형 사후 대응 시스템(신고가 없는 사건에 대한 대응 불가) 등의 문제점을 안고 있습니다. 우리는 이러한 문제에 주목하여, AI를 통해 위험 행동을 실시간으로 탐지·분류하고 사건을 즉시 관리할 수 있는 모니터링 시스템, <strong>NURINOON(누리눈)</strong>을 개발하였습니다. 
+경찰은 치안 관리를 위해 도보 순찰을 강화하고 있으나, 인력 중심 순찰의 한계, 긴급 상황 대응 지체, 신고 의존형 사후 대응 시스템(신고가 없는 사건에 대한 대응 불가) 등의 문제점을 안고 있습니다. 우리는 이러한 문제에 주목하여, AI를 통해 위험 행동을 실시간으로 탐지·분류하고 사건을 즉시 관리할 수 있는 모니터링 시스템, <strong>NURINOON(누리눈)</strong>을 개발하였습니다.
 
 <strong>NURINOON</strong>은 CCTV 영상을 실시간 분석하여 화재, 폭행, 쓰러짐(실신) 등 다양한 위험 상황을 감지하고 사건 유형별로 우선순위를 지정해 경찰의 신속한 대응을 지원합니다. 실시간 스트리밍 기능을 통해 관할 지역 CCTV를 모니터링하며 현장 상황을 즉각적으로 파악할 수 있습니다. 또한 발생한 사건 데이터를 기반으로 경향을 분석하고 시각화하여 순찰 인력 배치 등 치안 전략 수립을 지원합니다.
 
@@ -50,44 +51,53 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 <br><br>
 
 ## 🌐 화면 소개
+
 <table>
-        <tr>
-          <th>기능</th>
-          <th>시연 화면</th>
-        </tr>
-        <tr>
-          <td>CCTV<br />모니터링</td>
-          <td>
-            <img src="docs/img/cctv_monitoring.gif" alt="기능 시연" width="650" />
-          </td>
-        </tr>
-        <tr>
-          <td>실시간 <br />위험행동 <br />감지 알림</td>
-          <td>
-            <img src="docs/img/alert.gif" width="650" /><img
-              src="./img/alert2.gif"
-              width="650"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>출동중인<br />사건 관리</td>
-          <td><img src="docs/img/manage.gif" width="650" /></td>
-        </tr>
-        <tr>
-          <td>AI <br />성능 개선을 위한 피드백</td>
-          <td><img src="docs/img/feedback.gif" width="650" /></td>
-        </tr>
-        <tr>
-          <td>사건 기록 조회</td>
-          <td><img src="docs/img/history.gif" width="650" /></td>
-        </tr>
-        <tr>
-          <td>사건 통계 차트</td>
-          <td><img src="docs/img/chart.gif" width="650" /></td>
-        </tr>
-      </table>
+  <tr>
+    <th style="width: 200px; text-align: left;">기능</th>
+    <th style="text-align: center;">시연 화면</th>
+  </tr>
+  <tr>
+    <td>CCTV 모니터링</td>
+    <td align="center">
+      <img src="docs/img/cctv_monitoring.gif" alt="CCTV 모니터링" width="600" />
+    </td>
+  </tr>
+  <tr>
+    <td>실시간 위험행동 감지 알림</td>
+    <td align="center">
+      <img src="docs/img/alert.gif" width="600" /><br />
+      <img src="docs/img/alert2.gif" width="600" />
+    </td>
+  </tr>
+  <tr>
+    <td>출동중인 사건 관리</td>
+    <td align="center">
+      <img src="docs/img/manage.gif" width="600" />
+    </td>
+  </tr>
+  <tr>
+    <td>AI 성능 개선을 위한 피드백</td>
+    <td align="center">
+      <img src="docs/img/feedback.gif" width="600" />
+    </td>
+  </tr>
+  <tr>
+    <td>사건 기록 조회</td>
+    <td align="center">
+      <img src="docs/img/history.gif" width="600" />
+    </td>
+  </tr>
+  <tr>
+    <td>사건 통계 차트</td>
+    <td align="center">
+      <img src="docs/img/chart.gif" width="600" />
+    </td>
+  </tr>
+</table>
+
 <br><br>
+
 ## 🌐 시스템 아키텍처
 
 <!-- 아키텍처 사진 -->
@@ -202,12 +212,11 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 
 ### 🤖 AI Server
 
-| 역할                     | 종류                                                                                                  |
-| ------------------------ | ----------------------------------------------------------------------------------------------------- |
-| **Programming Language** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) |
+| 역할                     | 종류                                                                                                                                                                                                                 |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Programming Language** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)                                                                                                                |
 | **Framework**            | ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![YOLO](https://img.shields.io/badge/Ultralytics_YOLO-111F68?style=for-the-badge&logo=yolo&logoColor=white) |
-| **Video Processiog**     | ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
-
+| **Video Processiog**     | ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)                                                                                                                |
 
 <br />
 
@@ -219,6 +228,7 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 | **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)       |
 
 <br><br>
+
 ## 🌐 제출 서류
 
 <!-- 수행계획서 -->
