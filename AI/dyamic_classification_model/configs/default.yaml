@@ -1,0 +1,7 @@
+data_path: "dataset"
+batch_size: 16
+clip_duration: 3
+num_workers: 2
+lr: 1e-4
+max_epochs: 50
+num_classes: 4
