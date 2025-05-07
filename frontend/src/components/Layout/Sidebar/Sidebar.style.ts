@@ -14,7 +14,7 @@ export const MainContent = styled.div`
   background-color: var(--gray300);
 `;
 
-// Sidebar --------------------------//
+// Sidebar.tsx --------------------------//
 export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
@@ -24,6 +24,12 @@ export const SidebarDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+export const LogoImg = styled.img`
+  width: 180px;
+  display: block;
+  margin: 20px auto;
 `;
 
 export const BtnDiv = styled.div`
@@ -92,7 +98,7 @@ export const SidebarBtn = styled(Button)`
   cursor: default;
 
   gap: 9px;
-  color:rgb(243, 243, 243);
+  color: rgb(243, 243, 243);
   background-color: #00ff0000;
   .IconType {
     color: white;

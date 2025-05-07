@@ -14,16 +14,12 @@ export const LoginCard = styled.section`
 // InfoSide.tsx ------------------------------------//
 export const InfoSide = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
   width: 50%;
   height: 100%;
-  background-color: #4373E4;
+  background-color: #4373e4;
   border-radius: 20px 0 0 20px;
-`;
-
-export const LogoImg = styled.img`
-  margin-top: 24px;
-  margin-left: 24px;
 `;
 
 // FormSide.tsx ------------------------------------//
@@ -37,6 +33,11 @@ export const FormSideLayout = styled.div`
   background-color: white;
   border-radius: 0 20px 20px 0;
   padding-left: 43px;
+`;
+
+export const LogoImg = styled.img`
+  margin-bottom: 10px;
+  width: 200px;
 `;
 
 export const InfoP = styled.span`
