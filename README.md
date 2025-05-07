@@ -1,6 +1,7 @@
-# 👮 순찰의 새로운 기준이 되다, NURINOON
+# 👮 순찰의 새로운 방향이 되다, NURINOON
 
-![nurinoon_tmp_logo](https://github.com/user-attachments/assets/5ead0eea-39df-4d71-b501-965c9e33597a)
+![logo](https://github.com/user-attachments/assets/5fd8f900-3158-49bc-8c2c-2bec62d9fd4a)
+<br><br>
 
 - 소개 페이지 링크: [소개 페이지](https://kookmin-sw.github.io/capstone-2025-24/)
   <br><br>
