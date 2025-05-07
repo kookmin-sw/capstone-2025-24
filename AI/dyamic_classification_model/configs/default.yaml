@@ -1,3 +1,4 @@
+#setting
 data_path: "dataset"
 batch_size: 16
 clip_duration: 3

@@ -1,3 +1,4 @@
+#train.py
 import yaml
 from pytorch_lightning import Trainer
 from data_module import VideoDataModule
@@ -10,7 +11,7 @@ if __name__ == "__main__":
     model = X3DFineTuner(cfg)
     checkpoint_callback = ModelCheckpoint(
         monitor="val_loss",     
-        dirpath="/content/drive/MyDrive/X3D/fine-tune/configs/checkpoints/",         # 저장 위치
+        dirpath="/content/drive/MyDrive/X3D/fine-tune/configs/checkpoints/",     
         filename="x3d-{epoch:02d}-{val_loss:.2f}", 
         save_top_k=1,                
         mode="min",               
