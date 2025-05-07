@@ -49,6 +49,45 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 누적된 사건 데이터를 기반으로 시간대별, 장소별, 유형별 등 다양한 통계 그래프를 제공합니다. 경찰은 그래프를 통해 사건 경향성을 파악할 수 있으며, 지도의 클러스터링 기능을 통해 사건 다발 지역을 쉽게 인식할 수 있습니다.
 <br><br>
 
+## 🌐 화면 소개
+<table>
+        <tr>
+          <th>기능</th>
+          <th>시연 화면</th>
+        </tr>
+        <tr>
+          <td>CCTV<br />모니터링</td>
+          <td>
+            <img src="docs/img/cctv_monitoring.gif" alt="기능 시연" width="650" />
+          </td>
+        </tr>
+        <tr>
+          <td>실시간 <br />위험행동 <br />감지 알림</td>
+          <td>
+            <img src="docs/img/alert.gif" width="650" /><img
+              src="./img/alert2.gif"
+              width="650"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>출동중인<br />사건 관리</td>
+          <td><img src="docs/img/manage.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>AI <br />성능 개선을 위한 피드백</td>
+          <td><img src="docs/img/feedback.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>사건 기록 조회</td>
+          <td><img src="docs/img/history.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>사건 통계 차트</td>
+          <td><img src="docs/img/chart.gif" width="650" /></td>
+        </tr>
+      </table>
+<br><br>
 ## 🌐 시스템 아키텍처
 
 <!-- 아키텍처 사진 -->
