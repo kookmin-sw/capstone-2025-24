@@ -7,6 +7,7 @@ export const getMappedCategory = (category: string | null): string => {
 
 export const categoryToEnglish: Record<string, string> = {
   화재: 'fire',
+  연기: 'smoke',
   폭행: 'assault',
   군중밀집: 'crowd_congestion',
   흉기난동: 'weapon',
@@ -15,6 +16,7 @@ export const categoryToEnglish: Record<string, string> = {
 
 export const categoryToKorean: Record<string, string> = {
   fire: '화재',
+  연기: 'smoke',
   assault: '폭행',
   crowd_congestion: '군중밀집',
   weapon: '흉기난동',
