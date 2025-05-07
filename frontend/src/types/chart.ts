@@ -19,7 +19,7 @@ export interface eventCountItem {
   swoonCount: number;
 }
 
-export interface HourItem extends eventCountItem{
+export interface HourItem extends eventCountItem {
   hour: number;
 }
 
@@ -30,11 +30,11 @@ export interface LocationItem {
   count: number;
 }
 
-export interface BarMonthItem extends eventCountItem{
+export interface BarMonthItem extends eventCountItem {
   month: number;
 }
 
-export interface BarDayItem extends eventCountItem{
+export interface BarDayItem extends eventCountItem {
   day: number;
 }
 
@@ -42,17 +42,19 @@ export interface positionItem {
   address: string;
   latitude: number;
   longitude: number;
-  fire_count: number;
-  assault_count: number;
-  crowd_congestion_count: number;
-  weapon_count: number;
-  swoon_count: number;
+  fireCount: number;
+  smokeCount: number;
+  assaultCount: number;
+  crowdCongestionCount: number;
+  weaponCount: number;
+  swoonCount: number;
 }
 
 export interface statsItem {
-  fire_count: number;
-  assault_count: number;
-  crowd_congestion_count: number;
-  weapon_count: number;
-  swoon_count: number;
+  fireCount: number;
+  smokeCount: number;
+  assaultCount: number;
+  crowdCongestionCount: number;
+  weaponCount: number;
+  swoonCount: number;
 }

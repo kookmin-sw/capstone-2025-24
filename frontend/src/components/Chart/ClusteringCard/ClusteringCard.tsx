@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from 'react';
 import { getClusterData } from '@/apis/ChartApi';
 import { positionItem, statsItem } from '@/types/chart';
 const ClusteringCard = () => {
-  const [clusterData, setClusterData] = useState<positionItem[] | undefined>();
+  const [clusterData, setClusterData] = useState<positionItem[]>([]);
   const [statsData, setStatsData] = useState<statsItem | undefined>();
   const [inviewPort, setInviewPort] = useState<boolean>(false);
   const element = useRef<HTMLDivElement | null>(null);
@@ -18,32 +18,34 @@ const ClusteringCard = () => {
       if (!Array.isArray(data)) {
         setClusterData([]);
         setStatsData({
-          fire_count: 0,
-          assault_count: 0,
-          crowd_congestion_count: 0,
-          weapon_count: 0,
-          swoon_count: 0,
+          fireCount: 0,
+          smokeCount: 0,
+          assaultCount: 0,
+          crowdCongestionCount: 0,
+          weaponCount: 0,
+          swoonCount: 0,
         });
         return;
       } else {
         setClusterData(data);
-
         const initialStats: statsItem = {
-          fire_count: 0,
-          assault_count: 0,
-          crowd_congestion_count: 0,
-          weapon_count: 0,
-          swoon_count: 0,
+          fireCount: 0,
+          smokeCount: 0,
+          assaultCount: 0,
+          crowdCongestionCount: 0,
+          weaponCount: 0,
+          swoonCount: 0,
         };
 
-        const computedStats = (data: positionItem[]) => {
+        const computedStats = (data: statsItem[]) => {
           return data.reduce(
             (acc, item) => ({
-              fire_count: acc.fire_count + item.fire_count,
-              assault_count: acc.assault_count + item.assault_count,
-              crowd_congestion_count: acc.crowd_congestion_count + item.crowd_congestion_count,
-              weapon_count: acc.weapon_count + item.weapon_count,
-              swoon_count: acc.swoon_count + item.swoon_count,
+              fireCount: acc.fireCount + item.fireCount,
+              smokeCount: acc.smokeCount + item.smokeCount,
+              assaultCount: acc.assaultCount + item.assaultCount,
+              crowdCongestionCount: acc.crowdCongestionCount + item.crowdCongestionCount,
+              weaponCount: acc.weaponCount + item.weaponCount,
+              swoonCount: acc.swoonCount + item.swoonCount,
             }),
             initialStats,
           );
@@ -65,7 +67,7 @@ const ClusteringCard = () => {
       {inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}
       <S.TooltipDiv>
         <ToolTip>
-          <p>최근 30일 기준</p>
+          <p>이번 달 기준</p>
         </ToolTip>
       </S.TooltipDiv>
     </S.ClusteringCardLayout>

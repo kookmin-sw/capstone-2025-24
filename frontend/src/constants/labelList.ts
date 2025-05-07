@@ -26,10 +26,10 @@ export const LABELBYREGION: regionLabelItem[] = [
 ];
 
 export const STATSLABEL: labelItem[] = [
-  { key: 'fire_count', text: '화재', color: '#5877FF' },
+  { key: 'fire_count', text: '화재', color: '#F08676' },
   { key: 'smoke_count', text: '연기', color: '#F0AE72' },
-  { key: 'assault_count', text: '폭행', color: '#A8B3E3' },
-  { key: 'swoon_count', text: '쓰러짐', color: '#3257FE' },
-  { key: 'weapon_count', text: '흉기난동', color: '#849DFF' },
-  { key: 'crowd_congestion_count', text: '군중밀집', color: '#D4D8FF' },
+  { key: 'assault_count', text: '폭행', color: '#EBC266' },
+  { key: 'swoon_count', text: '쓰러짐', color: '#A7C972' },
+  { key: 'weapon_count', text: '흉기난동', color: '#7ED1C1' },
+  { key: 'crowd_congestion_count', text: '군중밀집', color: '#79A4E8' },
 ];
