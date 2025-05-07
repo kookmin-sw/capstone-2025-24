@@ -19,7 +19,7 @@ export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
   background-color: rgb(37, 86, 200);
-  box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
+
   z-index: 5;
   display: flex;
   flex-direction: column;
