@@ -15,8 +15,21 @@ const ClusteringCard = () => {
   useEffect(() => {
     const fetchClusterData = async () => {
       const data = await getClusterData();
+  
+      if (!Array.isArray(data)) {
+        setClusterData([]);
+        setStatsData({
+          fire_count: 0,
+          assault_count: 0,
+          crowd_congestion_count: 0,
+          weapon_count: 0,
+          swoon_count: 0,
+        });
+        return;
+      }
+  
       setClusterData(data);
-
+  
       const initialStats: statsItem = {
         fire_count: 0,
         assault_count: 0,
@@ -24,9 +37,9 @@ const ClusteringCard = () => {
         weapon_count: 0,
         swoon_count: 0,
       };
-
-      const computedStats = (data: positionItem[] | undefined) => {
-        const stats = data?.reduce(
+  
+      const computedStats = (data: positionItem[]) => {
+        return data.reduce(
           (acc, item) => ({
             fire_count: acc.fire_count + item.fire_count,
             assault_count: acc.assault_count + item.assault_count,
@@ -36,13 +49,14 @@ const ClusteringCard = () => {
           }),
           initialStats,
         );
-        return stats;
       };
-      setStatsData(computedStats(data as positionItem[]));
+  
+      setStatsData(computedStats(data));
     };
-
+  
     fetchClusterData();
   }, []);
+  
 
   useEffect(() => {
     useScrollObserver({ setInviewPort, element });

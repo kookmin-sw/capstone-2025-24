@@ -12,7 +12,7 @@ interface KakaoMapProps {
 const KakaoMap = ({ locations }: KakaoMapProps) => {
   const { selectedIndex, setSelectedIndex } = useSelectedCctvStore();
   return (
-    <S.Maps id="map" center={{ lat: 37.6105, lng: 126.9978 }} level={4} zoomable={false}>
+    <S.Maps id="map" center={{ lat: 37.6105, lng: 126.9978 }} level={4} >
       {locations.map((location, index) => (
         <MapMarker
           key={index}
