@@ -22,7 +22,6 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
 
   return (
     <S.StatsPanelLayout>
-      <p>정릉 1동</p>
       {STATSLABEL.map((it, index) => {
         return (
           <StatsItem

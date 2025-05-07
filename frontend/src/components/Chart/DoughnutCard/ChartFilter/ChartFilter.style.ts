@@ -29,10 +29,10 @@ export const FilterItem = styled.button<{$isSelected:boolean}>`
   &:hover {
     border-bottom: 3px solid ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray700)`)};
     color: ${({ $isSelected }) => ($isSelected ? `var(--primary900)` : `var(--gray700)`)};
-    transition: all 0.2s; /* hover 상태에서만 transition 적용 */
+    transition: all 0.2s;
   }
 
   &:not(:hover) {
-    transition: none; /* isSelected 변경 시 transition 제거 */
+    transition: none;
   }
 `;

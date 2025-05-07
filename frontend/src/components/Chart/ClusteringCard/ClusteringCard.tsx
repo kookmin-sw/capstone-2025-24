@@ -63,13 +63,18 @@ const ClusteringCard = () => {
 
   return (
     <S.ClusteringCardLayout ref={element}>
+      <S.ContentDiv>
+        <S.TitleDiv>
+          <S.TitleP>관할 구역 사건수</S.TitleP>
+          <S.TooltipDiv>
+            <ToolTip>
+              <p>이번 달 기준</p>
+            </ToolTip>
+          </S.TooltipDiv>
+        </S.TitleDiv>
+        <S.PanelDiv>{inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}</S.PanelDiv>
+      </S.ContentDiv>
       <ClusterMap clusterData={clusterData} />
-      {inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}
-      <S.TooltipDiv>
-        <ToolTip>
-          <p>이번 달 기준</p>
-        </ToolTip>
-      </S.TooltipDiv>
     </S.ClusteringCardLayout>
   );
 };
