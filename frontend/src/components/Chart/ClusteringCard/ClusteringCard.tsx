@@ -65,7 +65,7 @@ const ClusteringCard = () => {
       {inviewPort && <StatsPanel isVisible={inviewPort} statsData={statsData} />}
       <S.TooltipDiv>
         <ToolTip>
-          <p>올해 기준</p>
+          <p>최근 30일 기준</p>
         </ToolTip>
       </S.TooltipDiv>
     </S.ClusteringCardLayout>
