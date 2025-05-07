@@ -50,7 +50,7 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 누적된 사건 데이터를 기반으로 시간대별, 장소별, 유형별 등 다양한 통계 그래프를 제공합니다. 경찰은 그래프를 통해 사건 경향성을 파악할 수 있으며, 지도의 클러스터링 기능을 통해 사건 다발 지역을 쉽게 인식할 수 있습니다.
 <br><br>
 
-## 🌐 화면 소개
+## 🌐 주요 화면
 
 <table>
   <tr>
@@ -110,72 +110,59 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 
 ## 🌐 팀원
 
+<div align="center">
+
 <table>
-    <tr align="center">
-      <td style="min-width: 100px;">
-            <a href="https://github.com/hummingbbird">
-              <img src="https://github.com/hummingbbird.png" width="100" alt="프로필사진">
-              <br />
-              <b>이채영</b>
-            </a>
-        </td>
-      <td style="min-width: 100px;">
-            <a href="https://github.com/seo0o519">
-              <img src="https://github.com/seo0o519.png" width="100" alt="프로필사진">
-              <br />
-              <b>강서영</b>
-            </a>
-        </td>
-      <td style="min-width: 100px;">
-            <a href="https://github.com/HeeNamgoong">
-              <img src="https://github.com/HeeNamgoong.png" width="100" alt="프로필사진">
-              <br />
-              <b>남궁희</b>
-            </a>
-        </td>
-      <td style="min-width: 100px;">
-            <a href="https://github.com/hyni03">
-              <img src="https://github.com/hyni03.png" width="100" alt="프로필사진">
-              <br />
-              <b>김은지</b>
-            </a>
-        </td>
-        <td style="min-width: 100px;">
-            <a href="https://github.com/mjk25">
-              <img src="https://github.com/mjk25.png" width="100" alt="프로필사진">
-              <br />
-              <b>김민주</b>
-            </a>
-        </td>
-        <td style="min-width: 100px;">
-            <a href="https://github.com/justpers">
-              <img src="https://github.com/justpers.png" width="100" alt="프로필사진">
-              <br />
-              <b>김예향</b>
-            </a>
-        </td>
-    </tr>
-    <tr align="center">
-      <td>
-            TL, Frontend <br/>
-      </td>
-       <td>
-            Frontend <br/>
-      </td>
-       <td>
-            Frontend<br/>
-      </td>
-      <td>
-            Backend <br/>
-      </td>
-      <td>
-            Backend <br/>
-      </td>
-      <td>
-            AI <br/>
-      </td>
-    </tr>
+  <tr align="center">
+    <td style="min-width: 100px;">
+      <a href="https://github.com/hummingbbird">
+        <img src="https://github.com/hummingbbird.png" width="100" alt="프로필사진"><br />
+        <b>이채영</b>
+      </a>
+    </td>
+    <td style="min-width: 100px;">
+      <a href="https://github.com/seo0o519">
+        <img src="https://github.com/seo0o519.png" width="100" alt="프로필사진"><br />
+        <b>강서영</b>
+      </a>
+    </td>
+    <td style="min-width: 100px;">
+      <a href="https://github.com/HeeNamgoong">
+        <img src="https://github.com/HeeNamgoong.png" width="100" alt="프로필사진"><br />
+        <b>남궁희</b>
+      </a>
+    </td>
+    <td style="min-width: 100px;">
+      <a href="https://github.com/hyni03">
+        <img src="https://github.com/hyni03.png" width="100" alt="프로필사진"><br />
+        <b>김은지</b>
+      </a>
+    </td>
+    <td style="min-width: 100px;">
+      <a href="https://github.com/mjk25">
+        <img src="https://github.com/mjk25.png" width="100" alt="프로필사진"><br />
+        <b>김민주</b>
+      </a>
+    </td>
+    <td style="min-width: 100px;">
+      <a href="https://github.com/justpers">
+        <img src="https://github.com/justpers.png" width="100" alt="프로필사진"><br />
+        <b>김예향</b>
+      </a>
+    </td>
+  </tr>
+  <tr align="center">
+    <td>TL, Frontend</td>
+    <td>Frontend</td>
+    <td>Frontend</td>
+    <td>Backend</td>
+    <td>Backend</td>
+    <td>AI</td>
+  </tr>
 </table>
+
+</div>
+
 <br><br>
 
 ## 🌐 기술 스택
