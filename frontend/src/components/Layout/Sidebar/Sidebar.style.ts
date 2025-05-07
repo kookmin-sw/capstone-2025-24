@@ -18,7 +18,7 @@ export const MainContent = styled.div`
 export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
-  background-color: rgb(9, 29, 109);
+  background-color: rgb(37, 86, 200);
   box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
   z-index: 5;
   display: flex;
@@ -79,7 +79,7 @@ export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
 
 // SidebarBtn --------------------------------------//
 export const SidebarBtn = styled(Button)`
-  border: 1px solid rgb(9, 29, 109);
+  border: 1px solid rgb(37, 86, 200);
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -92,7 +92,7 @@ export const SidebarBtn = styled(Button)`
   cursor: default;
 
   gap: 9px;
-  color: white;
+  color:rgb(243, 243, 243);
   background-color: #00ff0000;
   .IconType {
     color: white;
@@ -104,7 +104,7 @@ export const SidebarBtn = styled(Button)`
 
   &.active {
     background-color: rgba(151, 172, 255, 0.14);
-    border: 1px solid #465fc3;
+    border: 1px solid rgb(126, 146, 239);
   }
 `;
 

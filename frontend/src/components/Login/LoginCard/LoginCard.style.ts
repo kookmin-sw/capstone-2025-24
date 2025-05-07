@@ -17,7 +17,7 @@ export const InfoSide = styled.div`
   flex-direction: column;
   width: 50%;
   height: 100%;
-  background-color: rgb(44, 108, 255);
+  background-color: #4373E4;
   border-radius: 20px 0 0 20px;
 `;
 
