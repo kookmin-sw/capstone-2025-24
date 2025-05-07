@@ -28,7 +28,7 @@ const LineCard = () => {
   return (
     <S.LineCardLayout>
       <S.TitleDiv>
-        <S.TitleP>시간대별 사건수</S.TitleP>
+        <S.TitleP>시간대별 사건 수</S.TitleP>
         <Dropdown
           items={CATEGORY_OPTIONS}
           width={113}

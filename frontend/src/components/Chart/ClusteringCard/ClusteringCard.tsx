@@ -65,7 +65,7 @@ const ClusteringCard = () => {
     <S.ClusteringCardLayout ref={element}>
       <S.ContentDiv>
         <S.TitleDiv>
-          <S.TitleP>관할 구역 사건수</S.TitleP>
+          <S.TitleP>관할 구역 사건 수</S.TitleP>
           <S.TooltipDiv>
             <ToolTip>
               <p>이번 달 기준</p>

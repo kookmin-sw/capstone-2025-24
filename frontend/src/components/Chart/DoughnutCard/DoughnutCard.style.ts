@@ -50,7 +50,7 @@ export const LabelBoxLayout = styled.div`
   flex-direction: column;
   height: 112px;
   justify-content: space-between;
-  gap: 2px;
+  gap: 8px;
 `;
 
 // Label.tsx ----------------------//
