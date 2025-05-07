@@ -2,7 +2,7 @@
 
 ![nurinoon_tmp_logo](https://github.com/user-attachments/assets/5ead0eea-39df-4d71-b501-965c9e33597a)
 
-- 소개 페이지 링크: [소개 페이지](githubpages)
+- 소개 페이지 링크: [소개 페이지](https://kookmin-sw.github.io/capstone-2025-24/)
 <br><br>
 
 <!-- 🌐🎯📍📌 -->
@@ -19,7 +19,7 @@
 
 ## 🌐 시연 영상
 
-[![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://www.youtube.com/watch?v=oU1lYYOKgb4)
+[![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://youtu.be/n0foeiRzmUE)
 <br><br>
 
 ## 🌐 기능 소개
@@ -166,7 +166,9 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 | 역할                     | 종류                                                                                                  |
 | ------------------------ | ----------------------------------------------------------------------------------------------------- |
 | **Programming Language** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) |
-| **Framework**            |
+| **Framework**            | ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![YOLO](https://img.shields.io/badge/Ultralytics_YOLO-111F68?style=for-the-badge&logo=yolo&logoColor=white) |
+| **Video Processiog**     | ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+
 
 <br />
 
