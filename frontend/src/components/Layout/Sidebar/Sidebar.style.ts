@@ -14,16 +14,22 @@ export const MainContent = styled.div`
   background-color: var(--gray300);
 `;
 
-// Sidebar --------------------------//
+// Sidebar.tsx --------------------------//
 export const SidebarDiv = styled.div`
   width: 220px;
   height: 100vh;
-  background-color: rgb(9, 29, 109);
-  box-shadow: 10px 0px 10px 0px rgba(200, 200, 200, 0.7);
+  background-color: rgb(37, 86, 200);
+
   z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+export const LogoImg = styled.img`
+  width: 180px;
+  display: block;
+  margin: 20px auto;
 `;
 
 export const BtnDiv = styled.div`
@@ -79,7 +85,7 @@ export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
 
 // SidebarBtn --------------------------------------//
 export const SidebarBtn = styled(Button)`
-  border: 1px solid rgb(9, 29, 109);
+  border: 1px solid rgb(37, 86, 200);
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -92,7 +98,7 @@ export const SidebarBtn = styled(Button)`
   cursor: default;
 
   gap: 9px;
-  color: white;
+  color: rgb(243, 243, 243);
   background-color: #00ff0000;
   .IconType {
     color: white;
@@ -104,7 +110,7 @@ export const SidebarBtn = styled(Button)`
 
   &.active {
     background-color: rgba(151, 172, 255, 0.14);
-    border: 1px solid #465fc3;
+    border: 1px solid rgb(126, 146, 239);
   }
 `;
 
