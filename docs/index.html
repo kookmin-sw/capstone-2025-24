@@ -55,6 +55,12 @@
         border-radius: 10px;
         margin: 1rem 0;
       }
+      img.AI {
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -271,7 +277,7 @@
       }
 
       .scroll-to-top {
-        color: #7D92ED;
+        color: #7d92ed;
         font-size: 1.5rem;
         text-align: center;
         text-decoration: none;
@@ -285,7 +291,7 @@
         position: fixed;
         bottom: 30px;
         right: 30px;
-        background-color: #F6F8FF;
+        background-color: #f6f8ff;
         font-size: 1.5rem;
         border-radius: 50%;
         display: flex;
@@ -298,7 +304,7 @@
       }
 
       .scroll-btn:hover {
-        background-color: #F2F4FF;
+        background-color: #f2f4ff;
       }
 
       html {
@@ -493,7 +499,14 @@
 
     <section id="ai">
       <h2>💡 AI 모델</h2>
-      <p>내용을 추가해주세요</p>
+      <img src="img/ai.png" alt="ai" class="AI" />
+      <br />
+      <p>
+        YOLOv11은 입력된 CCTV 영상에서 객체를 실시간으로 탐지하기 위해 Backbone,
+        Neck, Head의 3단계로 구성됩니다.<br />
+        이후 탐지된 프레임들은 X3D 모델에 입력되어 시간적 정보와 움직임 패턴을
+        분석하여 폭행, 쓰러짐 등 위험 상황을 판단합니다.
+      </p>
     </section>
     <br />
 
