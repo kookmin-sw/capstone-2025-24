@@ -36,9 +36,11 @@
 
 ## 💡 프로젝트 소개
 
+
 <div align="center"> 
     <p align = "center">
-    <img src = "https://github.com/user-attachments/assets/f214254a-c9af-4525-95d1-a99d640bc991" width = 1000/>
+        <img src = "https://github.com/user-attachments/assets/6f04690a-9b66-4c69-ae2a-3f775ed36ac9" width = 1000/>
+<!--     <img src = "https://github.com/user-attachments/assets/f214254a-c9af-4525-95d1-a99d640bc991" width = 1000/> -->
     </p>
 </div>
 
