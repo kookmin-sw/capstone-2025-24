@@ -1,17 +1,19 @@
 # 👮 순찰의 새로운 방향이 되다, NURINOON
 
 <br>
-<div align="center"> 
-    <p align = "center">
-    <img src = "https://github.com/user-attachments/assets/5fd8f900-3158-49bc-8c2c-2bec62d9fd4a" width = 500/>
-    </p>
+<div align="center">
+  <a href="https://kookmin-sw.github.io/capstone-2025-24/">
+    <img src="https://github.com/user-attachments/assets/56f3c669-2994-4a1b-a1b5-45f241ac3b03" width="500" />
+  </a>
+    <br>
+    <br>
+    <p>${\color{#D9D9D9}로고\ 클릭\ 시\ 소개\ 페이지로\ 이동합니다.}$</p>
 </div>
 <br>
+<br>
 
-- 소개 페이지: [https://kookmin-sw.github.io/capstone-2025-24/](https://kookmin-sw.github.io/capstone-2025-24/)
-  <br><br>
 
-## 🌐 목차 
+## 💡 목차 
 1️⃣ [🌐 프로젝트 소개](#-프로젝트-소개)
 
 2️⃣ [🌐 시연 영상](#-시연-영상)
@@ -32,52 +34,97 @@
 
 <br/> 
 
-## 🌐 프로젝트 소개
+## 💡 프로젝트 소개
 
-> “AI 기반 실시간 위험 모니터링 시스템”
-> 
-경찰은 치안 관리를 위해 도보 순찰을 강화하고 있으나, 인력 중심 순찰의 한계, 긴급 상황 대응 지체, 신고 의존형 사후 대응 시스템(신고가 없는 사건에 대한 대응 불가) 등의 문제점을 안고 있습니다. 우리는 이러한 문제에 주목하여, AI를 통해 위험 행동을 실시간으로 탐지·분류하고 사건을 관리할 수 있는 모니터링 시스템, <strong>NURINOON(누리눈)</strong>을 개발하였습니다.
+<div align="center"> 
+    <p align = "center">
+    <img src = "https://github.com/user-attachments/assets/f214254a-c9af-4525-95d1-a99d640bc991" width = 1000/>
+    </p>
+</div>
 
-<strong>NURINOON</strong>은 CCTV 영상을 실시간 분석하여 화재, 폭행, 쓰러짐(실신) 등 다양한 위험 상황을 감지하고 사건 유형별로 우선순위를 지정해 경찰의 신속한 대응을 지원합니다. 실시간 스트리밍 기능을 통해 관할 지역 CCTV를 모니터링하며 현장 상황을 즉각적으로 파악할 수 있습니다. 또한 발생한 사건 데이터를 기반으로 경향을 분석하고 시각화하여 순찰 인력 배치 등 치안 전략 수립을 지원합니다.
+### | “AI 기반 실시간 위험 모니터링 시스템”
 
-<strong>NURINOON</strong>은 상시 모니터링을 통해 인력 부담을 줄이고, AI를 활용해 보다 빠른 대응을 가능하게 함으로써 인력 운영의 효율성을 극대화하는 것을 목표로 합니다. 궁극적으로 긴급 상황을 빠르게 인식하고 선제적으로 대응함으로써 공공 안전을 꾸준히 높이는 것을 목표로 합니다.
+경찰은 치안 강화를 위해 도보 순찰을 확대하고 있습니다. 그러나 인력 중심의 순찰은 긴급 상황 발생 시 **즉각적인 대응**이 어렵고, 시민의 신고에 의존하는 **사후 대응 체계**로 인해 신고되지 않은 사건에는 대처가 불가능한 문제가 있습니다. 저희는 이러한 문제에 주목하여, **AI 기반 실시간 위험 감지 및 사건 관리 시스템**인 <strong>NURINOON(누리눈)</strong>을 개발하였습니다.
+
+CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난동 등 다양한 위험 상황을 감지하고, 사건 유형에 따라 우선순위를 지정해 긴급한 상황을 빠르게 인지하고 대응할 수 있도록 알림을 제공합니다.
 <br><br>
+### 서비스 강점
 
-## 🌐 시연 영상
+✅  **NURINOON**은 실시간 스트리밍 기능을 통해 관할 지역의 CCTV를 모니터링하고 현장 상황을 즉시 파악할 수 있습니다.
+
+✅  **NURINOON**은 AI를 활용한 모니터링 자동화를 통해 인력 부담을 줄이고, 보다 빠르고 정확한 대응을 가능하게 함으로써 공공 안전을 지속적으로 향상시킵니다.
+
+✅  **NURINOON**은 사건 데이터를 축적하여 시간대별 · 장소별 경향을 시각화함으로써 효율적인 순찰 인력 배치와 치안 전략 수립에 기여합니다.
+<br><br><br>
+
+## 💡 시연 영상
 
 [![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://youtu.be/oU1lYYOKgb4?si=tjG6P2a4Wt9pjtmm)
 <br><br>
 
-## 🌐 기능 소개
+## 💡 기능 소개
 
-### 👁️‍🗨️ AI 기반 실시간 위험 행동 감지
+<table class="features-table">
+        <tr>
+          <td >
+            <h3 align='center'>👁️‍🗨️ AI 기반 실시간 위험 행동 감지</h3>
+            <p>
+              AI를 기반으로 CCTV 데이터를 실시간 분석하여 위험 행동을 감지합니다.
+              화재, 실신, 폭행, 흉기 난동 등 다양한 위험 행동을 감지할 수 있습니다.
+            </p>
+              <br>
+          </td>
+          <td>
+            <h3 align='center'>🚨 위험 행동 분류 및 알림</h3>
+            <p>
+              위험도에 따라 단계를 구분하여 위험 행동 감지 알림을 전송합니다. 1단계 위험은 푸쉬 알림으로, 2단계 위험은 모달창을 통해 위험 상황을 알립니다.
+              사용자는 상황에 따라 우선순위가 높은 사건부터 해결할 수 있습니다.
+            </p>
+              <br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3 align='center'>🚔 출동중인 사건 관리</h3>
+            <p>
+              출동중인 사건을 모아서 관리하고 확인할 수 있습니다. 사건 발생 시각, 위치 등의 정보를 제공하며
+              '영상 확인' 버튼을 통해 위험 행동이 감지된 CCTV 화면을 다시 확인할 수 있습니다.
+            </p>
+              <br>
+          </td>
+          <td>
+            <h3 align='center'>👍 AI 성능 개선을 위한 사건 유형 피드백</h3>
+            <p>
+              사건 발생 유무, 위험 분류에 대한 오탐 여부 등을 선택하여 사건 유형 피드백을 진행합니다.
+              피드백이 반영된 데이터를 재학습시켜 오탐률을 줄이고 정확도를 높일 수 있습니다.
+            </p>
+              <br>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3 align='center'>📝 사건 기록 조회</h3>
+            <p>
+              종결된 사건을 모아서 확인할 수 있도록 '사건 기록 조회' 기능을 제공합니다. 필터링 및 검색 기능으로 원하는 사건을 쉽게 찾을 수 있습니다.
+            </p>
+              <br>
+          </td>
+          <td>
+            <h3 align='center'>📊 통계 차트 제공</h3>
+            <p>
+              누적된 사건 데이터를 기반으로 시간대별, 장소별, 유형별 등 다양한 통계 그래프를 제공합니다.
+              그래프를 통해 사건 경향성을 파악할 수 있으며, 지도의 클러스터링 기능을 통해 사건 다발 지역을 쉽게 인식할 수 있습니다.
+            </p>
+              <br>
+          </td>
+        </tr>
+      </table>
 
-AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지합니다. 폭행, 실신, 흉기난동, 화재, 군중밀집 등 다양한 위험 행동을 감지할 수 있습니다.
-
-### 🚨 위험 행동 분류 및 알림
-
-위험도에 따라 단계를 구분하여 위험 행동 감지 알림을 전송합니다. 1단계 위험은 푸쉬 알림으로, 2단계 위험은 모달창을 통해 위험 상황을 알립니다. 경찰은 상황에 따라 우선순위가 높은 사건부터 해결할 수 있습니다.
-
-### 🚔 출동중인 사건 관리
-
-경찰은 출동중인 사건을 모아서 관리하고 확인할 수 있습니다. 사건 발생 시각, 위치 등의 정보를 제공하며 '영상 확인' 버튼을 통해 위험 행동이 감지된 CCTV 화면을 다시 확인할 수 있습니다.
-
-### 👍 AI 성능 개선을 위한 사건 유형 피드백
-
-사건 종료 시 사건 발생 유무, 위험 유형 매칭률 등을 선택하여 사건 유형 피드백을 진행합니다. 피드백이 반영된 데이터를 재학습시켜 오탐률을 줄이고 정확도를 높일 수 있습니다.
-
-### 📝 사건 기록 조회
-
-경찰이 종결된 사건을 모아서 확인할 수 있도록 '사건 기록 조회' 기능을 제공합니다.
-
-### 📊 통계 차트 제공
-
-누적된 사건 데이터를 기반으로 시간대별, 장소별, 유형별 등 다양한 통계 그래프를 제공합니다. 경찰은 그래프를 통해 사건 경향성을 파악할 수 있으며, 지도의 클러스터링 기능을 통해 사건 다발 지역을 쉽게 인식할 수 있습니다.
 <br><br>
 
-## 🌐 주요 화면
+## 💡 주요 화면
 
-<table>
+<table align="center">
   <tr>
     <th style="width: 200px; text-align: left;">기능</th>
     <th style="text-align: center;">시연 화면</th>
@@ -123,18 +170,24 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 
 <br><br>
 
-## 🌐 시스템 아키텍처 & AI 모델
+## 💡 시스템 아키텍처
 
 <div align="center"> 
     <p align = "center">
     <img src = "https://github.com/user-attachments/assets/9ec40adf-e78e-4002-9ec8-359f0bdf8a25" width = 800/>
-      <br>
+    </p>
+</div>
+<br><br>
+
+## 💡 AI 모델
+<div align="center"> 
+    <p align = "center">
     <img src = "https://github.com/user-attachments/assets/66fb6d2b-5879-4eb4-8f1d-a3a4a2042954" width = 700/>
     </p>
 </div>
 <br><br>
 
-## 🌐 팀원
+## 💡 팀원
 
 <div align="center">
 
@@ -191,58 +244,26 @@ AI를 통해 CCTV 데이터를 실시간으로 분석해 위험 행동을 감지
 
 <br><br>
 
-## 🌐 기술 스택
+## 💡 기술 스택
 
-### 💄 Frontend
+### 💄 Frontend  
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" alt="React"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white" alt="TypeScript"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white" alt="MUI"/> <img src="https://img.shields.io/badge/styled_components-DB7093.svg?style=for-the-badge&logo=styledcomponents&logoColor=white" alt="styled-components"/> <img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white" alt="ESLint"/> <img src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=white" alt="Prettier"/> <img src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style=for-the-badge&logo=Yarn&logoColor=white" alt="Yarn"/> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
 
-| 역할                     | 종류                                                                                                                                                                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Library**              | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)                                                                                                                        |
-| **Programming Language** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)                                                                                                         |
-| **UI Component Library** | ![MUI](https://img.shields.io/badge/mui-007FFF?style=for-the-badge&logo=MUI&logoColor=white)                                                                                                                              |
-| **Styling**              | ![styled-components](https://img.shields.io/badge/styled_components-DB7093.svg?style=for-the-badge&logo=styledcomponents&logoColor=white)                                                                                 |
-| **Formatting**           | ![ESLint](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white) ![Prettier](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=white) |
-| **Package Manager**      | ![Yarn](https://img.shields.io/badge/Yarn-2C8EBB.svg?style=for-the-badge&logo=Yarn&logoColor=white)                                                                                                                       |
-| **Deployment**           | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)                                                                                                                     |
+<br>
 
-<br />
+### 🚀 Backend  
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/> <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white" alt="Spring Boot"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white" alt="Gradle"/> <img src="https://img.shields.io/badge/REST_API-000000?style=for-the-badge&logo=iRobot&logoColor=white" alt="REST API"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white" alt="PostgreSQL"/> <img src="https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white" alt="AWS S3"/> <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=ApacheKafka&logoColor=white" alt="Kafka"/> <img src="https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white" alt="AWS EC2"/> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white" alt="Docker"/> <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
 
-### 🚀 Backend
+<br>
 
-| 역할                     | 종류                                                                                                                                                                                                             |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Programming Language** | ![JAVA](https://img.shields.io/badge/JAVA-004027?style=for-the-badge&logo=Jameson&logoColor=white)                                                                                                               |
-| **Framework**            | ![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white)                                                                                               |
-| **Build Tool**           | ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white)                                                                                                            |
-| **API**                  | ![Rest](https://img.shields.io/badge/Rest_API-000000?style=for-the-badge&logo=iRobot&logoColor=white)                                                                                                            |
-| **Database**             | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white)                                                                                                |
-| **Storage**              | ![AWS_S3](https://img.shields.io/badge/aws_s3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)                                                                                                          |
-| **Message Queue**        | ![ApacheKafka](https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=ApacheKafka&logoColor=white)                                                                                            |
-| **Deployment**           | ![aws ec2](https://img.shields.io/badge/aws_ec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white) ![docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) |
-| **CI/CD**                | ![github actions](https://img.shields.io/badge/Github_actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)                                                                                     |
-
-<br />
-
-### 🤖 AI Server
-
-| 역할                     | 종류                                                                                                                                                                                                                 |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Programming Language** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)                                                                                                                |
-| **Framework**            | ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![YOLO](https://img.shields.io/badge/Ultralytics_YOLO-111F68?style=for-the-badge&logo=yolo&logoColor=white) |
-| **Video Processiog**     | ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)                                                                                                                |
-
-<br />
-
-### 🖥️ Common
-
-| 역할                | 종류                                                                                                                                                                                                     |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Communication**   | ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white) ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white) |
-| **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)       |
+### 🤖 AI  
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch"/> <img src="https://img.shields.io/badge/YOLO_(Ultralytics)-111F68?style=for-the-badge&logo=yolo&logoColor=white" alt="YOLO"/> <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV"/>
 
 <br><br>
 
-## 🌐 제출 서류
+## 💡 제출 서류
+
+    
 
 <!-- 수행계획서 -->
 <!-- 중간보고서 -->
