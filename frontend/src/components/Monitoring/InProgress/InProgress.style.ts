@@ -53,10 +53,10 @@ export const FlipCard = styled.div<{ $isHighlighted: boolean }>`
   perspective: 1000px;
   border-radius: 10px;
   ${({ $isHighlighted }: { $isHighlighted: boolean }) =>
-      $isHighlighted &&
-      css`
-        animation: ${blinkShadow} 1s ease-in-out 3;
-      `}
+    $isHighlighted &&
+    css`
+      animation: ${blinkShadow} 1s ease-in-out 3;
+    `}
 `;
 
 export const CardInner = styled.div`
@@ -229,6 +229,7 @@ export const BackButton = styled.button`
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  text-decoration: underline;
 `;
 
 // CategorySelectCard.tsx ------------------------------------//
@@ -279,6 +280,12 @@ export const SelectButton = styled.button`
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+
+  &:disabled {
+    background-color: #f2f2f2;
+    color: #b3b3b3;
+    border: solid 1.5px var(--gray400);
+  }
 `;
 
 // ResolvedCard.tsx ------------------------------------//

@@ -1,5 +1,5 @@
 export interface CctvInfo{
-  id: string;
+  id: number;
   latitude: number;
   longitude: number;
   address: string;

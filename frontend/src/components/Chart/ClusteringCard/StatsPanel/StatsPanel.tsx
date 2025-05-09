@@ -12,6 +12,7 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
   const [total, setTotal] = useState(0);
 
   const changeToRatio = (target: number) => {
+    if (total === 0 || target === 0) return '0.0';
     return ((target / total) * 100).toFixed(1);
   };
 
@@ -21,7 +22,6 @@ const StatsPanel = ({ isVisible, statsData }: StatsPanelProps) => {
 
   return (
     <S.StatsPanelLayout>
-      <p>정릉 1동</p>
       {STATSLABEL.map((it, index) => {
         return (
           <StatsItem

@@ -38,7 +38,7 @@ const BarCard = () => {
   return (
     <S.BarCardLayout ref={element}>
       <S.TitleDiv>
-        <S.TitleP>일 ∙ 월별 사건수</S.TitleP>
+        <S.TitleP>일 ∙ 월별 사건 수</S.TitleP>
         <BarFilter />
       </S.TitleDiv>
       {inviewPort && (

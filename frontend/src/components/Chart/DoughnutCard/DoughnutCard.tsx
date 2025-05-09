@@ -35,16 +35,20 @@ const DoughnutCard = ({ title, type }: DoughnutCardProps) => {
         });
         setChartData(formattedData);
       } else {
+        // type === region
         const data = await getDataPerLocation(periodLst[selectedIndex]);
-        if (!data) {
-          console.error('getDataPerLocation 실패');
-          setChartData([]);
+        if (!Array.isArray(data)) {
+          const emptyData = LABELBYREGION.map((it, index) => {
+            return { text: index.toString(), count: 0, color: it.color };
+          });
+          setChartData(emptyData);
           return;
+        } else {
+          const formattedData = data?.map((it: LocationItem, index: number) => {
+            return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
+          });
+          setChartData(formattedData);
         }
-        const formattedData = data?.map((it: LocationItem, index: number) => {
-          return { text: it.address, count: it.count, color: LABELBYREGION[index].color };
-        });
-        setChartData(formattedData);
       }
     };
 

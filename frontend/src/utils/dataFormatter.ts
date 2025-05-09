@@ -47,5 +47,6 @@ export const dayFormatChanger = (data: BarDayItem[]) => {
 };
 
 export const formatDate = (date: Date): string => {
-  return date.toISOString().substring(0, 10);
+  const offsetDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  return offsetDate.toISOString().substring(0, 10);
 };

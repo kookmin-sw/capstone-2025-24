@@ -34,7 +34,7 @@ const AlertList = () => {
   const alerts = items.filter((item) => item.state === '미확인' || item.state === '확인');
 
   return (
-    <S.AlertListLayout>
+    <S.AlertListLayout id="pushAlarm">
       <S.TitleDiv>
         알림 리스트{' '}
         <ToolTip>
@@ -48,6 +48,7 @@ const AlertList = () => {
           alerts.map((alert) => (
             <AlertItem
               key={alert.id}
+              cctvId={alert.cctvId}
               id={alert.id}
               level={alert.level}
               category={alert.category}
