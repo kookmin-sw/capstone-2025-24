@@ -176,7 +176,7 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
 
 <div align="center"> 
     <p align = "center">
-    <img src = "https://github.com/user-attachments/assets/9ec40adf-e78e-4002-9ec8-359f0bdf8a25" width = 800/>
+    <img src = "https://github.com/user-attachments/assets/ac6be91f-49c5-476d-ac06-ed682e004e5e" width = 800/>
     </p>
 </div>
 <br><br>
