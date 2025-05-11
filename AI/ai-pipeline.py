@@ -5,7 +5,6 @@ import requests
 import yaml
 import torch
 import torch.nn.functional as F
-from collections import deque
 from torchvision.io import read_video
 from torchvision.transforms import Compose, Lambda, CenterCrop
 from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
@@ -16,7 +15,7 @@ import boto3
 import os
 
 # ─── 설정 로드 ─────────────────────────────────────────────────────────
-with open("config.yaml","r",encoding="utf-8") as f:
+with open("../config.yaml","r",encoding="utf-8") as f:
     CFG = yaml.safe_load(f)
 
 EXT_POST_SEC = CFG.get("EXT_POST_SEC", 10)
@@ -53,7 +52,7 @@ def transform_video(path):
     ])
     return tf(x).unsqueeze(0).to(DEVICE)
 
-def inference2(clip_path):
+def inference_model2(clip_path):
     inp = transform_video(clip_path)
     with torch.no_grad():
         logits = model2(inp)
@@ -105,15 +104,20 @@ def worker(frames, w, h, fps, clip_primary, cat):
 
         # 2) 사람(person)만 2차 모델 예측
         if cat == "person":
-            pred, probs = inference2(clip_primary)
+            pred, probs = inference_model2(clip_primary)
             print(f"[Worker] X3D Predicted {pred}, probs={probs}", flush=True)
 
             now = time.time()
             last_time = last_trigger.get(pred, 0)
-            if now - last_time < SUPPRESSION_SEC:
-                print(f"[Worker] Skipping {pred}, suppression active", flush=True)
-            elif pred != "normal":
-                if pred in active_categories:
+
+            elapsed_time = time.time() - now
+            print(f"{pred} 실행 시간: {elapsed_time:.6f}초")
+
+
+            if pred != "normal":
+                if now - last_time < SUPPRESSION_SEC:
+                    print(f"[Worker] Skipping {pred}, suppression active", flush=True)
+                elif pred in active_categories:
                     print(f"[Worker] Skipping {pred}, already active", flush=True)
                 else:
                     active_categories.add(pred)
@@ -142,6 +146,7 @@ def worker(frames, w, h, fps, clip_primary, cat):
                             print(f"[Worker] X3D POST {pred} → {r.status_code}", flush=True)
                         except Exception as e:
                             print(f"[Worker] POST error: {e}", flush=True)
+                    
                     last_trigger[pred] = now
         else:
             # smoke/fire/... 이벤트 처리
@@ -194,6 +199,7 @@ def main():
     executor = ThreadPoolExecutor(max_workers=CFG["WORKER"]["MAX_WORKERS"])
 
     recs, next_ts, cnt = [], 0.0, 0
+    frame_idx = 0
     try:
         while not stop:
             ret, frame = cap.read()
@@ -209,7 +215,30 @@ def main():
 
             # B) 1차 감지 → 새 세션
             if now >= next_ts and len(recs) < CFG["WORKER"]["MAX_RECORDERS"]:
-                res = model1(frame)[0]
+                res = model1(frame, verbose=False)[0]
+                
+                if res.boxes.shape[0] > 0:
+                    dets = res[0].boxes  # Boxes 객체
+                
+                    # 클래스 이름별 카운트 집계
+                    counts = {}
+                    for cls_id in dets.cls:
+                        name = res[0].names[int(cls_id)]
+                        counts[name] = counts.get(name, 0) + 1
+
+                    # "4 persons, 1 weapon, 4 heads" 형태로 포맷
+                    parts = []
+                    for name, cnt in counts.items():
+                        # 복수형 처리: 단순히 s 붙이기 (필요시 한글/영어 맞춤)
+                        label = name + ("s" if cnt > 1 else "")
+                        parts.append(f"{cnt} {label}")
+                    msg = ", ".join(parts)
+
+                    # 콘솔에 출력
+                    print(f"\n0: 360x640 [Frame {frame_idx}]: {msg}")
+                
+                frame_idx += 1
+                
                 detected_cats = {model1.names[int(b.cls)] for b in res.boxes if model1.names[int(b.cls)] in CFG["WORKER"]["CLASSES"]}
                 for cat in detected_cats:
 
@@ -222,6 +251,9 @@ def main():
                         dur = CFG["PERSON_SEC"]
 
                     else:
+                        elapsed_time = time.time() - now
+                        print(f"{cat} 실행 시간: {elapsed_time:.6f}초")
+                        
                         active_categories.add(cat)
                         now = time.time()
                         last_time = last_trigger.get(cat, 0)
