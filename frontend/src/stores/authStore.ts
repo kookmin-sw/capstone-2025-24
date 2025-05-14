@@ -25,6 +25,7 @@ export const useAuthStore = create<AuthState>()(
 
         useProfileStore.getState().setProfile(() => result as ProfileType);
         set({ isLoggedIn: true });
+        sessionStorage.setItem('initialLoadDone', 'true');
         return 'success';
       },
 
@@ -42,6 +43,7 @@ export const useAuthStore = create<AuthState>()(
           rank: '',
         }));
         set({ isLoggedIn: false });
+        sessionStorage.removeItem('initialLoadDone');
       },
     }),
     {

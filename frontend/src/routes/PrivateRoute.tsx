@@ -15,15 +15,20 @@ const PrivateRoute = () => {
         const userInfo = await getSessionInfo();
         setProfile(() => userInfo);
       } catch (error) {
-        console.log(error)
-        alert('로그인 후 이용하세요');
+        console.log(error);
+        const isInitialLoad = sessionStorage.getItem('initialLoadDone');
+  
+        if (isInitialLoad) {
+          alert('로그인 후 이용하세요');
+        }
+  
         clearAuth();
-
       } finally {
+        sessionStorage.setItem('initialLoadDone', 'true');
         setChecking(false);
       }
     };
-
+  
     verifySession();
   }, []);
 
