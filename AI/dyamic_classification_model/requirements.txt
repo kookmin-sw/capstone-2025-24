@@ -1,0 +1,10 @@
+torch==2.6.0
+torchvision
+torchaudio
+pytorchvideo @ git+https://github.com/facebookresearch/pytorchvideo.git
+pytorch-lightning
+fvcore
+iopath
+av
+decord
+pyyaml
