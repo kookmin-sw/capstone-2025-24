@@ -1,4 +1,3 @@
-#data_module.py
 import os
 import random
 import pytorch_lightning as pl
@@ -13,7 +12,7 @@ class VideoDataModule(pl.LightningDataModule):
         self.DATA_PATH     = cfg["data_path"]
         self.CLIP_DURATION = cfg["clip_duration"]
         self.BATCH_SIZE    = cfg["batch_size"]
-        self.NUM_WORKERS   = min(cfg["num_workers"], 2)
+        self.NUM_WORKERS   = cfg["num_workers"]
 
         self.train_transform = Compose([
             ApplyTransformToKey("video", Compose([
@@ -40,7 +39,6 @@ class VideoDataModule(pl.LightningDataModule):
             if os.path.isdir(os.path.join(split_dir, d))
         ])
 
-        # (video_path, {"label": idx}) 리스트 생성
         video_list = []
         for idx, cls in enumerate(class_names):
             cls_dir = os.path.join(split_dir, cls)
@@ -76,6 +74,13 @@ class VideoDataModule(pl.LightningDataModule):
         val_ds = self._make_shuffled_dataset("val", self.val_transform)
         return DataLoader(
             val_ds,
+            batch_size=self.BATCH_SIZE,
+            num_workers=self.NUM_WORKERS,
+        )
+    def test_dataloader(self):
+        test_ds = self._make_shuffled_dataset("test", self.val_transform)
+        return DataLoader(
+            test_ds,
             batch_size=self.BATCH_SIZE,
             num_workers=self.NUM_WORKERS,
         )

@@ -1,8 +1,8 @@
-#setting
-data_path: "dataset"
-batch_size: 16
-clip_duration: 3
-num_workers: 2
-lr: 1e-4
-max_epochs: 50
+data_path: /content/dataset_encode
+batch_size: 64 # 수정
+clip_duration: 2 # 수정
+num_workers: 6 # 수정
+lr: 0.0001
+max_epochs: 15
 num_classes: 4
+freeze_backbone: false
