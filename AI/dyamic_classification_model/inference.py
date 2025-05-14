@@ -1,76 +1,41 @@
-import yaml
 import torch
+from pytorchvideo.data.encoded_video import EncodedVideo
+from torchvision.transforms import Compose, Lambda, Resize
+from pytorchvideo.transforms import UniformTemporalSubsample
 import torch.nn.functional as F
-from torchvision.io import read_video
-from torchvision.transforms import Compose, Lambda, CenterCrop
-from pytorchvideo.transforms import (
-    UniformTemporalSubsample,
-    Normalize,
-    ShortSideScale,
-)
+import yaml
 from src.model_module import X3DFineTuner
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning)
 
-CFG_PATH = "configs/default.yaml"
-CHECKPOINT_PATH = "/content/drive/MyDrive/X3D/fine-tune/configs/checkpoints/x3d-epoch=09-val_loss=0.45.ckpt"
-VIDEO_PATH = ""
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# 1. config 로드
+with open("/content/drive/MyDrive/X3D/fine-tune/configs/default.yaml", "r") as f:
+    CFG = yaml.safe_load(f)
 
-label_map = {
-    0: "fighting",
-    1: "normal",
-    2: "swoon",
-    3: "weapon_attack",
-}
+# 2. 모델 로드 (checkpoint 포함)
+model = X3DFineTuner(CFG)
+ckpt_path = "/content/drive/MyDrive/X3D/fine-tune/checkpoints/x3d-epoch=26-val_loss=0.02.ckpt" 
+state_dict = torch.load(ckpt_path, map_location="cpu")["state_dict"]
+model.load_state_dict(state_dict)
+model.eval().cuda()
 
-def transform_video(video_path, cfg):
-    # [T, H, W, C]로 로드
-    video, _, _ = read_video(video_path, pts_unit="sec")
-    # [C, T, H, W]
-    video = video.permute(3, 0, 1, 2).float()
+# 3. 비디오 로딩 및 전처리
+def load_and_preprocess_video(video_path, clip_duration=2.0):
+    video = EncodedVideo.from_path(video_path)
+    video_data = video.get_clip(start_sec=0, end_sec=clip_duration)["video"]  # (C, T, H, W)
 
     transform = Compose([
-        UniformTemporalSubsample(8),     
-        Lambda(lambda x: x / 255.0),     
-        Normalize((0.45,0.45,0.45),(0.225,0.225,0.225)),
-        ShortSideScale(256),            
-        CenterCrop(224),                
+        UniformTemporalSubsample(8),
+        Lambda(lambda x: x / 255.0),
+        Resize((224, 224))
     ])
-    # apply
-    video = transform(video)  # [C, T, H, W]
-    return video.unsqueeze(0)  # [1, C, T, H, W]
+    video_data = transform(video_data)
+    return video_data.unsqueeze(0)  # → (1, C, T, H, W)
 
-def load_model(checkpoint_path, cfg_path, device):
-    cfg = yaml.safe_load(open(cfg_path))
-    # LightningModule 기반으로 로드
-    model = X3DFineTuner.load_from_checkpoint(
-        checkpoint_path,
-        cfg=cfg
-    )
-    model = model.to(device)
-    model.eval()
-    return model, cfg
+# 4. 인퍼런스 수행
+video_tensor = load_and_preprocess_video("/content/drive/MyDrive/X3D/fine-tune/dataset/test/fighting/1-1_cam01_fight04_place02_night_spring_1_0000s_000.mp4").cuda()
+with torch.no_grad():
+    logits = model(video_tensor)
+    probs = F.softmax(logits, dim=1)
+    pred = torch.argmax(probs, dim=1).item()
 
-def inference(model, video_tensor, device):
-    video_tensor = video_tensor.to(device)
-    with torch.no_grad():
-        logits = model(video_tensor)
-        probs = F.softmax(logits, dim=1)
-        pred = torch.argmax(probs, dim=1).item()
-    return pred, probs.cpu().numpy()
-
-if __name__ == "__main__":
-    # 모델 로드
-    model, cfg = load_model(CHECKPOINT_PATH, CFG_PATH, DEVICE)
-
-    # 비디오 전처리
-    video_tensor = transform_video(VIDEO_PATH, cfg)
-
-    # 인퍼런스
-    label_idx, probabilities = inference(model, video_tensor, DEVICE)
-
-    # 결과 출력
-    class_name = label_map.get(label_idx, f"Class_{label_idx}")
-    print(f"Predicted: {class_name} (index={label_idx})")
-    print(f"Probabilities: {probabilities}")
+print(f"예측 클래스 ID: {pred}")
+print(f"Softmax Probabilities: {probs.cpu().numpy()}")
