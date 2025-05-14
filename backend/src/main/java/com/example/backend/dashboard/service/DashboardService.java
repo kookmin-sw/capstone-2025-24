@@ -74,7 +74,8 @@ public class DashboardService {
                 CaseEntity.CaseState.확인
         );
 
-        List<CaseEntity> readyCases = dashboardRepository.findAllByOfficeIdAndStateInOrderByIdDesc(officeId, targetStates);
+        LocalDateTime startDate = LocalDateTime.now().minusHours(24);
+        List<CaseEntity> readyCases = dashboardRepository.findRecentCasesByOfficeIdAndStates(officeId, targetStates, startDate);
 
         List<CaseEntity> progressCases = dashboardRepository.findAllByOfficeIdAndStateOrderByProgressDateDesc(officeId, CaseEntity.CaseState.출동);
 
