@@ -14,6 +14,7 @@ interface FilteringProps {
   dataLength: number;
   setDataLength: (value: number) => void;
   setPageLength: (value: number) => void;
+  setCurrentPage: (value: number) => void;
 }
 
 const SortMap: Record<string, string> = {
@@ -25,7 +26,14 @@ const formatDateTime = (date: Date): string => {
   return date.toISOString().substring(0, 10);
 };
 
-const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLength }: FilteringProps) => {
+const Filtering = ({
+  setIncidentData,
+  page,
+  dataLength,
+  setDataLength,
+  setPageLength,
+  setCurrentPage,
+}: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
   const [endDateFilter, setEndDateFilter] = useState(new Date());
@@ -36,6 +44,7 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
   const [triggerFetch, setTriggerFetch] = useState(false);
 
   const handleClick = () => {
+    setCurrentPage(1);
     setTriggerFetch((prev) => !prev);
   };
 
@@ -67,7 +76,7 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
   return (
     <S.Layout>
       <S.DropDownInfoLayout>
-        <S.InfoP w={165}>사건 분류</S.InfoP>
+        <S.InfoP w={165}>사건 유형</S.InfoP>
         <S.InfoP w={201}>시작 날짜</S.InfoP>
         <S.InfoP w={201}>종료 날짜</S.InfoP>
       </S.DropDownInfoLayout>

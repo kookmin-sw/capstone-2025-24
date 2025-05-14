@@ -41,6 +41,7 @@ const IncidentList = () => {
         dataLength={dataLength}
         setDataLength={setDataLength}
         setPageLength={setPageLength}
+        setCurrentPage={setCurrentPage}
       />
       <S.Layout>
         <S.IncidentListDiv>
@@ -51,7 +52,7 @@ const IncidentList = () => {
               <thead>
                 <S.TableHeaderRow>
                   <S.TableHeader w={10}>번호</S.TableHeader>
-                  <S.TableHeader w={16}>사건 분류</S.TableHeader>
+                  <S.TableHeader w={16}>사건 유형</S.TableHeader>
                   <S.TableHeader w={22}>날짜</S.TableHeader>
                   <S.TableHeader w={38}>위치</S.TableHeader>
                   <S.TableHeader w={14}>담당 경찰</S.TableHeader>
