@@ -25,7 +25,7 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
     <ResolvedCard onClose={onClose} id={id} />
   ) : (
     <>
-      <S.FeedbackTitle>적절한 분류를 선택해주세요</S.FeedbackTitle>
+      <S.FeedbackTitle>적절한 유형을 선택해주세요</S.FeedbackTitle>
       <S.CategoryContainer>
         {groupedCategories.map((row, index) => (
           <S.CategoryRow key={index}>
