@@ -10,7 +10,7 @@ from torchvision.transforms import Compose, Lambda, CenterCrop
 from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
 from ultralytics import YOLO
 from concurrent.futures import ThreadPoolExecutor
-from model_module import X3DFineTuner
+from dyamic_classification_model.src.model_module import X3DFineTuner
 import boto3
 import os
 
