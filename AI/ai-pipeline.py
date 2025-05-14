@@ -15,7 +15,7 @@ import boto3
 import os
 
 # ─── 설정 로드 ─────────────────────────────────────────────────────────
-with open("../config.yaml","r",encoding="utf-8") as f:
+with open("./config.yaml","r",encoding="utf-8") as f:
     CFG = yaml.safe_load(f)
 
 EXT_POST_SEC = CFG.get("EXT_POST_SEC", 10)
