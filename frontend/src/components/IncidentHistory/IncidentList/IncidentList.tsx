@@ -25,6 +25,15 @@ const IncidentList = () => {
   const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
+  const [lastFilter, setLastFilter] = useState({
+    // 마지막 필터링 값 기억
+    category: '전체',
+    startDate: new Date('2024/01/01'),
+    endDate: new Date(),
+    searchType: '담당 경찰',
+    searchWord: '',
+  });
+
   const { openModal, closeModal, currentItem } = useModal();
 
   const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
@@ -42,6 +51,8 @@ const IncidentList = () => {
         setDataLength={setDataLength}
         setPageLength={setPageLength}
         setCurrentPage={setCurrentPage}
+        setLastFilter={setLastFilter}
+        lastFilter={lastFilter}
       />
       <S.Layout>
         <S.IncidentListDiv>

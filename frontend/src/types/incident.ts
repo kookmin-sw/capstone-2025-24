@@ -25,3 +25,11 @@ export interface IncidentModalInfo{
   longitude: number;
   videourl: string;
 }
+
+export interface FilteringInfo{
+  category: string;
+  startDate: Date;
+  endDate: Date;
+  searchType: string;
+  searchWord: string;
+}

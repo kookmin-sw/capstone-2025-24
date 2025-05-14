@@ -7,6 +7,7 @@ import SortingDropDown from './SortingDropDown.tsx';
 import { Incident } from '@/types/incident.ts';
 import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
 import { categoryToEnglish } from '@/utils/categoryMapper.ts';
+import {FilteringInfo} from '@/types/incident.ts';
 
 interface FilteringProps {
   setIncidentData: React.Dispatch<React.SetStateAction<Incident[]>>;
@@ -15,6 +16,8 @@ interface FilteringProps {
   setDataLength: (value: number) => void;
   setPageLength: (value: number) => void;
   setCurrentPage: (value: number) => void;
+  setLastFilter: (value: FilteringInfo) => void;
+  lastFilter : FilteringInfo;
 }
 
 const SortMap: Record<string, string> = {
@@ -33,6 +36,8 @@ const Filtering = ({
   setDataLength,
   setPageLength,
   setCurrentPage,
+  setLastFilter,
+  lastFilter
 }: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
@@ -44,6 +49,14 @@ const Filtering = ({
   const [triggerFetch, setTriggerFetch] = useState(false);
 
   const handleClick = () => {
+    setLastFilter({
+      category: categoryFilter,
+      startDate: startDateFilter,
+      endDate: endDateFilter,
+      searchType,
+      searchWord,
+    });
+
     setCurrentPage(1);
     setTriggerFetch((prev) => !prev);
   };
@@ -54,10 +67,10 @@ const Filtering = ({
 
       const requestData = {
         category: categoryLabel,
-        startDate: formatDateTime(startDateFilter),
-        endDate: formatDateTime(endDateFilter),
-        address: searchType === '위치' ? searchWord : null,
-        police: searchType === '담당 경찰' ? searchWord : null,
+        startDate: formatDateTime(lastFilter.startDate),
+        endDate: formatDateTime(lastFilter.endDate),
+        address: lastFilter.searchType === '위치' ? lastFilter.searchWord : null,
+        police: lastFilter.searchType === '담당 경찰' ? lastFilter.searchWord : null,
         order: SortMap[sort],
         page,
       };
