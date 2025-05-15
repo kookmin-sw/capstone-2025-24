@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CaseDetectResponse {
     private Integer id;       // 사건 ID
+    private Integer cctvId;
     private String category;      // 사건 카테고리 (예: fire, assault 등)
     private int level;
     private String address;   // CCTV 주소
@@ -24,6 +25,7 @@ public class CaseDetectResponse {
                 .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         return CaseDetectResponse.builder()
                 .id(entity.getId())
+                .cctvId(entity.getCctv().getId())
                 .category(entity.getCategory().name())
                 .level(entity.getLevel())
                 .address(entity.getCctv().getAddress())

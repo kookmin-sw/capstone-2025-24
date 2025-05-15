@@ -1,0 +1,25 @@
+services:
+  media:
+    build:
+      context: ./
+    ports:
+      - "1935:1935"  # RTMP 포트
+      - "8080:80"           # HTTP (선택적)
+      - "443:443"           # HTTPS 연결 추가
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./hls:/var/www/hls
+      - ./certs:/etc/letsencrypt
+
+    networks:
+      - media_network
+    restart: always
+
+networks:
+  media_network:
+    driver: bridge
+
+volumes:
+  hls-data:  # Volume 정의
+
+

@@ -26,9 +26,9 @@ public class UserService {
         // requestDto에서 받은 userId와 password를 기반으로 사용자 정보를 조회
         Optional<PoliceEntity> user = userRepository.findByUserIdAndPassword(requestDto.getUserId(), requestDto.getPassword());
 
-        // 조회한 결과가 있으면 UserResponseDto 객체로 변환하여 반환하고, 없으면 예외 던짐
+        // 조회한 결과가 있으면 UserResponseDto 객체로 변환하여 반환하고, 없으면 controller에서 메세지 넘김
         return user.map(UserResponseDto::fromEntity)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid credentials"));
+                .orElse(null);
     }
 
 }

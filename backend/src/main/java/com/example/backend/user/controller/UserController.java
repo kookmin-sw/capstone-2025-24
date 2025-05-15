@@ -21,6 +21,9 @@ public class UserController {
     @PostMapping("/auth")
     public ResponseEntity<?> authenticate(@RequestBody UserRequestDto requestDto, HttpSession session) {
         UserResponseDto userResponse = userService.authenticate(requestDto);
+        if (userResponse == null) {
+            return ResponseEntity.ok(Collections.singletonMap("message", "잘못된 아이디 혹은 비밀번호입니다."));
+        }
         // 세션에 사용자 정보 저장
         session.setAttribute("user", userResponse);
         return ResponseEntity.ok(userResponse);

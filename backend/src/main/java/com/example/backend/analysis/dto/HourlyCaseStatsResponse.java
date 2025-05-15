@@ -12,4 +12,5 @@ public class HourlyCaseStatsResponse {
     private int crowdCongestionCount;
     private int weaponCount;
     private int swoonCount;
+    private int smokeCount;
 }

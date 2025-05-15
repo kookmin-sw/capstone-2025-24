@@ -1,5 +1,7 @@
 package com.example.backend.dashboard.service;
 
+import com.amazonaws.HttpMethod;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.example.backend.common.domain.CaseEntity;
 import com.example.backend.common.domain.PoliceEntity;
 import com.example.backend.dashboard.dto.DashboardResponse;
@@ -10,19 +12,28 @@ import com.example.backend.user.dto.UserResponseDto;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+
+
+import com.amazonaws.services.s3.AmazonS3;
+
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class DashboardService {
 
+    @Value("${cloud.aws.bucket}")
+    private String bucket;
+    private final AmazonS3 s3Client;
     private final DashboardRepository dashboardRepository;
 
     // 세션에서 officeId 추출
@@ -63,7 +74,8 @@ public class DashboardService {
                 CaseEntity.CaseState.확인
         );
 
-        List<CaseEntity> readyCases = dashboardRepository.findAllByOfficeIdAndStateInOrderByIdDesc(officeId, targetStates);
+        LocalDateTime startDate = LocalDateTime.now().minusHours(24);
+        List<CaseEntity> readyCases = dashboardRepository.findRecentCasesByOfficeIdAndStates(officeId, targetStates, startDate);
 
         List<CaseEntity> progressCases = dashboardRepository.findAllByOfficeIdAndStateOrderByProgressDateDesc(officeId, CaseEntity.CaseState.출동);
 
@@ -80,12 +92,12 @@ public class DashboardService {
                 .collect(Collectors.toList());
     }
 
-    // id별 사건 영상 확인
+    // id별 사건 영상 조회
     public Map<String, String> getCaseVideo(int id, HttpSession session) {
         CaseEntity caseEntity = getAuthorizedCase(id, session);
 
-        String videoUrl = caseEntity.getVideo();
-        if (videoUrl == null || videoUrl.trim().isEmpty()) {
+        String videoKey = caseEntity.getVideo();
+        if (videoKey == null || videoKey.trim().isEmpty()) {
             throw new EntityNotFoundException("해당 사건에 대한 영상이 없습니다.");
         }
 
@@ -94,7 +106,20 @@ public class DashboardService {
             dashboardRepository.save(caseEntity);
         }
 
-        return Collections.singletonMap("video", videoUrl);
+        // Presigned URL 유효기간 설정 (30분)
+        Date expiration = new Date();
+        long expTime = expiration.getTime();
+        expTime += TimeUnit.MINUTES.toMillis(30);   // 30 minute
+        expiration.setTime(expTime);
+
+        GeneratePresignedUrlRequest presignRequest =
+                new GeneratePresignedUrlRequest(bucket, videoKey)
+                        .withMethod(HttpMethod.GET)
+                        .withExpiration(expiration);
+
+        String url = s3Client.generatePresignedUrl(presignRequest).toString();
+        return Collections.singletonMap("video", url);
+
     }
 
     // 출동, 미출동 상태 변경
@@ -115,11 +140,6 @@ public class DashboardService {
             // 경찰관 배정
             PoliceEntity assignedPolice = PoliceEntity.builder().id(policeId).build();
             caseEntity.setPolice(assignedPolice);
-
-            // 출동 날짜 및 시간
-//            LocalDateTime now = LocalDateTime.now();
-//            String formatter = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//            caseEntity.setProgressDate(LocalDateTime.parse(formatter));
 
             // 출동 날짜 및 시간
             LocalDateTime now = LocalDateTime.now();
