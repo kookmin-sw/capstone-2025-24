@@ -1,5 +1,5 @@
 import * as S from './Filtering.style.ts';
-import CategoryDropDown from '../../common/CategoryDropDown/CategoryDropDown.tsx';
+import CategoryDropDown from './CategoryDropDown/CategoryDropDown.tsx';
 import DateFiltering from './DateFiltering.tsx';
 import SearchBar from './SearchBar.tsx';
 import { useState, useEffect } from 'react';
