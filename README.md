@@ -12,8 +12,8 @@
 <br>
 <br>
 
+## 💡 목차
 
-## 💡 목차 
 1️⃣ [🌐 프로젝트 소개](#-프로젝트-소개)
 
 2️⃣ [🌐 시연 영상](#-시연-영상)
@@ -24,18 +24,17 @@
 
 5️⃣ [🌐 주요 화면](#-주요-화면)
 
-6️⃣ [🌐 시스템 아키텍처](#-시스템-아키텍처)   
+6️⃣ [🌐 시스템 아키텍처](#-시스템-아키텍처)
 
-7️⃣ [🌐 팀원](#-팀원)  
+7️⃣ [🌐 팀원](#-팀원)
 
-8️⃣ [🌐 기술 스택](#-기술-스택)  
+8️⃣ [🌐 기술 스택](#-기술-스택)
 
 9️⃣ [🌐 제출 서류](#-제출-서류)
 
-<br/> 
+<br/>
 
 ## 💡 프로젝트 소개
-
 
 <div align="center"> 
     <p align = "center">
@@ -50,13 +49,14 @@
 
 CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난동 등 다양한 위험 상황을 감지하고, 사건 유형에 따라 우선순위를 지정해 긴급한 상황을 빠르게 인지하고 대응할 수 있도록 알림을 제공합니다.
 <br><br>
+
 ### 서비스 강점
 
-✅  **NURINOON**은 실시간 스트리밍 기능을 통해 관할 지역의 CCTV를 모니터링하고 현장 상황을 즉시 파악할 수 있습니다.
+✅ **NURINOON**은 실시간 스트리밍 기능을 통해 관할 지역의 CCTV를 모니터링하고 현장 상황을 즉시 파악할 수 있습니다.
 
-✅  **NURINOON**은 AI를 활용한 모니터링 자동화를 통해 인력 부담을 줄이고, 보다 빠르고 정확한 대응을 가능하게 함으로써 공공 안전을 지속적으로 향상시킵니다.
+✅ **NURINOON**은 AI를 활용한 모니터링 자동화를 통해 인력 부담을 줄이고, 보다 빠르고 정확한 대응을 가능하게 함으로써 공공 안전을 지속적으로 향상시킵니다.
 
-✅  **NURINOON**은 사건 데이터를 축적하여 시간대별 · 장소별 경향을 시각화함으로써 효율적인 순찰 인력 배치와 치안 전략 수립에 기여합니다.
+✅ **NURINOON**은 사건 데이터를 축적하여 시간대별 · 장소별 경향을 시각화함으로써 효율적인 순찰 인력 배치와 치안 전략 수립에 기여합니다.
 <br><br><br>
 
 ## 💡 시연 영상
@@ -182,6 +182,7 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
 <br><br>
 
 ## 💡 AI 모델
+
 <div align="center"> 
     <p align = "center">
     <img src = "https://github.com/user-attachments/assets/66fb6d2b-5879-4eb4-8f1d-a3a4a2042954" width = 700/>
@@ -248,24 +249,25 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
 
 ## 💡 기술 스택
 
-### 💄 Frontend  
+### 💄 Frontend
+
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" alt="React"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white" alt="TypeScript"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white" alt="MUI"/> <img src="https://img.shields.io/badge/styled_components-DB7093.svg?style=for-the-badge&logo=styledcomponents&logoColor=white" alt="styled-components"/> <img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white" alt="ESLint"/> <img src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=white" alt="Prettier"/> <img src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style=for-the-badge&logo=Yarn&logoColor=white" alt="Yarn"/> <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
 
 <br>
 
-### 🚀 Backend  
+### 🚀 Backend
+
 <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java"/> <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white" alt="Spring Boot"/> <img src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white" alt="Gradle"/> <img src="https://img.shields.io/badge/REST_API-000000?style=for-the-badge&logo=iRobot&logoColor=white" alt="REST API"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white" alt="PostgreSQL"/> <img src="https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white" alt="AWS S3"/> <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=ApacheKafka&logoColor=white" alt="Kafka"/> <img src="https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white" alt="AWS EC2"/> <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white" alt="Docker"/> <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions"/>
 
 <br>
 
-### 🤖 AI  
+### 🤖 AI
+
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch"/> <img src="https://img.shields.io/badge/YOLO_(Ultralytics)-111F68?style=for-the-badge&logo=yolo&logoColor=white" alt="YOLO"/> <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV"/>
 
 <br><br>
 
 ## 💡 제출 서류
-
-    
 
 <!-- 수행계획서 -->
 <!-- 중간보고서 -->
