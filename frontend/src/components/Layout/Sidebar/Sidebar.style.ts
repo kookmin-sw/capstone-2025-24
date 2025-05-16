@@ -1,4 +1,3 @@
-import { Avatar, Button } from '@mui/material';
 import styled from 'styled-components';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
 
@@ -16,18 +15,19 @@ export const MainContent = styled.div`
 
 // Sidebar.tsx --------------------------//
 export const SidebarDiv = styled.div`
-  width: 220px;
+  width: 100px;
   height: 100vh;
-  background-color: rgb(37, 86, 200);
-
+  background-color: #0b227c;
   z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
 `;
 
 export const LogoImg = styled.img`
-  width: 180px;
+  width: 45px;
   display: block;
   margin: 20px auto;
 `;
@@ -39,78 +39,63 @@ export const BtnDiv = styled.div`
   justify-content: center;
   width: 100%;
   padding-top: 34px;
-  gap: 4px;
-`;
-
-export const LogoDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 16px 10px;
-  margin: 10px;
-  background-color: none;
-  font-size: 16px;
-  color: white;
-  border: 1px solid var(--primary700);
+  gap: 15px;
 `;
 
 // Profile ----------------------------------//
 export const ProfileLayout = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 16px;
-  padding-left: 15px;
-  gap: 14px;
-`;
-
-export const ProfileAvatar = styled(Avatar)`
-  width: 60px;
-  height: 60px;
-  border: 1px solid var(--gray500);
-`;
-
-export const InfoDiv = styled.div`
-  display: flex;
   flex-direction: column;
-  justify-content: start;
-  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   gap: 3px;
 `;
 
 export const InfoText = styled.span<{ type?: 'name' | 'rank' | 'officeName' }>`
-  font-size: ${({ type }) => (type === 'name' ? '20px' : type === 'rank' ? '14px' : '12px')};
+  font-size: ${({ type }) => (type === 'name' ? '16px' : '12px')};
   font-weight: ${({ type }) => (type === 'name' ? '600' : '')};
   margin-right: 5px;
-  color: var(--primary300);
+  color: var(--primary600);
 `;
 
-// SidebarBtn --------------------------------------//
-export const SidebarBtn = styled(Button)`
-  border: 1px solid rgb(37, 86, 200);
+// SidebarButton.tsx --------------------------------------//
+export const SidebarBtn = styled.button`
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 100%;
   font-size: 16px;
-  border-radius: 7px;
-  padding: 8px 6px;
-  padding-left: 15px;
+  gap: 12px;
   cursor: default;
-
-  gap: 9px;
-  color: rgb(243, 243, 243);
+  gap: 6px;
+  color: var(--primary700);
   background-color: #00ff0000;
-  .IconType {
-    color: white;
-  }
+  border: none;
+`;
+
+export const IconDiv = styled.div`
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00ff0000;
 
   &:hover {
     background-color: rgba(161, 180, 255, 0.1);
   }
 
   &.active {
-    background-color: rgba(151, 172, 255, 0.14);
-    border: 1px solid rgb(126, 146, 239);
+    background-color: #1b349b;
+    border: 1px solid #465fc3;
+  }
+
+  .icon {
+    width: 50%;
+    height: 50%;
   }
 `;
 
@@ -121,18 +106,18 @@ export const LogoutBtn = styled.button`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  font-size: 16px;
-  padding: 8px 6px;
-  padding-left: 15px;
+  font-size: 13px;
+  font-weight: 600;
+  padding-bottom: 20px;
   cursor: pointer;
   background-color: transparent;
-  color: var(--gray400);
+  color: #a8b3e3;
+  gap: 4px;
 `;
 
 export const LogoutLogo = styled(RiLogoutBoxRLine)`
   font-size: 20px;
-  margin: 15px 8px;
-  color: var(--gray400);
+  color: #a8b3e3;
 `;
 
 // ConfirmModal.tsx -----------------------//

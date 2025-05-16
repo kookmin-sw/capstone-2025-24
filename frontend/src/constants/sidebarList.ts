@@ -11,10 +11,10 @@ interface SidebarItem {
 export const SIDEBAR_LIST: SidebarItem[] = [
   {
     id: 1,
-    text: '실시간 모니터링',
+    text: '모니터링',
     icon: BiSolidCctv,
   },
-  { id: 2, text: '사건 기록 조회', icon: IoDocumentSharp },
+  { id: 2, text: '사건 기록', icon: IoDocumentSharp },
   {
     id: 3,
     text: '통계 차트',
