@@ -5,9 +5,9 @@ import requests
 import yaml
 import torch
 import torch.nn.functional as F
-from torchvision.io import read_video
-from torchvision.transforms import Compose, Lambda, CenterCrop
-from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
+from torchvision.transforms import Compose, Lambda, Resize
+from pytorchvideo.data.encoded_video import EncodedVideo
+from pytorchvideo.transforms import UniformTemporalSubsample
 from ultralytics import YOLO
 from concurrent.futures import ThreadPoolExecutor
 from dyamic_classification_model.src.model_module import X3DFineTuner
@@ -35,29 +35,35 @@ signal.signal(signal.SIGTERM, on_signal)
 
 # ─── 2차 모델 준비 ─────────────────────────────────────────────────────
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-x3d_cfg = yaml.safe_load(open(CFG["SECOND_MODEL"]["CFG_PATH"]))
-model2 = X3DFineTuner.load_from_checkpoint(
-    CFG["SECOND_MODEL"]["CKPT_PATH"], cfg=x3d_cfg
-).to(DEVICE).eval()
+if DEVICE == "cuda": print("cuda !!")
+else : print("cpu!!", DEVICE)
+
+with open(CFG["SECOND_MODEL"]["CFG_PATH"], encoding="utf-8") as f:
+    x3d_cfg = yaml.safe_load(f)
+
+model2 = X3DFineTuner(x3d_cfg)
+state_dict = torch.load(CFG["SECOND_MODEL"]["CKPT_PATH"], map_location=DEVICE)["state_dict"]
+model2.load_state_dict(state_dict)
+model2 = model2.eval().to(DEVICE)
+print(next(model2.parameters()).device)
 
 def transform_video(path):
-    v,_,_ = read_video(path, pts_unit="sec")
-    x = v.permute(3,0,1,2).float()
+    video = EncodedVideo.from_path(path)
+    video_data = video.get_clip(start_sec=0, end_sec=2.0)["video"]  # (C, T, H, W)
     tf = Compose([
         UniformTemporalSubsample(8),
         Lambda(lambda t: t/255.0),
-        Normalize((0.45,)*3,(0.225,)*3),
-        ShortSideScale(256),
-        CenterCrop(224),
+        Resize((224, 224)),
     ])
-    return tf(x).unsqueeze(0).to(DEVICE)
+    return tf(video_data).unsqueeze(0).to(DEVICE)
 
 def inference_model2(clip_path):
     inp = transform_video(clip_path)
+    print(inp)
     with torch.no_grad():
         logits = model2(inp)
         probs  = F.softmax(logits, dim=1)[0]
-        idx = int(probs.argmax())
+        idx = int(torch.argmax(probs))
     return CFG["SECOND_MODEL"]["LABEL_MAP"][idx], probs.cpu().tolist()
 
 def upload_to_s3(local_file, s3_file, cfg):
@@ -91,16 +97,27 @@ def record_post_frames(stream_url, duration, fps, w, h):
     return frames
 
 # ─── 워커: MP4 저장 → 2차 예측 → 위험 시 클립 생성·업로드 → 삭제 ─────────
-def worker(frames, w, h, fps, clip_primary, cat):
+def worker(frames, w, h, fps, clip_primary, cat, cnt):
     clip_ext = None
     try:
         # 1) 1차 클립 저장
         fourcc = cv2.VideoWriter_fourcc(*"avc1")
+        # 절대 경로로 설정
+        output_dir = "/mnt/fastdisk/capstone-2025-24/AI/videos"
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+        clip_primary = os.path.join(output_dir, f"{cat}_{time.strftime('%Y%m%d_%H%M%S')}_{cnt:02d}.mp4")
+        print(f"Saving video to: {clip_primary}")  # 파일 경로 확인
+
+
+        
         out1 = cv2.VideoWriter(clip_primary, fourcc, fps, (w, h))
         for img in frames:
             out1.write(img)
         out1.release()
         print(f"[Worker] Primary clip saved: {clip_primary}", flush=True)
+
 
         # 2) 사람(person)만 2차 모델 예측
         if cat == "person":
@@ -113,6 +130,7 @@ def worker(frames, w, h, fps, clip_primary, cat):
             elapsed_time = time.time() - now
             print(f"{pred} 실행 시간: {elapsed_time:.6f}초")
 
+            print("2차 모델 - normal")
 
             if pred != "normal":
                 if now - last_time < SUPPRESSION_SEC:
@@ -200,17 +218,28 @@ def main():
 
     recs, next_ts, cnt = [], 0.0, 0
     frame_idx = 0
+
+    # 새 세션 추가 직후
+    clip = f"{cat}_{time.strftime('%Y%m%d_%H%M%S')}_{cnt:02d}.mp4"
+    print(f"[Main] Detected primary {cat}, rec {dur}s → {clip}")
+    recs.append({"frames": [], "path": clip, "cat": cat, "frames_to_rec": f2r})
+    print(f"[Main] recs count after append: {len(recs)}")
+
     try:
         while not stop:
             ret, frame = cap.read()
             if not ret: break
             now = time.time()
+            print(f"[Main] recs count: {len(recs)}")
+
 
             # A) 진행 중 세션 업데이트
             for r in recs[:]:
+                print(f" - cat: {r['cat']}, frames collected: {len(r['frames'])} / {r['frames_to_rec']}")
+
                 r["frames"].append(frame)
                 if len(r["frames"]) >= r["frames_to_rec"]:
-                    executor.submit(worker, r["frames"], w, h, fps, r["path"], r["cat"])
+                    executor.submit(worker, r["frames"], w, h, fps, r["path"], r["cat"], cnt)
                     recs.remove(r)
 
             # B) 1차 감지 → 새 세션
