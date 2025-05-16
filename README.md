@@ -61,7 +61,7 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
 
 ## 💡 시연 영상
 
-[![시연영상](https://github.com/user-attachments/assets/0e47c8fa-b0a9-470c-a656-96339315c209)](https://youtu.be/qNCNHbmYvzI)
+[![시연영상](https://github.com/user-attachments/assets/0e47c8fa-b0a9-470c-a656-96339315c209)](https://youtu.be/YE4nkh7HI6o)
 <br><br>
 
 
