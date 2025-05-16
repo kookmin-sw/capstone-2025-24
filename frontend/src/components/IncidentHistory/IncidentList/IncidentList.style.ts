@@ -86,6 +86,10 @@ export const PageButton = styled.button<{ $active?: boolean }>`
   &:active {
     background-color: var(--primary700);
   }
+
+  &:hover {
+    background-color: ${({ $active }) => ($active ? 'var(--primary700)' : 'var(--primary600)')};
+  }
 `;
 
 export const MoveBtn = styled.button`
