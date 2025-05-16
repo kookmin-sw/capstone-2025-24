@@ -391,8 +391,13 @@
       .ai-table-row {
         display: flex;
         gap: 2rem;
-        flex-wrap: wrap; /* 줄바꿈 허용 */
-        margin-top: 1rem;
+        flex-wrap: wrap;
+
+      }
+
+      .ai-table-row div {
+        display: flex;
+        flex-direction: column;
       }
       .ai-table-row .ai-table {
         flex: 1;
@@ -756,32 +761,45 @@
             <tr>
               <td>AI hub 이상행동 CCTV 데이터</td>
               <td>person</td>
-              <td>라벨 수동 보정, 행동 클립 구성</td>
+              <td>
+                나머지 클래스에 대해 수동으로 라벨링 진행함(YOLO) / 영상을
+                카테고리별로 수집하여 클립으로 구성함(X3D)
+              </td>
             </tr>
             <tr>
               <td>AI hub 실내외 군중 특성 데이터</td>
               <td>head(군중밀집 판단)</td>
-              <td>포인트 → 30x30 bounding box 변환</td>
+              <td>
+                point 라벨을 head 크기 기준 30*30 bounding box로 변환함(YOLO)
+              </td>
             </tr>
             <tr>
               <td>AI hub 화재 발생 예측 영상</td>
               <td>smoke, fire</td>
-              <td>비유사 상황 포함, 라벨 혼합</td>
+              <td>
+                유사 상황도 포함하여 라벨 없는 데이터도 일부 사용함 (YOLO)
+              </td>
             </tr>
             <tr>
               <td>COCO dataset 2017</td>
               <td>weapon</td>
-              <td>필요 클래스만 사용</td>
+              <td>weapon에 해당하는 일부 클래스만 사용함(YOLO)</td>
             </tr>
             <tr>
               <td>Roboflow fall_detection</td>
               <td>person</td>
-              <td>쓰러짐 데이터 + 라벨 보정</td>
+              <td>
+                쓰러져있는 사람 데이터이며, 나머지 클래스는 수동 라벨링
+                진행함(YOLO)
+              </td>
             </tr>
             <tr>
               <td>직접 촬영한 영상 데이터</td>
               <td>person, head, weapon</td>
-              <td>다양한 환경, 클립화 구성</td>
+              <td>
+                다양한 환경에서 촬영하였고, person, head, weapon 클래스를
+                수동으로 라벨링함(YOLO) / 영상을 클립으로 구성함(X3D)
+              </td>
             </tr>
           </tbody>
         </table>
@@ -798,64 +816,70 @@
 
         <div class="ai-table-row">
           <!-- 첫 번째 테이블 -->
-          <table class="ai-table">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>mAP@50</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>fire</td>
-                <td>0.969</td>
-              </tr>
-              <tr>
-                <td>smoke</td>
-                <td>0.892</td>
-              </tr>
-              <tr>
-                <td>person</td>
-                <td>0.777</td>
-              </tr>
-              <tr>
-                <td>crowd_congestion</td>
-                <td>0.600</td>
-              </tr>
-              <tr>
-                <td><strong>weapon</strong></td>
-                <td>0.432</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            <p>객체 탐지 성능</p>
+            <table class="ai-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>mAP@50</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>fire</td>
+                  <td>0.969</td>
+                </tr>
+                <tr>
+                  <td>smoke</td>
+                  <td>0.892</td>
+                </tr>
+                <tr>
+                  <td>person</td>
+                  <td>0.777</td>
+                </tr>
+                <tr>
+                  <td>crowd_congestion</td>
+                  <td>0.600</td>
+                </tr>
+                <tr>
+                  <td><strong>weapon</strong></td>
+                  <td>0.432</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <!-- 두 번째 테이블 -->
-          <table class="ai-table">
-            <thead>
-              <tr>
-                <th>Class</th>
-                <th>Top-1 Accuracy (%)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>weapon_attack</td>
-                <td>준비 중</td>
-              </tr>
-              <tr>
-                <td>assault</td>
-                <td>준비 중</td>
-              </tr>
-              <tr>
-                <td>swoon</td>
-                <td>준비 중</td>
-              </tr>
-              <tr>
-                <td>normal</td>
-                <td>준비 중</td>
-              </tr>
-            </tbody>
-          </table>
+          <div>
+            <p>행동 분류 성능</p>
+            <table class="ai-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Top-1 Accuracy (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>assault</td>
+                  <td>94.85</td>
+                </tr>
+                <tr>
+                  <td>normal</td>
+                  <td>92.09</td>
+                </tr>
+                <tr>
+                  <td>swoon</td>
+                  <td>93.1</td>
+                </tr>
+                <tr>
+                  <td>weapon_attack</td>
+                  <td>92.92</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
