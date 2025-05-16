@@ -8,7 +8,7 @@ import { useHighlightStore } from '@/stores/highlightStore';
 import { useModal } from '@/hooks/useModal';
 import * as S from './InProgress.style';
 
-const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) => {
+const IncidentCard = ({ id, category, address, date, policeName }: AlertProps) => {
   const [clickResolve, setClickResolve] = useState(false);
   const [video, setVideo] = useState('');
   const { openModal, closeModal, currentItem } = useModal();
@@ -45,7 +45,7 @@ const IncidentCard = ({ id, category, address, date, police_name }: AlertProps) 
               <S.ResolveButton onClick={() => setClickResolve(true)}>사건 해결</S.ResolveButton>
               <S.CardFooter>
                 <span>{date.replace(/-/g, '.')}</span>
-                <span>{police_name}</span>
+                <span>{policeName} 순경</span>
               </S.CardFooter>
             </div>
           </S.CardFront>
