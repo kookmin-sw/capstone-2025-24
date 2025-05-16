@@ -14,6 +14,7 @@ export const FilteringLayout = styled.div`
   justify-content: space-between;
   align-items: end;
   margin-bottom: 20px;
+  width: 100%;
 `;
 
 export const DropDownInfoLayout = styled.div`
@@ -28,7 +29,7 @@ export const InfoP = styled.p`
 `;
 
 export const SearchBtn = styled.button`
-  width: 74px;
+  width: 100%;
   height: 39px;
   border-radius: 10px;
   border: 2px solid var(--primary800);
@@ -61,25 +62,31 @@ export const IncidentNum = styled.p`
 `;
 
 export const BtnWrapper = styled.div`
+  width: 6%;
   height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 65px;
 `;
 
 // DataFiltering.tsx ----------------------------------------//
 export const DateFilteringLayout = styled.div`
   display: flex;
-  gap: 10px;
+  border: 1px solid blue;
 `;
 
-export const DateFilteringContainer = styled.div``;
+export const DateFilteringContainer = styled.div`
+  width: 17%;
+  min-width: 192px;
+`;
 
 export const DatePickerWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;
   justify-content: center;
+
   align-items: center;
-  width: 201px;
+  width: 100%;
   height: 52px;
   border: 1px solid var(--gray400);
   border-radius: 8px;
@@ -102,17 +109,19 @@ export const DownIcon = styled(IoChevronDown)<{ isOpen: boolean }>`
 // SearchBar.tsx ----------------------------------------//
 
 export const SearchBarContainer = styled.div`
-  width: 468px;
+  width: 37%;
   height: 52px;
   display: flex;
+  min-width: 400px;
 `;
 
 export const DropdownWrapper = styled.div`
+  width: 35%;
   position: relative;
 `;
 
 export const DropdownHeader = styled.button<{ isOpen: boolean }>`
-  width: 142px;
+  width: 100%;
   height: 52px;
   border: 1px solid var(--gray400);
   border-bottom-left-radius: 10px;
@@ -177,7 +186,7 @@ export const DropdownItem = styled.li<{ isSelected: boolean }>`
 `;
 
 export const SearchContainer = styled.div`
-  width: 326px;
+  width: 65%;
   display: flex;
   align-items: center;
   border: 1px solid var(--gray400);

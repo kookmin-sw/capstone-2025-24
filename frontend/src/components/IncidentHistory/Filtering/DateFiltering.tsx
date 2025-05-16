@@ -34,7 +34,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
   };
 
   return (
-    <S.DateFilteringLayout>
+    <>
       <S.DateFilteringContainer>
         <S.InfoP>시작 날짜</S.InfoP>
         {/* 시작 날짜 */}
@@ -94,7 +94,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
         <S.DownIcon isOpen={isEndOpen} />
       </S.DatePickerWrapper>
     </S.DateFilteringContainer>
-    </S.DateFilteringLayout>
+    </>
   );
 };
 

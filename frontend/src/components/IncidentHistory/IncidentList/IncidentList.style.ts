@@ -11,6 +11,7 @@ export const Layout = styled.div`
 `;
 export const Container = styled.div`
   width: 95%;
+  min-width: 1025px;
 `;
 
 export const IncidentListDiv = styled.div`

@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 export const DropdownWrapper = styled.div`
   position: relative;
-  width: 165px;
+  width: 16%;
+  min-width: 170px;
 `;
 
 export const DropdownHeader = styled.button<{ isOpen: boolean }>`

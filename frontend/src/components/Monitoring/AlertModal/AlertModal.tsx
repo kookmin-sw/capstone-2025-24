@@ -51,7 +51,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   const handleDispatch = async () => {
     const response = await putAlertState(alertItem.id, '출동', null);
     if (response != '지금 출동합니다.') {
-      toast('이미 출동된 사건입니다.', {
+      toast('이미 처리된 사건입니다.', {
         className: 'custom-toast',
         position: 'top-center',
         autoClose: 4000,
