@@ -5,7 +5,7 @@ on:
     types: [opened]
   pull_request_target:
     types: [opened]
-    
+
 jobs:
   labeler:
     runs-on: ubuntu-latest
@@ -19,3 +19,34 @@ jobs:
         uses: jimschubert/labeler-action@v1
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Add labels based on user
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const author = context.payload.pull_request 
+              ? context.payload.pull_request.user.login 
+              : context.payload.issue.user.login;
+
+            const userLabels = {
+              "hummingbbird": ":nail_care: FRONTEND",
+              "HeeNamgoong": ":nail_care: FRONTEND",
+              "seo0o519": ":nail_care: FRONTEND",
+              "hyni03": ":rocket: BACKEND",
+              "mjk25": ":rocket: BACKEND",
+              "justpers": ":page_facing_up: AI"
+            };
+
+            const labelToAdd = userLabels[author];
+
+            if (labelToAdd) {
+              github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request 
+                  ? context.payload.pull_request.number 
+                  : context.payload.issue.number,
+                labels: [labelToAdd]
+              });
+            }

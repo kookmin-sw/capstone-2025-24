@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NURINOON | capstone-2025-24</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9fafb;
+        color: #1f2937;
+        margin-left: 200px;
+      }
+      header {
+        background-color: #5873ee;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      }
+      h2 {
+        color: #5873ee;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 0.25rem;
+      }
+      section {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        line-height: 1.7rem;
+        color: rgb(65, 65, 65);
+      }
+      iframe {
+        width: 100%;
+        height: 480px;
+        border: none;
+        margin-top: 1rem;
+      }
+      img.feature {
+        width: 100%;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+      img.AI {
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+      }
+      table th,
+      table td {
+        border: 1px solid #ccc;
+        padding: 1rem;
+        text-align: center;
+      }
+      .team {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        justify-items: center;
+        align-items: center;
+        margin-top: 2rem;
+      }
+
+      .member {
+        text-align: center;
+        width: 100%;
+      }
+
+      .member img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+      }
+
+      .member a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .member a:hover {
+        color: #7d92ed;
+        transform: scale(1.02);
+        transition: 0.2s ease;
+      }
+
+      footer {
+        background-color: #eaeaea;
+        color: rgb(121, 121, 121);
+        text-align: center;
+        padding: 1rem;
+        margin-top: 3rem;
+      }
+
+      .flow-list {
+        counter-reset: item;
+        list-style: none;
+        padding-left: 0;
+        margin: 1.5rem 0;
+      }
+
+      .flow-list li {
+        counter-increment: item;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.6;
+      }
+
+      .flow-list li::before {
+        content: counter(item) ".";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #5873ee;
+        font-weight: bold;
+      }
+
+      .tech-table {
+        width: 60%;
+        max-width: 900px;
+        margin: 1rem 0;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+
+      .tech-table th,
+      .tech-table td {
+        border: 1px solid #ddd;
+        padding: 0.7rem;
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      .tech-table th {
+        background-color: #eeeeee;
+        color: #1e3a8a;
+      }
+
+      .side-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100vh;
+        background-color: #f1f5f9;
+        border-left: 1px solid #d1d5db;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: -2px 0 6px rgba(0, 0, 0, 0.05);
+        z-index: 999;
+        font-size: 0.9rem;
+      }
+
+      .side-nav h3 {
+        margin-top: 0;
+        color: #5873ee;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .side-nav a {
+        display: block;
+        margin: 0.25rem 0;
+        color: #374151;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      .side-nav a:hover {
+        color: #000000;
+        font-weight: 600;
+      }
+
+      .nav-links {
+        overflow-y: auto;
+        padding: 2rem 1rem 1rem 1rem;
+        flex: 1;
+      }
+
+      .nav-links a {
+        display: block;
+        margin: 0.75rem 0;
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: #000000;
+        font-weight: 600;
+      }
+
+      .nav-bottom {
+        padding: 1rem;
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .github-button {
+        display: block;
+        padding: 0.75rem;
+        background-color: #ffffff;
+        color: white;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+        border: 1px solid rgb(203, 203, 203);
+      }
+
+      .github-button:hover {
+        background-color: #f0f1f4;
+      }
+
+      section h1 {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        font-weight: 600;
+        color: gray;
+      }
+
+      .go-button {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: #1f2937;
+        color: white;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .go-button:hover {
+        background-color: #374151;
+      }
+
+      .doc-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .doc-link {
+        display: inline-block;
+        color: #1f2937;
+        padding: 0.75rem;
+        font-weight: 500;
+        text-decoration: none;
+        width: fit-content;
+      }
+
+      .doc-link:hover {
+        font-weight: 600;
+      }
+
+      .scroll-to-top {
+        color: #7d92ed;
+        font-size: 1.5rem;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+      }
+
+      .scroll-btn {
+        width: 50px;
+        height: 50px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #f6f8ff;
+        font-size: 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        z-index: 1000;
+      }
+
+      .scroll-btn:hover {
+        background-color: #f2f4ff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (max-width: 768px) {
+        .features-table,
+        .features-table tr,
+        .features-table td {
+          display: block;
+          width: 100%;
+          padding-right: 0;
+        }
+      }
+
+      .features-table h3 {
+        margin-top: 0;
+      }
+      .features-table p {
+        margin-bottom: 0.7rem;
+        line-height: 1.6;
+      }
+
+      .check-para {
+        padding-left: 1.8rem;
+        text-indent: -1.8rem;
+        line-height: 1.3rem;
+      }
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+      .AI {
+        width: 100%;
+        max-width: 600px;
+        display: block;
+        margin: 1rem auto;
+      }
+
+      .ai-model-box h4 {
+        margin-top: 1rem;
+        color: #374151;
+      }
+
+      .ai-model-box {
+        background-color: #f3f4f6;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+      }
+
+      .ai-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+
+      .ai-table th,
+      .ai-table td {
+        border: 1px solid #ddd;
+        padding: 0.6rem 0.75rem;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .ai-table th {
+        background-color: #e5e7eb;
+        color: #1f2937;
+        font-weight: 600;
+      }
+
+      .ai-subheading {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #374151;
+        padding-left: 0.75rem;
+      }
+
+      .ai-table-row {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .ai-table-row div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .ai-table-row .ai-table {
+        flex: 1;
+        min-width: 280px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="img/logo.svg" alt="NURINOON 로고" width="250" />
+      <br />
+      <h1>순찰의 새로운 방향이 되다, 누리눈</h1>
+      <p>AI 기반 실시간 CCTV 위험 감지 시스템</p>
+      <a href="https://nurinoon.vercel.app" target="_blank" class="go-button">
+        🔗 사이트 바로가기</a
+      >
+    </header>
+    <section>
+      <h1>
+        <i
+          >NURINOON은 AI 기술을 활용해 CCTV 영상을 실시간 분석하고, 위험 상황을
+          즉시 감지하여 사용자의 신속한 대응을 가능하게 하는 스마트 모니터링
+          시스템입니다.</i
+        >
+      </h1>
+    </section>
+    <br />
+
+    <section id="project">
+      <h2>💡 프로젝트 소개</h2>
+      <p>
+        경찰은 치안 강화를 위해 도보 순찰을 확대하고 있습니다. 그러나 인력
+        중심의 순찰은 긴급 상황 발생 시 <strong>즉각적인 대응</strong>이 어렵고,
+        시민의 신고에 의존하는 <strong>사후 대응 체계</strong>로 인해 신고되지
+        않은 사건에는 대처가 불가능한 문제가 있습니다. 저희는 이러한 문제에
+        주목하여,
+        <strong>AI 기반 실시간 위험 감지 및 사건 관리 시스템</strong>인
+        <strong>NURINOON(누리눈)</strong>을 개발하였습니다. <br /><br />CCTV
+        영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난동 등
+        <strong> 다양한 위험 상황을 감지</strong>하고, 사건 유형에 따라
+        우선순위를 지정해 긴급한 상황을 빠르게 인지하고 대응할 수 있도록 알림을
+        제공합니다.
+      </p>
+      <br />
+
+      <h3>서비스 강점</h3>
+
+      <p class="check-para">
+        ✅ &nbsp<strong>NURINOON</strong>은 실시간 스트리밍 기능을 통해 관할
+        지역의 CCTV를 모니터링하고 현장 상황을 즉시 파악할 수 있습니다.
+      </p>
+      <p class="check-para">
+        ✅ &nbsp<strong>NURINOON</strong>은 AI를 활용한 모니터링 자동화를 통해
+        인력 부담을 줄이고, 보다 빠르고 정확한 대응을 가능하게 함으로써 공공
+        안전을 지속적으로 향상시킵니다.
+      </p>
+
+      <p class="check-para">
+        ✅ &nbsp<strong>NURINOON</strong>은 사건 데이터를 축적하여
+        <strong>시간대별 · 장소별 경향을 시각화</strong>함으로써 효율적인 순찰
+        인력 배치와 치안 전략 수립에 기여합니다.
+      </p>
+    </section>
+    <br />
+
+    <section id="features">
+      <h2>💡 기능 소개</h2>
+      <img src="img/flow.png" alt="서비스 흐름" class="feature" />
+      <p><strong>NURINOON의 사용 흐름은 다음과 같습니다.</strong></p>
+
+      <ol class="flow-list">
+        <li>
+          CCTV 영상이 실시간으로 송출됨과 동시에 AI 모델에 전달되어 위험 행동을
+          탐지합니다.
+        </li>
+        <li>
+          위험 행동이 감지되면 실시간으로 알림이 전송되고, 사용자는 상황을
+          확인한 후 적절한 대응을 선택하게 됩니다. 이때 출동과 미출동 2가지 대응
+          방안이 존재합니다.
+        </li>
+        <li>
+          일련의 대응 과정이 모두 끝나면, 해당 사건은 종료 처리되며, 종료된
+          사건은 누적되어 추후 사건 조회 및 통계 자료로 활용됩니다.
+        </li>
+      </ol>
+
+      <br />
+
+      <table class="features-table">
+        <tr>
+          <td>
+            <h3>👁️‍🗨️ AI 기반 실시간 위험 행동 감지</h3>
+            <p>
+              AI를 기반으로 CCTV 데이터를 실시간 분석하여 위험 행동을
+              감지합니다. 화재, 실신, 폭행, 흉기 난동 등 다양한 위험 행동을
+              감지할 수 있습니다.
+            </p>
+          </td>
+          <td>
+            <h3>🚨 위험 행동 분류 및 알림</h3>
+            <p>
+              위험도에 따라 단계를 구분하여 위험 행동 감지 알림을 전송합니다.
+              1단계 위험은 푸쉬 알림으로, 2단계 위험은 모달창을 통해 위험 상황을
+              알립니다. 사용자는 상황에 따라 우선순위가 높은 사건부터 해결할 수
+              있습니다.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>🚔 출동중인 사건 관리</h3>
+            <p>
+              출동중인 사건을 모아서 관리하고 확인할 수 있습니다. 사건 발생
+              시각, 위치 등의 정보를 제공하며 '영상 확인' 버튼을 통해 위험
+              행동이 감지된 CCTV 화면을 다시 확인할 수 있습니다.
+            </p>
+          </td>
+          <td>
+            <h3>👍 AI 성능 개선을 위한 사건 유형 피드백</h3>
+            <p>
+              사건 발생 유무, 위험 분류에 대한 오탐 여부 등을 선택하여 사건 유형
+              피드백을 진행합니다. 피드백이 반영된 데이터를 재학습시켜 오탐률을
+              줄이고 정확도를 높일 수 있습니다.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3>📝 사건 기록 조회</h3>
+            <p>
+              종결된 사건을 모아서 확인할 수 있도록 '사건 기록 조회' 기능을
+              제공합니다. 필터링 및 검색 기능으로 원하는 사건을 쉽게 찾을 수
+              있습니다.
+            </p>
+          </td>
+          <td>
+            <h3>📊 통계 차트 제공</h3>
+            <p>
+              누적된 사건 데이터를 기반으로 시간대별, 장소별, 유형별 등 다양한
+              통계 그래프를 제공합니다. 그래프를 통해 사건 경향성을 파악할 수
+              있으며, 지도의 클러스터링 기능을 통해 사건 다발 지역을 쉽게 인식할
+              수 있습니다.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </section>
+    <br />
+    <br />
+
+    <section id="tech">
+      <h2>💡 기술적 강점</h2>
+      <ol>
+        <li>
+          <strong>저지연 실시간 스트리밍</strong> (RTMP → HLS 변환)<br />
+          미디어 서버는 RTMP를 사용하여 실시간 스트리밍 영상을 처리하고, 이를
+          HLS로 변환하여 웹과 모바일 환경에서
+          <strong>저지연</strong> 및 <strong>안정적인 스트리밍</strong>을
+          제공합니다. 이를 통해 실시간 위험 감지 및 빠른 대응이 요구되는
+          상황에서 <strong>즉각적인 피드백</strong>을 가능하게 하여, 지연을
+          최소화하면서도 <strong>브라우저 호환성</strong>을 보장합니다.
+        </li>
+        <br />
+        <li>
+          <strong>이중 AI 모델을 통한 효율적 위험 감지</strong><br />
+          1차 AI 모델은 실시간으로 <strong>정적 위험</strong>을 빠르게 감지하고,
+          관련된 프레임만을 2차 모델에 전달하여 <strong>실시간성</strong>과
+          <strong>시스템 자원 효율성</strong>을 극대화합니다. 2차 모델은 영상
+          기반으로 <strong>정밀한 동적 위험 행동을 분석</strong>하여,
+          <strong>높은 분류 정확도</strong>를 제공합니다.
+          <strong>이중 AI 모델</strong> 구조는 실시간성과 분석 정확도를 모두
+          충족시키며, <strong>효율적이고 정확한 위험 감지</strong>를 가능하게
+          합니다.
+        </li>
+        <br />
+        <li>
+          <strong>YOLOv11n과 X3D 모델을 통한 위험 감지 최적화</strong><br />
+          누리눈은 자체 학습을 통해 <strong>위험 행동 감지에 최적화</strong>된
+          모델을 사용합니다. YOLOv11과 X3D 모델을 자체 데이터셋을 사용해 새로운
+          카테고리를 감지하고, 분류할 수 있도록 파인튜닝하였습니다. 이 때,
+          다양한 실제 환경의 CCTV 데이터와 직접 촬영한 데이터를 조합하여 현장
+          적용 가능성과 <strong>일반화 성능</strong>을 확보했습니다.
+        </li>
+        <br />
+        <li>
+          <strong>서버 모듈화 및 유연한 확장성 확보</strong><br />
+          Media Server, Backend Server, AI Server를 각각 독립된 EC2 인스턴스로
+          분리함으로써
+          <strong>서버 간 책임을 명확히 분리</strong>하고,
+          <strong>서비스 간 병목 및 장애 전파를 최소화</strong>하였습니다. 또한
+          모든 서버는 Docker 컨테이너 기반으로 배포되어, 서비스 확장이나 버전
+          롤백 시에도 <strong>무중단 배포</strong> 및
+          <strong>신속한 인프라 확장</strong>이 가능합니다.
+        </li>
+      </ol>
+      <br />
+    </section>
+    <br />
+
+    <section id="ai">
+      <h2>💡 AI 모델</h2>
+      <div>
+        <p>
+          NURINOON은 CCTV 영상을 분석해 위험행동을 감지하여 알림을 제공하는
+          서비스입니다. 이를 위해 YOLOv11-nano와 X3D 모델을 조합하여 객체 탐지와
+          위험행동 분류를 분리 처리함으로써 속도와 정확도를 모두 확보하고자
+          하였습니다.
+        </p>
+        <ul>
+          <li>
+            YOLOv11-nano 모델: 객체 탐지 <br />사람, 연기, 불, 흉기 객체를
+            빠르게 탐지하는 데 특화된 <strong>경량 객체 탐지 모델</strong>로,
+            실시간 CCTV 영상에서도 높은 FPS를 유지할 수 있습니다.
+          </li>
+          <li>
+            X3D: 행동 인식<br />3D Conv 기반의 비디오 인식 모델로, 시간적 및
+            공간적 정보를 효과적으로 처리해,
+            <strong
+              >행동(폭행, 쓰러짐 등)의 패턴을 이해하고 분류하는 데 적합</strong
+            >합니다.
+          </li>
+        </ul>
+        <p>
+          따라서 YOLOv11 로 영상 데이터를 필터링한 후 X3D로 전달하여
+          <strong>불필요한 연산을 제거하고 정밀한 행동 분류</strong>를 할 수
+          있도록 하였습니다. 이로 인해 효율성 향상, 정확도 개선, 실시간 처리
+          최적화를 달성하였습니다.
+        </p>
+      </div>
+      <img src="img/ai.png" alt="ai" class="AI" width="800" />
+
+      <h3 class="ai-subheading">📌 모델 선정 이유</h3>
+
+      <div class="ai-model-box">
+        <h4>📍 YOLOv11-nano</h4>
+        <p>
+          최신 모델인 YOLOv11은 기존의 YOLOv8 대비 더 빠른 연산 속도, 더 적은
+          파라미터 수, 그리고 향상된 탐지 정확도(mAP)를 문서 상에서 보여주고
+          있습니다.
+        </p>
+        <br />
+        <figure style="text-align: center">
+          <img src="img/yolo.png" alt="YOLO 성능 비교" width="800" />
+          <figcaption
+            style="margin-top: 0.5rem; font-size: 0.9rem; color: #555"
+          >
+            YOLOv4, YOLOv8, YOLOv11 비교 성능 그래프
+          </figcaption>
+        </figure>
+        <br />
+        <p>
+          수치상의 성능도 중요하지만, 실제 위험 상황이 포함된 CCTV 영상에 대한
+          실질적인 인퍼런스 성능도 중요하다고 판단하였습니다. 이를 위해 역동적인
+          움직임, 사람의 쓰러짐 등 위험 상황이 포함된 실제 테스트 영상을
+          활용하여 YOLOv4-tiny, YOLOv8-nano, YOLOv11-nano 세 가지 모델의 탐지
+          결과를 비교 분석하였습니다.
+        </p>
+        <ul>
+          <li>
+            YOLOv4-tiny 및 YOLOv8-nano는 사람이 움직이거나 쓰러지는 상황에서
+            bounding box가 끊기거나 불안정하게 유지되는 현상이 빈번하게
+            관찰되었습니다.
+          </li>
+          <li>
+            세 모델 모두 기울어지거나 쓰러진 사람을 ‘dog’나 ‘cat’으로 오인식하는
+            오류가 발생하였습니다.
+          </li>
+        </ul>
+        <p>
+          이러한 분석을 바탕으로, YOLOv11-nano 모델을 기반으로 한 파인튜닝을
+          진행하였습니다. 파인튜닝을 통해 실제 위험 상황에서 연속적인 사람 탐지
+          성능을 개선하고, 쓰러진 사람에 대한 인식 오류를 최소화하도록
+          보완하였습니다. 그리고 인식하지 못했던 fire, smoke, weapon 같은
+          객체들을 새롭게 탐지할 수 있도록 하였습니다.
+        </p>
+        <br />
+        <figure style="text-align: center">
+          <img src="img/yolo2.png" alt="인퍼런스 결과" width="500" />
+          <figcaption
+            style="margin-top: 0.5rem; font-size: 0.9rem; color: #555"
+          >
+            직접 촬영한 영상 데이터 YOLOv11n 인퍼런스 결과
+          </figcaption>
+        </figure>
+
+        <br />
+      </div>
+
+      <!-- X3D 설명 박스 -->
+      <div class="ai-model-box">
+        <h4>📍 X3D</h4>
+        <p>
+          X3D는 시간, 공간, 채널 너비, 네트워크 폭에 대한 확장 계수를 조절하며
+          효율성과 정확도에서 우수함을 입증한 모델입니다. 특히 행동 인식과 같이
+          시간적 맥락이 중요한 문제에서 강력한 성능을 발휘합니다. 해당 모델은
+          단일 경로 구조를 가지고 있으며, 시간과 공간 정보를 동시에 처리할 수
+          있도록 설계되어있음에도 불구하고, 대표적인 2-path 구조의 고성능 모델인
+          SlowFast와 비교해도 학습이 단순하고 연산량이 작은 것이 큰 장점입니다.
+          이에 따라 Nurinoon에서는 실시간 처리가 가능하면서도 정확도를 확보할 수
+          있는 경량 모델인 X3D-S를 최종 선택하였습니다.
+        </p>
+
+        <table class="ai-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Top-1 Acc (%)</th>
+              <th>GFLOPs × Views</th>
+              <th>Param (M)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SlowFast 4×16, R50</td>
+              <td>75.6</td>
+              <td>36.1 x 30 = 1083</td>
+              <td>34.4M</td>
+            </tr>
+            <tr>
+              <td>SlowFast 8×8, R101</td>
+              <td>77.9</td>
+              <td>106 x 30= 3180</td>
+              <td>53.7M</td>
+            </tr>
+            <tr>
+              <td>X3D-XS</td>
+              <td>68.6</td>
+              <td>약 0.6 x 30 = 18</td>
+              <td>3.76M</td>
+            </tr>
+            <tr>
+              <td>X3D-S</td>
+              <td>72.9</td>
+              <td>약 1.96 x 30 = 58.8</td>
+              <td>3.76M</td>
+            </tr>
+            <tr>
+              <td>X3D-M</td>
+              <td>76.0</td>
+              <td>6.2 x 30 = 186</td>
+              <td>3.8M</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ai-subheading">📌 데이터별 전처리 방식</h3>
+
+      <div>
+        <p>
+          다양한 공개 데이터와 직접 수집한 영상 데이터를 활용하여, 위험 상황을
+          정확히 탐지할 수 있도록 모델을 파인튜닝하였습니다. 각 데이터셋은
+          클래스 목적에 맞춰 적절한 전처리를 거쳐 학습 데이터로 구성하였습니다.
+        </p>
+        <table class="ai-table">
+          <thead>
+            <tr>
+              <th>데이터셋</th>
+              <th>사용 클래스</th>
+              <th>전처리 방식</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI hub 이상행동 CCTV 데이터</td>
+              <td>person</td>
+              <td>
+                나머지 클래스에 대해 수동으로 라벨링 진행함(YOLO) / 영상을
+                카테고리별로 수집하여 클립으로 구성함(X3D)
+              </td>
+            </tr>
+            <tr>
+              <td>AI hub 실내외 군중 특성 데이터</td>
+              <td>head(군중밀집 판단)</td>
+              <td>
+                point 라벨을 head 크기 기준 30*30 bounding box로 변환함(YOLO)
+              </td>
+            </tr>
+            <tr>
+              <td>AI hub 화재 발생 예측 영상</td>
+              <td>smoke, fire</td>
+              <td>
+                유사 상황도 포함하여 라벨 없는 데이터도 일부 사용함 (YOLO)
+              </td>
+            </tr>
+            <tr>
+              <td>COCO dataset 2017</td>
+              <td>weapon</td>
+              <td>weapon에 해당하는 일부 클래스만 사용함(YOLO)</td>
+            </tr>
+            <tr>
+              <td>Roboflow fall_detection</td>
+              <td>person</td>
+              <td>
+                쓰러져있는 사람 데이터이며, 나머지 클래스는 수동 라벨링
+                진행함(YOLO)
+              </td>
+            </tr>
+            <tr>
+              <td>직접 촬영한 영상 데이터</td>
+              <td>person, head, weapon</td>
+              <td>
+                다양한 환경에서 촬영하였고, person, head, weapon 클래스를
+                수동으로 라벨링함(YOLO) / 영상을 클립으로 구성함(X3D)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+
+        <p>
+          학습된 YOLOv11n의 성능은 mAP@50 기준으로 평가하였습니다. 이는 예측
+          bounding box와 실제 정답 간의 Intersection over Union이 0.5 이상일 때
+          정탐으로 간주하며, 정밀도(Precision)와 재현율(Recall)을 모두 고려한
+          탐지 정확도 지표입니다. 학습된 X3D의 성능은 Top-1 Accuracy 기준으로
+          평가하였으며, 이는 모델이 가장 높은 확률로 선택한 클래스가 정답일
+          확률을 의미합니다.
+        </p>
+
+        <div class="ai-table-row">
+          <!-- 첫 번째 테이블 -->
+          <div>
+            <p>객체 탐지 성능</p>
+            <table class="ai-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>mAP@50 (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>fire</td>
+                  <td>0.969</td>
+                </tr>
+                <tr>
+                  <td>smoke</td>
+                  <td>0.892</td>
+                </tr>
+                <tr>
+                  <td>person</td>
+                  <td>0.777</td>
+                </tr>
+                <tr>
+                  <td>head(crowd)</td>
+                  <td>0.600</td>
+                </tr>
+                <tr>
+                  <td>weapon</td>
+                  <td>0.432</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 두 번째 테이블 -->
+          <div>
+            <p>행동 분류 성능</p>
+            <table class="ai-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Top-1 Accuracy (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>assault</td>
+                  <td>94.85</td>
+                </tr>
+                <tr>
+                  <td>normal</td>
+                  <td>92.09</td>
+                </tr>
+                <tr>
+                  <td>swoon</td>
+                  <td>93.1</td>
+                </tr>
+                <tr>
+                  <td>weapon_attack</td>
+                  <td>92.92</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <section id="architecture">
+      <h2>💡 시스템 아키텍처</h2>
+      <img src="img/architecture.svg" alt="시스템 아키텍처" class="feature" />
+      <p>
+        NURINOON 은
+        <strong
+          >성능(Performance), 효율성(Efficiency), 기능(Funtionality)</strong
+        >을 고려하여 설계하였습니다.<br /><br />Media Server, Backend Server, AI
+        Server를 각각 독립된 EC2 인스턴스로 분리함으로써 서버 간 책임을 명확히
+        분리하고, <strong>서비스 간 병목 및 장애 전파를 최소화</strong>했습니다.
+        또한 모든 서버는 Docker 컨테이너 기반으로 배포되어,
+        <strong>유연한 확장</strong>이 가능합니다. <br /><br />미디어 서버는
+        RTMP를 사용하여 실시간 스트리밍 영상을 처리하고, 이를 HLS로 변환하여
+        웹과 모바일 환경에서<strong>저지연 및 안정적인 스트리밍</strong> 을
+        제공합니다. 이를 통해 실시간 위험 감지 및 빠른 대응이 요구되는
+        상황에서 즉각적인 피드백을 가능하게 하여, 지연을 최소화하면서도 <strong
+          >브라우저 호환성을 보장</strong
+        >합니다. <br /><br />AI 서버의 경우, 1차 AI 모델은 실시간으로 정적
+        위험을 빠르게 감지하고, 관련된 프레임만을 2차 모델에 전달하여 <strong
+          >실시간성과 시스템 자원 효율성을 극대화</strong
+        >합니다. 2차 모델은 영상 기반으로 정밀한 동적 위험 행동을 분석하여, 높은
+        분류 정확도를 제공합니다. <strong>이중 AI 모델 구조</strong>는
+        실시간성과 분석 정확도를 모두 충족시키며, 효율적이고 정확한 위험 감지를
+        가능하게 합니다.
+      </p>
+    </section>
+    <br />
+
+    <section id="pages">
+      <h2>💡 화면 소개</h2>
+      <table>
+        <tr>
+          <th>기능</th>
+          <th>시연 화면</th>
+        </tr>
+        <tr>
+          <td>CCTV<br />모니터링</td>
+          <td>
+            <img src="./img/cctv_monitoring.gif" alt="기능 시연" width="650" />
+          </td>
+        </tr>
+        <tr>
+          <td>실시간 <br />위험행동 <br />감지 알림</td>
+          <td>
+            <img src="./img/alert.gif" width="650" /><img
+              src="./img/alert2.gif"
+              width="650"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>출동중인<br />사건 관리</td>
+          <td><img src="./img/manage.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>AI <br />성능 개선을 위한 피드백</td>
+          <td><img src="./img/feedback.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>사건 기록 조회</td>
+          <td><img src="./img/history.gif" width="650" /></td>
+        </tr>
+        <tr>
+          <td>사건 통계 차트</td>
+          <td><img src="./img/chart.gif" width="650" /></td>
+        </tr>
+      </table>
+    </section>
+    <br />
+
+    <section id="video">
+      <h2>💡 시연 영상</h2>
+      <iframe
+        src="https://www.youtube.com/embed/YE4nkh7HI6o"
+        title="2025 KMUCS 캡스톤디자인 24조 시연 영상"
+        allowfullscreen
+      ></iframe>
+    </section>
+    <br />
+
+    <section id="team">
+      <h2>💡 팀원</h2>
+      <div class="team">
+        <div class="member">
+          <a href="https://github.com/hummingbbird" target="_blank">
+            <img src="https://github.com/hummingbbird.png" alt="이채영" />
+            <p><strong>이채영</strong><br />TL, Frontend</p>
+          </a>
+        </div>
+        <div class="member">
+          <a href="https://github.com/seo0o519" target="_blank">
+            <img src="https://github.com/seo0o519.png" alt="강서영" />
+            <p><strong>강서영</strong><br />Frontend</p>
+          </a>
+        </div>
+        <div class="member">
+          <a href="https://github.com/HeeNamgoong" target="_blank">
+            <img src="https://github.com/HeeNamgoong.png" alt="남궁희" />
+            <p><strong>남궁희</strong><br />Frontend</p>
+          </a>
+        </div>
+        <div class="member">
+          <a href="https://github.com/hyni03" target="_blank">
+            <img src="https://github.com/hyni03.png" alt="김은지" />
+            <p><strong>김은지</strong><br />Backend</p>
+          </a>
+        </div>
+        <div class="member">
+          <a href="https://github.com/mjk25" target="_blank">
+            <img src="https://github.com/mjk25.png" alt="김민주" />
+            <p><strong>김민주</strong><br />Backend</p>
+          </a>
+        </div>
+        <div class="member">
+          <a href="https://github.com/justpers" target="_blank">
+            <img src="https://github.com/justpers.png" alt="김예향" />
+            <p><strong>김예향</strong><br />AI</p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <br />
+
+    <section id="stack">
+      <h2>💡 기술 스택</h2>
+
+      <!-- ================= Frontend ================= -->
+      <h3>💄 Frontend</h3>
+      <div class="badge-row">
+        <img
+          src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"
+          alt="React"
+        />
+        <img
+          src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"
+          alt="TypeScript"
+        />
+        <img
+          src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=MUI&logoColor=white"
+          alt="MUI"
+        />
+        <img
+          src="https://img.shields.io/badge/styled_components-DB7093.svg?style=for-the-badge&logo=styledcomponents&logoColor=white"
+          alt="styled-components"
+        />
+        <img
+          src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white"
+          alt="ESLint"
+        />
+        <img
+          src="https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=white"
+          alt="Prettier"
+        />
+        <img
+          src="https://img.shields.io/badge/Yarn-2C8EBB.svg?style=for-the-badge&logo=Yarn&logoColor=white"
+          alt="Yarn"
+        />
+        <img
+          src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"
+          alt="Vercel"
+        />
+      </div>
+
+      <!-- ================= Backend ================= -->
+      <h3>🚀 Backend</h3>
+      <div class="badge-row">
+        <img
+          src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white"
+          alt="Java"
+        />
+        <img
+          src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=SpringBoot&logoColor=white"
+          alt="Spring Boot"
+        />
+        <img
+          src="https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=Gradle&logoColor=white"
+          alt="Gradle"
+        />
+        <img
+          src="https://img.shields.io/badge/REST_API-000000?style=for-the-badge&logo=iRobot&logoColor=white"
+          alt="REST API"
+        />
+        <img
+          src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=PostgreSQL&logoColor=white"
+          alt="PostgreSQL"
+        />
+        <img
+          src="https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"
+          alt="AWS S3"
+        />
+        <img
+          src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=ApacheKafka&logoColor=white"
+          alt="Kafka"
+        />
+        <img
+          src="https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"
+          alt="AWS EC2"
+        />
+        <img
+          src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"
+          alt="Docker"
+        />
+        <img
+          src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white"
+          alt="GitHub Actions"
+        />
+      </div>
+
+      <!-- ================= AI Server ================= -->
+      <h3>🤖 AI</h3>
+      <div class="badge-row">
+        <img
+          src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"
+          alt="Python"
+        />
+        <img
+          src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white"
+          alt="PyTorch"
+        />
+        <img
+          src="https://img.shields.io/badge/YOLO_(Ultralytics)-111F68?style=for-the-badge&logo=yolo&logoColor=white"
+          alt="YOLO"
+        />
+        <img
+          src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white"
+          alt="OpenCV"
+        />
+      </div>
+    </section>
+    <br />
+
+    <section id="docs">
+      <h2>💡 자료</h2>
+      <div class="doc-list">
+        <a href="https://www.naver.com" target="_blank" class="doc-link"
+          >📎&nbsp; 수행계획서</a
+        >
+        <a href="https://www.naver.com" target="_blank" class="doc-link"
+          >📎&nbsp; 중간 발표 자료</a
+        >
+      </div>
+    </section>
+
+    <footer>© 2025 KMUCS 캡스톤디자인 24조 | NURINOON 프로젝트</footer>
+    <nav class="side-nav">
+      <div class="nav-links">
+        <h3>목차</h3>
+        <a href="#project">프로젝트 소개</a>
+        <a href="#features">기능 소개</a>
+        <a href="#tech">기술적 강점</a>
+        <a href="#ai">AI 모델</a>
+        <a href="#architecture">시스템 아키텍처</a>
+        <a href="#pages">화면 소개</a>
+        <a href="#video">시연 영상</a>
+        <a href="#team">팀원</a>
+        <a href="#stack">기술 스택</a>
+        <a href="#docs">자료</a>
+      </div>
+
+      <div class="nav-bottom">
+        <a
+          href="https://github.com/kookmin-sw/capstone-2025-24"
+          target="_blank"
+          class="github-button"
+        >
+          <img
+            src="img/github.svg"
+            alt="GitHub"
+            width="25"
+            style="vertical-align: middle; margin-right: 6px"
+          />
+          GitHub로 이동
+        </a>
+      </div>
+    </nav>
+    <div class="scroll-btn">
+      <a href="#" class="scroll-to-top" title="맨 위로"> ⬆ </a>
+    </div>
+  </body>
+</html>
