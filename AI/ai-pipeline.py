@@ -10,12 +10,13 @@ from torchvision.transforms import Compose, Lambda, CenterCrop
 from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
 from ultralytics import YOLO
 from concurrent.futures import ThreadPoolExecutor
-from model_module import X3DFineTuner
+from dyamic_classification_model.src.model_module import X3DFineTuner
+import av
 import boto3
 import os
 
 # ─── 설정 로드 ─────────────────────────────────────────────────────────
-with open("../config.yaml","r",encoding="utf-8") as f:
+with open("./config.yaml","r",encoding="utf-8") as f:
     CFG = yaml.safe_load(f)
 
 EXT_POST_SEC = CFG.get("EXT_POST_SEC", 10)
@@ -35,10 +36,38 @@ signal.signal(signal.SIGTERM, on_signal)
 
 # ─── 2차 모델 준비 ─────────────────────────────────────────────────────
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-x3d_cfg = yaml.safe_load(open(CFG["SECOND_MODEL"]["CFG_PATH"]))
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+with open(CFG["SECOND_MODEL"]["CFG_PATH"], encoding="utf-8") as f:
+    x3d_cfg = yaml.safe_load(f)
+
 model2 = X3DFineTuner.load_from_checkpoint(
     CFG["SECOND_MODEL"]["CKPT_PATH"], cfg=x3d_cfg
 ).to(DEVICE).eval()
+
+def write_h264(frames, w, h, fps, path):
+    """
+    frames: BGR ndarray 리스트
+    """
+    output = av.open(path, mode="w")
+    # fps를 정수로 캐스팅 (예: 30.0 → 30)
+    rate = int(fps)
+    # 또는 분수를 쓰고 싶다면:
+    # rate = Fraction(int(fps * 1000), 1000)  # ex. 29.97 같은 경우에
+    
+    stream = output.add_stream("h264", rate=rate)
+    stream.width  = w
+    stream.height = h
+    stream.pix_fmt = "yuv420p"
+
+    for img in frames:
+        vf = av.VideoFrame.from_ndarray(img, format="bgr24")
+        for packet in stream.encode(vf):
+            output.mux(packet)
+    # flush
+    for packet in stream.encode():
+        output.mux(packet)
+
+    output.close()
 
 def transform_video(path):
     v,_,_ = read_video(path, pts_unit="sec")
@@ -95,11 +124,7 @@ def worker(frames, w, h, fps, clip_primary, cat):
     clip_ext = None
     try:
         # 1) 1차 클립 저장
-        fourcc = cv2.VideoWriter_fourcc(*"avc1")
-        out1 = cv2.VideoWriter(clip_primary, fourcc, fps, (w, h))
-        for img in frames:
-            out1.write(img)
-        out1.release()
+        write_h264(frames, w, h, fps, clip_primary)
         print(f"[Worker] Primary clip saved: {clip_primary}", flush=True)
 
         # 2) 사람(person)만 2차 모델 예측
@@ -126,10 +151,8 @@ def worker(frames, w, h, fps, clip_primary, cat):
                         CFG.get("STREAM_URL",""), EXT_POST_SEC, fps, w, h
                     )
                     clip_ext = f"2_{pred}_{time.strftime('%Y%m%d_%H%M%S')}.mp4"
-                    out2 = cv2.VideoWriter(clip_ext, fourcc, fps, (w, h))
-                    for img in post_frames:
-                        out2.write(img)
-                    out2.release()
+                    
+                    write_h264(post_frames, w, h, fps, clip_ext)
                     print(f"[Worker] Extended clip saved: {clip_ext}", flush=True)
 
                     url = upload_to_s3(clip_ext, f"videos/{clip_ext}", CFG)
