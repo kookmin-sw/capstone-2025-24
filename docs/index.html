@@ -392,12 +392,14 @@
         display: flex;
         gap: 2rem;
         flex-wrap: wrap;
-
+        justify-content: center;
       }
 
       .ai-table-row div {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       .ai-table-row .ai-table {
         flex: 1;
@@ -609,19 +611,22 @@
         <ul>
           <li>
             YOLOv11-nano 모델: 객체 탐지 <br />사람, 연기, 불, 흉기 객체를
-            빠르게 탐지하는 데 특화된 경량 객체 탐지 모델로, 실시간 CCTV
-            영상에서도 높은 FPS를 유지할 수 있습니다.
+            빠르게 탐지하는 데 특화된 <strong>경량 객체 탐지 모델</strong>로,
+            실시간 CCTV 영상에서도 높은 FPS를 유지할 수 있습니다.
           </li>
           <li>
             X3D: 행동 인식<br />3D Conv 기반의 비디오 인식 모델로, 시간적 및
-            공간적 정보를 효과적으로 처리해, 행동(폭행, 쓰러짐 등)의 패턴을
-            이해하고 분류하는 데 적합합니다.
+            공간적 정보를 효과적으로 처리해,
+            <strong
+              >행동(폭행, 쓰러짐 등)의 패턴을 이해하고 분류하는 데 적합</strong
+            >합니다.
           </li>
         </ul>
         <p>
-          따라서 YOLOv11 로 영상 데이터를 필터링한 후 X3D로 전달하여 불필요한
-          연산을 제거하고 정밀한 행동 분류를 할 수 있도록 하였습니다. 이로 인해
-          효율성 향상, 정확도 개선, 실시간 처리 최적화를 달성하였습니다.
+          따라서 YOLOv11 로 영상 데이터를 필터링한 후 X3D로 전달하여
+          <strong>불필요한 연산을 제거하고 정밀한 행동 분류</strong>를 할 수
+          있도록 하였습니다. 이로 인해 효율성 향상, 정확도 개선, 실시간 처리
+          최적화를 달성하였습니다.
         </p>
       </div>
       <img src="img/ai.png" alt="ai" class="AI" width="800" />
@@ -889,6 +894,28 @@
     <section id="architecture">
       <h2>💡 시스템 아키텍처</h2>
       <img src="img/architecture.svg" alt="시스템 아키텍처" class="feature" />
+      <p>
+        NURINOON 은
+        <strong
+          >성능(Performance), 효율성(Efficiency), 기능(Funtionality)</strong
+        >을 고려하여 설계하였습니다.<br /><br />Media Server, Backend Server, AI
+        Server를 각각 독립된 EC2 인스턴스로 분리함으로써 서버 간 책임을 명확히
+        분리하고, <strong>서비스 간 병목 및 장애 전파를 최소화</strong>했습니다.
+        또한 모든 서버는 Docker 컨테이너 기반으로 배포되어,
+        <strong>유연한 확장</strong>이 가능합니다. <br /><br />미디어 서버는
+        RTMP를 사용하여 실시간 스트리밍 영상을 처리하고, 이를 HLS로 변환하여
+        웹과 모바일 환경에서<strong>저지연 및 안정적인 스트리밍</strong> 을
+        제공합니다. 이를 통해 실시간 위험 감지 및 빠른 대응이 요구되는
+        상황에서 즉각적인 피드백을 가능하게 하여, 지연을 최소화하면서도 <strong
+          >브라우저 호환성을 보장</strong
+        >합니다. <br /><br />AI 서버의 경우, 1차 AI 모델은 실시간으로 정적
+        위험을 빠르게 감지하고, 관련된 프레임만을 2차 모델에 전달하여 <strong
+          >실시간성과 시스템 자원 효율성을 극대화</strong
+        >합니다. 2차 모델은 영상 기반으로 정밀한 동적 위험 행동을 분석하여, 높은
+        분류 정확도를 제공합니다. <strong>이중 AI 모델 구조</strong>는
+        실시간성과 분석 정확도를 모두 충족시키며, 효율적이고 정확한 위험 감지를
+        가능하게 합니다.
+      </p>
     </section>
     <br />
 
@@ -937,7 +964,7 @@
     <section id="video">
       <h2>💡 시연 영상</h2>
       <iframe
-        src="https://www.youtube.com/watch?v=qNCNHbmYvzI"
+        src="https://www.youtube.com/embed/qNCNHbmYvzI"
         title="2025 KMUCS 캡스톤디자인 24조 시연 영상"
         allowfullscreen
       ></iframe>
