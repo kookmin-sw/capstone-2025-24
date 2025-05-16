@@ -8,9 +8,13 @@
     <br>
     <br>
     <p>${\color{#D9D9D9}로고\ 클릭\ 시\ 소개\ 페이지로\ 이동합니다.}$</p>
+    <img src="https://github.com/user-attachments/assets/6232e671-f125-4a71-b5f3-ae1608423899" width="700" />
+  
 </div>
 <br>
 <br>
+
+
 
 ## 💡 목차
 
