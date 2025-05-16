@@ -10,8 +10,8 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
   const { selectedCategory, handleSelectCategory } = useSelectCategory();
   const groupedCategories: string[][] = [
-    ['화재', '쓰러짐', '군중밀집'],
-    ['흉기난동', '폭행', '기타'],
+    ['화재', '흉기난동', '군중밀집'],
+    ['쓰러짐', '폭행', '연기', '기타'],
   ];
 
   const handleClickResolve = async () => {
@@ -25,7 +25,7 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
     <ResolvedCard onClose={onClose} id={id} />
   ) : (
     <>
-      <S.FeedbackTitle>적절한 분류를 선택해주세요</S.FeedbackTitle>
+      <S.FeedbackTitle>적절한 유형을 선택해주세요</S.FeedbackTitle>
       <S.CategoryContainer>
         {groupedCategories.map((row, index) => (
           <S.CategoryRow key={index}>

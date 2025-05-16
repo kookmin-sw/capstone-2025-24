@@ -8,8 +8,8 @@ interface VideoComponentProps {
 }
 const VideoComponent = ({ w, h, radius, video }: VideoComponentProps) => {
   return (
-    <S.VideoComponentLayout w={w} h={h} radius={radius}>
-      {video && <S.Player src={video} controls autoPlay />}
+    <S.VideoComponentLayout $w={w} $h={h} radius={radius}>
+      {video && <S.Player src={video} controls autoPlay playsInline muted />}
     </S.VideoComponentLayout>
   );
 };

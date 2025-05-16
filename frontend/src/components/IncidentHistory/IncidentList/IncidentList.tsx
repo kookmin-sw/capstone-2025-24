@@ -25,6 +25,15 @@ const IncidentList = () => {
   const endPage = Math.min(startPage + pageGroupSize - 1, pageLength); // 페이지네이션의 버튼의 마지막 숫자
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
+  const [lastFilter, setLastFilter] = useState({
+    // 마지막 필터링 값 기억
+    category: '전체',
+    startDate: new Date('2024/01/01'),
+    endDate: new Date(),
+    searchType: '담당 경찰',
+    searchWord: '',
+  });
+
   const { openModal, closeModal, currentItem } = useModal();
 
   const [selectedIncident, setSelectedIncident] = useState<null | Incident>(null);
@@ -34,15 +43,18 @@ const IncidentList = () => {
   };
 
   return (
-    <div>
+    <S.Layout>
       <Filtering
         setIncidentData={setIncidentData}
         page={currentPage}
         dataLength={dataLength}
         setDataLength={setDataLength}
         setPageLength={setPageLength}
+        setCurrentPage={setCurrentPage}
+        setLastFilter={setLastFilter}
+        lastFilter={lastFilter}
       />
-      <S.Layout>
+      <S.Container>
         <S.IncidentListDiv>
           {incidentData.length === 0 ? (
             <EmptyView />
@@ -50,11 +62,11 @@ const IncidentList = () => {
             <S.Table>
               <thead>
                 <S.TableHeaderRow>
-                  <S.TableHeader w={10}>번호</S.TableHeader>
-                  <S.TableHeader w={16}>사건 분류</S.TableHeader>
-                  <S.TableHeader w={22}>날짜</S.TableHeader>
-                  <S.TableHeader w={38}>위치</S.TableHeader>
-                  <S.TableHeader w={14}>담당 경찰</S.TableHeader>
+                  <S.TableHeader $w={10}>번호</S.TableHeader>
+                  <S.TableHeader $w={16}>사건 유형</S.TableHeader>
+                  <S.TableHeader $w={22}>날짜</S.TableHeader>
+                  <S.TableHeader $w={38}>위치</S.TableHeader>
+                  <S.TableHeader $w={14}>담당 경찰</S.TableHeader>
                 </S.TableHeaderRow>
               </thead>
               <tbody>
@@ -66,19 +78,19 @@ const IncidentList = () => {
                       openModal({ type: 'norealtime', id: incident.id });
                     }}
                   >
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{startIndex + index + 1}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{categoryToKorean[incident.category] || incident.category}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{incident.date.replace(/-/g, '.')}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{truncate(incident.address, 25)}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{incident.policeName}</S.InfoP>
                     </S.TableData>
                   </S.TableBodyRow>
@@ -94,7 +106,7 @@ const IncidentList = () => {
               <GrFormPrevious />
             </S.MoveBtn>
             {pageNumbers.map((num) => (
-              <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
+              <S.PageButton key={num} onClick={() => setCurrentPage(num)} $active={num === currentPage}>
                 {num}
               </S.PageButton>
             ))}
@@ -103,7 +115,7 @@ const IncidentList = () => {
             </S.MoveBtn>
           </S.Pagination>
         )}
-      </S.Layout>
+      </S.Container>
       {currentItem?.type === 'norealtime' && selectedIncident && (
         <IncidentDetailsModal
           isOpen={true}
@@ -114,7 +126,7 @@ const IncidentList = () => {
           incident={selectedIncident}
         />
       )}
-    </div>
+    </S.Layout>
   );
 };
 export default IncidentList;

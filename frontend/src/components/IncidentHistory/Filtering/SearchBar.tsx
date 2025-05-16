@@ -29,14 +29,14 @@ const SearchBar = ({ searchType, setSearchType, searchWord, setSearchWord }: Sea
   return (
     <S.SearchBarContainer>
       <S.DropdownWrapper ref={dropdownRef}>
-        <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
+        <S.DropdownHeader onClick={toggleDropdown} $isOpen={isOpen}>
           {searchType}
           <IoChevronDown />
         </S.DropdownHeader>
         {isOpen && (
-          <S.DropdownList isOpen={isOpen}>
+          <S.DropdownList $isOpen={isOpen}>
             {options.map((option, index) => (
-              <S.DropdownItem key={index} isSelected={searchType === option} onClick={() => handleSelect(option)}>
+              <S.DropdownItem key={index} $isSelected={searchType === option} onClick={() => handleSelect(option)}>
                 {option}
               </S.DropdownItem>
             ))}

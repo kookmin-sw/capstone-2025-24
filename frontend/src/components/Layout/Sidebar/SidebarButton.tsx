@@ -12,8 +12,10 @@ const SidebarButton = ({ id, text, icon, onClick }: SidebarButtonProps) => {
   const { page } = sidebarStore();
   const Icon = icon;
   return (
-    <S.SidebarBtn className={`${page === id ? 'active' : ''}`} onClick={onClick}>
-      <Icon />
+    <S.SidebarBtn onClick={onClick}>
+      <S.IconDiv className={`${page === id ? 'active' : ''}`}>
+        <Icon className='icon'/>
+      </S.IconDiv>
       {text}
     </S.SidebarBtn>
   );

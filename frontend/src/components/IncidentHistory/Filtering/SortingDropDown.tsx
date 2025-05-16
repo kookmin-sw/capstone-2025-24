@@ -26,7 +26,7 @@ const SortingDropDown = ({sort, setSort} : SortingDropDownProps) => {
 
   return (
     <S.SortingDropdownWrapper ref={dropdownRef}>
-      <S.SortingDropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
+      <S.SortingDropdownHeader onClick={toggleDropdown} $isOpen={isOpen}>
         {sort} <IoChevronDown />
       </S.SortingDropdownHeader>
       {isOpen && (

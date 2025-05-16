@@ -1,5 +1,5 @@
 import * as S from './Filtering.style.ts';
-import CategoryDropDown from '../../common/CategoryDropDown/CategoryDropDown.tsx';
+import CategoryDropDown from './CategoryDropDown/CategoryDropDown.tsx';
 import DateFiltering from './DateFiltering.tsx';
 import SearchBar from './SearchBar.tsx';
 import { useState, useEffect } from 'react';
@@ -7,6 +7,7 @@ import SortingDropDown from './SortingDropDown.tsx';
 import { Incident } from '@/types/incident.ts';
 import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
 import { categoryToEnglish } from '@/utils/categoryMapper.ts';
+import { FilteringInfo } from '@/types/incident.ts';
 
 interface FilteringProps {
   setIncidentData: React.Dispatch<React.SetStateAction<Incident[]>>;
@@ -14,6 +15,9 @@ interface FilteringProps {
   dataLength: number;
   setDataLength: (value: number) => void;
   setPageLength: (value: number) => void;
+  setCurrentPage: (value: number) => void;
+  setLastFilter: (value: FilteringInfo) => void;
+  lastFilter: FilteringInfo;
 }
 
 const SortMap: Record<string, string> = {
@@ -25,7 +29,16 @@ const formatDateTime = (date: Date): string => {
   return date.toISOString().substring(0, 10);
 };
 
-const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLength }: FilteringProps) => {
+const Filtering = ({
+  setIncidentData,
+  page,
+  dataLength,
+  setDataLength,
+  setPageLength,
+  setCurrentPage,
+  setLastFilter,
+  lastFilter,
+}: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
   const [endDateFilter, setEndDateFilter] = useState(new Date());
@@ -36,6 +49,15 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
   const [triggerFetch, setTriggerFetch] = useState(false);
 
   const handleClick = () => {
+    setLastFilter({
+      category: categoryFilter,
+      startDate: startDateFilter,
+      endDate: endDateFilter,
+      searchType,
+      searchWord,
+    });
+
+    setCurrentPage(1);
     setTriggerFetch((prev) => !prev);
   };
 
@@ -45,10 +67,10 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
 
       const requestData = {
         category: categoryLabel,
-        startDate: formatDateTime(startDateFilter),
-        endDate: formatDateTime(endDateFilter),
-        address: searchType === '위치' ? searchWord : null,
-        police: searchType === '담당 경찰' ? searchWord : null,
+        startDate: formatDateTime(lastFilter.startDate),
+        endDate: formatDateTime(lastFilter.endDate),
+        address: lastFilter.searchType === '위치' ? lastFilter.searchWord : null,
+        police: lastFilter.searchType === '담당 경찰' ? lastFilter.searchWord : null,
         order: SortMap[sort],
         page,
       };
@@ -66,11 +88,6 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
 
   return (
     <S.Layout>
-      <S.DropDownInfoLayout>
-        <S.InfoP w={165}>사건 분류</S.InfoP>
-        <S.InfoP w={201}>시작 날짜</S.InfoP>
-        <S.InfoP w={201}>종료 날짜</S.InfoP>
-      </S.DropDownInfoLayout>
       <S.FilteringLayout>
         <CategoryDropDown selected={categoryFilter} setSelected={setCategoryFilter} />
         <DateFiltering
@@ -85,7 +102,9 @@ const Filtering = ({ setIncidentData, page, dataLength, setDataLength, setPageLe
           searchWord={searchWord}
           setSearchWord={setSearchWord}
         />
-        <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
+        <S.BtnWrapper>
+          <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
+        </S.BtnWrapper>
       </S.FilteringLayout>
       <S.Container>
         <S.IncidentNum>총 {dataLength}건</S.IncidentNum>

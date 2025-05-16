@@ -5,14 +5,16 @@ import { CgSearch } from 'react-icons/cg';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Filtering.tsx ---------------------------------------------//
-export const Layout = styled.div``;
+export const Layout = styled.div`
+  width: 95%;
+`;
 
 export const FilteringLayout = styled.div`
-  border: 1px soild black;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: end;
   margin-bottom: 20px;
+  width: 100%;
 `;
 
 export const DropDownInfoLayout = styled.div`
@@ -20,15 +22,14 @@ export const DropDownInfoLayout = styled.div`
   gap: 10px;
 `;
 
-export const InfoP = styled.p<{ w: number }>`
-  width: ${({ w }) => w}px;
+export const InfoP = styled.p`
   font-size: 13px;
   color: var(--gray800);
   padding: 2px;
 `;
 
 export const SearchBtn = styled.button`
-  width: 74px;
+  width: 100%;
   height: 39px;
   border-radius: 10px;
   border: 2px solid var(--primary800);
@@ -60,21 +61,36 @@ export const IncidentNum = styled.p`
   font-weight: 700;
 `;
 
-// DataFiltering.tsx ----------------------------------------//
-export const DateFilteringContainer = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-export const DatePickerWrapper = styled.div<{ isOpen: boolean }>`
+export const BtnWrapper = styled.div`
+  width: 6%;
+  height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 201px;
+  min-width: 65px;
+`;
+
+// DataFiltering.tsx ----------------------------------------//
+export const DateFilteringLayout = styled.div`
+  display: flex;
+  border: 1px solid blue;
+`;
+
+export const DateFilteringContainer = styled.div`
+  width: 17%;
+  min-width: 192px;
+`;
+
+export const DatePickerWrapper = styled.div<{ $isOpen: boolean }>`
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  width: 100%;
   height: 52px;
   border: 1px solid var(--gray400);
   border-radius: 8px;
-  background-color: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  background-color: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
 `;
 
 export const CalendarIcon = styled(HiMiniCalendar)`
@@ -82,33 +98,35 @@ export const CalendarIcon = styled(HiMiniCalendar)`
   color: var(--gray800);
 `;
 
-export const DownIcon = styled(IoChevronDown)<{ isOpen: boolean }>`
+export const DownIcon = styled(IoChevronDown)<{ $isOpen: boolean }>`
   font-size: 18px;
   color: var(--gray800);
   cursor: pointer;
   transition: transform 0.3s ease;
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
 `;
 
 // SearchBar.tsx ----------------------------------------//
 
 export const SearchBarContainer = styled.div`
-  width: 468px;
+  width: 37%;
   height: 52px;
   display: flex;
+  min-width: 400px;
 `;
 
 export const DropdownWrapper = styled.div`
+  width: 35%;
   position: relative;
 `;
 
-export const DropdownHeader = styled.button<{ isOpen: boolean }>`
-  width: 142px;
+export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
+  width: 100%;
   height: 52px;
   border: 1px solid var(--gray400);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
-  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
   cursor: pointer;
   font-size: 18px;
   display: flex;
@@ -121,10 +139,10 @@ export const DropdownHeader = styled.button<{ isOpen: boolean }>`
 
   svg {
     transition: transform 0.3s ease;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
   }
 `;
-export const DropdownList = styled.ul<{ isOpen: boolean }>`
+export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
@@ -142,8 +160,8 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
   transition: all 0.3s ease-in-out;
   text-align: center;
 
-  ${({ isOpen }: { isOpen: boolean }) =>
-    isOpen &&
+  ${({ $isOpen }: { $isOpen: boolean }) =>
+    $isOpen &&
     `
       opacity: 1;
       visibility: visible;
@@ -151,13 +169,13 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
     `}
 `;
 
-export const DropdownItem = styled.li<{ isSelected: boolean }>`
+export const DropdownItem = styled.li<{ $isSelected: boolean }>`
   padding: 7px 0px;
   margin: 7px 10px;
   font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  background: ${({ isSelected }) => (isSelected ? 'var(--primary500)' : 'transparent')};
+  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary500)' : 'transparent')};
   color: black;
   border-radius: 8px;
   text-align: center;
@@ -168,7 +186,7 @@ export const DropdownItem = styled.li<{ isSelected: boolean }>`
 `;
 
 export const SearchContainer = styled.div`
-  width: 326px;
+  width: 65%;
   display: flex;
   align-items: center;
   border: 1px solid var(--gray400);
@@ -199,11 +217,11 @@ export const SortingDropdownWrapper = styled.div`
   width: 69px;
 `;
 
-export const SortingDropdownHeader = styled.button<{ isOpen: boolean }>`
+export const SortingDropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 26px;
   padding: 0px 10px;
-  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
   border: 1px solid var(--gray400);
   border-radius: 5px;
   cursor: pointer;
@@ -216,7 +234,7 @@ export const SortingDropdownHeader = styled.button<{ isOpen: boolean }>`
 
   svg {
     transition: transform 0.3s ease;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
   }
 `;
 

@@ -2,8 +2,16 @@ import styled from 'styled-components';
 
 // IncidentList.tsx -----------------------------//
 export const Layout = styled.div`
-  width: 1153px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+export const Container = styled.div`
+  width: 95%;
+  min-width: 1025px;
 `;
 
 export const IncidentListDiv = styled.div`
@@ -24,9 +32,9 @@ export const TableHeaderRow = styled.tr`
   height: 50px;
 `;
 
-export const TableHeader = styled.th<{ w: number }>`
+export const TableHeader = styled.th<{ $w: number }>`
   font-size: 18px;
-  width: ${(props) => props.w}%;
+  width: ${(props) => props.$w}%;
   font-weight: 600;
   text-align: left;
   border-bottom: 2px solid var(--gray800);
@@ -42,9 +50,9 @@ export const TableBodyRow = styled.tr`
   }
 `;
 
-export const TableData = styled.td<{ index: number }>`
+export const TableData = styled.td<{ $index: number }>`
   padding: 10px 0;
-  border-bottom: ${(props) => (props.index === 8 ? 'none' : '2px solid var(--gray400)')};
+  border-bottom: ${(props) => (props.$index === 8 ? 'none' : '2px solid var(--gray400)')};
 `;
 
 export const InfoP = styled.p`
@@ -59,14 +67,14 @@ export const Pagination = styled.div`
   margin-top: 25px;
 `;
 
-export const PageButton = styled.button<{ active?: boolean }>`
+export const PageButton = styled.button<{ $active?: boolean }>`
   width: 35px;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ active }) => (active ? 'var(--primary800)' : 'var(--gray300)')};
-  color: ${({ active }) => (active ? 'white' : 'black')};
+  background: ${({ $active }) => ($active ? 'var(--primary800)' : 'var(--gray300)')};
+  color: ${({ $active }) => ($active ? 'white' : 'black')};
   border: 1px solid var(--gray300);
   padding: 8px 12px;
   margin: 0 5px;
@@ -77,6 +85,10 @@ export const PageButton = styled.button<{ active?: boolean }>`
 
   &:active {
     background-color: var(--primary700);
+  }
+
+  &:hover {
+    background-color: ${({ $active }) => ($active ? 'var(--primary700)' : 'var(--primary600)')};
   }
 `;
 

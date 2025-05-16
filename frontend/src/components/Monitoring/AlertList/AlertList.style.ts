@@ -16,9 +16,9 @@ export const Layout = styled.div<{ $clicked: boolean }>`
   display: flex;
   width: 274px;
   height: 159px;
-  border-radius: 10px;
+  border-radius: 6px;
   margin: 7px 0px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
 
   ${({ $clicked }) =>
     $clicked &&
@@ -30,9 +30,10 @@ export const Layout = styled.div<{ $clicked: boolean }>`
 export const CardDiv = styled.div`
   background-color: white;
   width: 263px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   padding: 10px;
+  margin-left: 3px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -40,10 +41,11 @@ export const CardDiv = styled.div`
 
 export const ColorDiv = styled.div<{ $level: number }>`
   background-color: ${({ $level }) => ($level === 1 ? 'var(--yellow)' : 'var(--red)')};
-  width: 11px;
+  width: 6px;
+  /* width: 11px; */
   height: 159px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 `;
 
 export const DateP = styled.p`
