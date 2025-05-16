@@ -7,7 +7,7 @@ import useSidebarStore from '@/stores/sidebarStore';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
-import logoWhite from '@/assets/icons/logoWhite.svg';
+import sidebarIcon from '@/assets/icons/sidebarIcon.svg';
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -49,7 +49,7 @@ export const Sidebar = () => {
   return (
     <S.SidebarDiv>
       <div>
-        <S.LogoImg src={logoWhite} />
+        <S.LogoImg src={sidebarIcon} alt='로딩중..'/>
         <Profile />
         <S.BtnDiv>
           {SIDEBAR_LIST.map((it) => {

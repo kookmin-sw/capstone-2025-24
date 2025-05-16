@@ -6,8 +6,8 @@ export interface AlertProps {
   address: string;
   date: string;
   state: '미확인' | '확인' | '미출동' | '출동' | '완료';
-  police_name?: string;
-  police_rank?: string;
+  policeName?: string;
+  policeRank?: string;
   video?: string;
   memo?: string;
 }

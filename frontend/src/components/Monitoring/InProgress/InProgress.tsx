@@ -9,7 +9,7 @@ const InProgress = () => {
 
   return (
     <S.InProgressLayout id="in-progress-section">
-      <S.Title>출동중인 사건 (총 {incidents.length}건)</S.Title>
+      <S.Title>출동 중인 사건 (총 {incidents.length}건)</S.Title>
       {incidents.length > 0 ? (
         <S.CardGrid>
           {incidents.map((incident) => (
@@ -19,7 +19,7 @@ const InProgress = () => {
       ) : (
         <S.EmptyView>
           <img src={policerEmpty} alt="empty" />
-          출동중인 사건이 없어요
+          출동 중인 사건이 없어요
         </S.EmptyView>
       )}
     </S.InProgressLayout>

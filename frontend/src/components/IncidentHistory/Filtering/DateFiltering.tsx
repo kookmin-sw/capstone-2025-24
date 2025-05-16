@@ -21,7 +21,6 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
   useOutsideClick(startRef, () => setIsStartOpen(false));
   useOutsideClick(endRef, () => setIsEndOpen(false));
 
-
   const handleDatePickerToggle = (
     e: React.MouseEvent,
     setCurrentOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -35,39 +34,44 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
   };
 
   return (
-    <S.DateFilteringContainer>
-      {/* 시작 날짜 */}
-      <S.DatePickerWrapper
-        ref={startRef}
-        className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`}
-        onClick={(e) => handleDatePickerToggle(e, setIsStartOpen, setIsEndOpen)}
-        isOpen={isStartOpen}
-      >
-        <S.CalendarIcon />
-        <DatePicker
-          className="custom-datepicker"
-          locale={ko as Locale}
-          dateFormat="yyyy.MM.dd"
-          selected={startDate}
-          onChange={(date: Date | null) => {
-            if (date instanceof Date) {
-              setStartDate(date);
-            }
-          }}
-          selectsStart
-          startDate={startDate}
-          endDate={endDate}
-          open={isStartOpen}
-        />
-        <S.DownIcon isOpen={isStartOpen} />
-      </S.DatePickerWrapper>
+    <>
+      <S.DateFilteringContainer>
+        <S.InfoP>시작 날짜</S.InfoP>
+        {/* 시작 날짜 */}
+        <S.DatePickerWrapper
+          ref={startRef}
+          className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`}
+          onClick={(e) => handleDatePickerToggle(e, setIsStartOpen, setIsEndOpen)}
+          $isOpen={isStartOpen}
+        >
+          <S.CalendarIcon />
+          <DatePicker
+            className="custom-datepicker"
+            locale={ko as Locale}
+            dateFormat="yyyy.MM.dd"
+            selected={startDate}
+            onChange={(date: Date | null) => {
+              if (date instanceof Date) {
+                setStartDate(date);
+              }
+            }}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            open={isStartOpen}
+          />
+          <S.DownIcon $isOpen={isStartOpen} />
+        </S.DatePickerWrapper>
+      </S.DateFilteringContainer>
 
       {/* 종료 날짜 */}
+      <S.DateFilteringContainer>
+      <S.InfoP>종료 날짜</S.InfoP>
       <S.DatePickerWrapper
         ref={endRef}
         className={`date-picker-wrapper ${isEndOpen ? 'open' : ''}`}
         onClick={(e) => handleDatePickerToggle(e, setIsEndOpen, setIsStartOpen)}
-        isOpen={isEndOpen}
+        $isOpen={isEndOpen}
       >
         <S.CalendarIcon />
         <DatePicker
@@ -87,9 +91,10 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
           maxDate={new Date()}
           open={isEndOpen}
         />
-        <S.DownIcon isOpen={isEndOpen} />
+        <S.DownIcon $isOpen={isEndOpen} />
       </S.DatePickerWrapper>
     </S.DateFilteringContainer>
+    </>
   );
 };
 

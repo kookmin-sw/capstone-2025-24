@@ -16,7 +16,7 @@ export const categoryToEnglish: Record<string, string> = {
 
 export const categoryToKorean: Record<string, string> = {
   fire: '화재',
-  연기: 'smoke',
+  smoke: '연기',
   assault: '폭행',
   crowd_congestion: '군중밀집',
   weapon: '흉기난동',
