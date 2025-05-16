@@ -1,0 +1,12 @@
+train: /home/work/YOLOv11/fine-tuning/data_final/train
+val:   /home/work/YOLOv11/fine-tuning/data_final/val
+test:  /home/work/YOLOv11/fine-tuning/data_final/test
+
+nc: 5
+
+names:
+  0: person
+  1: weapon
+  2: head
+  3: fire
+  4: smoke
