@@ -10,21 +10,27 @@ from torchvision.transforms import Compose, Lambda, CenterCrop
 from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
 from ultralytics import YOLO
 from concurrent.futures import ThreadPoolExecutor
-from model_module import X3DFineTuner
+from dynamic_classification_model.src.model_module import X3DFineTuner
+import av
 import boto3
 import os
 
 # ─── 설정 로드 ─────────────────────────────────────────────────────────
-with open("../config.yaml","r",encoding="utf-8") as f:
+with open("./config.yaml","r",encoding="utf-8") as f:
     CFG = yaml.safe_load(f)
 
 EXT_POST_SEC = CFG.get("EXT_POST_SEC", 10)
 SUPPRESSION_SEC = CFG.get("SUPPRESSION_SEC", 120)
+AREA_M2 = CFG["CROWD_DENSITY"]["AREA_M2"]
+CRITICAL_DENS = CFG["CROWD_DENSITY"]["CRITICAL"]
+ALPHA = CFG["CROWD_DENSITY"]["EMA_ALPHA"]
+crowd_ema = 0.0
 
 last_trigger = {} 
 active_categories = set()  # 현재 녹화 중인 카테고리
 stop = False
 
+# ─── 종료 시그널 처리 ────────────────────────────────────────────────
 def on_signal(sig, frame):
     global stop
     print(f"[Main] Signal {sig}, shutting down...", flush=True)
@@ -35,10 +41,38 @@ signal.signal(signal.SIGTERM, on_signal)
 
 # ─── 2차 모델 준비 ─────────────────────────────────────────────────────
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-x3d_cfg = yaml.safe_load(open(CFG["SECOND_MODEL"]["CFG_PATH"]))
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+with open(CFG["SECOND_MODEL"]["CFG_PATH"], encoding="utf-8") as f:
+    x3d_cfg = yaml.safe_load(f)
+
 model2 = X3DFineTuner.load_from_checkpoint(
     CFG["SECOND_MODEL"]["CKPT_PATH"], cfg=x3d_cfg
 ).to(DEVICE).eval()
+
+def write_h264(frames, w, h, fps, path):
+    """
+    frames: BGR ndarray 리스트
+    """
+    output = av.open(path, mode="w")
+    # fps를 정수로 캐스팅 (예: 30.0 → 30)
+    rate = int(fps)
+    # 또는 분수를 쓰고 싶다면:
+    # rate = Fraction(int(fps * 1000), 1000)  # ex. 29.97 같은 경우에
+    
+    stream = output.add_stream("h264", rate=rate)
+    stream.width  = w
+    stream.height = h
+    stream.pix_fmt = "yuv420p"
+
+    for img in frames:
+        vf = av.VideoFrame.from_ndarray(img, format="bgr24")
+        for packet in stream.encode(vf):
+            output.mux(packet)
+    # flush
+    for packet in stream.encode():
+        output.mux(packet)
+
+    output.close()
 
 def transform_video(path):
     v,_,_ = read_video(path, pts_unit="sec")
@@ -95,11 +129,7 @@ def worker(frames, w, h, fps, clip_primary, cat):
     clip_ext = None
     try:
         # 1) 1차 클립 저장
-        fourcc = cv2.VideoWriter_fourcc(*"avc1")
-        out1 = cv2.VideoWriter(clip_primary, fourcc, fps, (w, h))
-        for img in frames:
-            out1.write(img)
-        out1.release()
+        write_h264(frames, w, h, fps, clip_primary)
         print(f"[Worker] Primary clip saved: {clip_primary}", flush=True)
 
         # 2) 사람(person)만 2차 모델 예측
@@ -113,7 +143,6 @@ def worker(frames, w, h, fps, clip_primary, cat):
             elapsed_time = time.time() - now
             print(f"{pred} 실행 시간: {elapsed_time:.6f}초")
 
-
             if pred != "normal":
                 if now - last_time < SUPPRESSION_SEC:
                     print(f"[Worker] Skipping {pred}, suppression active", flush=True)
@@ -126,10 +155,8 @@ def worker(frames, w, h, fps, clip_primary, cat):
                         CFG.get("STREAM_URL",""), EXT_POST_SEC, fps, w, h
                     )
                     clip_ext = f"2_{pred}_{time.strftime('%Y%m%d_%H%M%S')}.mp4"
-                    out2 = cv2.VideoWriter(clip_ext, fourcc, fps, (w, h))
-                    for img in post_frames:
-                        out2.write(img)
-                    out2.release()
+                    
+                    write_h264(post_frames, w, h, fps, clip_ext)
                     print(f"[Worker] Extended clip saved: {clip_ext}", flush=True)
 
                     url = upload_to_s3(clip_ext, f"videos/{clip_ext}", CFG)
@@ -190,8 +217,8 @@ def main():
         print("❌ Cannot open source", flush=True)
         return
 
-    w   = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    h   = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS) or CFG["FPS_FALLBACK"]
     print(f"[Init] {w}×{h} @ {fps:.1f}FPS", flush=True)
 
@@ -216,29 +243,22 @@ def main():
             # B) 1차 감지 → 새 세션
             if now >= next_ts and len(recs) < CFG["WORKER"]["MAX_RECORDERS"]:
                 res = model1(frame, verbose=False)[0]
-                
-                if res.boxes.shape[0] > 0:
-                    dets = res[0].boxes  # Boxes 객체
-                
-                    # 클래스 이름별 카운트 집계
-                    counts = {}
-                    for cls_id in dets.cls:
-                        name = res[0].names[int(cls_id)]
-                        counts[name] = counts.get(name, 0) + 1
 
-                    # "4 persons, 1 weapon, 4 heads" 형태로 포맷
-                    parts = []
-                    for name, cnt in counts.items():
-                        # 복수형 처리: 단순히 s 붙이기 (필요시 한글/영어 맞춤)
-                        label = name + ("s" if cnt > 1 else "")
-                        parts.append(f"{cnt} {label}")
-                    msg = ", ".join(parts)
+                # 군중 밀집도 계산
+                head_id = [i for i, name in res.names.items() if name == "head"]
+                if head_id:
+                    head_count = sum(1 for b in res.boxes if int(b.cls) == head_id[0])
+                    ppl_per_m2 = head_count / AREA_M2
+                    crowd_ema = ALPHA * ppl_per_m2 + (1 - ALPHA) * crowd_ema
 
-                    # 콘솔에 출력
-                    print(f"\n0: 360x640 [Frame {frame_idx}]: {msg}")
-                
-                frame_idx += 1
-                
+                    if crowd_ema >= CRITICAL_DENS:
+                        cat = "crowd_congestion"
+                        active_categories.add(cat)
+                        cnt += 1
+                        f2r = int(fps * CFG["DEFAULT_SEC"])
+                        clip = f"{cat}_{time.strftime('%Y%m%d_%H%M%S')}_{cnt:02d}.mp4"
+                        recs.append({"frames": [], "path": clip, "cat": cat, "frames_to_rec": f2r})
+
                 detected_cats = {model1.names[int(b.cls)] for b in res.boxes if model1.names[int(b.cls)] in CFG["WORKER"]["CLASSES"]}
                 for cat in detected_cats:
 
@@ -270,8 +290,10 @@ def main():
                     recs.append({"frames":[],"path":clip,"cat":cat,"frames_to_rec":f2r})
 
                 if detected_cats:
-                    next_ts = now + max((CFG["PERSON_SEC"] if "person" in detected_cats else 0),
-                                        (CFG["DEFAULT_SEC"] if detected_cats - {"person"} else 0))
+                    next_ts = now + max(
+                        (CFG["PERSON_SEC"] if "person" in detected_cats else 0),
+                        (CFG["DEFAULT_SEC"] if detected_cats - {"person"} else 0)
+                    )
     finally:
         executor.shutdown(wait=True)
         cap.release()
@@ -279,5 +301,5 @@ def main():
                           
         print("[Main] Shutdown complete", flush=True)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
