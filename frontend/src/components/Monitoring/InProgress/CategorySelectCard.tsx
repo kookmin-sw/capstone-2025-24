@@ -10,8 +10,8 @@ const CategorySelectCard = ({ onClose, id }: IncidentCardProps) => {
   const [isResolved, setIsResolved] = useState(false);
   const { selectedCategory, handleSelectCategory } = useSelectCategory();
   const groupedCategories: string[][] = [
-    ['화재', '쓰러짐', '군중밀집'],
-    ['흉기난동', '폭행', '기타'],
+    ['화재', '흉기난동', '군중밀집'],
+    ['쓰러짐', '폭행', '연기', '기타'],
   ];
 
   const handleClickResolve = async () => {

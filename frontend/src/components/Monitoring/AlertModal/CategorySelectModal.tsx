@@ -12,9 +12,9 @@ interface CategorySelectModalProps {
 const CategorySelectModal = ({ onBack, onSubmit, id }: CategorySelectModalProps) => {
   const { selectedCategory, handleSelectCategory } = useSelectCategory();
   const groupedCategories: string[][] = [
-    ['화재', '쓰러짐', '폭행'],
-    ['흉기난동', '군중밀집'],
-    ['기타', '위험 상황이 아니에요'],
+    ['화재', '흉기난동', '폭행'],
+    ['쓰러짐', '연기', '기타'],
+    ['군중밀집', '위험 상황이 아니에요'],
   ];
 
   const handleSubmit = async () => {

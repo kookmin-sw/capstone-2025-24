@@ -243,16 +243,16 @@ export const CategoryContainer = styled.div`
 
 export const CategoryRow = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
 `;
 
 export const Chip = styled.button<{ selected: boolean }>`
-  padding: 8px 20px;
+  padding: 6px 16px;
   border-radius: 75px;
   border: 1.5px solid ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray400)')};
   background-color: ${({ selected }) => (selected ? 'var(--primary300)' : 'transparent')};
-  font-size: 15px;
+  font-size: 17px;
   font-weight: bold;
   color: ${({ selected }) => (selected ? 'var(--primary900)' : 'var(--gray700)')};
   cursor: pointer;
