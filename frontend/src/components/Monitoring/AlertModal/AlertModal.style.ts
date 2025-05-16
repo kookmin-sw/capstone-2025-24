@@ -17,7 +17,7 @@ export const Overlay = styled.div`
   z-index: 1000;
 `;
 
-export const ModalContainer = styled.div<{ highlight: boolean }>`
+export const ModalContainer = styled.div<{ $highlight: boolean }>`
   position: relative;
   width: 700px;
   height: 600px;
@@ -29,8 +29,8 @@ export const ModalContainer = styled.div<{ highlight: boolean }>`
   display: flex;
   flex-direction: column;
 
-  ${({ highlight }) =>
-    highlight &&
+  ${({ $highlight }) =>
+    $highlight &&
     css`
       background-color: rgb(255, 182, 182);
       animation: highlightAnimation 1.3s steps(2, end) infinite;

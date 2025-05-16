@@ -107,7 +107,7 @@ const AlertModal = ({ onClose, alertItem, highlight }: ModalProps & { highlight:
   return (
     <S.Overlay onClick={handleOutsideClick}>
       <ToastContainer />
-      <S.ModalContainer highlight={redHighlightEffect} onClick={(e) => e.stopPropagation()}>
+      <S.ModalContainer $highlight={redHighlightEffect} onClick={(e) => e.stopPropagation()}>
         {step === 'incident' && (
           <IncidentModal
             onClose={onClose}
