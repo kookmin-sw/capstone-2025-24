@@ -10,7 +10,7 @@ from torchvision.transforms import Compose, Lambda, CenterCrop
 from pytorchvideo.transforms import UniformTemporalSubsample, Normalize, ShortSideScale
 from ultralytics import YOLO
 from concurrent.futures import ThreadPoolExecutor
-from dyamic_classification_model.src.model_module import X3DFineTuner
+from dynamic_classification_model.src.model_module import X3DFineTuner
 import av
 import boto3
 import os
@@ -21,11 +21,16 @@ with open("./config.yaml","r",encoding="utf-8") as f:
 
 EXT_POST_SEC = CFG.get("EXT_POST_SEC", 10)
 SUPPRESSION_SEC = CFG.get("SUPPRESSION_SEC", 120)
+AREA_M2 = CFG["CROWD_DENSITY"]["AREA_M2"]
+CRITICAL_DENS = CFG["CROWD_DENSITY"]["CRITICAL"]
+ALPHA = CFG["CROWD_DENSITY"]["EMA_ALPHA"]
+crowd_ema = 0.0
 
 last_trigger = {} 
 active_categories = set()  # 현재 녹화 중인 카테고리
 stop = False
 
+# ─── 종료 시그널 처리 ────────────────────────────────────────────────
 def on_signal(sig, frame):
     global stop
     print(f"[Main] Signal {sig}, shutting down...", flush=True)
@@ -138,7 +143,6 @@ def worker(frames, w, h, fps, clip_primary, cat):
             elapsed_time = time.time() - now
             print(f"{pred} 실행 시간: {elapsed_time:.6f}초")
 
-
             if pred != "normal":
                 if now - last_time < SUPPRESSION_SEC:
                     print(f"[Worker] Skipping {pred}, suppression active", flush=True)
@@ -213,8 +217,8 @@ def main():
         print("❌ Cannot open source", flush=True)
         return
 
-    w   = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    h   = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS) or CFG["FPS_FALLBACK"]
     print(f"[Init] {w}×{h} @ {fps:.1f}FPS", flush=True)
 
@@ -239,29 +243,22 @@ def main():
             # B) 1차 감지 → 새 세션
             if now >= next_ts and len(recs) < CFG["WORKER"]["MAX_RECORDERS"]:
                 res = model1(frame, verbose=False)[0]
-                
-                if res.boxes.shape[0] > 0:
-                    dets = res[0].boxes  # Boxes 객체
-                
-                    # 클래스 이름별 카운트 집계
-                    counts = {}
-                    for cls_id in dets.cls:
-                        name = res[0].names[int(cls_id)]
-                        counts[name] = counts.get(name, 0) + 1
 
-                    # "4 persons, 1 weapon, 4 heads" 형태로 포맷
-                    parts = []
-                    for name, cnt in counts.items():
-                        # 복수형 처리: 단순히 s 붙이기 (필요시 한글/영어 맞춤)
-                        label = name + ("s" if cnt > 1 else "")
-                        parts.append(f"{cnt} {label}")
-                    msg = ", ".join(parts)
+                # 군중 밀집도 계산
+                head_id = [i for i, name in res.names.items() if name == "head"]
+                if head_id:
+                    head_count = sum(1 for b in res.boxes if int(b.cls) == head_id[0])
+                    ppl_per_m2 = head_count / AREA_M2
+                    crowd_ema = ALPHA * ppl_per_m2 + (1 - ALPHA) * crowd_ema
 
-                    # 콘솔에 출력
-                    print(f"\n0: 360x640 [Frame {frame_idx}]: {msg}")
-                
-                frame_idx += 1
-                
+                    if crowd_ema >= CRITICAL_DENS:
+                        cat = "crowd_congestion"
+                        active_categories.add(cat)
+                        cnt += 1
+                        f2r = int(fps * CFG["DEFAULT_SEC"])
+                        clip = f"{cat}_{time.strftime('%Y%m%d_%H%M%S')}_{cnt:02d}.mp4"
+                        recs.append({"frames": [], "path": clip, "cat": cat, "frames_to_rec": f2r})
+
                 detected_cats = {model1.names[int(b.cls)] for b in res.boxes if model1.names[int(b.cls)] in CFG["WORKER"]["CLASSES"]}
                 for cat in detected_cats:
 
@@ -293,8 +290,10 @@ def main():
                     recs.append({"frames":[],"path":clip,"cat":cat,"frames_to_rec":f2r})
 
                 if detected_cats:
-                    next_ts = now + max((CFG["PERSON_SEC"] if "person" in detected_cats else 0),
-                                        (CFG["DEFAULT_SEC"] if detected_cats - {"person"} else 0))
+                    next_ts = now + max(
+                        (CFG["PERSON_SEC"] if "person" in detected_cats else 0),
+                        (CFG["DEFAULT_SEC"] if detected_cats - {"person"} else 0)
+                    )
     finally:
         executor.shutdown(wait=True)
         cap.release()
@@ -302,5 +301,5 @@ def main():
                           
         print("[Main] Shutdown complete", flush=True)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
