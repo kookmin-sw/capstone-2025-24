@@ -8,11 +8,11 @@ export const DropdownWrapper = styled.div`
   min-width: 170px;
 `;
 
-export const DropdownHeader = styled.button<{ isOpen: boolean }>`
+export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 52px;
   padding: 0px 24px;
-  background: ${({ isOpen }) => (isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
   border: 1px solid var(--gray400);
   border-radius: 10px;
   cursor: pointer;
@@ -25,11 +25,11 @@ export const DropdownHeader = styled.button<{ isOpen: boolean }>`
 
   svg {
     transition: transform 0.3s ease;
-    transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+    transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0)')};
   }
 `;
 
-export const DropdownList = styled.ul<{ isOpen: boolean }>`
+export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   position: absolute;
   top: 100%;
   left: 0;
@@ -47,8 +47,8 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
   transition: all 0.3s ease-in-out;
   text-align: center;
 
-  ${({ isOpen }: { isOpen: boolean }) =>
-    isOpen &&
+  ${({ $isOpen }: { $isOpen: boolean }) =>
+    $isOpen &&
     `
       opacity: 1;
       visibility: visible;
@@ -56,13 +56,13 @@ export const DropdownList = styled.ul<{ isOpen: boolean }>`
     `}
 `;
 
-export const DropdownItem = styled.li<{ isSelected: boolean }>`
+export const DropdownItem = styled.li<{ $isSelected: boolean }>`
   padding: 7px 0px;
   margin: 6px 10px;
   font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  background: ${({ isSelected }) => (isSelected ? 'var(--primary500)' : 'transparent')};
+  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary500)' : 'transparent')};
   color: black;
   border-radius: 8px;
   text-align: center;

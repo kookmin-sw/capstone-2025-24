@@ -42,7 +42,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
           ref={startRef}
           className={`date-picker-wrapper ${isStartOpen ? 'open' : ''}`}
           onClick={(e) => handleDatePickerToggle(e, setIsStartOpen, setIsEndOpen)}
-          isOpen={isStartOpen}
+          $isOpen={isStartOpen}
         >
           <S.CalendarIcon />
           <DatePicker
@@ -60,7 +60,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
             endDate={endDate}
             open={isStartOpen}
           />
-          <S.DownIcon isOpen={isStartOpen} />
+          <S.DownIcon $isOpen={isStartOpen} />
         </S.DatePickerWrapper>
       </S.DateFilteringContainer>
 
@@ -71,7 +71,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
         ref={endRef}
         className={`date-picker-wrapper ${isEndOpen ? 'open' : ''}`}
         onClick={(e) => handleDatePickerToggle(e, setIsEndOpen, setIsStartOpen)}
-        isOpen={isEndOpen}
+        $isOpen={isEndOpen}
       >
         <S.CalendarIcon />
         <DatePicker
@@ -91,7 +91,7 @@ const DateFiltering = ({ startDate, endDate, setStartDate, setEndDate }: DateFil
           maxDate={new Date()}
           open={isEndOpen}
         />
-        <S.DownIcon isOpen={isEndOpen} />
+        <S.DownIcon $isOpen={isEndOpen} />
       </S.DatePickerWrapper>
     </S.DateFilteringContainer>
     </>

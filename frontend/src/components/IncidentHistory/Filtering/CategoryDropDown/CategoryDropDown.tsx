@@ -26,13 +26,13 @@ const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
   return (
     <S.DropdownWrapper ref={dropdownRef}>
       <S.InfoP>사건 유형</S.InfoP>
-      <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
+      <S.DropdownHeader onClick={toggleDropdown} $isOpen={isOpen}>
         {selected} <IoChevronDown />
       </S.DropdownHeader>
       {isOpen && (
-        <S.DropdownList isOpen={isOpen}>
+        <S.DropdownList $isOpen={isOpen}>
           {CATEGORY_OPTIONS.map((option, index) => (
-            <S.DropdownItem key={index} isSelected={selected === option} onClick={() => handleSelect(option)}>
+            <S.DropdownItem key={index} $isSelected={selected === option} onClick={() => handleSelect(option)}>
               {option}
             </S.DropdownItem>
           ))}

@@ -62,11 +62,11 @@ const IncidentList = () => {
             <S.Table>
               <thead>
                 <S.TableHeaderRow>
-                  <S.TableHeader w={10}>번호</S.TableHeader>
-                  <S.TableHeader w={16}>사건 유형</S.TableHeader>
-                  <S.TableHeader w={22}>날짜</S.TableHeader>
-                  <S.TableHeader w={38}>위치</S.TableHeader>
-                  <S.TableHeader w={14}>담당 경찰</S.TableHeader>
+                  <S.TableHeader $w={10}>번호</S.TableHeader>
+                  <S.TableHeader $w={16}>사건 유형</S.TableHeader>
+                  <S.TableHeader $w={22}>날짜</S.TableHeader>
+                  <S.TableHeader $w={38}>위치</S.TableHeader>
+                  <S.TableHeader $w={14}>담당 경찰</S.TableHeader>
                 </S.TableHeaderRow>
               </thead>
               <tbody>
@@ -78,19 +78,19 @@ const IncidentList = () => {
                       openModal({ type: 'norealtime', id: incident.id });
                     }}
                   >
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{startIndex + index + 1}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{categoryToKorean[incident.category] || incident.category}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{incident.date.replace(/-/g, '.')}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{truncate(incident.address, 25)}</S.InfoP>
                     </S.TableData>
-                    <S.TableData index={index + 1}>
+                    <S.TableData $index={index + 1}>
                       <S.InfoP>{incident.policeName}</S.InfoP>
                     </S.TableData>
                   </S.TableBodyRow>
@@ -106,7 +106,7 @@ const IncidentList = () => {
               <GrFormPrevious />
             </S.MoveBtn>
             {pageNumbers.map((num) => (
-              <S.PageButton key={num} onClick={() => setCurrentPage(num)} active={num === currentPage}>
+              <S.PageButton key={num} onClick={() => setCurrentPage(num)} $active={num === currentPage}>
                 {num}
               </S.PageButton>
             ))}
