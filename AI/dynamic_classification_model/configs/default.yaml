@@ -1,0 +1,8 @@
+data_path: /content/dataset_encode
+batch_size: 64
+clip_duration: 2 
+num_workers: 6 
+lr: 0.0001
+max_epochs: 50
+num_classes: 4
+freeze_backbone: false

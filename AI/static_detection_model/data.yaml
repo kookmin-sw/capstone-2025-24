@@ -10,10 +10,3 @@ names:
   2: head
   3: fire
   4: smoke
-
-# roboflow:
-#   workspace: justpers
-#   project: detection-finetuing-data
-#   version: 1
-#   license: CC BY 4.0
-#   url: https://universe.roboflow.com/justpers/detection-finetuing-data/dataset/1
