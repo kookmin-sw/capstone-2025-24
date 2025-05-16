@@ -14,8 +14,8 @@ export const Title = styled.h2`
 
 export const CardGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   margin-top: 20px;
 `;
 
@@ -48,10 +48,10 @@ const blinkShadow = keyframes`
 `;
 
 export const FlipCard = styled.div<{ $isHighlighted: boolean }>`
-  width: 367px;
-  height: 270px;
+  width: 288px;
+  height: 214px;
   perspective: 1000px;
-  border-radius: 10px;
+  border-radius: 9px;
   ${({ $isHighlighted }: { $isHighlighted: boolean }) =>
     $isHighlighted &&
     css`
@@ -76,12 +76,12 @@ export const CardFront = styled.div`
   height: 100%;
   backface-visibility: hidden;
   background: white;
-  border-radius: 10px;
+  border-radius: 9px;
   box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 14px;
   position: absolute;
   top: 0;
   left: 0;
@@ -94,19 +94,19 @@ export const CardHeader = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
 `;
 
 export const VideoButton = styled.button`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   background-color: transparent;
   color: var(--primary900);
   border: none;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   padding-top: 6px;
 
@@ -116,36 +116,36 @@ export const VideoButton = styled.button`
 `;
 
 export const Line = styled.div`
-  height: 1px;
+  height: 0.8px;
   background: var(--gray400);
-  margin: 15px 0;
+  margin: 12px 0;
 `;
 
 export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
 `;
 
 export const LocationTitle = styled.p`
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   margin-bottom: 3px;
 `;
 
 export const LocationAddress = styled.p`
-  font-size: 18px;
+  font-size: 14px;
 `;
 
 export const ResolveButton = styled.button`
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding: 8px 0;
-  border: solid 1.5px var(--primary600);
+  border: solid 1.1px var(--primary600);
   background-color: var(--primary300);
   color: var(--primary900);
-  border-radius: 5px;
-  font-size: 20px;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 `;
@@ -153,7 +153,7 @@ export const ResolveButton = styled.button`
 export const CardFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 11px;
   color: var(--gray700);
   padding: 0 2px;
 `;

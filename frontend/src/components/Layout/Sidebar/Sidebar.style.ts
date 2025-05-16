@@ -116,7 +116,7 @@ export const LogoutBtn = styled.button`
 `;
 
 export const LogoutLogo = styled(RiLogoutBoxRLine)`
-  font-size: 20px;
+  font-size: 18px;
   color: #a8b3e3;
 `;
 
