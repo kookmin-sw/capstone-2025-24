@@ -77,7 +77,7 @@ export const CardFront = styled.div`
   backface-visibility: hidden;
   background: white;
   border-radius: 9px;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
