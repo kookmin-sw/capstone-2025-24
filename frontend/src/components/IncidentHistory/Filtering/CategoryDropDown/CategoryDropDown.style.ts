@@ -70,3 +70,10 @@ export const DropdownItem = styled.li<{ isSelected: boolean }>`
     background: var(--primary500);
   }
 `;
+
+export const InfoP = styled.p`
+  font-size: 13px;
+  color: var(--gray800);
+  padding: 2px;
+`;
+

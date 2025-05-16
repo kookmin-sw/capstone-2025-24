@@ -25,6 +25,7 @@ const CategoryDropDown = ({ selected, setSelected }: CategoryDropDownProps) => {
 
   return (
     <S.DropdownWrapper ref={dropdownRef}>
+      <S.InfoP>사건 유형</S.InfoP>
       <S.DropdownHeader onClick={toggleDropdown} isOpen={isOpen}>
         {selected} <IoChevronDown />
       </S.DropdownHeader>

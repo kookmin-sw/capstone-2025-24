@@ -5,13 +5,14 @@ import { CgSearch } from 'react-icons/cg';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Filtering.tsx ---------------------------------------------//
-export const Layout = styled.div``;
+export const Layout = styled.div`
+  width: 95%;
+`;
 
 export const FilteringLayout = styled.div`
-  border: 1px soild black;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: end;
   margin-bottom: 20px;
 `;
 
@@ -20,8 +21,7 @@ export const DropDownInfoLayout = styled.div`
   gap: 10px;
 `;
 
-export const InfoP = styled.p<{ w: number }>`
-  width: ${({ w }) => w}px;
+export const InfoP = styled.p`
   font-size: 13px;
   color: var(--gray800);
   padding: 2px;
@@ -60,11 +60,20 @@ export const IncidentNum = styled.p`
   font-weight: 700;
 `;
 
+export const BtnWrapper = styled.div`
+  height: 52px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 // DataFiltering.tsx ----------------------------------------//
-export const DateFilteringContainer = styled.div`
+export const DateFilteringLayout = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+export const DateFilteringContainer = styled.div``;
 
 export const DatePickerWrapper = styled.div<{ isOpen: boolean }>`
   display: flex;

@@ -2,8 +2,15 @@ import styled from 'styled-components';
 
 // IncidentList.tsx -----------------------------//
 export const Layout = styled.div`
-  width: 1153px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+export const Container = styled.div`
+  width: 95%;
 `;
 
 export const IncidentListDiv = styled.div`

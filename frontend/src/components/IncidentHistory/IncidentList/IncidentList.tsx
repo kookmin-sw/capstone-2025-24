@@ -43,7 +43,7 @@ const IncidentList = () => {
   };
 
   return (
-    <div>
+    <S.Layout>
       <Filtering
         setIncidentData={setIncidentData}
         page={currentPage}
@@ -54,7 +54,7 @@ const IncidentList = () => {
         setLastFilter={setLastFilter}
         lastFilter={lastFilter}
       />
-      <S.Layout>
+      <S.Container>
         <S.IncidentListDiv>
           {incidentData.length === 0 ? (
             <EmptyView />
@@ -115,7 +115,7 @@ const IncidentList = () => {
             </S.MoveBtn>
           </S.Pagination>
         )}
-      </S.Layout>
+      </S.Container>
       {currentItem?.type === 'norealtime' && selectedIncident && (
         <IncidentDetailsModal
           isOpen={true}
@@ -126,7 +126,7 @@ const IncidentList = () => {
           incident={selectedIncident}
         />
       )}
-    </div>
+    </S.Layout>
   );
 };
 export default IncidentList;

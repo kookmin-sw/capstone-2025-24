@@ -7,7 +7,7 @@ import SortingDropDown from './SortingDropDown.tsx';
 import { Incident } from '@/types/incident.ts';
 import { getIncidentList } from '@/apis/IncidentHistoryApi.ts';
 import { categoryToEnglish } from '@/utils/categoryMapper.ts';
-import {FilteringInfo} from '@/types/incident.ts';
+import { FilteringInfo } from '@/types/incident.ts';
 
 interface FilteringProps {
   setIncidentData: React.Dispatch<React.SetStateAction<Incident[]>>;
@@ -17,7 +17,7 @@ interface FilteringProps {
   setPageLength: (value: number) => void;
   setCurrentPage: (value: number) => void;
   setLastFilter: (value: FilteringInfo) => void;
-  lastFilter : FilteringInfo;
+  lastFilter: FilteringInfo;
 }
 
 const SortMap: Record<string, string> = {
@@ -37,7 +37,7 @@ const Filtering = ({
   setPageLength,
   setCurrentPage,
   setLastFilter,
-  lastFilter
+  lastFilter,
 }: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
   const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
@@ -88,11 +88,6 @@ const Filtering = ({
 
   return (
     <S.Layout>
-      <S.DropDownInfoLayout>
-        <S.InfoP w={165}>사건 유형</S.InfoP>
-        <S.InfoP w={201}>시작 날짜</S.InfoP>
-        <S.InfoP w={201}>종료 날짜</S.InfoP>
-      </S.DropDownInfoLayout>
       <S.FilteringLayout>
         <CategoryDropDown selected={categoryFilter} setSelected={setCategoryFilter} />
         <DateFiltering
@@ -107,7 +102,9 @@ const Filtering = ({
           searchWord={searchWord}
           setSearchWord={setSearchWord}
         />
-        <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
+        <S.BtnWrapper>
+          <S.SearchBtn onClick={handleClick}>조회</S.SearchBtn>
+        </S.BtnWrapper>
       </S.FilteringLayout>
       <S.Container>
         <S.IncidentNum>총 {dataLength}건</S.IncidentNum>
