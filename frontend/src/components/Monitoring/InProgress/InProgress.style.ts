@@ -318,5 +318,5 @@ export const ResolveTitle = styled.h3`
 export const ResolveDescription = styled.p`
   text-align: center;
   font-size: 12px;
-  color: var(—gray500);
+  color: var(--gray500);
 `;
