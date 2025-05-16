@@ -18,13 +18,13 @@
 
 2️⃣ [💡 시연 영상](#-시연-영상)
 
-3️⃣ [💡 소개 영상](#-소개-영상)
+3️⃣ [💡 기능 소개](#-기능-소개)
 
-4️⃣ [💡 기능 소개](#-기능-소개)
+4️⃣ [💡 주요 화면](#-주요-화면)
 
-5️⃣ [💡 주요 화면](#-주요-화면)
+5️⃣ [💡 시스템 아키텍처](#-시스템-아키텍처)
 
-6️⃣ [💡 시스템 아키텍처](#-시스템-아키텍처)
+6️⃣ [💡 AI 모델](#-AI-모델)
 
 7️⃣ [💡 팀원](#-팀원)
 
@@ -61,8 +61,9 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
 
 ## 💡 시연 영상
 
-[![시연영상](https://github.com/user-attachments/assets/ed0e1b0a-1da1-4d72-a508-e35e13fb08ad)](https://youtu.be/oU1lYYOKgb4?si=tjG6P2a4Wt9pjtmm)
+[![시연영상](https://github.com/user-attachments/assets/0e47c8fa-b0a9-470c-a656-96339315c209)](https://youtu.be/qNCNHbmYvzI)
 <br><br>
+
 
 ## 💡 기능 소개
 
@@ -179,6 +180,19 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
     <img src = "https://github.com/user-attachments/assets/ac6be91f-49c5-476d-ac06-ed682e004e5e" width = 800/>
     </p>
 </div>
+
+NURINOON 은 <strong>성능(Performance), 효율성(Efficiency), 기능(Funtionality)</strong>을 고려하여 설계하였습니다.
+
+Media Server, Backend Server, AI Server를 각각 독립된 EC2 인스턴스로 분리함으로써 서버 간 책임을 명확히 분리하고, <strong>서비스 간 병목 및 장애 전파를 최소화</strong>하였습니다. 
+또한 모든 서버는 Docker 컨테이너 기반으로 배포되어, <strong>유연한 확장</strong>이 가능합니다.
+
+미디어 서버는 RTMP를 사용하여 실시간 스트리밍 영상을 처리하고, 이를 HLS로 변환하여 웹과 모바일 환경에서 <strong>저지연 및 안정적인 스트리밍</strong>을 제공합니다.
+이를 통해 실시간 위험 감지 및 빠른 대응이 요구되는 상황에서 즉각적인 피드백을 가능하게 하여, 지연을 최소화하면서도 <strong>브라우저 호환성을 보장</strong>합니다.
+
+AI 서버의 경우, 1차 AI 모델은 실시간으로 정적 위험을 빠르게 감지하고, 관련된 프레임만을 2차 모델에 전달하여 <strong>실시간성과 시스템 자원 효율성을 극대화</strong>합니다. 
+2차 모델은 영상 기반으로 정밀한 동적 위험 행동을 분석하여, 높은 분류 정확도를 제공합니다. <strong>이중 AI 모델 구조</strong>는 실시간성과 분석 정확도를 모두 충족시키며, 효율적이고 정확한 위험 감지를 가능하게 합니다.
+
+
 <br><br>
 
 ## 💡 AI 모델
@@ -188,6 +202,17 @@ CCTV 영상을 실시간으로 분석하여 화재, 폭행, 쓰러짐, 흉기난
     <img src = "https://github.com/user-attachments/assets/66fb6d2b-5879-4eb4-8f1d-a3a4a2042954" width = 700/>
     </p>
 </div>
+
+NURINOON은 CCTV 영상을 분석해 위험행동을 감지하여 알림을 제공하는 서비스입니다. 이를 위해 <strong>YOLOv11-nano</strong>와 <strong>X3D 모델</strong>을 조합하여 객체 탐지와 위험행동 분류를 분리 처리함으로써 속도와 정확도를 모두 확보하고자 하였습니다.
+
+* <strong>YOLOv11-nano 모델</strong>: 객체 탐지
+사람, 연기, 불, 흉기 객체를 빠르게 탐지하는 데 특화된 <strong>경량 객체 탐지 모델</strong>로, 실시간 CCTV 영상에서도 높은 FPS를 유지할 수 있습니다.
+
+* <strong>X3D</strong>: 행동 인식
+D Conv 기반의 비디오 인식 모델로, 시간적 및 공간적 정보를 효과적으로 처리해, <strong>행동(폭행, 쓰러짐 등)의 패턴을 이해하고 분류하는 데 적합</strong>합니다.
+
+따라서 YOLOv11 로 영상 데이터를 필터링한 후 X3D로 전달하여 <strong>불필요한 연산을 제거하고 정밀한 행동 분류</strong>를 할 수 있도록 하였습니다. 이로 인해 효율성 향상, 정확도 개선, 실시간 처리 최적화를 달성하였습니다.
+          
 <br><br>
 
 ## 💡 팀원
