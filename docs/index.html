@@ -218,10 +218,13 @@
       }
 
       .github-button {
-        display: block;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        justify-content: center;
         padding: 0.75rem;
         background-color: #ffffff;
-        color: white;
+        color: black;
         text-align: center;
         border-radius: 8px;
         font-weight: 600;
@@ -232,6 +235,20 @@
 
       .github-button:hover {
         background-color: #f0f1f4;
+      }
+
+      .github-button img {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 2px;
+      }
+
+      .github-button span {
+        font-size: 16px;
+        align-content: center;
+        vertical-align: middle;
       }
 
       section h1 {
@@ -335,25 +352,26 @@
         line-height: 1.3rem;
       }
       .badge-row {
-        display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        column-gap: 8px;
+        row-gap: 8px;
         margin-bottom: 24px;
       }
+
       .badge-row img {
-        height: 40px;
-        width: auto;
+        height: 35px;
+        display: inline-block;
         object-fit: contain;
-        display: block;
       }
 
-      /* 모바일 대응 */
       @media (max-width: 768px) {
         .badge-row {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: 10px;
+          gap: 5px;
         }
 
         .badge-row img {
@@ -462,11 +480,6 @@
           font-size: 0.85rem;
           display: block;
           overflow-x: auto;
-        }
-
-        .badge-row {
-          flex-direction: column;
-          align-items: flex-start;
         }
 
         .ai-table-row {
@@ -1238,13 +1251,8 @@
           target="_blank"
           class="github-button"
         >
-          <img
-            src="img/github.svg"
-            alt="GitHub"
-            width="25"
-            style="vertical-align: middle; margin-right: 6px"
-          />
-          GitHub로 이동
+          <img src="img/github.svg" alt="GitHub" />
+          <span>GitHub로 이동</span>
         </a>
       </div>
     </nav>
