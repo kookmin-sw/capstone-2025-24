@@ -17,7 +17,14 @@ interface IncidentModalProps {
   onCctvClick: () => void;
 }
 
-const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpdate, onCctvClick }: IncidentModalProps) => {
+const IncidentModal = ({
+  onClose,
+  alertItem,
+  onFeedbackClick,
+  onDispatch,
+  isUpdate,
+  onCctvClick,
+}: IncidentModalProps) => {
   const { id, category, date, address, video } = alertItem;
   const [videoUrl, setVideoUrl] = useState('');
   const { updateItemState } = useItemStore();
@@ -26,7 +33,6 @@ const IncidentModal = ({ onClose, alertItem, onFeedbackClick, onDispatch, isUpda
     const response = await getVideo(id);
     setVideoUrl(response.video);
   };
-
 
   useEffect(() => {
     if (video != undefined) {
