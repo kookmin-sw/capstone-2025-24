@@ -109,6 +109,6 @@ export const VideoPlayer = styled.video`
   margin-top: 15px;
   width: 906px;
   height: 500px;
-  border: none;
+  object-fit: fill;
   border-radius: 8px;
 `;
