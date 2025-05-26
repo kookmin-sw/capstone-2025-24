@@ -340,6 +340,28 @@
         gap: 8px;
         margin-bottom: 24px;
       }
+      .badge-row img {
+        height: 40px;
+        width: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* 모바일 대응 */
+      @media (max-width: 768px) {
+        .badge-row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .badge-row img {
+          height: 36px;
+          max-width: 100%;
+        }
+      }
+
       .AI {
         width: 100%;
         max-width: 600px;
@@ -404,6 +426,64 @@
       .ai-table-row .ai-table {
         flex: 1;
         min-width: 280px;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          margin-left: 0;
+        }
+
+        .side-nav {
+          display: none;
+        }
+
+        section {
+          padding: 1rem;
+          margin: 1rem 0;
+        }
+
+        header {
+          height: auto;
+          padding: 1.5rem 1rem;
+          text-align: center;
+        }
+
+        .feature,
+        .AI,
+        iframe,
+        img {
+          width: 100% !important;
+          height: auto;
+        }
+
+        table,
+        .ai-table,
+        .tech-table {
+          font-size: 0.85rem;
+          display: block;
+          overflow-x: auto;
+        }
+
+        .badge-row {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .ai-table-row {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .scroll-btn {
+          bottom: 20px;
+          right: 20px;
+        }
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
       }
     </style>
   </head>
