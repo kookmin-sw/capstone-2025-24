@@ -24,8 +24,8 @@ export const InfoContent = styled.div`
 // KakaoMap.tsx ------------------------------------------------//
 
 export const Maps = styled(Map)`
-  width: 413px;
-  height: 246px;
+  width: 450px;
+  height: 260px;
   border-radius: 8px;
   border: solid 1px var(--gray400);
 `;
@@ -37,8 +37,8 @@ export const InfoBoxLayout = styled.div`
   flex-direction: column;
   justify-content: center;
   border: solid 0.5px var(--gray400);
-  width: 413px;
-  height: 246px;
+  width: 450px;
+  height: 260px;
   padding: 0 10px;
   background: #fff;
   border-radius: 8px;
@@ -107,8 +107,8 @@ export const Location = styled.div<LocationProps>`
 
 export const VideoPlayer = styled.video`
   margin-top: 15px;
-  width: 831px;
-  height: 467px;
+  width: 906px;
+  height: 500px;
   border: none;
   border-radius: 8px;
 `;

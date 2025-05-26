@@ -36,7 +36,7 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   scrollbar-gutter: stable;
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 0 2px var(--gray400) inset;
+  box-shadow: 0 0 0 1px var(--gray400) inset;
   padding-left: 3px;
   margin-top: 3px;
   list-style: none;
@@ -83,10 +83,10 @@ export const DropdownItem = styled.li`
   transition: background 0.2s ease;
   background: transparent;
   color: black;
-  border-radius: 8px;
+  border-radius: 5px;
   text-align: center;
 
   &:hover {
-    background: var(--primary500);
+    background: var(--primary400);
   }
 `;

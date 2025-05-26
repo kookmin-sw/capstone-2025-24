@@ -28,7 +28,7 @@ const IncidentList = () => {
   const [lastFilter, setLastFilter] = useState({
     // 마지막 필터링 값 기억
     category: '전체',
-    startDate: new Date('2024/01/01'),
+    startDate: new Date('2025/01/01'),
     endDate: new Date(),
     searchType: '담당 경찰',
     searchWord: '',

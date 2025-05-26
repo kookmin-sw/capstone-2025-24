@@ -24,7 +24,7 @@ export const ModalContainer = styled.div<{ $highlight: boolean }>`
   background: white;
   padding: 23px;
   padding-top: 30px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ export const InfoDiv = styled.div`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 20px;
   gap: 25px;
 `;
 

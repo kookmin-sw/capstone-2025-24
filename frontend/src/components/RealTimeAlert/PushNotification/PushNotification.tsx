@@ -44,7 +44,7 @@ const PushNotification = ({ id, category }: { id: number; category: string | nul
       <S.ExclamationMark src={exclamationMark} />
       <S.ContentContainer>
         <S.ContentP $fontColor={'black'}>{category} 상황 감지</S.ContentP>
-        <S.ContentP $fontColor={'#5c5c5c'}>클릭 시 알림 리스트로 이동합니다.</S.ContentP>
+        <S.ContentP $fontColor={'#5c5c5c'} className="content">클릭 시 알림 리스트로 이동합니다.</S.ContentP>
       </S.ContentContainer>
     </S.PushNotificationLayout>
   );

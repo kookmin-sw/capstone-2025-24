@@ -48,7 +48,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .date-picker-wrapper.open input {
-    background-color: var(--primary500);
+    background-color: var(--primary400);
   }
 
   .custom-datepicker {

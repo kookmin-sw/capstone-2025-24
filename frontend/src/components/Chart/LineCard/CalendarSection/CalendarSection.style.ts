@@ -161,7 +161,6 @@ export const DateDisplayLayout = styled.div`
 
   p {
     font-size: 16px;
-    line-height: 20;
     color: var(--gray800);
   }
 `;
@@ -177,11 +176,12 @@ export const CalendarIcon = styled(FaRegCalendar)`
   width: 17px;
   height: 17px;
   padding-top: 2px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 `;
 
 export const DisplaySpan = styled.span`
   color: var(--gray800);
   font-size: 16px;
   font-weight: 500;
+  padding-top: 3px;
 `;

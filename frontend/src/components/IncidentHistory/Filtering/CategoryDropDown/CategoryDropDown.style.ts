@@ -12,7 +12,7 @@ export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   height: 52px;
   padding: 0px 24px;
-  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary400)' : 'white')};
   border: 1px solid var(--gray400);
   border-radius: 10px;
   cursor: pointer;
@@ -36,7 +36,7 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   width: 100%;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 0 2px var(--gray400) inset;
+  box-shadow: 0 0 0 1px var(--gray400) inset;
   margin-top: 6px;
   overflow: hidden;
   padding: 0;
@@ -62,13 +62,13 @@ export const DropdownItem = styled.li<{ $isSelected: boolean }>`
   font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary500)' : 'transparent')};
+  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary400)' : 'transparent')};
   color: black;
   border-radius: 8px;
   text-align: center;
 
   &:hover {
-    background: var(--primary500);
+    background: var(--primary400);
   }
 `;
 

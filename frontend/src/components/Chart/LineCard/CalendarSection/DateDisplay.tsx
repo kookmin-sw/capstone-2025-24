@@ -9,7 +9,7 @@ const changeDateFormat = (date:Date) => {
 const DateDisplay = ({content}:DateDisplayProps) => {
   return (
     <S.DateDisplayLayout>
-      날짜
+      <S.DisplaySpan>날짜</S.DisplaySpan>
       <S.VerticalLine />
       <S.CalendarIcon />
       <S.DisplaySpan>{changeDateFormat(content)}</S.DisplaySpan>

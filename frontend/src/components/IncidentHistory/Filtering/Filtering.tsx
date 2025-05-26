@@ -40,7 +40,7 @@ const Filtering = ({
   lastFilter,
 }: FilteringProps) => {
   const [categoryFilter, setCategoryFilter] = useState('전체');
-  const [startDateFilter, setStartDateFilter] = useState(new Date('2024/01/01'));
+  const [startDateFilter, setStartDateFilter] = useState(new Date('2025/01/01'));
   const [endDateFilter, setEndDateFilter] = useState(new Date());
   const [searchType, setSearchType] = useState('담당 경찰');
   const [searchWord, setSearchWord] = useState('');

@@ -90,7 +90,7 @@ export const DatePickerWrapper = styled.div<{ $isOpen: boolean }>`
   height: 52px;
   border: 1px solid var(--gray400);
   border-radius: 8px;
-  background-color: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
+  background-color: ${({ $isOpen }) => ($isOpen ? 'var(--primary400)' : 'white')};
 `;
 
 export const CalendarIcon = styled(HiMiniCalendar)`
@@ -126,7 +126,7 @@ export const DropdownHeader = styled.button<{ $isOpen: boolean }>`
   border: 1px solid var(--gray400);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
-  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary400)' : 'white')};
   cursor: pointer;
   font-size: 18px;
   display: flex;
@@ -149,7 +149,7 @@ export const DropdownList = styled.ul<{ $isOpen: boolean }>`
   width: 100%;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 0 2px var(--gray400) inset;
+  box-shadow: 0 0 0 1px var(--gray400) inset;
   margin-top: 6px;
   overflow: hidden;
   padding: 0;
@@ -175,13 +175,13 @@ export const DropdownItem = styled.li<{ $isSelected: boolean }>`
   font-size: 18px;
   cursor: pointer;
   transition: background 0.2s ease;
-  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary500)' : 'transparent')};
+  background: ${({ $isSelected }) => ($isSelected ? 'var(--primary400)' : 'transparent')};
   color: black;
   border-radius: 8px;
   text-align: center;
 
   &:hover {
-    background: var(--primary500);
+    background: var(--primary400);
   }
 `;
 
@@ -214,20 +214,21 @@ export const SearchIcon = styled(CgSearch)`
 
 export const SortingDropdownWrapper = styled.div`
   position: relative;
-  width: 69px;
+  width: 100px;
 `;
 
 export const SortingDropdownHeader = styled.button<{ $isOpen: boolean }>`
   width: 100%;
-  height: 26px;
+  height: 35px;
   padding: 0px 10px;
-  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary500)' : 'white')};
+  background: ${({ $isOpen }) => ($isOpen ? 'var(--primary400)' : 'white')};
   border: 1px solid var(--gray400);
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  gap: 15px;
   align-items: center;
   transition: all 0.3s ease;
   color: var(--gray800);
@@ -245,8 +246,8 @@ export const SortingDropdownList = styled.ul<{ isOpen: boolean }>`
   width: 100%;
   background: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 0 2px var(--gray400) inset;
-  margin-top: 6px;
+  box-shadow: 0 0 0 1px var(--gray400) inset;
+  margin-top: 3px;
   overflow: hidden;
   padding: 0;
   list-style: none;
@@ -266,17 +267,17 @@ export const SortingDropdownList = styled.ul<{ isOpen: boolean }>`
 `;
 
 export const SortingDropdownItem = styled.li<{ isSelected: boolean }>`
-  padding: 3px 0px;
+  padding: 5px 0px;
   margin: 5px 5px;
-  font-size: 11px;
+  font-size: 15px;
   cursor: pointer;
   transition: background 0.2s ease;
-  background: ${({ isSelected }) => (isSelected ? 'var(--primary500)' : 'transparent')};
+  background: ${({ isSelected }) => (isSelected ? 'var(--primary400)' : 'transparent')};
   color: black;
   border-radius: 5px;
   text-align: center;
 
   &:hover {
-    background: var(--primary500);
+    background: var(--primary400);
   }
 `;

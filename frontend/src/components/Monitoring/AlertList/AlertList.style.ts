@@ -117,13 +117,13 @@ export const AlertListLayout = styled.div`
 export const TitleDiv = styled.div`
   font-size: 25px;
   font-weight: 700;
-  padding: 0px 17px;
+  padding: 7px 17px;
   width: 300px;
-  height: 53px;
+
   z-index: 100;
-  line-height: 53px;
   display: flex;
   align-items: center;
+  margin-top: 10px;
 `;
 
 export const AlertContainer = styled.div`
@@ -132,7 +132,7 @@ export const AlertContainer = styled.div`
   align-items: center;
   height: calc(100vh - 53px);
   overflow-y: auto;
-  padding-top: 5px;
+
 
   &::-webkit-scrollbar {
     width: 1.5px;

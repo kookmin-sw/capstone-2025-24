@@ -18,8 +18,8 @@ export const PushNotificationLayout = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 9999;
-  width: 498px;
-  height: 96px;
+  width: 370px;
+  height: 75px;
   background-color: #fffaee;
   border: 1.5px solid var(--yellow);
   border-radius: 10px;
@@ -28,19 +28,23 @@ export const PushNotificationLayout = styled.div`
   padding: 21px 23px;
   gap: 26px;
   cursor: pointer;
+  align-items: center;
 
   animation: ${slideDown} 1s ease-out;
 `;
 
 export const ExclamationMark = styled.img`
-  width: 54px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
 `;
 
 export const ContentP = styled.p<{ $fontColor: string }>`
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 600;
   color: ${({ $fontColor }) => $fontColor};
+  &.content {
+    font-size: 16px;
+  }
 `;
 
 export const ContentContainer = styled.div`

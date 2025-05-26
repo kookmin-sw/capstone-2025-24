@@ -6,7 +6,6 @@ import Lottie from 'lottie-react';
 export const InfoSliderLayout = styled.div`
   width: 100%;
   height: 380px;
-  margin-top: 60px;
 `;
 
 export const CardSlider = styled(Slider)`
