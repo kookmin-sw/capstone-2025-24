@@ -299,9 +299,13 @@ D Conv 기반의 비디오 인식 모델로, 시간적 및 공간적 정보를 �
 ## 💡 제출 서류
 
 <!-- 수행계획서 -->
-<!-- 중간보고서 -->
+[수행계획서](https://drive.google.com/file/d/1KFmiaVTJUMxobPI8qKdfIGU-P1X-rf8f/view?usp=drive_link)
 <!-- 중간발표자료 -->
-<!-- 중간시연영상 -->
-<!-- 최종보고서 -->
+[중간 발표 자료](https://drive.google.com/file/d/19T3WDmAjOy7gBAc5q6XsgPXQ_h7j29e4/view?usp=drive_link)
+<!-- 수행결과보고서 -->
+[수행결과보고서](https://drive.google.com/file/d/1Dg4ImthlEw1aYYT-2Z3S0w_58U0mpqeE/view?usp=drive_link)
 <!-- 최종발표자료 -->
-<!-- 최종시연연영상 -->
+[최종 발표 자료](https://drive.google.com/file/d/1R4GZSABMSVKqU6gY0OS-Y1iyOOvlDDPi/view?usp=drive_link)
+<!-- 시연영상 -->
+[시연 영상](https://www.youtube.com/watch?v=YE4nkh7HI6o)
+
