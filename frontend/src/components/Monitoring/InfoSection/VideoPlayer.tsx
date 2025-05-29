@@ -69,7 +69,7 @@ const VideoPlayer = ({ locations }: VideoPlayerProps) => {
     };
   }, [selectedIndex, locations]);
 
-  return <S.VideoPlayer ref={videoRef} muted autoPlay playsInline />;
+  return <S.VideoPlayer ref={videoRef} muted autoPlay playsInline className='videoPlayer' />;
 };
 
 export default VideoPlayer;
