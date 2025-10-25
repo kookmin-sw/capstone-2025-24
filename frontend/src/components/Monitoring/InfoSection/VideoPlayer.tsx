@@ -22,15 +22,15 @@ const VideoPlayer = ({ locations }: VideoPlayerProps) => {
     const hls = new Hls();
     let localVideoPath = '';
     if (selectedIndex === 1) {
-      localVideoPath = 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9';
+      localVideoPath = 'https://github.com/user-attachments/assets/22ed78b5-5492-49b0-adcd-c4ca4dd404da';
     } else if (selectedIndex == 2) {
-      localVideoPath = 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9';
+      localVideoPath = 'https://github.com/user-attachments/assets/740b160c-b36e-494b-9863-ce017d6161e1';
     } else if (selectedIndex == 3) {
-      localVideoPath = 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9';
+      localVideoPath = 'https://github.com/user-attachments/assets/f2bda60e-c210-4a0f-9162-4ca4692e8f2d';
     } else if (selectedIndex == 4) {
-      localVideoPath = 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9';
+      localVideoPath = 'https://github.com/user-attachments/assets/6e83b7cb-407e-43b5-8f35-8333341ffae7';
     } else if (selectedIndex == 5) {
-      localVideoPath = 'https://github.com/user-attachments/assets/47bdc8a5-68d1-4edd-8d42-6e06272358b9';
+      localVideoPath = 'https://github.com/user-attachments/assets/71d9d0c2-4126-4244-b08c-f80529ac0aa9';
     }
     video.src = localVideoPath;
     video.load();
