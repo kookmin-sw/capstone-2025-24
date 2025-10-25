@@ -31,7 +31,7 @@ import com.amazonaws.services.s3.AmazonS3;
 @RequiredArgsConstructor
 public class DashboardService {
 
-    @Value("${cloud.aws.bucket}")
+    @Value("${cloud.ncp.bucket}")
     private String bucket;
     private final AmazonS3 s3Client;
     private final DashboardRepository dashboardRepository;

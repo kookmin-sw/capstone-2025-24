@@ -28,7 +28,7 @@ public class CaseDetectService {
     private final DashboardRepository caseRepository;
     private final CctvRepository cctvRepository; // CCTV 정보(주소) 조회용
 
-    @Value("${cloud.aws.bucket}")
+    @Value("${cloud.ncp.bucket}")
     private String bucket;
     private final AmazonS3 s3Client;
 
