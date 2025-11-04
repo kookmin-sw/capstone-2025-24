@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Hls from 'hls.js';
 import * as S from './InfoSection.style';
 import { CctvInfo } from '@/types/cctv';
 import { useSelectedCctvStore } from '@/stores/selectedCctvStore';
+import styled from 'styled-components';
 
 interface VideoPlayerProps {
   locations: CctvInfo[];
@@ -21,15 +22,21 @@ const VideoPlayer = ({ locations }: VideoPlayerProps) => {
     const video = videoRef.current;
     const hls = new Hls();
     let localVideoPath = '';
+
     if (selectedIndex === 1) {
+      setIsLoading(true);
       localVideoPath = 'https://github.com/user-attachments/assets/22ed78b5-5492-49b0-adcd-c4ca4dd404da';
     } else if (selectedIndex == 2) {
+      setIsLoading(true);
       localVideoPath = 'https://github.com/user-attachments/assets/740b160c-b36e-494b-9863-ce017d6161e1';
     } else if (selectedIndex == 3) {
+      setIsLoading(true);
       localVideoPath = 'https://github.com/user-attachments/assets/f2bda60e-c210-4a0f-9162-4ca4692e8f2d';
     } else if (selectedIndex == 4) {
+      setIsLoading(true);
       localVideoPath = 'https://github.com/user-attachments/assets/6e83b7cb-407e-43b5-8f35-8333341ffae7';
     } else if (selectedIndex == 5) {
+      setIsLoading(true);
       localVideoPath = 'https://github.com/user-attachments/assets/71d9d0c2-4126-4244-b08c-f80529ac0aa9';
     }
     video.src = localVideoPath;
@@ -41,7 +48,61 @@ const VideoPlayer = ({ locations }: VideoPlayerProps) => {
     };
   }, [selectedIndex, locations]);
 
-  return <S.VideoPlayer ref={videoRef} muted autoPlay playsInline className="videoPlayer" />;
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadedData = () => {
+    setIsLoading(false);
+  };
+
+  return (
+    <VideoWrapper>
+      {isLoading && (
+        <SpinnerWrapper>
+          <Spinner />
+        </SpinnerWrapper>
+      )}
+
+      <S.VideoPlayer
+        ref={videoRef}
+        onLoadedData={handleLoadedData}
+        muted
+        autoPlay
+        playsInline
+        className="videoPlayer"
+      />
+    </VideoWrapper>
+  );
 };
 
 export default VideoPlayer;
+
+const VideoWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const SpinnerWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const Spinner = styled.div`
+  border: 4px solid rgba(0, 0, 0, 0.2);
+  border-top: 4px solid #5973ee;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
